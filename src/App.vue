@@ -1,10 +1,48 @@
 <template>
   <div id="app">
     <div class="ambient-bg">
-      <div class="gradient-orb orb-1"></div>
-      <div class="gradient-orb orb-2"></div>
-      <div class="gradient-orb orb-3"></div>
+      <Grainient
+        color1="#5227FF"
+        color2="#FF9FFC"
+        color3="#B19EEF"
+        :time-speed="0.15"
+        :color-balance="0.0"
+        :warp-strength="1.0"
+        :warp-frequency="5.0"
+        :warp-speed="1.5"
+        :warp-amplitude="50.0"
+        :blend-angle="0.0"
+        :blend-softness="0.05"
+        :rotation-amount="500.0"
+        :noise-scale="2.0"
+        :grain-amount="0.08"
+        :grain-scale="2.0"
+        :grain-animated="false"
+        :contrast="1.5"
+        :gamma="1.0"
+        :saturation="1.0"
+        :center-x="0.0"
+        :center-y="0.0"
+        :zoom="0.9"
+      />
     </div>
+
+    <SplashCursor
+      :SIM_RESOLUTION="128"
+      :DYE_RESOLUTION="1440"
+      :CAPTURE_RESOLUTION="512"
+      :DENSITY_DISSIPATION="3.5"
+      :VELOCITY_DISSIPATION="2"
+      :PRESSURE="0.1"
+      :PRESSURE_ITERATIONS="20"
+      :CURL="3"
+      :SPLAT_RADIUS="0.2"
+      :SPLAT_FORCE="6000"
+      :SHADING="true"
+      :COLOR_UPDATE_SPEED="10"
+      :BACK_COLOR="{ r: 0.5, g: 0, b: 0 }"
+      :TRANSPARENT="true"
+    />
 
     <div class="menu-overlay" :class="{ 'overlay-active': menuOpen }" @click="closeMenu"></div>
 
@@ -97,9 +135,15 @@
 
 <script>
 import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
+import Grainient from './extra/Grainient/Grainient.vue'
+import SplashCursor from './extra/SplashCursor/SplashCursor.vue'
 
 export default {
   name: 'App',
+  components: {
+    Grainient,
+    SplashCursor
+  },
   setup() {
     const isScrolled = ref(false)
     const menuOpen = ref(false)
@@ -160,46 +204,13 @@ export default {
   background: var(--background);
 }
 
-.gradient-orb {
+.ambient-bg :deep(.relative) {
   position: absolute;
-  border-radius: 50%;
-  filter: blur(100px);
-  opacity: 0.5;
-  will-change: transform;
-  animation: float 20s ease-in-out infinite;
+  inset: 0;
 }
 
-.orb-1 {
-  width: 600px;
-  height: 600px;
-  background: var(--primary-light);
-  top: -200px;
-  right: -150px;
-  animation-delay: 0s;
-}
-
-.orb-2 {
-  width: 500px;
-  height: 500px;
-  background: var(--secondary-light);
-  bottom: -150px;
-  left: -100px;
-  animation-delay: -7s;
-}
-
-.orb-3 {
-  width: 400px;
-  height: 400px;
-  background: var(--accent-light);
-  top: 50%;
-  left: 30%;
-  animation-delay: -14s;
-}
-
-@keyframes float {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(30px, -30px) scale(1.05); }
-  66% { transform: translate(-20px, 20px) scale(0.95); }
+:deep(.fixed) {
+  pointer-events: none;
 }
 
 .navbar {
