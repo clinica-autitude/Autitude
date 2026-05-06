@@ -2,95 +2,101 @@
   <div class="home">
     <section class="hero">
       <div class="hero-bg">
-        <div class="hero-shapes">
-          <div class="shape shape-1"></div>
-          <div class="shape shape-2"></div>
-          <div class="shape shape-3"></div>
-        </div>
+        <div class="gradient-blob blob-1"></div>
+        <div class="gradient-blob blob-2"></div>
+        <div class="gradient-blob blob-3"></div>
       </div>
       
       <div class="container">
-        <div class="hero-content">
-          <span class="hero-badge">
-            <span class="badge-dot"></span>
-            Clinica Especializada
-          </span>
-          
-          <h1 class="hero-title">
-            Cuidado que
-            <span class="title-highlight">transforma</span>
-            <br>vidatorias
-          </h1>
-          
-          <p class="hero-subtitle">
-            Especialistas em Terapia Ocupacional e Integracao Sensorial. 
-            O cuidado que seu filho merece, com carinho e excelencia.
-          </p>
-          
-          <div class="hero-actions">
-            <router-link to="/agendar" class="btn btn-primary">
-              Agendar Consulta
-            </router-link>
-            <router-link to="/servicos" class="btn btn-secondary">
-              Conhecer Servicos
-            </router-link>
+        <div class="hero-wrapper">
+          <div class="hero-content">
+            <div class="badge-wrapper">
+              <span class="hero-badge">
+                <span class="badge-dot"></span>
+                Clinica Especializada
+              </span>
+            </div>
+            
+            <h1 class="hero-title">
+              Cuidado que
+              <span class="title-highlight">transforma</span>
+              vidatorias
+            </h1>
+            
+            <p class="hero-subtitle">
+              Especialistas em Terapia Ocupacional e Integracao Sensorial. 
+              O cuidado que seu filho merece, com carinho e excelencia.
+            </p>
+            
+            <div class="hero-actions">
+              <router-link to="/agendar" class="btn btn-primary btn-lg">
+                Agendar Consulta
+              </router-link>
+              <router-link to="/servicos" class="btn btn-secondary btn-lg">
+                Conhecer Servicos
+              </router-link>
+            </div>
           </div>
           
-          <div class="hero-stats">
-            <div class="stat">
-              <span class="stat-value">15+</span>
-              <span class="stat-label">Anos de Experiencia</span>
+          <div class="hero-visual">
+            <div class="visual-card card-1">
+              <div class="card-accent"></div>
+              <div class="card-text">Desenvolvimento Integral</div>
             </div>
-            <div class="stat-divider"></div>
-            <div class="stat">
-              <span class="stat-value">Certificada</span>
-              <span class="stat-label">NC University USA</span>
+            <div class="visual-card card-2">
+              <div class="card-accent"></div>
+              <div class="card-text">Cuidado Humanizado</div>
             </div>
-            <div class="stat-divider"></div>
-            <div class="stat">
-              <span class="stat-value">Pindamonhangaba</span>
-              <span class="stat-label">Localizacao</span>
+            <div class="visual-card card-3">
+              <div class="card-accent"></div>
+              <div class="card-text">Tratamento Personalizado</div>
             </div>
           </div>
         </div>
         
-        <div class="hero-visual">
-          <div class="visual-card card-1">
-            <div class="card-icon"></div>
-            <span class="card-text">Desenvolvimento Integral</span>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-value">15+</span>
+            <span class="stat-label">Anos de Experiencia</span>
           </div>
-          <div class="visual-card card-2">
-            <div class="card-icon"></div>
-            <span class="card-text">Cuidado Humanizado</span>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-value">Certificada</span>
+            <span class="stat-label">NC University USA</span>
           </div>
-          <div class="visual-card card-3">
-            <div class="card-icon"></div>
-            <span class="card-text">Tratamento Personalizado</span>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-value">Pindamonhangaba</span>
+            <span class="stat-label">Localizacao</span>
           </div>
         </div>
       </div>
       
-      <div class="scroll-hint" @click="scrollToFeatures">
-        <span>Descobrir mais</span>
-        <div class="scroll-arrow"></div>
+      <div class="scroll-indicator" @click="scrollToFeatures">
+        <div class="scroll-line"></div>
       </div>
     </section>
 
     <section id="features" class="features section">
       <div class="container">
         <div class="section-header">
-          <span class="section-tag">Por que escolher a Autitude</span>
-          <h2>Um atendimento unico</h2>
-          <p>Combinamos excelencia tecnica com humanizacao para oferecer o melhor cuidado ao seu filho.</p>
+          <div class="header-content">
+            <span class="section-tag">Por que escolher a Autitude</span>
+            <h2>Um atendimento unico</h2>
+            <p>Combinamos excelencia tecnica com humanizacao para oferecer o melhor cuidado ao seu filho.</p>
+          </div>
         </div>
         
         <div class="features-grid">
-          <div class="feature-card" v-for="feature in features" :key="feature.title">
-            <div class="feature-icon" :style="{ background: feature.color }">
-              <div class="icon-inner"></div>
+          <div class="feature-card" v-for="(feature, index) in features" :key="feature.title" :style="{ '--delay': index * 0.1 + 's' }">
+            <div class="feature-icon-wrapper" :style="{ background: feature.color }">
+              <div class="feature-icon-inner"></div>
             </div>
-            <h3>{{ feature.title }}</h3>
-            <p>{{ feature.description }}</p>
+            <div class="feature-content">
+              <h3>{{ feature.title }}</h3>
+              <p>{{ feature.description }}</p>
+            </div>
+            <div class="feature-hover-overlay"></div>
           </div>
         </div>
       </div>
@@ -99,30 +105,51 @@
     <section class="services-preview section">
       <div class="container">
         <div class="section-header">
-          <span class="section-tag">Nossos Servicos</span>
-          <h2>Especialidades</h2>
+          <div class="header-content">
+            <span class="section-tag">Nossos Servicos</span>
+            <h2>Especialidades</h2>
+          </div>
         </div>
         
-        <div class="services-grid">
-          <router-link 
-            v-for="service in services" 
-            :key="service.name"
-            to="/servicos" 
-            class="service-card"
-          >
-            <div class="service-icon">
-              <div class="icon-box"></div>
+        <div class="services-showcase">
+          <div class="service-main">
+            <div class="service-main-content">
+              <div class="service-icon-large">
+                <div class="icon-shape"></div>
+              </div>
+              <h3>Terapia Ocupacional</h3>
+              <p>Desenvolvemos habilidades motoras, cognitivas e funcionais para que sua crianca atinja seu maximo potencial.</p>
+              <ul class="service-list">
+                <li>Motor fino e grosso</li>
+                <li>Coordenacao motora</li>
+                <li>Autonomia pessoal</li>
+                <li>Atividades de vida diaria</li>
+              </ul>
+              <router-link to="/servicos" class="btn btn-primary">Ver Mais</router-link>
             </div>
-            <div class="service-content">
-              <h4>{{ service.name }}</h4>
-              <p>{{ service.shortDesc }}</p>
-            </div>
-            <span class="service-link">Ver detalhes</span>
-          </router-link>
+          </div>
+          
+          <div class="service-cards-grid">
+            <router-link 
+              v-for="service in services" 
+              :key="service.name"
+              to="/servicos" 
+              class="service-card-mini"
+            >
+              <div class="card-mini-icon" :style="{ background: service.color }">
+                <div class="mini-icon-shape"></div>
+              </div>
+              <div class="card-mini-content">
+                <h4>{{ service.name }}</h4>
+                <p>{{ service.shortDesc }}</p>
+              </div>
+              <div class="card-arrow"></div>
+            </router-link>
+          </div>
         </div>
         
         <div class="section-cta">
-          <router-link to="/servicos" class="btn btn-primary">
+          <router-link to="/servicos" class="btn btn-secondary btn-lg">
             Ver Todos os Servicos
           </router-link>
         </div>
@@ -131,15 +158,17 @@
 
     <section class="cta-section section">
       <div class="container">
-        <div class="cta-card">
+        <div class="cta-wrapper">
+          <div class="cta-glow"></div>
           <div class="cta-content">
+            <span class="cta-tag">Entre em contato</span>
             <h2>Pronto para comecar?</h2>
             <p>Agende uma avaliacao e descubra como podemos ajudar no desenvolvimento do seu filho.</p>
             <div class="cta-actions">
-              <router-link to="/agendar" class="btn btn-primary">
+              <router-link to="/agendar" class="btn btn-primary btn-lg">
                 Agendar Avaliacao
               </router-link>
-              <a href="https://wa.me/5512991968683" class="btn btn-whatsapp" target="_blank">
+              <a href="https://wa.me/5512991968683" class="btn btn-whatsapp btn-lg" target="_blank">
                 Falar no WhatsApp
               </a>
             </div>
@@ -159,24 +188,23 @@ export default {
         {
           title: 'Especializacao',
           description: 'Equipe com certificacao internacional em Integracao Sensorial e abordagens baseadas em evidencias.',
-          color: 'var(--pastel-lavender)'
+          color: 'linear-gradient(135deg, #E8E0F5 0%, #CDBFF0 100%)'
         },
         {
           title: 'Cuidado Humanizado',
           description: 'Atendimento individualizado respeitando o ritmo e as necessidades de cada crianca e familia.',
-          color: 'var(--pastel-pink)'
+          color: 'linear-gradient(135deg, #FFE0E8 0%, #FFD4E0 100%)'
         },
         {
           title: 'Ambiente Acolhedor',
-          description: 'Espaco pensado para proporcionar seguranca, conforto e estimulação adequada ao desenvolvimento.',
-          color: 'var(--pastel-mint)'
+          description: 'Espaco pensado para proporcionar seguranca, conforto e estimulacao adequada ao desenvolvimento.',
+          color: 'linear-gradient(135deg, #E0F5E8 0%, #C4EAD8 100%)'
         }
       ],
       services: [
-        { name: 'Terapia Ocupacional', shortDesc: 'Habilidades motoras e cognitivas' },
-        { name: 'Integracao Sensorial', shortDesc: 'Processamento sensorial' },
-        { name: 'Estimulacao Precoce', shortDesc: 'Primeiros anos de vida' },
-        { name: 'Avaliacao Compreensiva', shortDesc: 'Diagnostico completo' }
+        { name: 'Integracao Sensorial', shortDesc: 'Processamento sensorial', color: 'linear-gradient(135deg, #E8E0F5 0%, #CDBFF0 100%)' },
+        { name: 'Estimulacao Precoce', shortDesc: 'Primeiros anos de vida', color: 'linear-gradient(135deg, #FFE0E8 0%, #FFD4E0 100%)' },
+        { name: 'Avaliacao Compreensiva', shortDesc: 'Diagnostico completo', color: 'linear-gradient(135deg, #E0F5E8 0%, #C4EAD8 100%)' }
       ]
     }
   },
@@ -192,7 +220,8 @@ export default {
 .hero {
   min-height: 100vh;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  justify-content: center;
   padding-top: 100px;
   position: relative;
   overflow: hidden;
@@ -201,59 +230,59 @@ export default {
 .hero-bg {
   position: absolute;
   inset: 0;
-  overflow: hidden;
   pointer-events: none;
 }
 
-.hero-shapes {
-  position: absolute;
-  right: -5%;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 50%;
-  height: 100%;
-}
-
-.shape {
+.gradient-blob {
   position: absolute;
   border-radius: 50%;
   filter: blur(80px);
-  opacity: 0.4;
+  opacity: 0.5;
 }
 
-.shape-1 {
+.blob-1 {
+  width: 600px;
+  height: 600px;
+  background: var(--primary-light);
+  top: -200px;
+  right: -100px;
+}
+
+.blob-2 {
   width: 400px;
   height: 400px;
-  background: var(--primary-light);
-  top: 10%;
-  right: 10%;
+  background: var(--secondary-light);
+  bottom: -100px;
+  left: -50px;
 }
 
-.shape-2 {
+.blob-3 {
   width: 300px;
   height: 300px;
-  background: var(--secondary-light);
-  top: 40%;
-  right: 30%;
-}
-
-.shape-3 {
-  width: 200px;
-  height: 200px;
   background: var(--accent-light);
-  top: 65%;
-  right: 5%;
+  top: 40%;
+  left: 30%;
 }
 
 .hero .container {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.hero-wrapper {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1.2fr 0.8fr;
   gap: 4rem;
   align-items: center;
 }
 
 .hero-content {
   max-width: 560px;
+}
+
+.badge-wrapper {
+  margin-bottom: 1.5rem;
 }
 
 .hero-badge {
@@ -267,7 +296,6 @@ export default {
   font-weight: 600;
   color: var(--primary);
   box-shadow: var(--shadow-sm);
-  margin-bottom: 1.5rem;
 }
 
 .badge-dot {
@@ -285,7 +313,7 @@ export default {
 
 .hero-title {
   font-size: clamp(2.5rem, 5vw, 3.5rem);
-  line-height: 1.1;
+  line-height: 1.15;
   margin-bottom: 1.25rem;
 }
 
@@ -300,24 +328,29 @@ export default {
   font-size: 1.125rem;
   color: var(--text-secondary);
   margin-bottom: 2rem;
-  max-width: 480px;
+  line-height: 1.7;
 }
 
 .hero-actions {
   display: flex;
   gap: 1rem;
-  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
 }
 
 .hero-stats {
   display: flex;
+  justify-content: center;
   align-items: center;
-  gap: 1.5rem;
+  gap: 3rem;
+  padding: 2rem 0;
+  border-top: 1px solid rgba(155, 126, 217, 0.1);
 }
 
-.stat {
+.stat-item {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .stat-value {
@@ -329,40 +362,46 @@ export default {
 .stat-label {
   font-size: 0.8125rem;
   color: var(--text-light);
+  margin-top: 0.25rem;
 }
 
 .stat-divider {
   width: 1px;
   height: 40px;
-  background: rgba(155, 126, 217, 0.2);
+  background: rgba(155, 126, 217, 0.15);
 }
 
 .hero-visual {
   position: relative;
-  height: 500px;
+  height: 420px;
 }
 
 .visual-card {
   position: absolute;
   background: var(--surface);
-  padding: 1.25rem 1.5rem;
+  padding: 1.25rem 1.75rem;
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-md);
   display: flex;
   align-items: center;
   gap: 1rem;
   animation: float 6s ease-in-out infinite;
+  transition: transform 0.3s ease;
+}
+
+.visual-card:hover {
+  transform: scale(1.02);
 }
 
 .card-1 {
-  top: 10%;
-  right: 10%;
+  top: 5%;
+  right: 15%;
   animation-delay: 0s;
 }
 
 .card-2 {
-  top: 40%;
-  right: 0;
+  top: 38%;
+  right: 5%;
   animation-delay: -2s;
 }
 
@@ -377,47 +416,42 @@ export default {
   50% { transform: translateY(-10px); }
 }
 
-.card-icon {
+.card-accent {
   width: 40px;
   height: 40px;
-  border-radius: 10px;
-  background: var(--primary-light);
+  border-radius: 12px;
+  background: var(--gradient-primary);
 }
 
 .card-text {
   font-weight: 600;
   font-size: 0.9375rem;
   color: var(--text);
+  white-space: nowrap;
 }
 
-.scroll-hint {
+.scroll-indicator {
   position: absolute;
   bottom: 2rem;
   left: 50%;
   transform: translateX(-50%);
+  cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
-  cursor: pointer;
-  color: var(--text-light);
-  font-size: 0.8125rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
 }
 
-.scroll-arrow {
-  width: 24px;
-  height: 24px;
-  border-right: 2px solid var(--text-light);
-  border-bottom: 2px solid var(--text-light);
-  transform: rotate(45deg);
-  animation: arrow 2s infinite;
+.scroll-line {
+  width: 2px;
+  height: 40px;
+  background: linear-gradient(to bottom, var(--primary), transparent);
+  animation: scrollPulse 2s infinite;
 }
 
-@keyframes arrow {
-  0%, 100% { transform: rotate(45deg) translateY(0); }
-  50% { transform: rotate(45deg) translateY(6px); }
+@keyframes scrollPulse {
+  0%, 100% { opacity: 1; transform: scaleY(1); }
+  50% { opacity: 0.5; transform: scaleY(0.8); }
 }
 
 .features {
@@ -427,6 +461,11 @@ export default {
 .section-header {
   text-align: center;
   margin-bottom: 3rem;
+}
+
+.header-content {
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .section-tag {
@@ -445,8 +484,6 @@ export default {
 }
 
 .section-header p {
-  max-width: 560px;
-  margin: 0 auto;
   font-size: 1.0625rem;
 }
 
@@ -454,48 +491,58 @@ export default {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
 .feature-card {
-  background: var(--surface);
+  background: var(--background);
   padding: 2rem;
   border-radius: var(--radius-xl);
-  box-shadow: var(--shadow-xs);
   text-align: center;
-  transition: all 0.3s var(--ease-smooth);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  animation: fadeInUp 0.6s ease forwards;
+  animation-delay: var(--delay);
+  opacity: 0;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .feature-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-md);
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
 }
 
-.feature-icon {
-  width: 72px;
-  height: 72px;
-  margin: 0 auto 1.25rem;
-  border-radius: var(--radius-lg);
+.feature-icon-wrapper {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 1.5rem;
+  border-radius: var(--radius-xl);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.icon-inner {
-  width: 32px;
-  height: 32px;
-  border-radius: 8px;
+.feature-icon-inner {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
   background: var(--primary);
-  opacity: 0.3;
+  opacity: 0.4;
 }
 
-.feature-card h3 {
+.feature-content h3 {
   margin-bottom: 0.75rem;
-  font-size: 1.125rem;
+  font-size: 1.25rem;
 }
 
-.feature-card p {
+.feature-content p {
   font-size: 0.9375rem;
-  color: var(--text-secondary);
   line-height: 1.6;
 }
 
@@ -503,78 +550,183 @@ export default {
   background: var(--background);
 }
 
-.services-grid {
+.services-showcase {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.25rem;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 2rem;
+  margin-bottom: 2.5rem;
 }
 
-.service-card {
+.service-main {
   background: var(--surface);
-  padding: 1.75rem;
-  border-radius: var(--radius-xl);
-  text-decoration: none;
-  transition: all 0.3s var(--ease-smooth);
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.service-card:hover {
-  transform: translateY(-4px);
+  border-radius: var(--radius-2xl);
+  padding: 2.5rem;
   box-shadow: var(--shadow-md);
 }
 
-.service-icon {
-  width: 56px;
-  height: 56px;
-  border-radius: var(--radius-lg);
+.service-main-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.service-icon-large {
+  width: 72px;
+  height: 72px;
   background: var(--pastel-lavender);
+  border-radius: var(--radius-xl);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.icon-box {
+.icon-shape {
+  width: 32px;
+  height: 32px;
+  background: var(--gradient-primary);
+  border-radius: 10px;
+}
+
+.service-main-content h3 {
+  font-size: 1.5rem;
+}
+
+.service-main-content > p {
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.service-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.service-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.9375rem;
+  color: var(--text-secondary);
+}
+
+.service-list li::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  background: var(--primary);
+  border-radius: 50%;
+}
+
+.service-cards-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.service-card-mini {
+  background: var(--surface);
+  border-radius: var(--radius-xl);
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.service-card-mini:hover {
+  transform: translateX(8px);
+  box-shadow: var(--shadow-md);
+}
+
+.card-mini-icon {
+  width: 56px;
+  height: 56px;
+  min-width: 56px;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mini-icon-shape {
   width: 24px;
   height: 24px;
   background: var(--primary);
   border-radius: 6px;
+  opacity: 0.5;
 }
 
-.service-content h4 {
+.card-mini-content {
+  flex: 1;
+}
+
+.card-mini-content h4 {
   font-size: 1rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
   color: var(--text);
 }
 
-.service-content p {
+.card-mini-content p {
   font-size: 0.875rem;
   color: var(--text-secondary);
   margin: 0;
 }
 
-.service-link {
-  font-size: 0.8125rem;
-  font-weight: 600;
-  color: var(--primary);
-  margin-top: auto;
+.card-arrow {
+  width: 24px;
+  height: 24px;
+  border-right: 2px solid var(--text-light);
+  border-bottom: 2px solid var(--text-light);
+  transform: rotate(-45deg);
+  opacity: 0.3;
 }
 
 .section-cta {
   text-align: center;
-  margin-top: 2.5rem;
 }
 
 .cta-section {
   background: var(--surface);
+  position: relative;
+  overflow: hidden;
 }
 
-.cta-card {
-  background: linear-gradient(135deg, var(--pastel-lavender) 0%, var(--pastel-mint) 100%);
+.cta-wrapper {
+  position: relative;
+  background: linear-gradient(135deg, var(--pastel-lavender) 0%, var(--pastel-mint) 50%, var(--pastel-peach) 100%);
   border-radius: var(--radius-2xl);
   padding: 4rem;
   text-align: center;
+  overflow: hidden;
+}
+
+.cta-glow {
+  position: absolute;
+  top: -50%;
+  left: -20%;
+  width: 60%;
+  height: 200%;
+  background: radial-gradient(ellipse, rgba(255,255,255,0.4) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.cta-content {
+  position: relative;
+  z-index: 1;
+}
+
+.cta-tag {
+  display: inline-block;
+  padding: 0.375rem 1rem;
+  background: rgba(255,255,255,0.6);
+  border-radius: var(--radius-full);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--primary-dark);
+  margin-bottom: 1rem;
 }
 
 .cta-content h2 {
@@ -584,36 +736,29 @@ export default {
 .cta-content p {
   font-size: 1.0625rem;
   margin-bottom: 2rem;
-  color: var(--text-secondary);
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .cta-actions {
   display: flex;
   justify-content: center;
   gap: 1rem;
+  flex-wrap: wrap;
 }
 
 @media (max-width: 1024px) {
-  .hero .container {
+  .hero-wrapper {
     grid-template-columns: 1fr;
     text-align: center;
-    gap: 2rem;
   }
   
   .hero-content {
     max-width: 100%;
   }
   
-  .hero-subtitle {
-    max-width: 100%;
-    margin: 0 auto clamp(1.5rem, 4vw, 2rem);
-  }
-  
   .hero-actions {
-    justify-content: center;
-  }
-  
-  .hero-stats {
     justify-content: center;
   }
   
@@ -625,89 +770,59 @@ export default {
     grid-template-columns: repeat(2, 1fr);
   }
   
-  .services-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .services-showcase {
+    grid-template-columns: 1fr;
+  }
+  
+  .service-main {
+    text-align: center;
+  }
+  
+  .service-list {
+    align-items: center;
   }
 }
 
 @media (max-width: 640px) {
   .hero {
     padding-top: clamp(4rem, 12vw, 6rem);
-    min-height: auto;
-    padding-bottom: 3rem;
-  }
-  
-  .hero-badge {
-    font-size: clamp(0.75rem, 2.5vw, 0.85rem);
-  }
-  
-  .hero-title {
-    font-size: clamp(2rem, 8vw, 2.75rem);
-  }
-  
-  .hero-subtitle {
-    font-size: clamp(0.95rem, 3vw, 1.1rem);
-  }
-  
-  .hero-actions {
-    flex-direction: column;
-    width: 100%;
-    gap: 0.75rem;
-  }
-  
-  .hero-actions .btn {
-    width: 100%;
-    justify-content: center;
+    padding-bottom: 2rem;
   }
   
   .hero-stats {
-    flex-wrap: wrap;
-    gap: clamp(1rem, 4vw, 1.5rem);
+    flex-direction: column;
+    gap: 1.5rem;
   }
   
   .stat-divider {
-    display: none;
+    width: 60px;
+    height: 1px;
   }
   
   .features-grid {
     grid-template-columns: 1fr;
   }
   
-  .feature-card {
-    padding: clamp(1.25rem, 4vw, 1.5rem);
+  .service-card-mini {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
   }
   
-  .services-grid {
-    grid-template-columns: 1fr;
+  .card-arrow {
+    display: none;
   }
   
-  .service-card {
-    padding: clamp(1.25rem, 4vw, 1.5rem);
-  }
-  
-  .cta-content {
-    padding: clamp(1.5rem, 5vw, 2rem);
-  }
-  
-  .cta-content h2 {
-    font-size: clamp(1.5rem, 5vw, 1.75rem);
+  .cta-wrapper {
+    padding: 2.5rem 1.5rem;
   }
   
   .cta-actions {
     flex-direction: column;
-    align-items: center;
-    width: 100%;
   }
   
   .cta-actions .btn {
     width: 100%;
-    justify-content: center;
-  }
-}
-
-@media (max-width: 380px) {
-  .hero-title {
-    font-size: 1.75rem;
   }
 }
 </style>
