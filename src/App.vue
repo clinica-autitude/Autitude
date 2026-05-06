@@ -1,48 +1,8 @@
 <template>
   <div id="app">
-    <div class="ambient-bg">
-      <Grainient
-        color1="#5227FF"
-        color2="#FF9FFC"
-        color3="#B19EEF"
-        :time-speed="0.15"
-        :color-balance="0.0"
-        :warp-strength="1.0"
-        :warp-frequency="5.0"
-        :warp-speed="1.5"
-        :warp-amplitude="50.0"
-        :blend-angle="0.0"
-        :blend-softness="0.05"
-        :rotation-amount="500.0"
-        :noise-scale="2.0"
-        :grain-amount="0.08"
-        :grain-scale="2.0"
-        :grain-animated="false"
-        :contrast="1.5"
-        :gamma="1.0"
-        :saturation="1.0"
-        :center-x="0.0"
-        :center-y="0.0"
-        :zoom="0.9"
-      />
-    </div>
-
-    <SplashCursor
-      :SIM_RESOLUTION="128"
-      :DYE_RESOLUTION="1440"
-      :CAPTURE_RESOLUTION="512"
-      :DENSITY_DISSIPATION="3.5"
-      :VELOCITY_DISSIPATION="2"
-      :PRESSURE="0.1"
-      :PRESSURE_ITERATIONS="20"
-      :CURL="3"
-      :SPLAT_RADIUS="0.2"
-      :SPLAT_FORCE="6000"
-      :SHADING="true"
-      :COLOR_UPDATE_SPEED="10"
-      :BACK_COLOR="{ r: 0.5, g: 0, b: 0 }"
-      :TRANSPARENT="true"
-    />
+    <a href="#main" class="skip-link">Pular para o conteúdo principal</a>
+    
+    <div class="ambient-bg"></div>
 
     <div class="menu-overlay" :class="{ 'overlay-active': menuOpen }" @click="closeMenu"></div>
 
@@ -82,7 +42,7 @@
       </div>
     </nav>
 
-    <main>
+    <main id="main">
       <router-view v-slot="{ Component }">
         <transition name="page" mode="out-in">
           <component :is="Component" />
@@ -130,19 +90,19 @@
         </div>
       </div>
     </footer>
+
+    <AccessibilityWidget />
   </div>
 </template>
 
 <script>
 import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
-import Grainient from './extra/Grainient/Grainient.vue'
-import SplashCursor from './extra/SplashCursor/SplashCursor.vue'
+import AccessibilityWidget from './components/AccessibilityWidget.vue'
 
 export default {
   name: 'App',
   components: {
-    Grainient,
-    SplashCursor
+    AccessibilityWidget
   },
   setup() {
     const isScrolled = ref(false)
@@ -203,6 +163,27 @@ export default {
   overflow: hidden;
   background: var(--background);
   opacity: 0.7;
+}
+
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--primary);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0 0 8px 8px;
+  text-decoration: none;
+  font-weight: 600;
+  z-index: 10000;
+  transition: top 0.3s;
+}
+
+.skip-link:focus {
+  top: 0;
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
 }
 
 .ambient-bg :deep(.relative) {

@@ -157,87 +157,91 @@ let cleanup: (() => void) | null = null;
 const setup = () => {
   if (!containerRef.value) return;
 
-  const renderer = new Renderer({
-    webgl: 2,
-    alpha: true,
-    antialias: false,
-    dpr: Math.min(window.devicePixelRatio || 1, 2)
-  });
+  try {
+    const renderer = new Renderer({
+      webgl: 2,
+      alpha: true,
+      antialias: false,
+      dpr: Math.min(window.devicePixelRatio || 1, 2)
+    });
 
-  const gl = renderer.gl;
-  const canvas = gl.canvas as HTMLCanvasElement;
-  canvas.style.width = '100%';
-  canvas.style.height = '100%';
-  canvas.style.display = 'block';
+    const gl = renderer.gl;
+    const canvas = gl.canvas as HTMLCanvasElement;
+    canvas.style.width = '100%';
+    canvas.style.height = '100%';
+    canvas.style.display = 'block';
 
-  const container = containerRef.value;
-  container.appendChild(canvas);
+    const container = containerRef.value;
+    container.appendChild(canvas);
 
-  const geometry = new Triangle(gl);
-  const program = new Program(gl, {
-    vertex,
-    fragment,
-    uniforms: {
-      iTime: { value: 0 },
-      iResolution: { value: new Float32Array([1, 1]) },
-      uTimeSpeed: { value: props.timeSpeed },
-      uColorBalance: { value: props.colorBalance },
-      uWarpStrength: { value: props.warpStrength },
-      uWarpFrequency: { value: props.warpFrequency },
-      uWarpSpeed: { value: props.warpSpeed },
-      uWarpAmplitude: { value: props.warpAmplitude },
-      uBlendAngle: { value: props.blendAngle },
-      uBlendSoftness: { value: props.blendSoftness },
-      uRotationAmount: { value: props.rotationAmount },
-      uNoiseScale: { value: props.noiseScale },
-      uGrainAmount: { value: props.grainAmount },
-      uGrainScale: { value: props.grainScale },
-      uGrainAnimated: { value: props.grainAnimated ? 1.0 : 0.0 },
-      uContrast: { value: props.contrast },
-      uGamma: { value: props.gamma },
-      uSaturation: { value: props.saturation },
-      uCenterOffset: { value: new Float32Array([props.centerX, props.centerY]) },
-      uZoom: { value: props.zoom },
-      uColor1: { value: new Float32Array(hexToRgb(props.color1)) },
-      uColor2: { value: new Float32Array(hexToRgb(props.color2)) },
-      uColor3: { value: new Float32Array(hexToRgb(props.color3)) }
-    }
-  });
+    const geometry = new Triangle(gl);
+    const program = new Program(gl, {
+      vertex,
+      fragment,
+      uniforms: {
+        iTime: { value: 0 },
+        iResolution: { value: new Float32Array([1, 1]) },
+        uTimeSpeed: { value: props.timeSpeed },
+        uColorBalance: { value: props.colorBalance },
+        uWarpStrength: { value: props.warpStrength },
+        uWarpFrequency: { value: props.warpFrequency },
+        uWarpSpeed: { value: props.warpSpeed },
+        uWarpAmplitude: { value: props.warpAmplitude },
+        uBlendAngle: { value: props.blendAngle },
+        uBlendSoftness: { value: props.blendSoftness },
+        uRotationAmount: { value: props.rotationAmount },
+        uNoiseScale: { value: props.noiseScale },
+        uGrainAmount: { value: props.grainAmount },
+        uGrainScale: { value: props.grainScale },
+        uGrainAnimated: { value: props.grainAnimated ? 1.0 : 0.0 },
+        uContrast: { value: props.contrast },
+        uGamma: { value: props.gamma },
+        uSaturation: { value: props.saturation },
+        uCenterOffset: { value: new Float32Array([props.centerX, props.centerY]) },
+        uZoom: { value: props.zoom },
+        uColor1: { value: new Float32Array(hexToRgb(props.color1)) },
+        uColor2: { value: new Float32Array(hexToRgb(props.color2)) },
+        uColor3: { value: new Float32Array(hexToRgb(props.color3)) }
+      }
+    });
 
-  const mesh = new Mesh(gl, { geometry, program });
+    const mesh = new Mesh(gl, { geometry, program });
 
-  const setSize = () => {
-    const rect = container.getBoundingClientRect();
-    const width = Math.max(1, Math.floor(rect.width));
-    const height = Math.max(1, Math.floor(rect.height));
-    renderer.setSize(width, height);
-    const res = (program.uniforms.iResolution as { value: Float32Array }).value;
-    res[0] = gl.drawingBufferWidth;
-    res[1] = gl.drawingBufferHeight;
-  };
+    const setSize = () => {
+      const rect = container.getBoundingClientRect();
+      const width = Math.max(1, Math.floor(rect.width));
+      const height = Math.max(1, Math.floor(rect.height));
+      renderer.setSize(width, height);
+      const res = (program.uniforms.iResolution as { value: Float32Array }).value;
+      res[0] = gl.drawingBufferWidth;
+      res[1] = gl.drawingBufferHeight;
+    };
 
-  const ro = new ResizeObserver(setSize);
-  ro.observe(container);
-  setSize();
+    const ro = new ResizeObserver(setSize);
+    ro.observe(container);
+    setSize();
 
-  let raf = 0;
-  const t0 = performance.now();
-  const loop = (t: number) => {
-    (program.uniforms.iTime as { value: number }).value = (t - t0) * 0.001;
-    renderer.render({ scene: mesh });
+    let raf = 0;
+    const t0 = performance.now();
+    const loop = (t: number) => {
+      (program.uniforms.iTime as { value: number }).value = (t - t0) * 0.001;
+      renderer.render({ scene: mesh });
+      raf = requestAnimationFrame(loop);
+    };
     raf = requestAnimationFrame(loop);
-  };
-  raf = requestAnimationFrame(loop);
 
-  cleanup = () => {
-    cancelAnimationFrame(raf);
-    ro.disconnect();
-    try {
-      container.removeChild(canvas);
-    } catch {
-      // Ignore
-    }
-  };
+    cleanup = () => {
+      cancelAnimationFrame(raf);
+      ro.disconnect();
+      try {
+        container.removeChild(canvas);
+      } catch {
+        // Ignore
+      }
+    };
+  } catch (e) {
+    console.warn('Grainient: WebGL init failed:', e);
+  }
 };
 
 onMounted(setup);

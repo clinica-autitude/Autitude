@@ -415,7 +415,7 @@ onMounted(() => {
       uniform vec2 texelSize;
       vec3 linearToGamma (vec3 color) {
           color = max(color, vec3(0));
-          return max(1.055 * pow(color, vec3(0.416666667)) - 0.055, vec3(0));
+          return max(1.055 * pow(color, vec3(0.416666667)) - 0.055, vec3(0.0));
       }
       void main () {
           vec3 c = texture2D(uTexture, vUv).rgb;
