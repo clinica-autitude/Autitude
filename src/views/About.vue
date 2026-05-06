@@ -6,31 +6,31 @@
           <span class="section-tag">Sobre a Autitude</span>
           <h1>Cuidando do futuro do seu filho</h1>
           <p class="lead">
-            Uma clínica dedicadas à promoção do desenvolvimento integral de crianças, 
-            com excelência técnica e cuidado humanizado.
+            Uma clinica dedicada a promocao do desenvolvimento integral de criancas, 
+            com excelencia tecnica e cuidado humanizado.
           </p>
         </div>
 
         <div class="about-grid">
           <div class="about-content">
-            <h2>Nossa História</h2>
+            <h2>Nossa Historia</h2>
             <p>
               A <strong>Autitude</strong> nasceu do desejo de oferecer um atendimento 
-              diferenciado e de alta qualidade para crianças com necessidades 
+              diferenciado e de alta qualidade para criancas com necessidades 
               neurodivergentes. Fundada por profissionais especializadas em Terapia 
-              Ocupacional e Integração Sensorial, nossa clínica se dedica a 
+              Ocupacional e Integracao Sensorial, nossa clinica se dedica a 
               proporcionar um ambiente acolhedor e especializado.
             </p>
             <p>
-              Localizada na <strong>Rua Major José dos Santos Moreira, 328, Pindamonhangaba-SP</strong>, atendemos crianças 
-              e famílias com carinho, profissionalismo e embasamento científico.
+              Localizada na <strong>Rua Major Jose dos Santos Moreira, 328, Pindamonhangaba-SP</strong>, atendemos criancas 
+              e familias com carinho, profissionalismo e embasamento cientifico.
             </p>
           </div>
           
           <div class="about-stats">
             <div class="stat-box">
               <span class="stat-number">15+</span>
-              <span class="stat-text">Anos de Experiência</span>
+              <span class="stat-text">Anos de Experiencia</span>
             </div>
             <div class="stat-box">
               <span class="stat-number">Certificada</span>
@@ -49,12 +49,12 @@
       <div class="container">
         <div class="section-header">
           <span class="section-tag">Nossos Valores</span>
-          <h2>O que nosmove</h2>
+          <h2>O que nos move</h2>
         </div>
         
         <div class="values-grid">
           <div class="value-card" v-for="value in values" :key="value.title">
-            <span class="value-icon">{{ value.icon }}</span>
+            <div class="value-icon"></div>
             <h3>{{ value.title }}</h3>
             <p>{{ value.description }}</p>
           </div>
@@ -66,19 +66,19 @@
       <div class="container">
         <div class="mission-grid">
           <div class="mission-card">
-            <span class="mission-icon">🎯</span>
-            <h3>Missão</h3>
-            <p>Promover o desenvolvimento integral de crianças através de intervenções especializadas e baseadas em evidências científicas.</p>
+            <div class="mission-icon"></div>
+            <h3>Missao</h3>
+            <p>Promover o desenvolvimento integral de criancas atraves de intervencoes especializadas e baseadas em evidencias cientificas.</p>
           </div>
           <div class="mission-card">
-            <span class="mission-icon">👁️</span>
-            <h3>Visão</h3>
-            <p>Ser referência em terapia ocupacional e integração sensorial na região.</p>
+            <div class="mission-icon"></div>
+            <h3>Visao</h3>
+            <p>Ser referencia em terapia ocupacional e integracao sensorial na regiao.</p>
           </div>
           <div class="mission-card">
-            <span class="mission-icon">💜</span>
+            <div class="mission-icon"></div>
             <h3>Valores</h3>
-            <p>Humanização, ética, excelência técnica e compromisso com as famílias.</p>
+            <p>Humanizacao, etica, excelencia tecnica e compromisso com as familias.</p>
           </div>
         </div>
       </div>
@@ -105,24 +105,20 @@ export default {
     return {
       values: [
         {
-          icon: '🎓',
-          title: 'Excelência',
-          description: 'Profissionais em constante atualização científica e técnica.'
+          title: 'Excelencia',
+          description: 'Profissionais em constante atualizacao cientifica e tecnica.'
         },
         {
-          icon: '💜',
-          title: 'Humanização',
-          description: 'Cada criança é única. Tratamos com respeito e sensibilidade.'
+          title: 'Humanizacao',
+          description: 'Cada crianca e unica. Tratamos com respeito e sensibilidade.'
         },
         {
-          icon: '🤝',
           title: 'Parceria',
-          description: 'Família é parte essencial do processo de desenvolvimento.'
+          description: 'Familia e parte essencial do processo de desenvolvimento.'
         },
         {
-          icon: '🌱',
           title: 'Crescimento',
-          description: 'Acompanhamos cada passo com atenção e dedicação.'
+          description: 'Acompanhamos cada passo com atencao e dedicacao.'
         }
       ]
     }
@@ -236,9 +232,11 @@ export default {
 }
 
 .value-icon {
-  font-size: 2rem;
-  display: block;
-  margin-bottom: 1rem;
+  width: 48px;
+  height: 48px;
+  background: var(--primary-light);
+  border-radius: 50%;
+  margin: 0 auto 1rem;
 }
 
 .value-card h3 {
@@ -270,9 +268,12 @@ export default {
 }
 
 .mission-icon {
-  font-size: 2rem;
-  display: block;
-  margin-bottom: 1rem;
+  width: 48px;
+  height: 48px;
+  background: var(--primary);
+  border-radius: 50%;
+  margin: 0 auto 1rem;
+  opacity: 0.3;
 }
 
 .mission-card h3 {

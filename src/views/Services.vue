@@ -3,9 +3,9 @@
     <section class="section hero-section">
       <div class="container">
         <div class="section-header">
-          <span class="section-tag">Nossos Serviços</span>
+          <span class="section-tag">Nossos Servicos</span>
           <h1>Tratamentos especializados</h1>
-          <p>Oferecemos intervenções especializadas para o desenvolvimento integral da criança.</p>
+          <p>Oferecemos intervencoes especializadas para o desenvolvimento integral da crianca.</p>
         </div>
 
         <div class="services-grid">
@@ -15,13 +15,13 @@
             :key="service.title"
           >
             <div class="service-icon" :style="{ background: service.color }">
-              {{ service.icon }}
+              <div class="icon-inner"></div>
             </div>
             <div class="service-content">
               <h3>{{ service.title }}</h3>
               <p>{{ service.description }}</p>
               <ul class="service-list">
-                <li v-for="item in service.items" :key="item">✓ {{ item }}</li>
+                <li v-for="item in service.items" :key="item">{{ item }}</li>
               </ul>
             </div>
           </div>
@@ -55,8 +55,8 @@
     <section class="cta-section section">
       <div class="container">
         <div class="cta-card">
-          <h2>Agende uma avaliação</h2>
-          <p>Nossa equipe está pronta para entender as necessidades do seu filho.</p>
+          <h2>Agende uma avaliacao</h2>
+          <p>Nossa equipe esta pronta para entender as necessidades do seu filho.</p>
           <router-link to="/agendar" class="btn btn-primary">
             Agendar Agora
           </router-link>
@@ -73,45 +73,41 @@ export default {
     return {
       services: [
         {
-          icon: '🧩',
           title: 'Terapia Ocupacional',
-          description: 'Intervenções para desenvolver habilidades motoras, cognitivas e funcionais.',
+          description: 'Intervencoes para desenvolver habilidades motoras, cognitivas e funcionais.',
           color: 'var(--pastel-lavender)',
-          items: ['Motor fino e grosso', 'Coordenação motora', 'Autonomia pessoal', 'Atividades de vida diária']
+          items: ['Motor fino e grosso', 'Coordenacao motora', 'Autonomia pessoal', 'Atividades de vida diaria']
         },
         {
-          icon: '🌈',
-          title: 'Integração Sensorial',
-          description: 'Abordagem especializada para organizar o processamento sensorial. Desenvolvida pela Dra. Jean Ayres, trabalha as 8 sensações do corpo.',
+          title: 'Integracao Sensorial',
+          description: 'Abordagem especializada para organizar o processamento sensorial. Desenvolvida pela Dra. Jean Ayres, trabalha as 8 sensacoes do corpo.',
           color: 'var(--pastel-pink)',
           items: [
-            'Diagnóstico sensorial completo',
-            'Terapia de Integração Sensorial (SIT)',
+            'Diagnostico sensorial completo',
+            'Terapia de Integracao Sensorial (SIT)',
             'Sala Snoezelen / Sala Sensorial',
-            'Programa de intervenção individualizado',
-            'Orientação para escola e família',
-            'Estratégias de regulação sensorial'
+            'Programa de intervencao individualizado',
+            'Orientacao para escola e familia',
+            'Estrategias de regulacao sensorial'
           ]
         },
         {
-          icon: '👶',
-          title: 'Estimulação Precoce',
-          description: 'Intervenções para os primeiros anos de vida.',
+          title: 'Estimulacao Precoce',
+          description: 'Intervencoes para os primeiros anos de vida.',
           color: 'var(--pastel-mint)',
-          items: ['Avaliação do desenvolvimento', 'Programa de estimulação', 'Suporte aos pais', 'Monitoramento']
+          items: ['Avaliacao do desenvolvimento', 'Programa de estimulacao', 'Suporte aos pais', 'Monitoramento']
         },
         {
-          icon: '🧠',
-          title: 'Avaliação Comportamental',
+          title: 'Avaliacao Comportamental',
           description: 'Processos avaliativos para compreender o perfil funcional.',
           color: 'var(--pastel-peach)',
-          items: ['Avaliação sensorial', 'Perfil motor', 'Escala de independência', 'Relatório completo']
+          items: ['Avaliacao sensorial', 'Perfil motor', 'Escala de independencia', 'Relatorio completo']
         }
       ],
       processSteps: [
-        { title: 'Contato', description: 'Você entra em contato pelo WhatsApp ou formulário.' },
-        { title: 'Agendamento', description: 'Marcamos uma avaliação inicial.' },
-        { title: 'Avaliação', description: 'Realizamos avaliação completa do desenvolvimento.' },
+        { title: 'Contato', description: 'Voce entra em contato pelo WhatsApp ou formulario.' },
+        { title: 'Agendamento', description: 'Marcamos uma avaliacao inicial.' },
+        { title: 'Avaliacao', description: 'Realizamos avaliacao completa do desenvolvimento.' },
         { title: 'Plano', description: 'Elaboramos um plano personalizado.' }
       ]
     }
@@ -175,7 +171,14 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2.5rem;
+}
+
+.icon-inner {
+  width: 48px;
+  height: 48px;
+  background: var(--primary);
+  border-radius: 12px;
+  opacity: 0.5;
 }
 
 .service-content {

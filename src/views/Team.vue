@@ -3,15 +3,15 @@
     <section class="section hero-section">
       <div class="container">
         <div class="section-header">
-          <span class="section-tag">Nossa Equipe</span>
-          <h1>Profissionais dedicadas</h1>
-          <p>Especialistas comprometidas com o desenvolvimento das crianças.</p>
+          <span class="section-tag">Nossa Profissional</span>
+          <h1>Especialista dedicada</h1>
+          <p>Comprometida com o desenvolvimento das criancas.</p>
         </div>
 
         <div class="team-grid">
           <div class="team-card" v-for="member in team" :key="member.name">
             <div class="member-photo" :style="{ background: member.color }">
-              {{ member.emoji }}
+              <div class="photo-icon"></div>
             </div>
             <div class="member-info">
               <h3>{{ member.name }}</h3>
@@ -37,7 +37,7 @@
         
         <div class="culture-grid">
           <div class="culture-card" v-for="item in culture" :key="item.title">
-            <span class="culture-icon">{{ item.icon }}</span>
+            <div class="culture-icon"></div>
             <h3>{{ item.title }}</h3>
             <p>{{ item.description }}</p>
           </div>
@@ -68,33 +68,16 @@ export default {
         {
           name: 'Dra. Juliana Mariani',
           role: 'Terapeuta Ocupacional | CREFITO 20083-TO',
-          bio: 'Especialista em Integração Sensorial com certificação pela North Carolina University (USA). Mais de 15 anos de experiência em terapia ocupacional pediátrica e desenvolvimento infantil.',
+          bio: 'Especialista em Integracao Sensorial com certificacao pela North Carolina University (USA). Mais de 15 anos de experiencia em terapia ocupacional pediatrica e desenvolvimento infantil.',
           color: 'var(--pastel-lavender)',
-          emoji: '👩‍⚕️',
-          tags: ['CREFITO 20083-TO', 'Integração Sensorial', 'Certificação NC University', 'Terapia Pediátrica']
-        },
-        {
-          name: 'Dra. Amanda Silva',
-          role: 'Terapeuta Ocupacional',
-          bio: 'Formação em Terapia Ocupacional com especialização em Integração Sensorial e abordagem pediátrica.',
-          color: 'var(--pastel-pink)',
-          emoji: '👩‍🎓',
-          tags: ['Integração Sensorial', 'Estimulação Precoce']
-        },
-        {
-          name: 'Profa. Marcia Santos',
-          role: 'Coordenadora Clínica',
-          bio: 'Mestrado em Desenvolvimento Humano. Responsável pela qualidade dos serviços e suporte às famílias.',
-          color: 'var(--pastel-mint)',
-          emoji: '👩‍💼',
-          tags: ['Coordenação', 'Orientação Parental']
+          tags: ['CREFITO 20083-TO', 'Integracao Sensorial', 'Certificacao NC University', 'Terapia Pediatrica']
         }
       ],
       culture: [
-        { icon: '💜', title: 'Cuidado Humanizado', description: 'Cada criança é única. Tratamos com respeito e sensibilidade.' },
-        { icon: '🎓', title: 'Excelência Técnica', description: 'Profissionais em constante atualização.' },
-        { icon: '🤝', title: 'Parceria com Famílias', description: 'Família é essencial no processo.' },
-        { icon: '🌱', title: 'Crescimento Contínuo', description: 'Acompanhamos cada passo.' }
+        { title: 'Cuidado Humanizado', description: 'Cada crianca e unica. Tratamos com respeito e sensibilidade.' },
+        { title: 'Excelencia Tecnica', description: 'Profissionais em constante atualizacao.' },
+        { title: 'Parceria com Familias', description: 'Familia e essencial no processo.' },
+        { title: 'Crescimento Continuo', description: 'Acompanhamos cada passo.' }
       ]
     }
   }
@@ -156,7 +139,14 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 4rem;
+}
+
+.photo-icon {
+  width: 80px;
+  height: 80px;
+  background: var(--primary);
+  border-radius: 50%;
+  opacity: 0.3;
 }
 
 .member-info {
@@ -214,9 +204,11 @@ export default {
 }
 
 .culture-icon {
-  font-size: 2rem;
-  display: block;
-  margin-bottom: 0.75rem;
+  width: 48px;
+  height: 48px;
+  background: var(--primary-light);
+  border-radius: 50%;
+  margin: 0 auto 0.75rem;
 }
 
 .culture-card h3 {

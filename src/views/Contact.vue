@@ -12,7 +12,7 @@
           <div class="contact-info">
             <div class="info-card" v-for="info in contactInfo" :key="info.title">
               <div class="info-icon" :style="{ background: info.color }">
-                {{ info.icon }}
+                <div class="icon-box"></div>
               </div>
               <div class="info-content">
                 <h3>{{ info.title }}</h3>
@@ -97,8 +97,8 @@
     <section class="map-section section">
       <div class="container">
         <div class="map-placeholder">
-          <span class="map-icon">📍</span>
-          <p>Rua Major José dos Santos Moreira, 328</p>
+          <div class="map-icon"></div>
+          <p>Rua Major Jose dos Santos Moreira, 328</p>
           <small>Pindamonhangaba, SP</small>
         </div>
       </div>
@@ -116,33 +116,29 @@ export default {
 
     const contactInfo = [
       {
-        icon: '📍',
-        title: 'Localização',
-        content: 'Rua Major José dos Santos Moreira, 328',
+        title: 'Localizacao',
+        content: 'Rua Major Jose dos Santos Moreira, 328',
         detail: 'Pindamonhangaba, SP',
         color: 'var(--pastel-lavender)'
       },
       {
-        icon: '💬',
         title: 'WhatsApp',
-        content: 'Respostas rápidas para suas dúvidas',
-        link: `https://wa.me/${phoneNumber}?text=${encodeURIComponent('Olá! Gostaria de mais informações.')}`,
+        content: 'Respostas rapidas para suas duvidas',
+        link: `https://wa.me/${phoneNumber}?text=${encodeURIComponent('Ola! Gostaria de mais informacoes.')}`,
         linkText: 'Chamar no WhatsApp',
         btnClass: 'btn-whatsapp',
         color: 'var(--pastel-mint)'
       },
       {
-        icon: '📧',
         title: 'E-mail',
         content: 'contato@autitude.com.br',
-        detail: 'Respondemos em até 24h',
+        detail: 'Respondemos em ate 24h',
         color: 'var(--pastel-pink)'
       },
       {
-        icon: '🕐',
-        title: 'Horário',
+        title: 'Horario',
         content: 'Segunda a Sexta',
-        detail: '8h às 18h',
+        detail: '8h as 18h',
         color: 'var(--pastel-peach)'
       }
     ]
@@ -237,7 +233,14 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.5rem;
+}
+
+.icon-box {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  background: var(--primary);
+  opacity: 0.5;
 }
 
 .info-content h3 {
@@ -306,9 +309,11 @@ export default {
 }
 
 .map-icon {
-  font-size: 2.5rem;
-  display: block;
-  margin-bottom: 0.75rem;
+  width: 64px;
+  height: 64px;
+  background: var(--primary-light);
+  border-radius: 50%;
+  margin: 0 auto 0.75rem;
 }
 
 .map-placeholder p {

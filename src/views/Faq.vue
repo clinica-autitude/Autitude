@@ -4,8 +4,8 @@
       <div class="container">
         <div class="section-title" ref="faqTitle">
           <span class="section-tag">Perguntas Frequentes</span>
-          <h2>O que Você Precisa Saber</h2>
-          <p>Tire suas dúvidas sobre Terapia Ocupacional e Integração Sensorial.</p>
+          <h2>O que Voce Precisa Saber</h2>
+          <p>Tire suas duvidas sobre Terapia Ocupacional e Integracao Sensorial.</p>
         </div>
 
         <div class="faq-categories">
@@ -16,7 +16,7 @@
             :class="{ active: activeCategory === category.id }"
             @click="activeCategory = category.id"
           >
-            <span class="category-icon">{{ category.icon }}</span>
+            <div class="category-icon"></div>
             {{ category.name }}
           </button>
         </div>
@@ -46,35 +46,35 @@
       <div class="container">
         <div class="section-title">
           <span class="section-tag">Especialidade</span>
-          <h2>O que é Integração Sensorial?</h2>
+          <h2>O que e Integracao Sensorial?</h2>
         </div>
         
         <div class="sensory-content">
-<div class="sensory-text">
+          <div class="sensory-text">
             <p>
-              A <strong>Integração Sensorial</strong> é uma abordagem terapêutica desenvolvida pela Dra. Jean Ayres, 
-              fundamentada na ideia de que o processamento das informações sensoriais é essencial para o desenvolvimento 
+              A <strong>Integracao Sensorial</strong> e uma abordagem terapeutica desenvolvida pela Dra. Jean Ayres, 
+              fundamentada na ideia de que o processamento das informacoes sensoriais e essencial para o desenvolvimento 
               e comportamento humano.
             </p>
             <p>
-              Quando o cérebro processa as informações sensoriais de forma desorganizada, a criança pode apresentar 
+              Quando o cerebro processa as informacoes sensoriais de forma desorganizada, a crianca pode apresentar 
               dificuldades em atividades cotidianas, comportamento desregulado e desafios no aprendizado.
             </p>
             
-            <h3>🧠 Sistema Sensorial</h3>
+            <h3>Sistema Sensorial</h3>
             <p>
-              O sistema sensorial inclui 7 sentidos que trabalham juntos: toque, olfato, paladar, visão, audição, 
-              propriocepção (consciência do corpo) e vestibular (equilíbrio e movimento).
+              O sistema sensorial inclui 7 sentidos que trabalham juntos: toque, olfato, paladar, visao, audiicao, 
+              propriocepcao (consciencia do corpo) e vestibular (equilibrio e movimento).
             </p>
           </div>
           
           <div class="sensory-signs">
-            <h3>⚠️ Sinais de Desregulação Sensorial</h3>
+            <h3>Sinais de Regulacao Sensorial</h3>
             <ul>
-              <li><strong>Hiporreativo:</strong> Busca estímulos intensos, não percebe dor/temperatura, bate objetos</li>
-              <li><strong>Hipersensível:</strong> Reage excessivamente a ruídos, texturas, luzes</li>
-              <li><strong>Desorganizado:</strong> Dificuldade em se concentrar, transições</li>
-              <li><strong>Motor:</strong> Coordenação ruim, quedas frequentes</li>
+              <li><strong>Hiporreativo:</strong> Busca estimulos intensos, nao percebe dor/temperatura, bate objetos</li>
+              <li><strong>Hipersensivel:</strong> Reage excessivamente a ruidos, texturas, luzes</li>
+              <li><strong>Desorganizado:</strong> Dificuldade em se concentrar, transicoes</li>
+              <li><strong>Motor:</strong> Coordinacao ruim, quedas frequentes</li>
               <li><strong>Alimentar:</strong> Seletividade alimentar extrema</li>
               <li><strong>Sonoro:</strong> Tapando ouvidos ou procurando barulho</li>
             </ul>
@@ -82,10 +82,10 @@
         </div>
 
         <div class="sensory-approach">
-          <h3>🎯 Abordagem Terapêutica</h3>
+          <h3>Abordagem Terapeutica</h3>
           <div class="approach-steps">
             <div class="approach-step" v-for="step in sensoryApproach" :key="step.title">
-              <span class="step-icon">{{ step.icon }}</span>
+              <div class="step-icon"></div>
               <h4>{{ step.title }}</h4>
               <p>{{ step.description }}</p>
             </div>
@@ -97,10 +97,10 @@
     <section class="cta section" ref="ctaSection">
       <div class="container">
         <div class="cta-content">
-          <h2>Ainda tem dúvidas?</h2>
+          <h2>Ainda tem duvidas?</h2>
           <p>Entre em contato conosco para saber como podemos ajudar seu filho.</p>
           <div class="cta-buttons">
-            <router-link to="/agendar" class="btn btn-primary">Agendar Avaliação</router-link>
+            <router-link to="/agendar" class="btn btn-primary">Agendar Avaliacao</router-link>
             <a href="https://wa.me/5512991968683" class="btn btn-whatsapp" target="_blank">
               Falar no WhatsApp
             </a>
@@ -131,88 +131,88 @@ export default {
     const openFaq = ref(null)
 
     const categories = [
-      { id: 'all', name: 'Todas', icon: '📋' },
-      { id: 'general', name: 'Geral', icon: '💜' },
-      { id: 'sensory', name: 'Sensorial', icon: '🌈' },
-      { id: 'therapy', name: 'Terapia', icon: '🧩' },
-      { id: 'schedule', name: 'Agendamento', icon: '📅' }
+      { id: 'all', name: 'Todas' },
+      { id: 'general', name: 'Geral' },
+      { id: 'sensory', name: 'Sensorial' },
+      { id: 'therapy', name: 'Terapia' },
+      { id: 'schedule', name: 'Agendamento' }
     ]
 
-const faqs = [
+    const faqs = [
       {
         category: 'general',
-        question: 'O que é Terapia Ocupacional pediátrica?',
-        answer: 'A Terapia Ocupacional pediátrica é uma especialidade que ajuda crianças a desenvolver habilidades necessárias para performing as atividades cotidianas, brincas e escolares. O terapeuta ocupacional utiliza atividades significativas para promover independência, coordenação motora, integração sensorial e participação nas rotinas diárias.'
+        question: 'O que e Terapia Ocupacional pediatrica?',
+        answer: 'A Terapia Ocupacional pediatrica e uma especialidade que ajuda criancas a desenvolver habilidades necessarias para realizar as atividades cotidianas, brincas e escolares. O terapeuta ocupacional utiliza atividades significativas para promover independencia, coordinacao motora, integracao sensorial e participacao nas rotinas diarias.'
       },
       {
         category: 'general',
         question: 'A partir de qual idade atende?',
-        answer: 'Atendemos crianças a partir de 0 anos, com foco especial na estimulação precoce nos primeiros anos de vida. Quanto mais cedo for identificada a necessidade de intervenção, melhor para o desenvolvimento da criança.'
+        answer: 'Atendemos criancas a partir de 0 anos, com foco especial na estimulacao precoce nos primeiros anos de vida. Quanto mais cedo for identificada a necessidade de intervencao, melhor para o desenvolvimento da crianca.'
       },
       {
         category: 'general',
-        question: 'Quanto tempo dura cada sessão?',
-        answer: 'As sessões têm duração de 45 a 60 minutos, dependendo da necessidade da criança e do tipo de intervenção. Avaliações iniciais geralmente duram mais tempo para serem completas.'
+        question: 'Quanto tempo dura cada sessao?',
+        answer: 'As sessoes tem duracao de 45 a 60 minutos, dependendo da necessidade da crianca e do tipo de intervencao. Avaliacoes iniciais geralmente duram mais tempo para serem completas.'
       },
       {
         category: 'general',
-        question: 'Preciso estar presente durante a sessão?',
-        answer: 'Sim, a presença do responsável é fundamental durante as sessões, especialmente em crianças menores. Além disso, a orientação familiar é parte essencial do tratamento para garantir a generalização dos habilidades aprendidos em casa.'
+        question: 'Preciso estar presente durante a sessao?',
+        answer: 'Sim, a presenca do responsavel e fundamental durante as sessoes, especialmente em criancas menores. Alem disso, a orientacao familiar e parte essencial do tratamento para garantir a generalizacao das habilidades aprendidas em casa.'
       },
       {
         category: 'sensory',
-        question: 'O que é Integração Sensorial?',
-        answer: 'Integração Sensorial é uma abordagem terapêutica que trabalha o processamento das informações sensoriais pelo cérebro. Desenvolvida pela Dra. Jean Ayres, aide crianças que têm dificuldade em processar estímulos sensoriais do ambiente de forma organizada.'
+        question: 'O que e Integracao Sensorial?',
+        answer: 'Integracao Sensorial e uma abordagem terapeutica que trabalha o processamento das informacoes sensoriais pelo cerebro. Desenvolvida pela Dra. Jean Ayres, ajuda criancas que tem dificuldade em processar estimulos sensoriais do ambiente de forma organizada.'
       },
       {
         category: 'sensory',
-        question: 'Quais são os sinais de desregulação sensorial?',
-        answer: 'Os sinais incluem: rejeição a certas texturas de roupas ou alimentos, tapar os ouvidos com barulhos comuns, dificuldade em transições entre atividades, queda frequentes, busca excessiva de movimento ou, ao contrário, medo de se mexer, dificuldade em se concentrar, reações intensas a estímulos sensoriais.'
+        question: 'Quais sao os sinais de desregulacao sensorial?',
+        answer: 'Os sinais incluem: rejeicao a certas texturas de roupas ou alimentos, tapar os ouvidos com barulhos comuns, dificuldade em transicoes entre atividades, quedas frequentes, busca excessiva de movimento ou, ao contrario, medo de se mexer, dificuldade em se concentrar, reagicoes intensas a estimulos sensoriais.'
       },
       {
         category: 'sensory',
         question: 'Como saber se meu filho precisa de terapia sensorial?',
-        answer: 'Se seu filho apresenta comportamentos que parecem incomuns para a idade, como dificuldade em se acalmar, seletividade alimentar extrema, rejeição a бринь,udan frequentes, dificuldade com transições ou escolares atrasadas, uma avaliação com terapeuta ocupacional pode ajudar a identificar necessidades sensoriais.'
+        answer: 'Se seu filho apresenta comportamentos que parecem incomuns para a idade, como dificuldade em se acalmar, seletividade alimentar extrema, rejeicao a texturas, quedas frequentes, dificuldade com transicoes ou escolar atrasadas, uma avaliacao com terapeuta ocupacional pode ajudar a identificar necessidades sensoriais.'
       },
       {
         category: 'sensory',
-        question: 'O que é a "Sala Sensorial" (Snoezelen)?',
-        answer: 'A Sala Sensorial é um ambiente controlado com estímulos visuais, táteis, sonoros e propioceptivos, desenhado para ayudar a criança a processar informações sensoriais de forma mais organizada. É um espacio seguro para exploração e regulação.'
+        question: 'O que e a "Sala Sensorial" (Snoezelen)?',
+        answer: 'A Sala Sensorial e um ambiente controlado com estimulos visuais, tateis, sonoros e proprioceptivos, desenhado para ajudar a crianca a processar informacoes sensoriais de forma mais organizada. E um espaco seguro para exploracao e regulacao.'
       },
       {
         category: 'therapy',
-        question: 'Qual a diferença entre Terapia Ocupacional e Fisioterapia?',
-        answer: 'A Terapia Ocupacional foca em habilidades funcionais para performing atividades diárias, enquanto a Fisioterapia se concentra na reabilitação física e motora. A TO trabalha habilidades específicas para independência em brincas, alimentação, vestuário, escolar, enquanto a FM trabalha força, movimento e postura.'
+        question: 'Qual a diferenca entre Terapia Ocupacional e Fisioterapia?',
+        answer: 'A Terapia Ocupacional foca em habilidades funcionais para realizar atividades diarias, enquanto a Fisioterapia se concentra na reabilitacao fisica e motora. A TO trabalha habilidades especificas para independencia em brincas, alimentacao, vestuario, escolar, enquanto a FM trabalha forca, movimento e postura.'
       },
       {
         category: 'therapy',
-        question: 'O que é Estimulação Precoce?',
-        answer: 'Estimulação Precoce é um programa de intervenção destinado a crianças de 0 a 6 anos que visa otimizar o potencial de desenvolvimento através de atividades adequadas ao nível da criança. É especialmente importante quando há atrasos no desenvolvimento ou risco neurológico.'
+        question: 'O que e Estimulacao Precoce?',
+        answer: 'Estimulacao Precoce e um programa de intervencao destinado a criancas de 0 a 6 anos que visa otimizar o potencial de desenvolvimento atraves de atividades adequadas ao nivel da crianca. E especialmente importante quando ha atrasos no desenvolvimento ou risco neurologico.'
       },
       {
         category: 'therapy',
         question: 'Os pais participam do tratamento?',
-        answer: 'Sim! A família é parte essencial do tratamento. Os pais recebem orientações para aplicar estratégias em casa, garantindo que os progressos na terapia sejam generalizados para o cotidiano da criança. O sucesso do tratamento depende muito do envolvimento familiar.'
+        answer: 'Sim! A familia e parte essencial do tratamento. Os pais recebem orientacoes para aplicar estrategias em casa, garantindo que os progressos na terapia sejam generalizados para o cotidiano da crianca. O sucesso do tratamento depende muito do envolvimento familiar.'
       },
       {
         category: 'schedule',
         question: 'Como funciona o agendamento?',
-        answer: 'Você pode entrar em contato pelo WhatsApp ou preencher o formulário de agendamento. Retornaremos em até 24 horas para entender suas necessidades e agendar a avaliação inicial.'
+        answer: 'Voce pode entrar em contato pelo WhatsApp ou preencher o formulario de agendamento. Retornaremos em ate 24 horas para entender suas necessidades e agendar a avaliacao inicial.'
       },
       {
         category: 'schedule',
-        question: 'Quanto custa a avaliação?',
-        answer: 'A avaliação inicial tem custo específico que varia conforme a extensão. Após a avaliação, apresentamos um plano de intervenção com as sessões recomendadas e investimento. Aceitamos diversas formas de pagamento.'
+        question: 'Quanto custa a avaliacao?',
+        answer: 'A avaliacao inicial tem custo especifico que varia conforme a extensao. Apos a avaliacao, apresentamos um plano de intervencao com as sessoes recomendadas e investimento. Aceitamos diversas formas de pagamento.'
       },
       {
         category: 'schedule',
-        question: 'Vocês atendem por plano de saúde?',
-        answer: 'Trabalhamos com alguns planos de saúde. Entre em contato para verificar se aceitamos o seu plano. Também oferecemos opções de pagamento particular com pacotes优惠.'
+        question: 'Voces atendem por plano de saude?',
+        answer: 'Trabalhamos com alguns planos de saude. Entre em contato para verificar se aceitamos o seu plano. Tambem oferecemos opcoes de pagamento particular com pacotes.'
       },
       {
         category: 'schedule',
         question: 'Onde ficam localizados?',
-        answer: 'Estamos na Rua Major José dos Santos Moreira, 328, Pindamonhangaba-SP, com atendimento presencial mediante agendamento prévio. Também oferecemos orientações online para famílias de outras regiões.'
+        answer: 'Estamos na Rua Major Jose dos Santos Moreira, 328, Pindamonhangaba-SP, com atendimento presencial mediante agendamento previo. Tambem oferecemos orientacoes online para familias de outras regioes.'
       }
     ]
 
@@ -223,24 +223,20 @@ const faqs = [
 
     const sensoryApproach = [
       {
-        icon: '📋',
-        title: 'Avaliação',
-        description: 'Avaliação completa do perfil sensorial e funcional da criança'
+        title: 'Avaliacao',
+        description: 'Avaliacao completa do perfil sensorial e funcional da crianca'
       },
       {
-        icon: '🎯',
         title: 'Plano',
-        description: 'Elaboração de plano personalizado com metas específicas'
+        description: 'Elaboracao de plano personalizado com metas especificas'
       },
       {
-        icon: '🧩',
-        title: 'Intervenção',
-        description: 'Sessões terapêuticas com atividades estruturadas'
+        title: 'Intervencao',
+        description: 'Sessoes terapeuticas com atividades estruturadas'
       },
       {
-        icon: '🏠',
-        title: 'Orientação',
-        description: 'Orientação familiar para generalization em casa'
+        title: 'Orientacao',
+        description: 'Orientacao familiar para generalizacao em casa'
       }
     ]
 
@@ -391,7 +387,11 @@ const faqs = [
 }
 
 .category-icon {
-  font-size: 1.1em;
+  width: 16px;
+  height: 16px;
+  background: var(--primary);
+  border-radius: 4px;
+  opacity: 0.5;
 }
 
 .faq-list {
@@ -541,9 +541,11 @@ const faqs = [
 }
 
 .step-icon {
-  font-size: clamp(1.5rem, 4vw, 2rem);
-  display: block;
-  margin-bottom: 0.75rem;
+  width: 40px;
+  height: 40px;
+  background: var(--primary-light);
+  border-radius: 50%;
+  margin: 0 auto 0.75rem;
 }
 
 .approach-step h4 {

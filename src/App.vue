@@ -80,10 +80,10 @@
           </div>
           
           <div class="footer-contact">
-            <h4>Localização</h4>
-            <p>📍 Rua Major José dos Santos Moreira, 328</p>
+            <h4>Localizacao</h4>
+            <p>Rua Major Jose dos Santos Moreira, 328</p>
             <p>Pindamonhangaba, SP</p>
-            <p>Seg a Sex: 8h às 18h</p>
+            <p>Seg a Sex: 8h as 18h</p>
           </div>
         </div>
         

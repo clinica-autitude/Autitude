@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-    <!-- Hero Section -->
     <section class="hero">
       <div class="hero-bg">
         <div class="hero-shapes">
@@ -14,18 +13,18 @@
         <div class="hero-content">
           <span class="hero-badge">
             <span class="badge-dot"></span>
-            Clínica Especializada
+            Clinica Especializada
           </span>
           
           <h1 class="hero-title">
             Cuidado que
             <span class="title-highlight">transforma</span>
-            <br>vidórias
+            <br>vidatorias
           </h1>
           
           <p class="hero-subtitle">
-            Especialistas em Terapia Ocupacional e Integração Sensorial. 
-            O cuidado que seu filho merece, com carinho e excelência.
+            Especialistas em Terapia Ocupacional e Integracao Sensorial. 
+            O cuidado que seu filho merece, com carinho e excelencia.
           </p>
           
           <div class="hero-actions">
@@ -33,14 +32,14 @@
               Agendar Consulta
             </router-link>
             <router-link to="/servicos" class="btn btn-secondary">
-              Conhecer Serviços
+              Conhecer Servicos
             </router-link>
           </div>
           
           <div class="hero-stats">
             <div class="stat">
               <span class="stat-value">15+</span>
-              <span class="stat-label">Anos de Experiência</span>
+              <span class="stat-label">Anos de Experiencia</span>
             </div>
             <div class="stat-divider"></div>
             <div class="stat">
@@ -50,22 +49,22 @@
             <div class="stat-divider"></div>
             <div class="stat">
               <span class="stat-value">Pindamonhangaba</span>
-              <span class="stat-label">Localização</span>
+              <span class="stat-label">Localizacao</span>
             </div>
           </div>
         </div>
         
         <div class="hero-visual">
           <div class="visual-card card-1">
-            <span class="card-icon">🧠</span>
+            <div class="card-icon"></div>
             <span class="card-text">Desenvolvimento Integral</span>
           </div>
           <div class="visual-card card-2">
-            <span class="card-icon">💜</span>
+            <div class="card-icon"></div>
             <span class="card-text">Cuidado Humanizado</span>
           </div>
           <div class="visual-card card-3">
-            <span class="card-icon">🎯</span>
+            <div class="card-icon"></div>
             <span class="card-text">Tratamento Personalizado</span>
           </div>
         </div>
@@ -77,19 +76,18 @@
       </div>
     </section>
 
-    <!-- Features Section -->
     <section id="features" class="features section">
       <div class="container">
         <div class="section-header">
           <span class="section-tag">Por que escolher a Autitude</span>
-          <h2>Um atendimento único</h2>
-          <p>Combinamos excelência técnica comumanização para oferecer o melhor cuidado ao seu filho.</p>
+          <h2>Um atendimento unico</h2>
+          <p>Combinamos excelencia tecnica com humanizacao para oferecer o melhor cuidado ao seu filho.</p>
         </div>
         
         <div class="features-grid">
           <div class="feature-card" v-for="feature in features" :key="feature.title">
             <div class="feature-icon" :style="{ background: feature.color }">
-              {{ feature.icon }}
+              <div class="icon-inner"></div>
             </div>
             <h3>{{ feature.title }}</h3>
             <p>{{ feature.description }}</p>
@@ -98,11 +96,10 @@
       </div>
     </section>
 
-    <!-- Services Preview -->
     <section class="services-preview section">
       <div class="container">
         <div class="section-header">
-          <span class="section-tag">Nossos Serviços</span>
+          <span class="section-tag">Nossos Servicos</span>
           <h2>Especialidades</h2>
         </div>
         
@@ -113,58 +110,34 @@
             to="/servicos" 
             class="service-card"
           >
-            <div class="service-icon">{{ service.icon }}</div>
-            <h4>{{ service.name }}</h4>
-            <p>{{ service.shortDesc }}</p>
-            <span class="service-link">Ver detalhes →</span>
+            <div class="service-icon">
+              <div class="icon-box"></div>
+            </div>
+            <div class="service-content">
+              <h4>{{ service.name }}</h4>
+              <p>{{ service.shortDesc }}</p>
+            </div>
+            <span class="service-link">Ver detalhes</span>
           </router-link>
         </div>
         
         <div class="section-cta">
           <router-link to="/servicos" class="btn btn-primary">
-            Ver Todos os Serviços
+            Ver Todos os Servicos
           </router-link>
         </div>
       </div>
     </section>
 
-    <!-- Testimonials -->
-    <section class="testimonials section" ref="testimonialsSection">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-tag">Depoimentos</span>
-          <h2>O que as famílias dizem</h2>
-        </div>
-        <div class="testimonials-grid">
-          <div class="testimonial-card">
-            <div class="quote-mark">"</div>
-            <blockquote>A equipe da Autitude transformou a vida do meu filho. O atendimento humanizado e a expertise em integração sensorial fizeram toda a diferença no desenvolvimento dele.</blockquote>
-            <cite>— Família Silva</cite>
-          </div>
-          <div class="testimonial-card">
-            <div class="quote-mark">"</div>
-            <blockquote>Professoras extremamente capacitadas. Meu filho fez progresso enorme em poucas sessões. O ambiente é acolhedor e profissional.</blockquote>
-            <cite>— Família Oliveira</cite>
-          </div>
-          <div class="testimonial-card">
-            <div class="quote-mark">"</div>
-            <blockquote>Graças à abordagem de Integração Sensorial, meu filho hoje consegue se concentrar melhor na escola. Recomendamos de coração.</blockquote>
-            <cite>— Família Santos</cite>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA Section -->
     <section class="cta-section section">
       <div class="container">
         <div class="cta-card">
           <div class="cta-content">
-            <h2>Pronto para começar?</h2>
-            <p>Agende uma avaliação e descubra como podemos ajudar no desenvolvimento do seu filho.</p>
+            <h2>Pronto para comecar?</h2>
+            <p>Agende uma avaliacao e descubra como podemos ajudar no desenvolvimento do seu filho.</p>
             <div class="cta-actions">
               <router-link to="/agendar" class="btn btn-primary">
-                Agendar Avaliação
+                Agendar Avaliacao
               </router-link>
               <a href="https://wa.me/5512991968683" class="btn btn-whatsapp" target="_blank">
                 Falar no WhatsApp
@@ -178,67 +151,38 @@
 </template>
 
 <script>
-import { ref, onMounted } from 'vue'
-import { gsap } from 'gsap'
-
 export default {
   name: 'HomeView',
-  setup() {
-    const features = [
-      {
-        icon: '🎓',
-        title: 'Especialização',
-        description: 'Equipe com certificação internacional em Integração Sensorial e abordagens baseadas em evidências.',
-        color: 'var(--pastel-lavender)'
-      },
-      {
-        icon: '💜',
-        title: 'Cuidado Humanizado',
-        description: 'Atendimento individualizado respeitando o ritmo e as necessidades de cada criança e família.',
-        color: 'var(--pastel-pink)'
-      },
-      {
-        icon: '🌟',
-        title: 'Ambiente Acolhedor',
-        description: 'Espaço pensado para proporcionar segurança, conforto e estimulação adequada ao desenvolvimento.',
-        color: 'var(--pastel-mint)'
-      }
-    ]
-
-    const services = [
-      { icon: '🧩', name: 'Terapia Ocupacional', shortDesc: 'Habilidades motoras e cognitivas' },
-      { icon: '🌈', name: 'Integração Sensorial', shortDesc: 'Processamento sensorial' },
-      { icon: '👶', name: 'Estimulação Precoce', shortDesc: 'Primeiros anos de vida' },
-      { icon: '🧠', name: 'Avaliação Compreensiva', shortDesc: 'Diagnóstico completo' }
-    ]
-
-    const testimonials = [
-      {
-        text: 'A Autitude transformou a vida do meu filho. A equipe é incrível, sempre paciente e dedicada. Recomendamos de coração.',
-        author: 'Maria',
-        role: 'mãe do Lucas'
-      },
-      {
-        text: 'Profissionais extremamente capacitadas. Meu filho fez progresso enorme em poucas sessões. O ambiente é acolhedor.',
-        author: 'Carla',
-        role: 'mãe do Pedro'
-      },
-      {
-        text: 'Graças à abordagem de Integração Sensorial, meu filho hoje consegue se concentrar melhor na escola. Mudou nossa família.',
-        author: 'Roberto',
-        role: 'pai da Sofia'
-      }
-    ]
-
-    const scrollToFeatures = () => {
-      document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })
-    }
-
+  data() {
     return {
-      features,
-      services,
-      testimonials,
-      scrollToFeatures
+      features: [
+        {
+          title: 'Especializacao',
+          description: 'Equipe com certificacao internacional em Integracao Sensorial e abordagens baseadas em evidencias.',
+          color: 'var(--pastel-lavender)'
+        },
+        {
+          title: 'Cuidado Humanizado',
+          description: 'Atendimento individualizado respeitando o ritmo e as necessidades de cada crianca e familia.',
+          color: 'var(--pastel-pink)'
+        },
+        {
+          title: 'Ambiente Acolhedor',
+          description: 'Espaco pensado para proporcionar seguranca, conforto e estimulação adequada ao desenvolvimento.',
+          color: 'var(--pastel-mint)'
+        }
+      ],
+      services: [
+        { name: 'Terapia Ocupacional', shortDesc: 'Habilidades motoras e cognitivas' },
+        { name: 'Integracao Sensorial', shortDesc: 'Processamento sensorial' },
+        { name: 'Estimulacao Precoce', shortDesc: 'Primeiros anos de vida' },
+        { name: 'Avaliacao Compreensiva', shortDesc: 'Diagnostico completo' }
+      ]
+    }
+  },
+  methods: {
+    scrollToFeatures() {
+      document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })
     }
   }
 }
@@ -434,7 +378,10 @@ export default {
 }
 
 .card-icon {
-  font-size: 1.5rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--primary-light);
 }
 
 .card-text {
@@ -473,7 +420,6 @@ export default {
   50% { transform: rotate(45deg) translateY(6px); }
 }
 
-/* Features Section */
 .features {
   background: var(--surface);
 }
@@ -532,7 +478,14 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.75rem;
+}
+
+.icon-inner {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: var(--primary);
+  opacity: 0.3;
 }
 
 .feature-card h3 {
@@ -546,7 +499,6 @@ export default {
   line-height: 1.6;
 }
 
-/* Services Preview */
 .services-preview {
   background: var(--background);
 }
@@ -563,6 +515,9 @@ export default {
   border-radius: var(--radius-xl);
   text-decoration: none;
   transition: all 0.3s var(--ease-smooth);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .service-card:hover {
@@ -571,27 +526,39 @@ export default {
 }
 
 .service-icon {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  display: block;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-lg);
+  background: var(--pastel-lavender);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.service-card h4 {
+.icon-box {
+  width: 24px;
+  height: 24px;
+  background: var(--primary);
+  border-radius: 6px;
+}
+
+.service-content h4 {
   font-size: 1rem;
   margin-bottom: 0.5rem;
   color: var(--text);
 }
 
-.service-card p {
+.service-content p {
   font-size: 0.875rem;
   color: var(--text-secondary);
-  margin-bottom: 1rem;
+  margin: 0;
 }
 
 .service-link {
   font-size: 0.8125rem;
   font-weight: 600;
   color: var(--primary);
+  margin-top: auto;
 }
 
 .section-cta {
@@ -599,45 +566,6 @@ export default {
   margin-top: 2.5rem;
 }
 
-/* Testimonials */
-.testimonials {
-  background: linear-gradient(135deg, var(--pastel-lavender) 0%, var(--pastel-pink) 100%);
-}
-
-.testimonials-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
-}
-
-.testimonial-card {
-  text-align: center;
-  background: rgba(255, 255, 255, 0.9);
-  padding: 2rem;
-  border-radius: var(--radius-xl);
-}
-
-.testimonial-card .quote-mark {
-  font-size: 3rem;
-  line-height: 1;
-  color: var(--primary);
-  opacity: 0.3;
-}
-
-.testimonial-card blockquote {
-  font-size: 1.125rem;
-  color: var(--text);
-  line-height: 1.7;
-  margin-bottom: 1.5rem;
-}
-
-.testimonial-card cite {
-  font-weight: 600;
-  color: var(--primary);
-  font-style: normal;
-}
-
-/* CTA Section */
 .cta-section {
   background: var(--surface);
 }
@@ -665,7 +593,6 @@ export default {
   gap: 1rem;
 }
 
-/* Tablet */
 @media (max-width: 1024px) {
   .hero .container {
     grid-template-columns: 1fr;
@@ -698,16 +625,11 @@ export default {
     grid-template-columns: repeat(2, 1fr);
   }
   
-  .section-header {
-    text-align: center;
-  }
-  
-  .section-header p {
-    margin: 0 auto;
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
-/* Mobile */
 @media (max-width: 640px) {
   .hero {
     padding-top: clamp(4rem, 12vw, 6rem);
@@ -743,11 +665,6 @@ export default {
     gap: clamp(1rem, 4vw, 1.5rem);
   }
   
-  .stat-item {
-    flex: 1 1 calc(50% - 0.75rem);
-    min-width: 100px;
-  }
-  
   .stat-divider {
     display: none;
   }
@@ -764,16 +681,8 @@ export default {
     grid-template-columns: 1fr;
   }
   
-  .service-preview-card {
+  .service-card {
     padding: clamp(1.25rem, 4vw, 1.5rem);
-  }
-  
-  .testimonial-card {
-    padding: clamp(1.5rem, 5vw, 2rem);
-  }
-  
-  blockquote {
-    font-size: clamp(0.95rem, 3vw, 1.1rem);
   }
   
   .cta-content {
@@ -796,15 +705,9 @@ export default {
   }
 }
 
-/* Small mobile */
 @media (max-width: 380px) {
   .hero-title {
     font-size: 1.75rem;
-  }
-  
-  .stat-item {
-    flex: 1 1 100%;
-    text-align: center;
   }
 }
 </style>

@@ -73,23 +73,6 @@
             </div>
 
             <div class="form-group">
-              <label class="form-label" for="service">Serviço de Interesse *</label>
-              <select
-                id="service"
-                class="form-select"
-                v-model="form.service"
-                required
-              >
-                <option value="" disabled>Selecione um serviço</option>
-                <option value="avaliacao">Avaliação Inicial</option>
-                <option value="terapia-occupacional">Terapia Ocupacional</option>
-                <option value="integracao-sensorial">Integração Sensorial</option>
-                <option value="estimulacao-precoce">Estimulação Precoce</option>
-                <option value="retorno">Retorno</option>
-              </select>
-            </div>
-
-            <div class="form-group">
               <label class="form-label" for="message">Observações</label>
               <textarea
                 id="message"
@@ -155,7 +138,6 @@ export default {
       email: '',
       childName: '',
       childAge: '',
-      service: '',
       message: '',
       privacy: false
     })
@@ -183,29 +165,20 @@ export default {
         return
       }
 
-      const serviceLabels = {
-        'avaliacao': 'Avaliação Inicial',
-        'terapia-occupacional': 'Terapia Ocupacional',
-        'integracao-sensorial': 'Integração Sensorial',
-        'estimulacao-precoce': 'Estimulação Precoce',
-        'retorno': 'Retorno'
-      }
-
       const message = `*AGENDAMENTO - AUTITUDE*\n\n` +
-        `*Responsável:* ${form.value.parentName}\n` +
+        `*Responsavel:* ${form.value.parentName}\n` +
         `*Telefone:* ${form.value.phone}\n` +
         `${form.value.email ? `*E-mail:* ${form.value.email}\n` : ''}` +
-        `${form.value.childName ? `*Criança:* ${form.value.childName}\n` : ''}` +
+        `${form.value.childName ? `*Crianca:* ${form.value.childName}\n` : ''}` +
         `${form.value.childAge ? `*Idade:* ${form.value.childAge}\n` : ''}` +
-        `*Serviço:* ${serviceLabels[form.value.service] || form.value.service}\n` +
-        `${form.value.message ? `\n*Observações:* ${form.value.message}` : ''}`
+        `${form.value.message ? `\n*Observacoes:* ${form.value.message}` : ''}`
 
       const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
       window.open(whatsappUrl, '_blank')
 
       form.value = {
         parentName: '', phone: '', email: '', childName: '',
-        childAge: '', service: '', message: '', privacy: false
+        childAge: '', message: '', privacy: false
       }
     }
 
