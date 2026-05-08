@@ -16,7 +16,9 @@ import { NuxtModule, ModuleDependencyMeta } from '@nuxt/schema'
    },
   }
   interface SharedPublicRuntimeConfig {
+   siteBase: string,
 
+   basePath: string,
   }
 declare module '@nuxt/schema' {
   interface ModuleDependencies {

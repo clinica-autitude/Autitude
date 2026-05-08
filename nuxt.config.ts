@@ -4,6 +4,13 @@ export default defineNuxtConfig({
 
   modules: ['@nuxtjs/color-mode'],
 
+  runtimeConfig: {
+    public: {
+      siteBase: process.env.SITE_BASE || 'https://hautlys.github.io/Autitude',
+      basePath: process.env.NUXT_PUBLIC_BASE_PATH || ''
+    }
+  },
+
   colorMode: {
     preference: 'light',
     fallback: 'light',
@@ -16,7 +23,8 @@ export default defineNuxtConfig({
     }
   },
 
-app: {
+  app: {
+    baseURL: process.env.NUXT_PUBLIC_BASE_PATH || '/',
     head: {
       htmlAttrs: { lang: 'pt-BR' },
       title: 'Autitude | Clínica de Terapia Ocupacional e Integração Sensorial',

@@ -2,17 +2,14 @@
 
 set -e
 
+export NUXT_PUBLIC_BASE_PATH="/Autitude/"
+export SITE_BASE="https://hautlys.github.io"
+
 echo "=========================================="
 echo "🚀 Building production bundle..."
 echo "=========================================="
 
-npm run build
-
-BUILD_EXIT=$?
-if [ $BUILD_EXIT -ne 0 ]; then
-  echo "❌ Build failed!"
-  exit $BUILD_EXIT
-fi
+npm run build || exit 1
 
 echo "✅ Build complete!"
 echo ""

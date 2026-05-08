@@ -647,8 +647,8 @@ function _expandFromEnv(value) {
 
 const _inlineRuntimeConfig = {
   "app": {
-    "baseURL": "/",
-    "buildId": "91819b7a-c15b-4839-b407-cacab583f1fd",
+    "baseURL": "/Autitude/",
+    "buildId": "c38d072e-63b3-45dc-88fc-4200ea95d53f",
     "buildAssetsDir": "/_nuxt/",
     "cdnURL": ""
   },
@@ -699,7 +699,10 @@ const _inlineRuntimeConfig = {
       }
     }
   },
-  "public": {}
+  "public": {
+    "siteBase": "https://hautlys.github.io",
+    "basePath": "/Autitude/"
+  }
 };
 const envOptions = {
   prefix: "NITRO_",
@@ -962,7 +965,7 @@ function defaultHandler(error, event, opts) {
   const statusMessage = error.statusMessage || "Server Error";
   const url = getRequestURL(event, { xForwardedHost: true, xForwardedProto: true });
   if (statusCode === 404) {
-    const baseURL = "/";
+    const baseURL = "/Autitude/";
     if (/^\/[^/]/.test(baseURL) && !url.pathname.startsWith(baseURL)) {
       const redirectTo = `${baseURL}${url.pathname.slice(1)}${url.search}`;
       return {
