@@ -30,8 +30,8 @@ jobs:
 
       - name: Build Nuxt
         env:
-          NUXT_PUBLIC_BASE_PATH: /Autitude/
-          SITE_BASE: https://hautlys.github.io
+          NUXT_PUBLIC_BASE_PATH: ""
+          SITE_BASE: https://hautlys.github.io/Autitude
         run: npm run build
 
       - name: Upload artifact

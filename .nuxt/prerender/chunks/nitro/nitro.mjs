@@ -648,7 +648,7 @@ function _expandFromEnv(value) {
 const _inlineRuntimeConfig = {
   "app": {
     "baseURL": "/Autitude/",
-    "buildId": "0c38c443-cbc0-42d9-bec0-c0cbdef6a297",
+    "buildId": "f24bbea1-2543-4671-8012-e87fd9a01152",
     "buildAssetsDir": "/_nuxt/",
     "cdnURL": ""
   },
@@ -700,8 +700,8 @@ const _inlineRuntimeConfig = {
     }
   },
   "public": {
-    "siteBase": "https://hautlys.github.io",
-    "basePath": "/Autitude/"
+    "siteBase": "https://hautlys.github.io/Autitude",
+    "basePath": ""
   }
 };
 const envOptions = {

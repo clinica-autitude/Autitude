@@ -24,7 +24,7 @@ export default defineNuxtConfig({
   },
 
   app: {
-    baseURL: process.env.NUXT_PUBLIC_BASE_PATH || '/',
+    baseURL: process.env.NUXT_PUBLIC_BASE_PATH || '/Autitude/',
     head: {
       htmlAttrs: { lang: 'pt-BR' },
       title: 'Autitude | Clínica de Terapia Ocupacional e Integração Sensorial',
@@ -61,8 +61,6 @@ export default defineNuxtConfig({
       ],
       link: [
         { rel: 'canonical', href: 'https://hautlys.github.io/Autitude' },
-        { rel: 'icon', type: 'image/svg+xml', href: '/favicon-png.svg' },
-        { rel: 'apple-touch-icon', href: '/small-logo.png' },
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
         { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
         { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Nunito:wght@400;600;700&display=swap' },

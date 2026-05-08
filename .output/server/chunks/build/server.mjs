@@ -1,6 +1,6 @@
 import process from 'node:process';globalThis._importMeta_=globalThis._importMeta_||{url:"file:///_entry.js",env:process.env};import { hasInjectionContext, inject, defineComponent, shallowRef, h, resolveComponent, computed, unref, getCurrentInstance, ref, Suspense, Fragment, createApp, provide, shallowReactive, onErrorCaptured, onServerPrefetch, createVNode, resolveDynamicComponent, reactive, effectScope, defineAsyncComponent, mergeProps, getCurrentScope, toRef, withCtx, createTextVNode, isRef, isReadonly, useSSRContext, isShallow, isReactive, toRaw } from 'vue';
 import { p as parseQuery, k as hasProtocol, h as joinURL, l as parseURL, e as encodePath, m as decodePath, w as withQuery, n as isScriptProtocol, o as getContext, q as withTrailingSlash, r as withoutTrailingSlash, s as sanitizeStatusCode, $ as $fetch, t as createHooks, c as createError$1, v as executeAsync, x as defu } from '../nitro/nitro.mjs';
-import { u as useHead$1, h as headSymbol, b as baseURL, p as publicAssetsURL } from '../routes/renderer.mjs';
+import { u as useHead$1, h as headSymbol, b as baseURL } from '../routes/renderer.mjs';
 import { RouterView, createMemoryHistory, createRouter, START_LOCATION } from 'vue-router';
 import { ssrRenderSuspense, ssrRenderComponent, ssrRenderVNode, ssrRenderAttrs, ssrRenderAttr, ssrRenderStyle, ssrInterpolate, ssrRenderTeleport, ssrRenderClass, ssrIncludeBooleanAttr } from 'vue/server-renderer';
 import { Settings, X, Sun, Moon, Minus, Plus, Play, Square, Globe } from 'lucide-vue-next';
@@ -894,20 +894,18 @@ const plugin_server_9Ca9_HhnjAGwBWpwAydRauMHxWoxTDY60BrArRnXN_A = /* @__PURE__ *
 });
 const path_resolver_6HWvyyRQPSmQSq7k0yXPt62ncT9YNqaSSte_MTqItGo = /* @__PURE__ */ defineNuxtPlugin((nuxtApp) => {
   const config = /* @__PURE__ */ useRuntimeConfig();
+  const siteBase = config.public.siteBase || "https://hautlys.github.io/Autitude";
   nuxtApp.hook("app:created", () => {
-    const base = config.public.siteBase || "https://hautlys.github.io/Autitude";
-    const path = config.public.basePath || "";
     useHead({
       meta: [
-        { property: "og:url", content: `${base}${path}` },
-        { property: "og:image", content: `${base}${path}/full-logo.png` },
-        { name: "twitter:image", content: `${base}${path}/full-logo.png` }
+        { property: "og:url", content: siteBase },
+        { property: "og:image", content: `${siteBase}/full-logo.png` },
+        { name: "twitter:image", content: `${siteBase}/full-logo.png` }
       ],
       link: [
-        { rel: "canonical", href: `${base}${path}` },
-        { rel: "alternate", href: `${base}${path}`, hreflang: "pt-BR" },
-        { rel: "index", href: `${base}${path}/sitemap.xml` },
-        { rel: "help", href: `${base}${path}/llms.txt`, title: "LLMS Information" }
+        { rel: "icon", type: "image/svg+xml", href: `${siteBase}/favicon-png.svg` },
+        { rel: "apple-touch-icon", href: `${siteBase}/small-logo.png` },
+        { rel: "canonical", href: siteBase }
       ]
     });
   });
@@ -936,7 +934,7 @@ const _export_sfc = (sfc, props) => {
   }
   return target;
 };
-const _sfc_main$5 = {
+const _sfc_main$4 = {
   __name: "AccessibilityWidget",
   __ssrInlineRender: true,
   setup(__props) {
@@ -1003,29 +1001,13 @@ const _sfc_main$5 = {
     };
   }
 };
-const _sfc_setup$5 = _sfc_main$5.setup;
-_sfc_main$5.setup = (props, ctx) => {
-  const ssrContext = useSSRContext();
-  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("components/AccessibilityWidget.vue");
-  return _sfc_setup$5 ? _sfc_setup$5(props, ctx) : void 0;
-};
-const __nuxt_component_0$1 = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["__scopeId", "data-v-57e1ef36"]]);
-const _sfc_main$4 = {
-  __name: "SplashCursor",
-  __ssrInlineRender: true,
-  setup(__props) {
-    ref(null);
-    return (_ctx, _push, _parent, _attrs) => {
-      _push(`<div${ssrRenderAttrs(mergeProps({ class: "fixed top-0 left-0 z-50 pointer-events-none w-screen h-screen" }, _attrs))}><canvas id="fluid" class="w-screen h-screen block"></canvas></div>`);
-    };
-  }
-};
 const _sfc_setup$4 = _sfc_main$4.setup;
 _sfc_main$4.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
-  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("components/SplashCursor.vue");
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("components/AccessibilityWidget.vue");
   return _sfc_setup$4 ? _sfc_setup$4(props, ctx) : void 0;
 };
+const __nuxt_component_0$1 = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["__scopeId", "data-v-57e1ef36"]]);
 const firstNonUndefined = (...args) => args.find((arg) => arg !== void 0);
 // @__NO_SIDE_EFFECTS__
 function defineNuxtLink(options) {
@@ -1335,7 +1317,7 @@ _sfc_main$3.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("components/ThemeSwitcher.vue");
   return _sfc_setup$3 ? _sfc_setup$3(props, ctx) : void 0;
 };
-const __nuxt_component_3 = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["__scopeId", "data-v-50150009"]]);
+const __nuxt_component_2 = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["__scopeId", "data-v-50150009"]]);
 const defineRouteProvider = (name = "RouteProvider") => defineComponent({
   name,
   props: {
@@ -1368,7 +1350,7 @@ const defineRouteProvider = (name = "RouteProvider") => defineComponent({
   }
 });
 const RouteProvider = defineRouteProvider();
-const __nuxt_component_4 = defineComponent({
+const __nuxt_component_3 = defineComponent({
   name: "NuxtPage",
   inheritAttrs: false,
   props: {
@@ -1419,47 +1401,46 @@ function normalizeSlot(slot, data) {
   const slotContent = slot(data);
   return slotContent.length === 1 ? h(slotContent[0]) : h(Fragment, void 0, slotContent);
 }
-const _imports_0 = publicAssetsURL("/small-logo.png");
 const _sfc_main$2 = {
   __name: "app",
   __ssrInlineRender: true,
   setup(__props) {
     const currentYear = (/* @__PURE__ */ new Date()).getFullYear();
-    const config = {
+    const config = /* @__PURE__ */ useRuntimeConfig();
+    const siteBase = config.public.siteBase || "https://hautlys.github.io/Autitude";
+    const config_data = {
       whatsappUrl: "https://wa.me/5512991968683",
       instagramUrl: "https://www.instagram.com/clinicaautitude"
     };
     return (_ctx, _push, _parent, _attrs) => {
       const _component_AccessibilityWidget = __nuxt_component_0$1;
-      const _component_SplashCursor = _sfc_main$4;
       const _component_NuxtLink = __nuxt_component_0;
-      const _component_ThemeSwitcher = __nuxt_component_3;
-      const _component_NuxtPage = __nuxt_component_4;
-      _push(`<div${ssrRenderAttrs(mergeProps({ class: "app" }, _attrs))} data-v-203fbd76><a href="#main" class="skip-link" data-v-203fbd76>Pular para o conteúdo principal</a>`);
+      const _component_ThemeSwitcher = __nuxt_component_2;
+      const _component_NuxtPage = __nuxt_component_3;
+      _push(`<div${ssrRenderAttrs(mergeProps({ class: "app" }, _attrs))} data-v-f78148e2><a href="#main" class="skip-link" data-v-f78148e2>Pular para o conteúdo principal</a>`);
       _push(ssrRenderComponent(_component_AccessibilityWidget, null, null, _parent));
-      _push(ssrRenderComponent(_component_SplashCursor, null, null, _parent));
-      _push(`<div class="ambient-bg" data-v-203fbd76></div><div class="menu-overlay" data-v-203fbd76></div><nav class="navbar" data-v-203fbd76><div class="nav-container" data-v-203fbd76>`);
+      _push(`<div class="ambient-bg" data-v-f78148e2></div><div class="menu-overlay" data-v-f78148e2></div><nav class="navbar" data-v-f78148e2><div class="nav-container" data-v-f78148e2>`);
       _push(ssrRenderComponent(_component_NuxtLink, {
         to: "/",
         class: "logo"
       }, {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
-            _push2(`<img${ssrRenderAttr("src", _imports_0)} alt="Autitude" class="logo-img" data-v-203fbd76${_scopeId}><span class="logo-text" data-v-203fbd76${_scopeId}>Autitude</span>`);
+            _push2(`<img${ssrRenderAttr("src", `${unref(config).siteBase}/small-logo.png`)} alt="Autitude" class="logo-img" data-v-f78148e2${_scopeId}><span class="logo-text" data-v-f78148e2${_scopeId}>Autitude</span>`);
           } else {
             return [
               createVNode("img", {
-                src: _imports_0,
+                src: `${unref(config).siteBase}/small-logo.png`,
                 alt: "Autitude",
                 class: "logo-img"
-              }),
+              }, null, 8, ["src"]),
               createVNode("span", { class: "logo-text" }, "Autitude")
             ];
           }
         }),
         _: 1
       }, _parent));
-      _push(`<div class="nav-links" data-v-203fbd76>`);
+      _push(`<div class="nav-links" data-v-f78148e2>`);
       _push(ssrRenderComponent(_component_NuxtLink, {
         to: "/",
         class: "nav-link"
@@ -1551,30 +1532,30 @@ const _sfc_main$2 = {
         _: 1
       }, _parent));
       _push(ssrRenderComponent(_component_ThemeSwitcher, null, null, _parent));
-      _push(`</div><button class="menu-toggle" aria-label="Menu" data-v-203fbd76><span data-v-203fbd76></span><span data-v-203fbd76></span><span data-v-203fbd76></span></button></div></nav><main id="main" data-v-203fbd76>`);
+      _push(`</div><button class="menu-toggle" aria-label="Menu" data-v-f78148e2><span data-v-f78148e2></span><span data-v-f78148e2></span><span data-v-f78148e2></span></button></div></nav><main id="main" data-v-f78148e2>`);
       _push(ssrRenderComponent(_component_NuxtPage, null, null, _parent));
-      _push(`</main><footer class="footer" data-v-203fbd76><div class="container" data-v-203fbd76><div class="footer-grid" data-v-203fbd76><div class="footer-brand" data-v-203fbd76>`);
+      _push(`</main><footer class="footer" data-v-f78148e2><div class="container" data-v-f78148e2><div class="footer-grid" data-v-f78148e2><div class="footer-brand" data-v-f78148e2>`);
       _push(ssrRenderComponent(_component_NuxtLink, {
         to: "/",
         class: "logo"
       }, {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
-            _push2(`<img${ssrRenderAttr("src", _imports_0)} alt="Autitude" class="logo-img" data-v-203fbd76${_scopeId}><span class="logo-text" data-v-203fbd76${_scopeId}>Autitude</span>`);
+            _push2(`<img${ssrRenderAttr("src", `${unref(siteBase)}/small-logo.png`)} alt="Autitude" class="logo-img" data-v-f78148e2${_scopeId}><span class="logo-text" data-v-f78148e2${_scopeId}>Autitude</span>`);
           } else {
             return [
               createVNode("img", {
-                src: _imports_0,
+                src: `${unref(siteBase)}/small-logo.png`,
                 alt: "Autitude",
                 class: "logo-img"
-              }),
+              }, null, 8, ["src"]),
               createVNode("span", { class: "logo-text" }, "Autitude")
             ];
           }
         }),
         _: 1
       }, _parent));
-      _push(`<p data-v-203fbd76>Clínica especializada em Terapia Ocupacional e Integração Sensorial em Pindamonhangaba-SP.</p></div><div class="footer-links" data-v-203fbd76><h4 data-v-203fbd76>Navegação</h4>`);
+      _push(`<p data-v-f78148e2>Clínica especializada em Terapia Ocupacional e Integração Sensorial em Pindamonhangaba-SP.</p></div><div class="footer-links" data-v-f78148e2><h4 data-v-f78148e2>Navegação</h4>`);
       _push(ssrRenderComponent(_component_NuxtLink, { to: "/" }, {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
@@ -1623,7 +1604,7 @@ const _sfc_main$2 = {
         }),
         _: 1
       }, _parent));
-      _push(`</div><div class="footer-services" data-v-203fbd76><h4 data-v-203fbd76>Atendimento</h4>`);
+      _push(`</div><div class="footer-services" data-v-f78148e2><h4 data-v-f78148e2>Atendimento</h4>`);
       _push(ssrRenderComponent(_component_NuxtLink, { to: "/agendar" }, {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
@@ -1648,7 +1629,7 @@ const _sfc_main$2 = {
         }),
         _: 1
       }, _parent));
-      _push(`<a${ssrRenderAttr("href", config.whatsappUrl)} data-v-203fbd76>WhatsApp</a><a${ssrRenderAttr("href", config.instagramUrl)} target="_blank" rel="noopener" data-v-203fbd76>Instagram</a></div><div class="footer-contact" data-v-203fbd76><h4 data-v-203fbd76>Localização</h4><p data-v-203fbd76>Rua Major José dos Santos Moreira, 328</p><p data-v-203fbd76>Pindamonhangaba, SP</p><p data-v-203fbd76>Seg a Sex: 8h às 18h</p><div class="footer-map" data-v-203fbd76><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3676.52123456789!2d-45.45!3d-22.85!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjLCsDUxJzAwLjAiUyA0NcKwMjcnMDAuMCJF!5e0!3m2!1spt-BR!2sbr!4v1600000000000" width="100%" height="120" style="${ssrRenderStyle({ "border": "0", "border-radius": "8px" })}" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" data-v-203fbd76></iframe></div></div></div><div class="footer-bottom" data-v-203fbd76><p data-v-203fbd76>© ${ssrInterpolate(unref(currentYear))} Autitude. Todos os direitos reservados.</p></div></div></footer></div>`);
+      _push(`<a${ssrRenderAttr("href", config_data.whatsappUrl)} data-v-f78148e2>WhatsApp</a><a${ssrRenderAttr("href", config_data.instagramUrl)} target="_blank" rel="noopener" data-v-f78148e2>Instagram</a></div><div class="footer-contact" data-v-f78148e2><h4 data-v-f78148e2>Localização</h4><p data-v-f78148e2>Rua Major José dos Santos Moreira, 328</p><p data-v-f78148e2>Pindamonhangaba, SP</p><p data-v-f78148e2>Seg a Sex: 8h às 18h</p><div class="footer-map" data-v-f78148e2><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3676.52123456789!2d-45.45!3d-22.85!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjLCsDUxJzAwLjAiUyA0NcKwMjcnMDAuMCJF!5e0!3m2!1spt-BR!2sbr!4v1600000000000" width="100%" height="120" style="${ssrRenderStyle({ "border": "0", "border-radius": "8px" })}" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" data-v-f78148e2></iframe></div></div></div><div class="footer-bottom" data-v-f78148e2><p data-v-f78148e2>© ${ssrInterpolate(unref(currentYear))} Autitude. Todos os direitos reservados.</p></div></div></footer></div>`);
     };
   }
 };
@@ -1658,7 +1639,7 @@ _sfc_main$2.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("app.vue");
   return _sfc_setup$2 ? _sfc_setup$2(props, ctx) : void 0;
 };
-const AppComponent = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-203fbd76"]]);
+const AppComponent = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-f78148e2"]]);
 const _sfc_main$1 = {
   __name: "nuxt-error-page",
   __ssrInlineRender: true,

@@ -2,8 +2,8 @@
 
 set -e
 
-export NUXT_PUBLIC_BASE_PATH="/Autitude/"
-export SITE_BASE="https://hautlys.github.io"
+export NUXT_PUBLIC_BASE_PATH=""
+export SITE_BASE="https://hautlys.github.io/Autitude"
 
 echo "=========================================="
 echo "🚀 Building production bundle..."

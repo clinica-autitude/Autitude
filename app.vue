@@ -1,7 +1,9 @@
 <script setup>
 const currentYear = new Date().getFullYear()
+const config = useRuntimeConfig()
+const siteBase = config.public.siteBase || 'https://hautlys.github.io/Autitude'
 
-const config = {
+const config_data = {
   phone: '5512991968683',
   whatsappUrl: 'https://wa.me/5512991968683',
   instagramUrl: 'https://www.instagram.com/clinicaautitude'
@@ -12,7 +14,6 @@ const config = {
   <div class="app">
     <a href="#main" class="skip-link">Pular para o conteúdo principal</a>
     <AccessibilityWidget />
-    <SplashCursor />
     
     <div class="ambient-bg"></div>
 
@@ -21,7 +22,7 @@ const config = {
     <nav class="navbar">
       <div class="nav-container">
         <NuxtLink to="/" class="logo">
-          <img src="/small-logo.png" alt="Autitude" class="logo-img">
+          <img :src="`${config.siteBase}/small-logo.png`" alt="Autitude" class="logo-img">
           <span class="logo-text">Autitude</span>
         </NuxtLink>
         
@@ -52,7 +53,7 @@ const config = {
         <div class="footer-grid">
           <div class="footer-brand">
             <NuxtLink to="/" class="logo">
-              <img src="/small-logo.png" alt="Autitude" class="logo-img">
+              <img :src="`${siteBase}/small-logo.png`" alt="Autitude" class="logo-img">
               <span class="logo-text">Autitude</span>
             </NuxtLink>
             <p>Clínica especializada em Terapia Ocupacional e Integração Sensorial em Pindamonhangaba-SP.</p>
@@ -70,8 +71,8 @@ const config = {
             <h4>Atendimento</h4>
             <NuxtLink to="/agendar">Agendamento</NuxtLink>
             <NuxtLink to="/contato">Contato</NuxtLink>
-            <a :href="config.whatsappUrl">WhatsApp</a>
-            <a :href="config.instagramUrl" target="_blank" rel="noopener">Instagram</a>
+            <a :href="config_data.whatsappUrl">WhatsApp</a>
+            <a :href="config_data.instagramUrl" target="_blank" rel="noopener">Instagram</a>
           </div>
           
           <div class="footer-contact">
