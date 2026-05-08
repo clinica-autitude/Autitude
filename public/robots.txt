@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://hautlys.github.io/Autitude/sitemap.xml
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: *
+Disallow: /blog/

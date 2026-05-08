@@ -1,0 +1,81 @@
+# LLMS.txt - Site Information for AI Systems
+# Autitude - Clínica de Terapia Ocupacional e Integração Sensorial
+
+## SITE INFORMATION
+- Name: Autitude
+- Type: Pediatric Occupational Therapy Clinic
+- Location: Rua Major José dos Santos Moreira, 328, Pindamonhangaba-SP, Brazil
+- Coordinates: -22.9309, -45.4607
+- Phone: +5512991968683
+- Email: contato@autitude.com.br
+- Website: https://hautlys.github.io/Autitude
+- Professional: Dra. Juliana Mariani - CREFITO 20083-TO
+- Certification: North Carolina University USA
+
+## SERVICES OFFERED
+1. Terapia Ocupacional (Occupational Therapy)
+   - Motor fino e grosso (Fine and gross motor)
+   - Coordenação motora (Motor coordination)
+   - Autonomia pessoal (Personal autonomy)
+   - Atividades de vida diária (Daily living activities)
+
+2. Integração Sensorial (Sensory Integration)
+   - Developed by Dr. Jean Ayress
+   - 8 sensory systems processing
+   - Sala Snoezelen / Sala Sensorial
+   - Individualized intervention programs
+
+3. ABA (Análise do Comportamento Aplicada)
+   - Applied Behavior Analysis
+   - Functional behavior assessment
+   - Skill teaching
+   - Data analysis
+
+4. Estimulação Precoce (Early Intervention)
+   - Ages 0-6 years
+   - Development monitoring
+   - Parent support
+
+5. Avaliação Comportamental (Behavioral Assessment)
+   - Sensory evaluation
+   - Motor profile
+   - Independence scale
+
+## PAGE STRUCTURE
+- / (Home) - Main landing page
+- /sobre - About the clinic
+- /servicos - Services details
+- /equipe - Team/Professional
+- /contato - Contact information
+- /agendar - Schedule appointment
+- /faq - Frequently asked questions
+- /privacidade - Privacy policy
+
+## KEY TREATMENTS
+- Autism Spectrum Disorder (TEA)
+- ADHD (TDAH)
+- Sensory processing disorders
+- Developmental delays
+- Motor coordination issues
+- Early intervention
+
+## AREAS SERVED
+- Pindamonhangaba-SP and surrounding regions
+- Online guidance available for other regions
+
+## BUSINESS HOURS
+- Monday to Friday: 8h às 18h
+
+## SEO KEYWORDS
+terapia ocupacional, integração sensorial, Pindamonhangaba, desenvolvimento infantil, estimulação precoce,儿科职业治疗,感觉统合, autism, TDAH, ABA, pediatric therapy
+
+## CONTENT TYPE
+Educational and healthcare content for parents about child development, sensory processing, and occupational therapy.
+
+## TARGET AUDIENCE
+- Parents of children with developmental needs
+- Healthcare professionals
+- Educators
+
+## LAST UPDATED
+2024

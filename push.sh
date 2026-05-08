@@ -21,7 +21,7 @@ echo "=========================================="
 echo "🔍 Testing assets and paths..."
 echo "=========================================="
 
-DIST_DIR="dist"
+DIST_DIR=".output/public"
 ERRORS=0
 
 if [ ! -d "$DIST_DIR" ]; then
@@ -29,10 +29,10 @@ if [ ! -d "$DIST_DIR" ]; then
   exit 1
 fi
 
-echo "📁 Checking dist structure..."
+echo "📁 Checking .output/public structure..."
 
-JS_COUNT=$(ls $DIST_DIR/assets/*.js 2>/dev/null | wc -l)
-CSS_COUNT=$(ls $DIST_DIR/assets/*.css 2>/dev/null | wc -l)
+JS_COUNT=$(ls $DIST_DIR/_nuxt/*.js 2>/dev/null | wc -l)
+CSS_COUNT=$(ls $DIST_DIR/_nuxt/*.css 2>/dev/null | wc -l)
 
 if [ -f "$DIST_DIR/index.html" ]; then
   echo "  ✅ index.html"
@@ -41,23 +41,23 @@ else
   ERRORS=$((ERRORS + 1))
 fi
 
-if [ -f "$DIST_DIR/favicon.ico" ]; then
-  echo "  ✅ favicon.ico"
-fi
+if [ -f "$DIST_DIR/_nuxt/index.B4vtl8fB.css" ]; then
+    echo "  ✅ index.css"
+  fi
 
-if [ $JS_COUNT -gt 0 ]; then
-  echo "  ✅ JS bundles: $JS_COUNT"
-else
-  echo "  ❌ No JS bundles found"
-  ERRORS=$((ERRORS + 1))
-fi
+  if [ $JS_COUNT -gt 0 ]; then
+    echo "  ✅ JS bundles: $JS_COUNT"
+  else
+    echo "  ❌ No JS bundles found"
+    ERRORS=$((ERRORS + 1))
+  fi
 
-if [ $CSS_COUNT -gt 0 ]; then
-  echo "  ✅ CSS bundles: $CSS_COUNT"
-else
-  echo "  ❌ No CSS bundles found"
-  ERRORS=$((ERRORS + 1))
-fi
+  if [ $CSS_COUNT -gt 0 ]; then
+    echo "  ✅ CSS bundles: $CSS_COUNT"
+  else
+    echo "  ❌ No CSS bundles found"
+    ERRORS=$((ERRORS + 1))
+  fi
 
 TOTAL_FILES=$(find $DIST_DIR -type f | wc -l)
 echo ""
