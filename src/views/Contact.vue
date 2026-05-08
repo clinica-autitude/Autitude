@@ -5,14 +5,14 @@
         <div class="section-header">
           <span class="section-tag">Contato</span>
           <h1>Fale conosco</h1>
-          <p>Estamos prontos para atender voce e sua familia.</p>
+          <p>Estamos prontos para atender você e sua família.</p>
         </div>
 
         <div class="contact-showcase">
           <div class="contact-info-cards">
             <div class="info-card" v-for="info in contactInfo" :key="info.title">
               <div class="card-icon-wrapper" :style="{ background: info.color }">
-                <div class="card-icon-inner"></div>
+                <component :is="info.icon" :size="24" class="icon-primary card-icon-inner" />
               </div>
               <div class="card-text">
                 <h3>{{ info.title }}</h3>
@@ -100,7 +100,7 @@
         <div class="location-card">
           <div class="location-content">
             <div class="location-icon">
-              <div class="icon-shape"></div>
+              <IconMapPin :size="32" class="icon-primary" />
             </div>
             <div class="location-details">
               <h3>Nosso Endereco</h3>
@@ -112,9 +112,15 @@
             </div>
           </div>
           <div class="location-map">
-            <div class="map-placeholder">
-              <div class="map-pattern"></div>
-            </div>
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d918.6308949951824!2d-45.460713999999996!3d-22.9309369!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ccf1835a97b90d%3A0x8c2cb7aa78bd7f92!2sAutitude%20Desenvolvimento%20e%20A%C3%A7%C3%A3o%20Humana!5e0!3m2!1spt-BR!2sbr!4v1778250238052!5m2!1spt-BR!2sbr" 
+              width="100%" 
+              height="100%" 
+              style="border:0;" 
+              allowfullscreen="" 
+              loading="lazy" 
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
           </div>
         </div>
       </div>
@@ -124,38 +130,41 @@
 
 <script>
 import { ref } from 'vue'
+import { SITE_CONFIG } from '../config.js'
 
 export default {
   name: 'ContactView',
   setup() {
-    const phoneNumber = '5512991968683'
-
     const contactInfo = [
       {
-        title: 'Localizacao',
-        content: 'Rua Major Jose dos Santos Moreira, 328',
-        detail: 'Pindamonhangaba, SP',
-        color: 'linear-gradient(135deg, #E8E0F5 0%, #CDBFF0 100%)'
+        title: 'Localização',
+        content: SITE_CONFIG.address.street,
+        detail: `${SITE_CONFIG.address.city}, ${SITE_CONFIG.address.state}`,
+        icon: 'IconMapPin',
+        color: 'linear-gradient(135deg, var(--pastel-lavender) 0%, var(--primary-light) 100%)'
       },
       {
         title: 'WhatsApp',
-        content: 'Respostas rapidas para suas duvidas',
-        link: `https://wa.me/${phoneNumber}?text=${encodeURIComponent('Ola! Gostaria de mais informacoes.')}`,
+        content: 'Respostas rápidas para suas dúvidas',
+        link: `${SITE_CONFIG.whatsappUrl}?text=${encodeURIComponent('Olá! Gostaria de mais informações.')}`,
         linkText: 'Chamar no WhatsApp',
         btnClass: 'btn-whatsapp',
-        color: 'linear-gradient(135deg, #E0F5E8 0%, #C4EAD8 100%)'
+        icon: 'IconMessageCircle',
+        color: 'linear-gradient(135deg, var(--pastel-mint) 0%, var(--accent-light) 100%)'
       },
       {
         title: 'E-mail',
         content: 'contato@autitude.com.br',
-        detail: 'Respondemos em ate 24h',
-        color: 'linear-gradient(135deg, #FFE0E8 0%, #FFD4E0 100%)'
+        detail: 'Respondemos em até 24h',
+        icon: 'IconMail',
+        color: 'linear-gradient(135deg, var(--pastel-pink) 0%, var(--secondary-light) 100%)'
       },
       {
-        title: 'Horario',
+        title: 'Horário',
         content: 'Segunda a Sexta',
-        detail: '8h as 18h',
-        color: 'linear-gradient(135deg, #FFF0E8 0%, #FFE8DC 100%)'
+        detail: SITE_CONFIG.hours.weekdays,
+        icon: 'IconClock',
+        color: 'linear-gradient(135deg, var(--pastel-peach) 0%, var(--secondary-light) 100%)'
       }
     ]
 
@@ -173,7 +182,7 @@ export default {
         `${form.value.phone ? `*Telefone:* ${form.value.phone}\n` : ''}` +
         `\n*Mensagem:*\n${form.value.message}`
 
-      const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
+      const whatsappUrl = `${SITE_CONFIG.whatsappUrl}?text=${encodeURIComponent(message)}`
       window.open(whatsappUrl, '_blank')
 
       form.value = { name: '', email: '', phone: '', message: '' }
@@ -189,8 +198,12 @@ export default {
 </script>
 
 <style scoped>
+.icon-primary {
+  color: var(--primary);
+}
+
 .hero-section {
-  padding-top: 140px;
+  padding-top: var(--space-section-top);
   padding-bottom: 4rem;
 }
 
@@ -259,11 +272,7 @@ export default {
 }
 
 .card-icon-inner {
-  width: 24px;
-  height: 24px;
-  background: var(--primary);
-  border-radius: 6px;
-  opacity: 0.5;
+  opacity: 1;
 }
 
 .card-text h3 {
@@ -356,13 +365,6 @@ export default {
   justify-content: center;
 }
 
-.icon-shape {
-  width: 32px;
-  height: 32px;
-  background: var(--gradient-primary);
-  border-radius: 10px;
-}
-
 .location-details h3 {
   font-size: 1.125rem;
   margin-bottom: 0.75rem;
@@ -386,27 +388,14 @@ export default {
 }
 
 .location-map {
-  height: 160px;
+  height: 300px;
   background: var(--surface);
   border-radius: var(--radius-xl);
   overflow: hidden;
 }
 
-.map-placeholder {
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, var(--pastel-lavender) 0%, var(--pastel-mint) 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.map-pattern {
-  width: 60px;
-  height: 60px;
-  border: 3px solid var(--primary);
-  border-radius: 50%;
-  opacity: 0.3;
+.location-map iframe {
+  border-radius: var(--radius-xl);
 }
 
 @media (max-width: 900px) {

@@ -20,35 +20,41 @@
             <h1 class="hero-title">
               Cuidado que
               <span class="title-highlight">transforma</span>
-              vidatorias
+              vidas
             </h1>
             
             <p class="hero-subtitle">
-              Especialistas em Terapia Ocupacional e Integracao Sensorial. 
-              O cuidado que seu filho merece, com carinho e excelencia.
+              Especialistas em Terapia Ocupacional e Integração Sensorial. 
+              O cuidado que seu filho merece, com carinho e excelência.
             </p>
             
             <div class="hero-actions">
               <router-link to="/agendar" class="btn btn-primary btn-lg">
                 Agendar Consulta
               </router-link>
-              <router-link to="/servicos" class="btn btn-secondary btn-lg">
-                Conhecer Servicos
+              <router-link to="/serviços" class="btn btn-secondary btn-lg">
+                Conhecer Serviços
               </router-link>
             </div>
           </div>
           
           <div class="hero-visual">
             <div class="visual-card card-1">
-              <div class="card-accent"></div>
+              <div class="card-accent">
+                <IconSparkles :size="20" class="icon-primary" />
+              </div>
               <div class="card-text">Desenvolvimento Integral</div>
             </div>
             <div class="visual-card card-2">
-              <div class="card-accent"></div>
+              <div class="card-accent">
+                <IconHeart :size="20" class="icon-primary" />
+              </div>
               <div class="card-text">Cuidado Humanizado</div>
             </div>
             <div class="visual-card card-3">
-              <div class="card-accent"></div>
+              <div class="card-accent">
+                <IconTarget :size="20" class="icon-primary" />
+              </div>
               <div class="card-text">Tratamento Personalizado</div>
             </div>
           </div>
@@ -57,7 +63,7 @@
         <div class="hero-stats">
           <div class="stat-item">
             <span class="stat-value">15+</span>
-            <span class="stat-label">Anos de Experiencia</span>
+            <span class="stat-label">Anos de Experiência</span>
           </div>
           <div class="stat-divider"></div>
           <div class="stat-item">
@@ -67,7 +73,7 @@
           <div class="stat-divider"></div>
           <div class="stat-item">
             <span class="stat-value">Pindamonhangaba</span>
-            <span class="stat-label">Localizacao</span>
+            <span class="stat-label">Localização</span>
           </div>
         </div>
       </div>
@@ -83,14 +89,14 @@
           <div class="header-content">
             <span class="section-tag">Por que escolher a Autitude</span>
             <h2>Um atendimento unico</h2>
-            <p>Combinamos excelencia tecnica com humanizacao para oferecer o melhor cuidado ao seu filho.</p>
+            <p>Combinamos excelência técnica com humanização para oferecer o melhor cuidado ao seu filho.</p>
           </div>
         </div>
         
         <div class="features-grid">
           <div class="feature-card" v-for="(feature, index) in features" :key="feature.title" :style="{ '--delay': index * 0.1 + 's' }">
             <div class="feature-icon-wrapper" :style="{ background: feature.color }">
-              <div class="feature-icon-inner"></div>
+              <component :is="feature.icon" :size="32" class="icon-primary feature-icon-inner" />
             </div>
             <div class="feature-content">
               <h3>{{ feature.title }}</h3>
@@ -106,7 +112,7 @@
       <div class="container">
         <div class="section-header">
           <div class="header-content">
-            <span class="section-tag">Nossos Servicos</span>
+            <span class="section-tag">Nossos Serviços</span>
             <h2>Especialidades</h2>
           </div>
         </div>
@@ -115,17 +121,17 @@
           <div class="service-main">
             <div class="service-main-content">
               <div class="service-icon-large">
-                <div class="icon-shape"></div>
+                <IconStethoscope :size="32" class="icon-primary" />
               </div>
               <h3>Terapia Ocupacional</h3>
-              <p>Desenvolvemos habilidades motoras, cognitivas e funcionais para que sua crianca atinja seu maximo potencial.</p>
+              <p>Desenvolvemos habilidades motoras, cognitivas e funcionais para que sua criança atinja seu máximo potencial.</p>
               <ul class="service-list">
                 <li>Motor fino e grosso</li>
-                <li>Coordenacao motora</li>
+                <li>Coordenação motora</li>
                 <li>Autonomia pessoal</li>
                 <li>Atividades de vida diaria</li>
               </ul>
-              <router-link to="/servicos" class="btn btn-primary">Ver Mais</router-link>
+              <router-link to="/serviços" class="btn btn-primary">Ver Mais</router-link>
             </div>
           </div>
           
@@ -133,11 +139,11 @@
             <router-link 
               v-for="service in services" 
               :key="service.name"
-              to="/servicos" 
+              to="/serviços" 
               class="service-card-mini"
             >
               <div class="card-mini-icon" :style="{ background: service.color }">
-                <div class="mini-icon-shape"></div>
+                <component :is="service.icon" :size="24" class="icon-primary mini-icon-shape" />
               </div>
               <div class="card-mini-content">
                 <h4>{{ service.name }}</h4>
@@ -149,7 +155,7 @@
         </div>
         
         <div class="section-cta">
-          <router-link to="/servicos" class="btn btn-secondary btn-lg">
+          <router-link to="/serviços" class="btn btn-secondary btn-lg">
             Ver Todos os Servicos
           </router-link>
         </div>
@@ -163,12 +169,12 @@
           <div class="cta-content">
             <span class="cta-tag">Entre em contato</span>
             <h2>Pronto para comecar?</h2>
-            <p>Agende uma avaliacao e descubra como podemos ajudar no desenvolvimento do seu filho.</p>
+            <p>Agende uma avaliação e descubra como podemos ajudar no desenvolvimento do seu filho.</p>
             <div class="cta-actions">
               <router-link to="/agendar" class="btn btn-primary btn-lg">
-                Agendar Avaliacao
+                Agendar Avaliação
               </router-link>
-              <a href="https://wa.me/5512991968683" class="btn btn-whatsapp btn-lg" target="_blank">
+              <a :href="whatsappUrl" class="btn btn-whatsapp btn-lg" target="_blank" rel="noopener">
                 Falar no WhatsApp
               </a>
             </div>
@@ -180,49 +186,64 @@
 </template>
 
 <script>
+import { SITE_CONFIG } from '../config.js'
+
 export default {
   name: 'HomeView',
   data() {
     return {
       features: [
         {
-          title: 'Especializacao',
-          description: 'Equipe com certificacao internacional em Integracao Sensorial e abordagens baseadas em evidencias.',
-          color: 'linear-gradient(135deg, #E8E0F5 0%, #CDBFF0 100%)'
+          title: 'especialização',
+          description: 'Equipe com certificação internacional em Integração Sensorial e abordagens baseadas em evidências.',
+          color: 'linear-gradient(135deg, var(--pastel-lavender) 0%, var(--primary-light) 100%)',
+          icon: 'IconGraduationCap'
         },
         {
           title: 'Cuidado Humanizado',
-          description: 'Atendimento individualizado respeitando o ritmo e as necessidades de cada crianca e familia.',
-          color: 'linear-gradient(135deg, #FFE0E8 0%, #FFD4E0 100%)'
+          description: 'Atendimento individualizado respeitando o ritmo e as necessidades de cada criança e família.',
+          color: 'linear-gradient(135deg, var(--pastel-pink) 0%, var(--secondary-light) 100%)',
+          icon: 'IconHandHeart'
         },
         {
           title: 'Ambiente Acolhedor',
-          description: 'Espaco pensado para proporcionar seguranca, conforto e estimulacao adequada ao desenvolvimento.',
-          color: 'linear-gradient(135deg, #E0F5E8 0%, #C4EAD8 100%)'
+          description: 'Espaco pensado para proporcionar segurança, conforto e estimulação adequada ao desenvolvimento.',
+          color: 'linear-gradient(135deg, var(--pastel-mint) 0%, var(--accent-light) 100%)',
+          icon: 'IconHome'
         }
       ],
       services: [
-        { name: 'Integracao Sensorial', shortDesc: 'Processamento sensorial', color: 'linear-gradient(135deg, #E8E0F5 0%, #CDBFF0 100%)' },
-        { name: 'Estimulacao Precoce', shortDesc: 'Primeiros anos de vida', color: 'linear-gradient(135deg, #FFE0E8 0%, #FFD4E0 100%)' },
-        { name: 'Avaliacao Compreensiva', shortDesc: 'Diagnostico completo', color: 'linear-gradient(135deg, #E0F5E8 0%, #C4EAD8 100%)' }
+        { name: 'Integração Sensorial', shortDesc: 'Processamento sensorial', color: 'linear-gradient(135deg, var(--pastel-lavender) 0%, var(--primary-light) 100%)', icon: 'IconBrain' },
+        { name: 'Estimulação Precoce', shortDesc: 'Primeiros anos de vida', color: 'linear-gradient(135deg, var(--pastel-pink) 0%, var(--secondary-light) 100%)', icon: 'IconBaby' },
+        { name: 'Avaliação Completa', shortDesc: 'Diagnóstico completo', color: 'linear-gradient(135deg, var(--pastel-mint) 0%, var(--accent-light) 100%)', icon: 'IconClipboardCheck' }
       ]
+    }
+  },
+  computed: {
+    whatsappUrl() {
+      return SITE_CONFIG.whatsappUrl
     }
   },
   methods: {
     scrollToFeatures() {
-      document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })
+      const featuresSection = document.getElementById('features')
+      featuresSection?.scrollIntoView({ behavior: 'smooth' })
     }
   }
 }
 </script>
 
 <style scoped>
+.icon-primary {
+  color: var(--primary);
+}
+
 .hero {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-top: 100px;
+  padding-top: 6.25rem;
   position: relative;
   overflow: hidden;
 }
@@ -421,6 +442,9 @@ export default {
   height: 40px;
   border-radius: 12px;
   background: var(--gradient-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .card-text {
@@ -529,11 +553,7 @@ export default {
 }
 
 .feature-icon-inner {
-  width: 36px;
-  height: 36px;
-  border-radius: 10px;
-  background: var(--primary);
-  opacity: 0.4;
+  opacity: 1;
 }
 
 .feature-content h3 {
@@ -578,13 +598,6 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.icon-shape {
-  width: 32px;
-  height: 32px;
-  background: var(--gradient-primary);
-  border-radius: 10px;
 }
 
 .service-main-content h3 {
@@ -652,11 +665,7 @@ export default {
 }
 
 .mini-icon-shape {
-  width: 24px;
-  height: 24px;
-  background: var(--primary);
-  border-radius: 6px;
-  opacity: 0.5;
+  opacity: 1;
 }
 
 .card-mini-content {

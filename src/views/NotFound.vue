@@ -4,11 +4,11 @@
       <div class="container">
         <div class="not-found-content">
           <span class="error-code">404</span>
-          <h1>Página não encontrada</h1>
-          <p>Ops! A página que você está procurando não existe.</p>
+          <h1>Pagina nao encontrada</h1>
+          <p>Ops! A pagina que voce esta procurando nao existe.</p>
           <div class="not-found-actions">
             <router-link to="/" class="btn btn-primary">
-              Voltar ao Início
+              Voltar ao Inicio
             </router-link>
             <router-link to="/agendar" class="btn btn-secondary">
               Agendar Consulta

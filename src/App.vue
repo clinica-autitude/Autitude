@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <a href="#main" class="skip-link">Pular para o conteúdo principal</a>
+    <a href="#main" class="skip-link">Pular para o conteudo principal</a>
     
     <div class="ambient-bg"></div>
 
@@ -9,7 +9,7 @@
     <nav class="navbar" :class="{ 'nav-scrolled': isScrolled, 'nav-open': menuOpen }">
       <div class="nav-container">
 <router-link to="/" class="logo" @click="closeMenu">
-            <img src="/favicon.svg" alt="Autitude" class="logo-img">
+            <img src="/small-logo.png" alt="Autitude" class="logo-img">
             <span class="logo-text">Autitude</span>
           </router-link>
         
@@ -55,14 +55,14 @@
         <div class="footer-grid">
           <div class="footer-brand">
             <router-link to="/" class="logo" @click="closeMenu">
-              <img src="/favicon.svg" alt="Autitude" class="logo-img">
+              <img src="/small-logo.png" alt="Autitude" class="logo-img">
               <span class="logo-text">Autitude</span>
             </router-link>
-            <p>Clínica especializada em Terapia Ocupacional e Integração Sensorial em Pindamonhangaba-SP.</p>
+            <p>Clinica especializada em Terapia Ocupacional e Integracao Sensorial em Pindamonhangaba-SP.</p>
           </div>
           
           <div class="footer-links">
-            <h4>Navegação</h4>
+            <h4>Navegacao</h4>
             <router-link to="/">Início</router-link>
             <router-link to="/sobre">Sobre Nós</router-link>
             <router-link to="/servicos">Serviços</router-link>
@@ -73,15 +73,15 @@
             <h4>Atendimento</h4>
             <router-link to="/agendar">Agendamento</router-link>
             <router-link to="/contato">Contato</router-link>
-            <a href="https://wa.me/5512991968683">WhatsApp</a>
-            <a href="https://www.instagram.com/clinicaautitude" target="_blank">Instagram</a>
+            <a :href="SITE_CONFIG.whatsappUrl">WhatsApp</a>
+            <a :href="SITE_CONFIG.instagramUrl" target="_blank" rel="noopener">Instagram</a>
           </div>
           
           <div class="footer-contact">
-            <h4>Localizacao</h4>
-            <p>Rua Major Jose dos Santos Moreira, 328</p>
+            <h4>Localização</h4>
+            <p>Rua Major José dos Santos Moreira, 328</p>
             <p>Pindamonhangaba, SP</p>
-            <p>Seg a Sex: 8h as 18h</p>
+            <p>Seg a Sex: 8h às 18h</p>
           </div>
         </div>
         
@@ -92,17 +92,21 @@
     </footer>
 
     <AccessibilityWidget />
+    <SplashCursor />
   </div>
 </template>
 
 <script>
 import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
+import { SITE_CONFIG, A11Y_CONFIG } from './config.js'
 import AccessibilityWidget from './components/AccessibilityWidget.vue'
+import SplashCursor from './extra/SplashCursor/SplashCursor.vue'
 
 export default {
   name: 'App',
   components: {
-    AccessibilityWidget
+    AccessibilityWidget,
+    SplashCursor
   },
   setup() {
     const isScrolled = ref(false)
@@ -115,7 +119,7 @@ export default {
     const handleScroll = () => {
       if (!ticking) {
         scrollTimeout = requestAnimationFrame(() => {
-          isScrolled.value = window.scrollY > 60
+          isScrolled.value = window.scrollY > A11Y_CONFIG.scrollThreshold
           ticking = false
         })
         ticking = true
@@ -149,7 +153,8 @@ export default {
       menuOpen,
       currentYear,
       toggleMenu,
-      closeMenu
+      closeMenu,
+      SITE_CONFIG
     }
   }
 }

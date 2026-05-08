@@ -5,7 +5,7 @@
         <div class="section-header">
           <span class="section-tag">Nossa Profissional</span>
           <h1>Especialista dedicada</h1>
-          <p>Comprometida com o desenvolvimento das criancas.</p>
+          <p>Comprometida com o desenvolvimento das crianças.</p>
         </div>
 
         <div class="team-showcase">
@@ -39,7 +39,7 @@
         <div class="values-grid">
           <div class="value-card" v-for="value in culture" :key="value.title">
             <div class="value-icon-wrapper">
-              <div class="value-icon-inner"></div>
+              <component :is="value.icon" :size="24" class="icon-primary value-icon-inner" />
             </div>
             <h3>{{ value.title }}</h3>
             <p>{{ value.description }}</p>
@@ -78,15 +78,15 @@ export default {
         {
           name: 'Dra. Juliana Mariani',
           role: 'Terapeuta Ocupacional | CREFITO 20083-TO',
-          bio: 'Especialista em Integracao Sensorial com certificacao pela North Carolina University (USA). Mais de 15 anos de experiencia em terapia ocupacional pediatrica e desenvolvimento infantil.',
-          tags: ['CREFITO 20083-TO', 'Integracao Sensorial', 'Certificacao NC University', 'Terapia Pediatrica']
+          bio: 'Especialista em Integração Sensorial com certificação pela North Carolina University (USA). Mais de 15 anos de experiência em terapia ocupacional pediátrica e desenvolvimento infantil.',
+          tags: ['CREFITO 20083-TO', 'Integração Sensorial', 'Certificação NC University', 'Terapia Pediátrica']
         }
       ],
       culture: [
-        { title: 'Excelencia', description: 'Profissionais em constante atualizacao cientifica e tecnica.' },
-        { title: 'Humanizacao', description: 'Cada crianca e unica. Tratamos com respeito e sensibilidade.' },
-        { title: 'Parceria', description: 'Familia e parte essencial do processo de desenvolvimento.' },
-        { title: 'Crescimento', description: 'Acompanhamos cada passo com atencao e dedicacao.' }
+        { title: 'Excelência', description: 'Profissionais em constante atualização científica e técnica.', icon: 'IconAward' },
+        { title: 'Humanização', description: 'Cada criança é única. Tratamos com respeito e sensibilidade.', icon: 'IconHeart' },
+        { title: 'Parceria', description: 'Família é parte essencial do processo de desenvolvimento.', icon: 'IconUsers' },
+        { title: 'Crescimento', description: 'Acompanhamos cada passo com atenção e dedicação.', icon: 'IconStar' }
       ]
     }
   }
@@ -94,8 +94,12 @@ export default {
 </script>
 
 <style scoped>
+.icon-primary {
+  color: var(--primary);
+}
+
 .hero-section {
-  padding-top: 140px;
+  padding-top: var(--space-section-top);
   padding-bottom: 4rem;
 }
 
@@ -251,11 +255,7 @@ export default {
 }
 
 .value-icon-inner {
-  width: 24px;
-  height: 24px;
-  background: var(--primary);
-  border-radius: 6px;
-  opacity: 0.5;
+  opacity: 1;
 }
 
 .value-card h3 {

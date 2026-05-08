@@ -17,7 +17,7 @@
           </article>
 
           <article class="privacy-card">
-            <h2>2. Uso das Informações</h2>
+<h2>2. Uso das Informações</h2>
             <p>As informações coletadas são utilizadas exclusivamente para:</p>
             <ul>
               <li>Contato para agendamento de consultas</li>

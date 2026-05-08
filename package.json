@@ -3,15 +3,23 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
+  "pnpm": {
+    "onlyBuiltDependencies": ["esbuild"],
+    "ignoredBuiltDependencies": ["puppeteer"]
+  },
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
+    "dev": "node ./node_modules/vite/bin/vite.js",
+    "build": "node ./node_modules/vite/bin/vite.js build",
+    "preview": "node ./node_modules/vite/bin/vite.js preview",
     "test": "node tests/run.js",
     "test:headless": "node tests/run.js"
   },
+  "engines": {
+    "node": ">=18"
+  },
   "dependencies": {
     "gsap": "^3.12.5",
+    "lucide-vue-next": "^1.0.0",
     "ogl": "^1.0.11",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"

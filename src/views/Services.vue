@@ -3,9 +3,9 @@
     <section class="hero-section">
       <div class="container">
         <div class="section-header">
-          <span class="section-tag">Nossos Servicos</span>
+          <span class="section-tag">Nossos Serviços</span>
           <h1>Tratamentos especializados</h1>
-          <p>Oferecemos intervencoes especializadas para o desenvolvimento integral da crianca.</p>
+          <p>Oferecemos intervenções especializadas para o desenvolvimento integral da criança.</p>
         </div>
 
         <div class="services-showcase">
@@ -17,7 +17,7 @@
             <div class="card-number">{{ index + 1 }}</div>
             <div class="card-content">
               <div class="service-icon-large" :style="{ background: service.color }">
-                <div class="icon-inner"></div>
+                <component :is="service.icon" :size="28" class="icon-primary icon-inner" />
               </div>
               <div class="service-text">
                 <h3>{{ service.title }}</h3>
@@ -61,13 +61,13 @@
       <div class="container">
         <div class="cta-card">
           <div class="cta-content">
-            <h2>Agende uma avaliacao</h2>
+            <h2>Agende uma avaliação</h2>
             <p>Nossa equipe esta pronta para entender as necessidades do seu filho.</p>
             <div class="cta-actions">
               <router-link to="/agendar" class="btn btn-primary btn-lg">
                 Agendar Agora
               </router-link>
-              <a href="https://wa.me/5512991968683" class="btn btn-whatsapp btn-lg" target="_blank">
+              <a :href="whatsappUrl" class="btn btn-whatsapp btn-lg" target="_blank" rel="noopener">
                 Falar no WhatsApp
               </a>
             </div>
@@ -79,6 +79,8 @@
 </template>
 
 <script>
+import { SITE_CONFIG } from '../config.js'
+
 export default {
   name: 'ServicesView',
   data() {
@@ -86,50 +88,77 @@ export default {
       services: [
         {
           title: 'Terapia Ocupacional',
-          description: 'Intervencoes para desenvolver habilidades motoras, cognitivas e funcionais.',
-          color: 'linear-gradient(135deg, #E8E0F5 0%, #CDBFF0 100%)',
+          description: 'Intervenções para desenvolver habilidades motoras, cognitivas e funcionais.',
+          color: 'linear-gradient(135deg, var(--pastel-lavender) 0%, var(--primary-light) 100%)',
+          icon: 'IconStethoscope',
           items: ['Motor fino e grosso', 'Coordenacao motora', 'Autonomia pessoal', 'Atividades de vida diaria']
         },
         {
           title: 'Integracao Sensorial',
           description: 'Abordagem especializada para organizar o processamento sensorial. Desenvolvida pela Dra. Jean Ayres, trabalha as 8 sensacoes do corpo.',
-          color: 'linear-gradient(135deg, #FFE0E8 0%, #FFD4E0 100%)',
+          color: 'linear-gradient(135deg, var(--pastel-pink) 0%, var(--secondary-light) 100%)',
+          icon: 'IconBrain',
           items: [
             'Diagnostico sensorial completo',
             'Terapia de Integracao Sensorial (SIT)',
             'Sala Snoezelen / Sala Sensorial',
-            'Programa de intervencao individualizado',
-            'Orientacao para escola e familia',
+            'Programa de intervenção individualizado',
+            'Orientacao para escola e família',
             'Estrategias de regulacao sensorial'
           ]
         },
         {
+          title: 'ABA (Analise do Comportamento Aplicada)',
+          description: 'Metodologia científica baseada em principios do comportamento para desenvolver habilidades sociais, comunicativas e comportamentais.',
+          color: 'linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%)',
+          icon: 'IconTarget',
+          items: [
+            'Avaliacao funcional do comportamento',
+            'Intervencao comportamental individualizada',
+            'Ensino estruturado de habilidades',
+            'Reducao de comportamentos problematicos',
+            'Acompanhamento e orientação famíliar',
+            'Registro e analise de dados'
+          ]
+        },
+        {
           title: 'Estimulacao Precoce',
-          description: 'Intervencoes para os primeiros anos de vida.',
-          color: 'linear-gradient(135deg, #E0F5E8 0%, #C4EAD8 100%)',
-          items: ['Avaliacao do desenvolvimento', 'Programa de estimulacao', 'Suporte aos pais', 'Monitoramento']
+          description: 'Intervenções para os primeiros anos de vida.',
+          color: 'linear-gradient(135deg, var(--pastel-mint) 0%, var(--accent-light) 100%)',
+          icon: 'IconBaby',
+          items: ['Avaliacao do desenvolvimento', 'Programa de estimulação', 'Suporte aos pais', 'Monitoramento']
         },
         {
           title: 'Avaliacao Comportamental',
           description: 'Processos avaliativos para compreender o perfil funcional.',
-          color: 'linear-gradient(135deg, #FFF0E8 0%, #FFE8DC 100%)',
+          color: 'linear-gradient(135deg, var(--pastel-peach) 0%, var(--secondary-light) 100%)',
+          icon: 'IconClipboardCheck',
           items: ['Avaliacao sensorial', 'Perfil motor', 'Escala de independencia', 'Relatorio completo']
         }
       ],
       processSteps: [
         { title: 'Contato', description: 'Voce entra em contato pelo WhatsApp ou formulario.' },
-        { title: 'Agendamento', description: 'Marcamos uma avaliacao inicial.' },
-        { title: 'Avaliacao', description: 'Realizamos avaliacao completa do desenvolvimento.' },
+        { title: 'Agendamento', description: 'Marcamos uma avaliação inicial.' },
+        { title: 'Avaliacao', description: 'Realizamos avaliação completa do desenvolvimento.' },
         { title: 'Plano', description: 'Elaboramos um plano personalizado.' }
       ]
+    }
+  },
+  computed: {
+    whatsappUrl() {
+      return SITE_CONFIG.whatsappUrl
     }
   }
 }
 </script>
 
 <style scoped>
+.icon-primary {
+  color: var(--primary);
+}
+
 .hero-section {
-  padding-top: 140px;
+  padding-top: var(--space-section-top);
   padding-bottom: 4rem;
 }
 
@@ -214,11 +243,7 @@ export default {
 }
 
 .icon-inner {
-  width: 28px;
-  height: 28px;
-  background: var(--primary);
-  border-radius: 8px;
-  opacity: 0.5;
+  opacity: 1;
 }
 
 .service-text h3 {
