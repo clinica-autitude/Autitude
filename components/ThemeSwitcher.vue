@@ -47,8 +47,9 @@ const toggleTheme = () => {
 }
 
 .theme-switcher:hover {
-  background: var(--primary-light);
+  background: var(--primary);
   border-color: var(--primary);
+  color: var(--white);
   transform: translateY(-1px);
   box-shadow: var(--shadow-sm);
 }

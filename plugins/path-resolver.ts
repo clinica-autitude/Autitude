@@ -19,4 +19,16 @@ export default defineNuxtPlugin((nuxtApp) => {
       ]
     })
   })
+
+  if (process.client) {
+    const stored = localStorage.getItem('nuxt-color-mode')
+    if (stored) {
+      try {
+        const mode = JSON.parse(stored).value
+        if (mode && mode !== 'light') {
+          document.documentElement.setAttribute('data-theme', mode)
+        }
+      } catch (e) {}
+    }
+  }
 })

@@ -1325,7 +1325,7 @@ const _sfc_main$3 = {
         class: "theme-switcher",
         "aria-label": `Tema atual: ${themes.find((t) => t.value === unref(currentTheme))?.label}. Clique para mudar.`,
         title: `Mudar tema: ${themes.find((t) => t.value === unref(currentTheme))?.label}`
-      }, _attrs))} data-v-cc2462e8><span class="theme-icon" data-v-cc2462e8>${ssrInterpolate(themes.find((t) => t.value === unref(currentTheme))?.icon)}</span><span class="theme-label" data-v-cc2462e8>${ssrInterpolate(themes.find((t) => t.value === unref(currentTheme))?.label)}</span></button>`);
+      }, _attrs))} data-v-50150009><span class="theme-icon" data-v-50150009>${ssrInterpolate(themes.find((t) => t.value === unref(currentTheme))?.icon)}</span><span class="theme-label" data-v-50150009>${ssrInterpolate(themes.find((t) => t.value === unref(currentTheme))?.label)}</span></button>`);
     };
   }
 };
@@ -1335,7 +1335,7 @@ _sfc_main$3.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("components/ThemeSwitcher.vue");
   return _sfc_setup$3 ? _sfc_setup$3(props, ctx) : void 0;
 };
-const __nuxt_component_3 = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["__scopeId", "data-v-cc2462e8"]]);
+const __nuxt_component_3 = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["__scopeId", "data-v-50150009"]]);
 const defineRouteProvider = (name = "RouteProvider") => defineComponent({
   name,
   props: {

@@ -264,7 +264,11 @@ onMounted(() => {
 
     function resizeCanvas() {
       const width = canvas.clientWidth, height = canvas.clientHeight
-      if (canvas.width !== width || canvas.height !== height) { canvas.width = width; canvas.height = height; return true }
+      if (canvas.width !== width || canvas.height !== height) { 
+        canvas.width = width; canvas.height = height
+        if (dye && velocity) initFramebuffers()
+        return true 
+      }
       return false
     }
 
