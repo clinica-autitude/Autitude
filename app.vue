@@ -22,7 +22,7 @@ const config_data = {
     <nav class="navbar">
       <div class="nav-container">
         <NuxtLink to="/" class="logo">
-          <img :src="`${config.siteBase}/small-logo.png`" alt="Autitude" class="logo-img">
+          <img :src="`${siteBase}/small-logo.png`" alt="Autitude" class="logo-img">
           <span class="logo-text">Autitude</span>
         </NuxtLink>
         

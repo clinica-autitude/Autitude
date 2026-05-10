@@ -329,6 +329,49 @@ await test('Services has cards', async () => {
     }
   });
 
+  console.log('\n📋 THEME SWITCHER TESTS\n');
+
+  await test('Theme switcher button is visible', async () => {
+    const btn = await page.$('.theme-switcher');
+    if (!btn) throw new Error('Theme switcher button not found');
+  });
+
+  await test('Theme switcher toggles correctly', async () => {
+    const btn = await page.$('.theme-switcher');
+    if (!btn) throw new Error('Theme switcher button not found');
+    const initialText = await page.evaluate(el => el.textContent, btn);
+    await btn.click();
+    await delay(300);
+    const afterClick = await page.evaluate(el => el.textContent, await page.$('.theme-switcher'));
+    if (afterClick === initialText) throw new Error('Theme did not change after click');
+  });
+
+  await test('Theme changes data-theme attribute', async () => {
+    await page.goto(BASE_URL + '/', { waitUntil: 'networkidle0' });
+    const btn = await page.$('.theme-switcher');
+    if (!btn) throw new Error('Theme switcher button not found');
+    await btn.click();
+    await delay(300);
+    const theme = await page.evaluate(() => document.documentElement.getAttribute('data-theme'));
+    if (!theme) throw new Error('data-theme attribute not set after clicking theme switcher');
+  });
+
+  console.log('\n📋 LOGO TESTS\n');
+
+  await test('Small logo loads in navbar', async () => {
+    const logo = await page.$('.logo-img');
+    if (!logo) throw new Error('Logo image not found');
+    const src = await page.evaluate(el => el.src, logo);
+    if (!src || !src.includes('small-logo')) throw new Error(`Logo src incorrect: ${src}`);
+  });
+
+  await test('Small logo loads in footer', async () => {
+    const footerLogo = await page.$('.footer-brand .logo-img');
+    if (!footerLogo) throw new Error('Footer logo image not found');
+    const src = await page.evaluate(el => el.src, footerLogo);
+    if (!src || !src.includes('small-logo')) throw new Error(`Footer logo src incorrect: ${src}`);
+  });
+
   console.log('\n📋 PERFORMANCE TESTS\n');
 
   await test('Page loads under 5s', async () => {

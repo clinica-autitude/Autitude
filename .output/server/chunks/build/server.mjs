@@ -1307,7 +1307,7 @@ const _sfc_main$3 = {
         class: "theme-switcher",
         "aria-label": `Tema atual: ${themes.find((t) => t.value === unref(currentTheme))?.label}. Clique para mudar.`,
         title: `Mudar tema: ${themes.find((t) => t.value === unref(currentTheme))?.label}`
-      }, _attrs))} data-v-50150009><span class="theme-icon" data-v-50150009>${ssrInterpolate(themes.find((t) => t.value === unref(currentTheme))?.icon)}</span><span class="theme-label" data-v-50150009>${ssrInterpolate(themes.find((t) => t.value === unref(currentTheme))?.label)}</span></button>`);
+      }, _attrs))} data-v-3fc161e2><span class="theme-icon" data-v-3fc161e2>${ssrInterpolate(themes.find((t) => t.value === unref(currentTheme))?.icon)}</span><span class="theme-label" data-v-3fc161e2>${ssrInterpolate(themes.find((t) => t.value === unref(currentTheme))?.label)}</span></button>`);
     };
   }
 };
@@ -1317,7 +1317,7 @@ _sfc_main$3.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("components/ThemeSwitcher.vue");
   return _sfc_setup$3 ? _sfc_setup$3(props, ctx) : void 0;
 };
-const __nuxt_component_2 = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["__scopeId", "data-v-50150009"]]);
+const __nuxt_component_2 = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["__scopeId", "data-v-3fc161e2"]]);
 const defineRouteProvider = (name = "RouteProvider") => defineComponent({
   name,
   props: {
@@ -1417,20 +1417,20 @@ const _sfc_main$2 = {
       const _component_NuxtLink = __nuxt_component_0;
       const _component_ThemeSwitcher = __nuxt_component_2;
       const _component_NuxtPage = __nuxt_component_3;
-      _push(`<div${ssrRenderAttrs(mergeProps({ class: "app" }, _attrs))} data-v-f78148e2><a href="#main" class="skip-link" data-v-f78148e2>Pular para o conteúdo principal</a>`);
+      _push(`<div${ssrRenderAttrs(mergeProps({ class: "app" }, _attrs))} data-v-7e83faca><a href="#main" class="skip-link" data-v-7e83faca>Pular para o conteúdo principal</a>`);
       _push(ssrRenderComponent(_component_AccessibilityWidget, null, null, _parent));
-      _push(`<div class="ambient-bg" data-v-f78148e2></div><div class="menu-overlay" data-v-f78148e2></div><nav class="navbar" data-v-f78148e2><div class="nav-container" data-v-f78148e2>`);
+      _push(`<div class="ambient-bg" data-v-7e83faca></div><div class="menu-overlay" data-v-7e83faca></div><nav class="navbar" data-v-7e83faca><div class="nav-container" data-v-7e83faca>`);
       _push(ssrRenderComponent(_component_NuxtLink, {
         to: "/",
         class: "logo"
       }, {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
-            _push2(`<img${ssrRenderAttr("src", `${unref(config).siteBase}/small-logo.png`)} alt="Autitude" class="logo-img" data-v-f78148e2${_scopeId}><span class="logo-text" data-v-f78148e2${_scopeId}>Autitude</span>`);
+            _push2(`<img${ssrRenderAttr("src", `${unref(siteBase)}/small-logo.png`)} alt="Autitude" class="logo-img" data-v-7e83faca${_scopeId}><span class="logo-text" data-v-7e83faca${_scopeId}>Autitude</span>`);
           } else {
             return [
               createVNode("img", {
-                src: `${unref(config).siteBase}/small-logo.png`,
+                src: `${unref(siteBase)}/small-logo.png`,
                 alt: "Autitude",
                 class: "logo-img"
               }, null, 8, ["src"]),
@@ -1440,7 +1440,7 @@ const _sfc_main$2 = {
         }),
         _: 1
       }, _parent));
-      _push(`<div class="nav-links" data-v-f78148e2>`);
+      _push(`<div class="nav-links" data-v-7e83faca>`);
       _push(ssrRenderComponent(_component_NuxtLink, {
         to: "/",
         class: "nav-link"
@@ -1532,16 +1532,16 @@ const _sfc_main$2 = {
         _: 1
       }, _parent));
       _push(ssrRenderComponent(_component_ThemeSwitcher, null, null, _parent));
-      _push(`</div><button class="menu-toggle" aria-label="Menu" data-v-f78148e2><span data-v-f78148e2></span><span data-v-f78148e2></span><span data-v-f78148e2></span></button></div></nav><main id="main" data-v-f78148e2>`);
+      _push(`</div><button class="menu-toggle" aria-label="Menu" data-v-7e83faca><span data-v-7e83faca></span><span data-v-7e83faca></span><span data-v-7e83faca></span></button></div></nav><main id="main" data-v-7e83faca>`);
       _push(ssrRenderComponent(_component_NuxtPage, null, null, _parent));
-      _push(`</main><footer class="footer" data-v-f78148e2><div class="container" data-v-f78148e2><div class="footer-grid" data-v-f78148e2><div class="footer-brand" data-v-f78148e2>`);
+      _push(`</main><footer class="footer" data-v-7e83faca><div class="container" data-v-7e83faca><div class="footer-grid" data-v-7e83faca><div class="footer-brand" data-v-7e83faca>`);
       _push(ssrRenderComponent(_component_NuxtLink, {
         to: "/",
         class: "logo"
       }, {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
-            _push2(`<img${ssrRenderAttr("src", `${unref(siteBase)}/small-logo.png`)} alt="Autitude" class="logo-img" data-v-f78148e2${_scopeId}><span class="logo-text" data-v-f78148e2${_scopeId}>Autitude</span>`);
+            _push2(`<img${ssrRenderAttr("src", `${unref(siteBase)}/small-logo.png`)} alt="Autitude" class="logo-img" data-v-7e83faca${_scopeId}><span class="logo-text" data-v-7e83faca${_scopeId}>Autitude</span>`);
           } else {
             return [
               createVNode("img", {
@@ -1555,7 +1555,7 @@ const _sfc_main$2 = {
         }),
         _: 1
       }, _parent));
-      _push(`<p data-v-f78148e2>Clínica especializada em Terapia Ocupacional e Integração Sensorial em Pindamonhangaba-SP.</p></div><div class="footer-links" data-v-f78148e2><h4 data-v-f78148e2>Navegação</h4>`);
+      _push(`<p data-v-7e83faca>Clínica especializada em Terapia Ocupacional e Integração Sensorial em Pindamonhangaba-SP.</p></div><div class="footer-links" data-v-7e83faca><h4 data-v-7e83faca>Navegação</h4>`);
       _push(ssrRenderComponent(_component_NuxtLink, { to: "/" }, {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
@@ -1604,7 +1604,7 @@ const _sfc_main$2 = {
         }),
         _: 1
       }, _parent));
-      _push(`</div><div class="footer-services" data-v-f78148e2><h4 data-v-f78148e2>Atendimento</h4>`);
+      _push(`</div><div class="footer-services" data-v-7e83faca><h4 data-v-7e83faca>Atendimento</h4>`);
       _push(ssrRenderComponent(_component_NuxtLink, { to: "/agendar" }, {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
@@ -1629,7 +1629,7 @@ const _sfc_main$2 = {
         }),
         _: 1
       }, _parent));
-      _push(`<a${ssrRenderAttr("href", config_data.whatsappUrl)} data-v-f78148e2>WhatsApp</a><a${ssrRenderAttr("href", config_data.instagramUrl)} target="_blank" rel="noopener" data-v-f78148e2>Instagram</a></div><div class="footer-contact" data-v-f78148e2><h4 data-v-f78148e2>Localização</h4><p data-v-f78148e2>Rua Major José dos Santos Moreira, 328</p><p data-v-f78148e2>Pindamonhangaba, SP</p><p data-v-f78148e2>Seg a Sex: 8h às 18h</p><div class="footer-map" data-v-f78148e2><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3676.52123456789!2d-45.45!3d-22.85!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjLCsDUxJzAwLjAiUyA0NcKwMjcnMDAuMCJF!5e0!3m2!1spt-BR!2sbr!4v1600000000000" width="100%" height="120" style="${ssrRenderStyle({ "border": "0", "border-radius": "8px" })}" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" data-v-f78148e2></iframe></div></div></div><div class="footer-bottom" data-v-f78148e2><p data-v-f78148e2>© ${ssrInterpolate(unref(currentYear))} Autitude. Todos os direitos reservados.</p></div></div></footer></div>`);
+      _push(`<a${ssrRenderAttr("href", config_data.whatsappUrl)} data-v-7e83faca>WhatsApp</a><a${ssrRenderAttr("href", config_data.instagramUrl)} target="_blank" rel="noopener" data-v-7e83faca>Instagram</a></div><div class="footer-contact" data-v-7e83faca><h4 data-v-7e83faca>Localização</h4><p data-v-7e83faca>Rua Major José dos Santos Moreira, 328</p><p data-v-7e83faca>Pindamonhangaba, SP</p><p data-v-7e83faca>Seg a Sex: 8h às 18h</p><div class="footer-map" data-v-7e83faca><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3676.52123456789!2d-45.45!3d-22.85!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjLCsDUxJzAwLjAiUyA0NcKwMjcnMDAuMCJF!5e0!3m2!1spt-BR!2sbr!4v1600000000000" width="100%" height="120" style="${ssrRenderStyle({ "border": "0", "border-radius": "8px" })}" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" data-v-7e83faca></iframe></div></div></div><div class="footer-bottom" data-v-7e83faca><p data-v-7e83faca>© ${ssrInterpolate(unref(currentYear))} Autitude. Todos os direitos reservados.</p></div></div></footer></div>`);
     };
   }
 };
@@ -1639,7 +1639,7 @@ _sfc_main$2.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("app.vue");
   return _sfc_setup$2 ? _sfc_setup$2(props, ctx) : void 0;
 };
-const AppComponent = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-f78148e2"]]);
+const AppComponent = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-7e83faca"]]);
 const _sfc_main$1 = {
   __name: "nuxt-error-page",
   __ssrInlineRender: true,

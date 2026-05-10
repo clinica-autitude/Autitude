@@ -12,7 +12,13 @@ const currentTheme = computed(() => colorMode.value)
 const toggleTheme = () => {
   const currentIndex = themes.findIndex(t => t.value === currentTheme.value)
   const nextIndex = (currentIndex + 1) % themes.length
-  colorMode.preference = themes[nextIndex].value
+  const newTheme = themes[nextIndex].value
+  colorMode.preference = newTheme
+  if (newTheme !== 'light') {
+    document.documentElement.setAttribute('data-theme', newTheme)
+  } else {
+    document.documentElement.removeAttribute('data-theme')
+  }
 }
 </script>
 
