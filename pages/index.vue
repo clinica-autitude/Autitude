@@ -3,6 +3,8 @@ import {
   Brain, Heart, Home, Sparkles, Stethoscope, 
   Baby, ClipboardCheck, GraduationCap, Target, HandHeart 
 } from 'lucide-vue-next'
+import ColorBends from '~/components/ColorBends.vue'
+import Silk from '~/components/Silk.vue'
 
 const whatsappUrl = 'https://wa.me/5512991968683'
 
@@ -91,6 +93,14 @@ const services = [
   <div class="home">
     <section class="hero">
       <div class="hero-bg">
+        <Silk
+          class="silk-bg"
+          :speed="5"
+          :scale="1"
+          color="#7B7481"
+          :noise-intensity="1.5"
+          :rotation="0"
+        />
         <div class="gradient-blob blob-1"></div>
         <div class="gradient-blob blob-2"></div>
         <div class="gradient-blob blob-3"></div>
@@ -250,7 +260,19 @@ const services = [
     <section class="cta-section section">
       <div class="container">
         <div class="cta-wrapper">
-          <div class="cta-glow"></div>
+          <ColorBends
+            class="cta-bg-effect"
+            :colors="['#E8E0F5', '#E0F5E8', '#FFE0E8', '#CDBFF0', '#8FD9B6']"
+            :rotation="25"
+            :speed="0.15"
+            :scale="1.3"
+            :frequency="1.2"
+            :warpStrength="1.0"
+            :mouseInfluence="0.4"
+            :parallax="0.3"
+            :noise="0.05"
+            transparent
+          />
           <div class="cta-content">
             <span class="cta-tag">Entre em contato</span>
             <h2>Pronto para começar?</h2>
@@ -288,7 +310,12 @@ const services = [
 .hero-bg {
   position: absolute;
   inset: 0;
-  pointer-events: none;
+}
+
+.silk-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
 }
 
 .gradient-blob {
@@ -296,6 +323,7 @@ const services = [
   border-radius: 50%;
   filter: blur(80px);
   opacity: 0.5;
+  z-index: 1;
 }
 
 .blob-1 {
@@ -718,26 +746,22 @@ const services = [
 
 .cta-wrapper {
   position: relative;
-  background: linear-gradient(135deg, var(--pastel-lavender) 0%, var(--pastel-mint) 50%, var(--pastel-peach) 100%);
+  background: var(--surface);
   border-radius: var(--radius-2xl);
-  padding: 4rem;
-  text-align: center;
   overflow: hidden;
 }
 
-.cta-glow {
+.cta-bg-effect {
   position: absolute;
-  top: -50%;
-  left: -20%;
-  width: 60%;
-  height: 200%;
-  background: radial-gradient(ellipse, rgba(255,255,255,0.4) 0%, transparent 70%);
-  pointer-events: none;
+  inset: 0;
+  z-index: 0;
 }
 
 .cta-content {
   position: relative;
   z-index: 1;
+  padding: 4rem;
+  text-align: center;
 }
 
 .cta-tag {

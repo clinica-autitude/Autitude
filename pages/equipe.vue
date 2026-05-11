@@ -1,5 +1,6 @@
 <script setup>
 import { Award, Heart, Users, Star } from 'lucide-vue-next'
+import ColorBends from '~/components/ColorBends.vue'
 
 useHead({
   title: 'Equipe | Autitude - Dra. Juliana Mariani',
@@ -103,6 +104,19 @@ const culture = [
     <section class="cta-section section">
       <div class="container">
         <div class="cta-card">
+          <ColorBends
+            class="cta-bg-effect"
+            :colors="['#CDBFF0', '#E0F5E8', '#E8E0F5', '#8FD9B6']"
+            :rotation="15"
+            :speed="0.12"
+            :scale="1.4"
+            :frequency="1.0"
+            :warpStrength="0.8"
+            :mouseInfluence="0.3"
+            :parallax="0.2"
+            :noise="0.04"
+            transparent
+          />
           <div class="cta-content">
             <h2>Gostaria de nos conhecer?</h2>
             <p>Agende uma visita e descubra como podemos ajudar no desenvolvimento do seu filho.</p>
@@ -301,8 +315,21 @@ const culture = [
 }
 
 .cta-card {
-  background: linear-gradient(135deg, var(--pastel-lavender) 0%, var(--pastel-mint) 100%);
+  position: relative;
+  background: var(--surface);
   border-radius: var(--radius-2xl);
+  overflow: hidden;
+}
+
+.cta-bg-effect {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.cta-content {
+  position: relative;
+  z-index: 1;
   padding: 3rem;
   text-align: center;
 }

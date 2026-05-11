@@ -1,5 +1,6 @@
 <script setup>
 import { ref, computed } from 'vue'
+import ColorBends from '~/components/ColorBends.vue'
 
 useHead({
   title: 'FAQ | Autitude - Perguntas Frequentes',
@@ -220,6 +221,19 @@ const toggleFaq = (index) => {
     <section class="cta-section section">
       <div class="container">
         <div class="cta-card">
+          <ColorBends
+            class="cta-bg-effect"
+            :colors="['#E8E0F5', '#FFE0E8', '#CDBFF0', '#F2A07B']"
+            :rotation="40"
+            :speed="0.18"
+            :scale="1.25"
+            :frequency="1.5"
+            :warpStrength="1.1"
+            :mouseInfluence="0.5"
+            :parallax="0.4"
+            :noise="0.06"
+            transparent
+          />
           <div class="cta-content">
             <h2>Ainda tem dúvidas?</h2>
             <p>Entre em contato conosco para saber como podemos ajudar seu filho.</p>
@@ -507,8 +521,21 @@ const toggleFaq = (index) => {
 }
 
 .cta-card {
-  background: linear-gradient(135deg, var(--pastel-lavender) 0%, var(--pastel-mint) 100%);
+  position: relative;
+  background: var(--surface);
   border-radius: var(--radius-2xl);
+  overflow: hidden;
+}
+
+.cta-bg-effect {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.cta-content {
+  position: relative;
+  z-index: 1;
   padding: 3rem;
   text-align: center;
 }

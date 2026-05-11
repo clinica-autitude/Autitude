@@ -1,5 +1,6 @@
 <script setup>
 import { ref, computed } from 'vue'
+import DotGrid from '~/components/DotGrid.vue'
 
 useHead({
   title: 'Agendar | Autitude - Agende sua Consulta',
@@ -78,6 +79,21 @@ const handleSubmit = async () => {
 <template>
   <div class="schedule">
     <section class="hero-section">
+      <div class="hero-bg-grid">
+        <DotGrid
+          :dot-size="14"
+          :gap="28"
+          base-color="#CDBFF0"
+          active-color="#7B5CBF"
+          :proximity="120"
+          :speed-trigger="80"
+          :shock-radius="200"
+          :shock-strength="4"
+          :max-speed="5000"
+          :resistance="750"
+          :return-duration="1.5"
+        />
+      </div>
       <div class="container">
         <div class="section-header">
           <span class="section-tag">Agendamento</span>
@@ -233,6 +249,19 @@ const handleSubmit = async () => {
 .hero-section {
   padding-top: var(--space-section-top);
   padding-bottom: 4rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg-grid {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero-section .container {
+  position: relative;
+  z-index: 1;
 }
 
 .section-header {

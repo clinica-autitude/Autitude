@@ -1,5 +1,6 @@
 <script setup>
 import { Target, Lightbulb, Heart, Award, Users, Star } from 'lucide-vue-next'
+import ColorBends from '~/components/ColorBends.vue'
 
 useHead({
   title: 'Sobre Nós | Autitude - Clínica de Terapia Ocupacional',
@@ -148,6 +149,19 @@ const values = [
     <section class="cta-section section">
       <div class="container">
         <div class="cta-card">
+          <ColorBends
+            class="cta-bg-effect"
+            :colors="['#E8E0F5', '#C4EAD8', '#FFD4C4', '#CDBFF0']"
+            :rotation="35"
+            :speed="0.14"
+            :scale="1.35"
+            :frequency="1.3"
+            :warpStrength="0.9"
+            :mouseInfluence="0.35"
+            :parallax="0.25"
+            :noise="0.05"
+            transparent
+          />
           <div class="cta-content">
             <h2>Gostaria de nos conhecer?</h2>
             <p>Agende uma visita e descubra como podemos ajudar no desenvolvimento do seu filho.</p>
@@ -353,8 +367,21 @@ const values = [
 }
 
 .cta-card {
-  background: linear-gradient(135deg, var(--pastel-lavender) 0%, var(--pastel-mint) 100%);
+  position: relative;
+  background: var(--surface);
   border-radius: var(--radius-2xl);
+  overflow: hidden;
+}
+
+.cta-bg-effect {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.cta-content {
+  position: relative;
+  z-index: 1;
   padding: 3rem;
   text-align: center;
 }

@@ -1,5 +1,6 @@
 <script setup>
 import { Stethoscope, Brain, Target, Baby, ClipboardCheck } from 'lucide-vue-next'
+import ColorBends from '~/components/ColorBends.vue'
 
 useHead({
   title: 'Serviços | Autitude - Terapia Ocupacional e Integração Sensorial',
@@ -155,6 +156,19 @@ const processSteps = [
     <section class="cta-section section">
       <div class="container">
         <div class="cta-card">
+          <ColorBends
+            class="cta-bg-effect"
+            :colors="['#CDBFF0', '#FFD4C4', '#C4EAD8', '#7B5CBF', '#F2A07B']"
+            :rotation="28"
+            :speed="0.16"
+            :scale="1.3"
+            :frequency="1.35"
+            :warpStrength="1.05"
+            :mouseInfluence="0.45"
+            :parallax="0.35"
+            :noise="0.055"
+            transparent
+          />
           <div class="cta-content">
             <h2>Agende uma avaliação</h2>
             <p>Nossa equipe está pronta para entender as necessidades do seu filho.</p>
@@ -357,11 +371,23 @@ const processSteps = [
 }
 
 .cta-card {
+  position: relative;
   background: var(--surface);
   border-radius: var(--radius-2xl);
+  overflow: hidden;
+}
+
+.cta-bg-effect {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.cta-content {
+  position: relative;
+  z-index: 1;
   padding: 3rem;
   text-align: center;
-  box-shadow: var(--shadow-sm);
 }
 
 .cta-content h2 {
