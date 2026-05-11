@@ -1026,7 +1026,7 @@ onUnmounted(() => {
 
 /* Dark contrast overrides */
 [data-a11y-contrast="dark"] .a11y-btn-floating {
-  background: #00ff00;
+  background: #ffffff;
   color: #000000;
   border: 2px solid #ffffff;
 }
@@ -1041,7 +1041,7 @@ onUnmounted(() => {
 }
 
 [data-a11y-contrast="dark"] .a11y-menu-header {
-  background: #00ff00;
+  background: #ffffff;
   color: #000000;
 }
 
@@ -1070,19 +1070,19 @@ onUnmounted(() => {
 }
 
 [data-a11y-contrast="dark"] .a11y-btn.a11y-active {
-  background: #00ff00;
+  background: #ffffff;
   color: #000000;
-  border-color: #00ff00;
+  border-color: #ffffff;
 }
 
 [data-a11y-contrast="dark"] .a11y-btn-vlibras {
-  background: #00ff00;
+  background: #ffffff;
   color: #000000;
   border: 2px solid #ffffff;
 }
 
 [data-a11y-contrast="dark"] .a11y-font-value {
-  color: #00ff00;
+  color: #ffffff;
 }
 
 [data-a11y-contrast="dark"] .a11y-hint {
@@ -1119,13 +1119,13 @@ onUnmounted(() => {
 
 [data-a11y-contrast="dark"] .a11y-dark-toggle:hover {
   background: #333333;
-  border-color: #00ff00;
+  border-color: #ffffff;
 }
 
 [data-a11y-contrast="dark"] .a11y-dark-toggle.dark-active {
-  background: #00ff00;
+  background: #ffffff;
   color: #000000;
-  border-color: #00ff00;
+  border-color: #ffffff;
 }
 
 [data-a11y-contrast="dark"] .toggle-label {
@@ -1138,7 +1138,7 @@ onUnmounted(() => {
 }
 
 [data-a11y-contrast="dark"] .a11y-dark-toggle.dark-active .toggle-track {
-  background: #00cc00;
+  background: #cccccc;
 }
 
 [data-a11y-contrast="dark"] .toggle-thumb {

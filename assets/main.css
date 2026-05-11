@@ -801,7 +801,7 @@ a:hover {
   color: #333333;
 }
 
-/* Dark Mode via Contrast Option - Apply same as data-theme="dark" */
+/* Dark Mode via Contrast Option - High contrast dark theme */
 [data-a11y-contrast="dark"] {
   --text: #ffffff;
   --text-dark: #ffffff;
@@ -810,13 +810,13 @@ a:hover {
   --white: #ffffff;
   --background: #000000;
   --surface: #111111;
-  --primary: #00ff00;
-  --primary-light: #003300;
-  --primary-dark: #00cc00;
-  --secondary: #ffff00;
-  --secondary-light: #333300;
-  --accent: #00ffff;
-  --accent-light: #003333;
+  --primary: #ffffff;
+  --primary-light: #333333;
+  --primary-dark: #cccccc;
+  --secondary: #ffffff;
+  --secondary-light: #333333;
+  --accent: #ffffff;
+  --accent-light: #333333;
   --pastel-lavender: #222222;
   --pastel-pink: #332222;
   --pastel-mint: #223322;
@@ -826,12 +826,12 @@ a:hover {
   --input-bg: #111111;
   --surface-alt: #1a1a1a;
   --overlay-bg: rgba(0, 0, 0, 0.9);
-  --whatsapp: #00ff00;
-  --whatsapp-dark: #00cc00;
+  --whatsapp: #ffffff;
+  --whatsapp-dark: #cccccc;
   --gradient-hero: linear-gradient(135deg, #000000 0%, #111111 50%, #000000 100%);
   --gradient-card: linear-gradient(180deg, rgba(17,17,17,0.98) 0%, rgba(17,17,17,0.92) 100%);
-  --gradient-primary: linear-gradient(135deg, #00ff00 0%, #00cc00 100%);
-  --gradient-accent: linear-gradient(135deg, #00ffff 0%, #00cccc 100%);
+  --gradient-primary: linear-gradient(135deg, #ffffff 0%, #cccccc 100%);
+  --gradient-accent: linear-gradient(135deg, #ffffff 0%, #cccccc 100%);
 }
 
 [data-a11y-contrast="dark"] h1,
@@ -867,13 +867,13 @@ a:hover {
 }
 
 [data-a11y-contrast="dark"] .btn-primary {
-  background: #00ff00;
+  background: #ffffff;
   color: #000000;
   border: 2px solid #ffffff;
 }
 
 [data-a11y-contrast="dark"] .btn-primary:hover {
-  background: #00cc00;
+  background: #cccccc;
   color: #000000;
 }
 
@@ -889,7 +889,7 @@ a:hover {
 }
 
 [data-a11y-contrast="dark"] .btn-whatsapp {
-  background: #00ff00;
+  background: #ffffff;
   color: #000000;
   border: 2px solid #ffffff;
 }
@@ -930,7 +930,7 @@ a:hover {
 }
 
 [data-a11y-contrast="dark"] ::-webkit-scrollbar-thumb {
-  background: #00ff00;
+  background: #ffffff;
 }
 
 /* Sepia Theme */
@@ -1278,7 +1278,7 @@ a:hover {
 }
 
 [data-a11y-contrast="dark"] .skip-link {
-  background: #00ff00;
+  background: #ffffff;
   color: #000000;
   border: 2px solid #ffffff;
 }
@@ -1359,7 +1359,7 @@ a:hover {
 
 [data-a11y-contrast="dark"] .nav-link:hover,
 [data-a11y-contrast="dark"] .nav-link.router-link-active {
-  color: #00ffff;
+  color: #ffffff;
   text-decoration: underline;
 }
 
@@ -1497,7 +1497,7 @@ a:hover {
 
 [data-a11y-contrast="dark"] .hero-badge { color: #ffffff; background: #111111; border: 3px solid #ffffff; }
 [data-a11y-contrast="dark"] .hero-subtitle { color: #ffffff; }
-[data-a11y-contrast="dark"] .stat-value { color: #00ff00; }
+[data-a11y-contrast="dark"] .stat-value { color: #ffffff; }
 [data-a11y-contrast="dark"] .stat-label { color: #cccccc; }
 [data-a11y-contrast="dark"] .section-tag { background: #ffff00; color: #000000; border: 2px solid #ffffff; }
 [data-a11y-contrast="dark"] .feature-content p { color: #ffffff; }
@@ -1600,7 +1600,7 @@ a:hover {
 [data-a11y-contrast="high"] .value-card p { color: #000000; }
 [data-a11y-contrast="high"] .stat-text { color: #333333; }
 
-[data-a11y-contrast="dark"] .member-role { color: #00ff00; }
+[data-a11y-contrast="dark"] .member-role { color: #ffffff; }
 [data-a11y-contrast="dark"] .member-bio { color: #ffffff; }
 [data-a11y-contrast="dark"] .tag { background: #ffff00; color: #000000; border: 2px solid #ffffff; }
 [data-a11y-contrast="dark"] .value-card p { color: #ffffff; }
@@ -1661,7 +1661,7 @@ a:hover {
 
 [data-a11y-contrast="dark"] .lead { color: #ffffff; }
 [data-a11y-contrast="dark"] .about-content p { color: #ffffff; }
-[data-a11y-contrast="dark"] .about-content strong { color: #00ff00; }
+[data-a11y-contrast="dark"] .about-content strong { color: #ffffff; }
 
 /* Service card numbers */
 .card-number {
@@ -1684,7 +1684,7 @@ a:hover {
 [data-theme="sepia"] .error-code { color: #7B5CBF; }
 [data-theme="dark"] .error-code { color: #c4a8e8; }
 [data-a11y-contrast="high"] .error-code { color: #0000cc; }
-[data-a11y-contrast="dark"] .error-code { color: #00ff00; }
+[data-a11y-contrast="dark"] .error-code { color: #ffffff; }
 
 /* Form section headers */
 .form-section h3 {
@@ -1716,7 +1716,7 @@ a:hover {
 [data-a11y-contrast="high"] .age-btn { color: #000000; }
 [data-a11y-contrast="high"] .age-btn.active { background: #0000cc; color: #ffffff; border: 2px solid #000000; }
 [data-a11y-contrast="dark"] .age-btn { color: #ffffff; }
-[data-a11y-contrast="dark"] .age-btn.active { background: #00ff00; color: #000000; border: 2px solid #ffffff; }
+[data-a11y-contrast="dark"] .age-btn.active { background: #ffffff; color: #000000; border: 2px solid #ffffff; }
 
 /* Privacy page content */
 .privacy-card h2 {
@@ -1744,7 +1744,7 @@ a:hover {
 [data-a11y-contrast="high"] .privacy-card p,
 [data-a11y-contrast="high"] .privacy-card li { color: #000000; }
 
-[data-a11y-contrast="dark"] .privacy-card h2 { color: #00ff00; }
+[data-a11y-contrast="dark"] .privacy-card h2 { color: #ffffff; }
 [data-a11y-contrast="dark"] .privacy-card p,
 [data-a11y-contrast="dark"] .privacy-card li { color: #ffffff; }
 
@@ -1757,7 +1757,7 @@ a:hover {
 [data-theme="sepia"] .visual-shape { background: linear-gradient(135deg, #E8E0F5 0%, #CDBFF0 100%); }
 [data-theme="dark"] .visual-shape { background: linear-gradient(135deg, #3d3260 0%, #2d2440 100%); }
 [data-a11y-contrast="high"] .visual-shape { background: #0000cc; }
-[data-a11y-contrast="dark"] .visual-shape { background: #00ff00; }
+[data-a11y-contrast="dark"] .visual-shape { background: #ffffff; }
 
 /* Card accent colors */
 .card-accent {
@@ -1768,7 +1768,7 @@ a:hover {
 [data-theme="sepia"] .card-accent { background: linear-gradient(135deg, #7B5CBF 0%, #5A3DA0 100%); }
 [data-theme="dark"] .card-accent { background: linear-gradient(135deg, #c4a8e8 0%, #a889d4 100%); }
 [data-a11y-contrast="high"] .card-accent { background: #0000cc; }
-[data-a11y-contrast="dark"] .card-accent { background: #00ff00; }
+[data-a11y-contrast="dark"] .card-accent { background: #ffffff; }
 
 /* Toggle plus/minus icons */
 .toggle-plus,
@@ -1832,7 +1832,7 @@ a:hover {
 [data-a11y-contrast="dark"] .service-icon-large,
 [data-a11y-contrast="dark"] .feature-icon-wrapper,
 [data-a11y-contrast="dark"] .card-mini-icon {
-  background: #00ff00 !important;
+  background: #ffffff !important;
   color: #000000;
   border: 2px solid #ffffff;
 }
@@ -1922,7 +1922,7 @@ a:hover {
 }
 
 [data-a11y-contrast="dark"] .navbar .btn-primary {
-  background: #00ff00;
+  background: #ffffff;
   color: #000000;
   border: 2px solid #ffffff;
 }

@@ -135,7 +135,7 @@ const toggleTheme = () => {
 }
 
 [data-a11y-contrast="dark"] .theme-switcher:hover {
-  background: #00ff00;
+  background: #ffffff;
   color: #000000;
 }
 </style>
