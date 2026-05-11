@@ -15,8 +15,12 @@ type LazyComponent<T> = DefineComponent<HydrationStrategies, {}, {}, {}, {}, {},
 
 
 export const AccessibilityWidget: typeof import("../components/AccessibilityWidget.vue")['default']
+export const ColorBends: typeof import("../components/ColorBends.vue")['default']
+export const DotGrid: typeof import("../components/DotGrid.vue")['default']
 export const Grainient: typeof import("../components/Grainient.vue")['default']
+export const Silk: typeof import("../components/Silk.vue")['default']
 export const SplashCursor: typeof import("../components/SplashCursor.vue")['default']
+export const Squares: typeof import("../components/Squares.vue")['default']
 export const ThemeSwitcher: typeof import("../components/ThemeSwitcher.vue")['default']
 export const NuxtWelcome: typeof import("../node_modules/nuxt/dist/app/components/welcome.vue")['default']
 export const NuxtLayout: typeof import("../node_modules/nuxt/dist/app/components/nuxt-layout")['default']
@@ -43,8 +47,12 @@ export const Html: typeof import("../node_modules/nuxt/dist/head/runtime/compone
 export const Body: typeof import("../node_modules/nuxt/dist/head/runtime/components")['Body']
 export const NuxtIsland: typeof import("../node_modules/nuxt/dist/app/components/nuxt-island")['default']
 export const LazyAccessibilityWidget: LazyComponent<typeof import("../components/AccessibilityWidget.vue")['default']>
+export const LazyColorBends: LazyComponent<typeof import("../components/ColorBends.vue")['default']>
+export const LazyDotGrid: LazyComponent<typeof import("../components/DotGrid.vue")['default']>
 export const LazyGrainient: LazyComponent<typeof import("../components/Grainient.vue")['default']>
+export const LazySilk: LazyComponent<typeof import("../components/Silk.vue")['default']>
 export const LazySplashCursor: LazyComponent<typeof import("../components/SplashCursor.vue")['default']>
+export const LazySquares: LazyComponent<typeof import("../components/Squares.vue")['default']>
 export const LazyThemeSwitcher: LazyComponent<typeof import("../components/ThemeSwitcher.vue")['default']>
 export const LazyNuxtWelcome: LazyComponent<typeof import("../node_modules/nuxt/dist/app/components/welcome.vue")['default']>
 export const LazyNuxtLayout: LazyComponent<typeof import("../node_modules/nuxt/dist/app/components/nuxt-layout")['default']>

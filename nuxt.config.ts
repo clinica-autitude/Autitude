@@ -20,6 +20,12 @@ export default defineNuxtConfig({
     thresholds: {
       dark: 0.5,
       sepia: 0.3
+    },
+    value: {
+      light: 'light',
+      white: 'white',
+      dark: 'dark',
+      sepia: 'sepia'
     }
   },
 

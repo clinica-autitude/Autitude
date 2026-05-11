@@ -2,7 +2,7 @@ import process from 'node:process';globalThis._importMeta_=globalThis._importMet
 import { p as parseQuery, k as hasProtocol, h as joinURL, l as parseURL, e as encodePath, m as decodePath, w as withQuery, n as isScriptProtocol, o as getContext, q as withTrailingSlash, r as withoutTrailingSlash, s as sanitizeStatusCode, $ as $fetch, t as createHooks, c as createError$1, v as executeAsync, x as defu } from '../nitro/nitro.mjs';
 import { u as useHead$1, h as headSymbol, b as baseURL } from '../routes/renderer.mjs';
 import { RouterView, createMemoryHistory, createRouter, START_LOCATION } from 'vue-router';
-import { ssrRenderSuspense, ssrRenderComponent, ssrRenderVNode, ssrRenderAttrs, ssrRenderAttr, ssrRenderStyle, ssrInterpolate, ssrRenderTeleport, ssrRenderClass, ssrIncludeBooleanAttr } from 'vue/server-renderer';
+import { ssrRenderSuspense, ssrRenderComponent, ssrRenderVNode, ssrRenderAttrs, ssrRenderClass, ssrRenderAttr, ssrRenderStyle, ssrInterpolate, ssrRenderTeleport, ssrIncludeBooleanAttr } from 'vue/server-renderer';
 import { Settings, X, Sun, Moon, Minus, Plus, Play, Square, Globe } from 'lucide-vue-next';
 import 'node:http';
 import 'node:https';
@@ -431,42 +431,42 @@ const _routes = [
   {
     name: "faq",
     path: "/faq",
-    component: () => import('./faq-CTINPyfj.mjs')
+    component: () => import('./faq-Cd93bBgP.mjs')
   },
   {
     name: "index",
     path: "/",
-    component: () => import('./index-CCtogxIZ.mjs')
+    component: () => import('./index-CRO73qkH.mjs')
   },
   {
     name: "sobre",
     path: "/sobre",
-    component: () => import('./sobre-uv2OBjoW.mjs')
+    component: () => import('./sobre-YBfn0rRo.mjs')
   },
   {
     name: "equipe",
     path: "/equipe",
-    component: () => import('./equipe-YBiB3oiN.mjs')
+    component: () => import('./equipe-K-tixciM.mjs')
   },
   {
     name: "agendar",
     path: "/agendar",
-    component: () => import('./agendar-B1xmCO8c.mjs')
+    component: () => import('./agendar-CSOBjuan.mjs')
   },
   {
     name: "contato",
     path: "/contato",
-    component: () => import('./contato-WjeMKI0q.mjs')
+    component: () => import('./contato-C-JqHWg4.mjs')
   },
   {
     name: "servicos",
     path: "/servicos",
-    component: () => import('./servicos-DzaFL8EK.mjs')
+    component: () => import('./servicos-DHKy42bO.mjs')
   },
   {
     name: "slug",
     path: "/:slug(.*)*",
-    component: () => import('./_...slug_-B6yc_rtx.mjs')
+    component: () => import('./_...slug_-BJ-iYomJ.mjs')
   },
   {
     name: "blog-slug",
@@ -476,7 +476,7 @@ const _routes = [
   {
     name: "privacidade",
     path: "/privacidade",
-    component: () => import('./privacidade-cR8ZnuoV.mjs')
+    component: () => import('./privacidade-COGrPFyI.mjs')
   }
 ];
 const ROUTE_KEY_PARENTHESES_RE = /(:\w+)\([^)]+\)/g;
@@ -958,41 +958,41 @@ const _sfc_main$4 = {
         class: "accessibility-panel",
         role: "region",
         "aria-label": "Controles de acessibilidade"
-      }, _attrs))} data-v-57e1ef36><button id="a11y-toggle" class="a11y-btn-floating" aria-label="Abrir menu de acessibilidade"${ssrRenderAttr("aria-expanded", menuOpen.value)} data-v-57e1ef36>`);
+      }, _attrs))} data-v-ab91caa5><button id="a11y-toggle" class="a11y-btn-floating" aria-label="Abrir menu de acessibilidade"${ssrRenderAttr("aria-expanded", menuOpen.value)} data-v-ab91caa5>`);
       _push(ssrRenderComponent(unref(Settings), { size: 24 }, null, _parent));
-      _push(`<span class="a11y-label" data-v-57e1ef36>Acessibilidade</span></button>`);
+      _push(`<span class="a11y-label" data-v-ab91caa5>Acessibilidade</span></button>`);
       ssrRenderTeleport(_push, (_push2) => {
         if (menuOpen.value) {
-          _push2(`<div class="a11y-overlay" data-v-57e1ef36></div>`);
+          _push2(`<div class="a11y-overlay" data-v-ab91caa5></div>`);
         } else {
           _push2(`<!---->`);
         }
         if (menuOpen.value) {
-          _push2(`<div id="a11y-menu" class="a11y-menu" role="dialog" aria-modal="true" aria-labelledby="a11y-menu-title" data-v-57e1ef36><div class="a11y-menu-header" data-v-57e1ef36><h3 id="a11y-menu-title" data-v-57e1ef36>Configurações</h3><button id="a11y-close" class="a11y-close-btn" aria-label="Fechar menu" data-v-57e1ef36>`);
+          _push2(`<div id="a11y-menu" class="a11y-menu" role="dialog" aria-modal="true" aria-labelledby="a11y-menu-title" data-v-ab91caa5><div class="a11y-menu-header" data-v-ab91caa5><h3 id="a11y-menu-title" data-v-ab91caa5>Configurações</h3><button id="a11y-close" class="a11y-close-btn" aria-label="Fechar menu" data-v-ab91caa5>`);
           _push2(ssrRenderComponent(unref(X), { size: 24 }, null, _parent));
-          _push2(`</button></div><div class="a11y-menu-content" data-v-57e1ef36><div class="a11y-section" data-v-57e1ef36><h4 data-v-57e1ef36>Modo Escuro</h4><button id="a11y-dark-toggle" class="${ssrRenderClass([{ "dark-active": isDarkMode.value }, "a11y-dark-toggle"])}"${ssrRenderAttr("aria-pressed", isDarkMode.value)} data-v-57e1ef36><span class="toggle-track" data-v-57e1ef36><span class="toggle-thumb" data-v-57e1ef36>`);
+          _push2(`</button></div><div class="a11y-menu-content" data-v-ab91caa5><div class="a11y-section" data-v-ab91caa5><h4 data-v-ab91caa5>Modo Escuro</h4><button id="a11y-dark-toggle" class="${ssrRenderClass([{ "dark-active": isDarkMode.value }, "a11y-dark-toggle"])}"${ssrRenderAttr("aria-pressed", isDarkMode.value)} data-v-ab91caa5><span class="toggle-track" data-v-ab91caa5><span class="toggle-thumb" data-v-ab91caa5>`);
           if (isDarkMode.value) {
             _push2(ssrRenderComponent(unref(Sun), { size: 14 }, null, _parent));
           } else {
             _push2(ssrRenderComponent(unref(Moon), { size: 14 }, null, _parent));
           }
-          _push2(`</span></span><span class="toggle-label" data-v-57e1ef36>${ssrInterpolate(isDarkMode.value ? "Modo Escuro" : "Modo Claro")}</span></button></div><div class="a11y-section" data-v-57e1ef36><h4 data-v-57e1ef36>Tamanho da Fonte</h4><div class="a11y-font-controls" data-v-57e1ef36><button id="a11y-font-decrease" class="a11y-btn a11y-btn-icon" aria-label="Diminuir fonte" data-v-57e1ef36>`);
+          _push2(`</span></span><span class="toggle-label" data-v-ab91caa5>${ssrInterpolate(isDarkMode.value ? "Modo Escuro" : "Modo Claro")}</span></button></div><div class="a11y-section" data-v-ab91caa5><h4 data-v-ab91caa5>Tamanho da Fonte</h4><div class="a11y-font-controls" data-v-ab91caa5><button id="a11y-font-decrease" class="a11y-btn a11y-btn-icon" aria-label="Diminuir fonte" data-v-ab91caa5>`);
           _push2(ssrRenderComponent(unref(Minus), { size: 20 }, null, _parent));
-          _push2(`</button><span id="a11y-font-size" class="a11y-font-value" aria-live="polite" data-v-57e1ef36>${ssrInterpolate(fontSize.value)}%</span><button id="a11y-font-increase" class="a11y-btn a11y-btn-icon" aria-label="Aumentar fonte" data-v-57e1ef36>`);
+          _push2(`</button><span id="a11y-font-size" class="a11y-font-value" aria-live="polite" data-v-ab91caa5>${ssrInterpolate(fontSize.value)}%</span><button id="a11y-font-increase" class="a11y-btn a11y-btn-icon" aria-label="Aumentar fonte" data-v-ab91caa5>`);
           _push2(ssrRenderComponent(unref(Plus), { size: 20 }, null, _parent));
-          _push2(`</button></div></div><div class="a11y-section" data-v-57e1ef36><h4 data-v-57e1ef36>Contraste</h4><div class="a11y-contrast-controls" data-v-57e1ef36><button id="a11y-contrast-normal" class="${ssrRenderClass([{ "a11y-active": contrastMode.value === "normal" }, "a11y-btn"])}" data-v-57e1ef36>Normal</button><button id="a11y-contrast-high" class="${ssrRenderClass([{ "a11y-active": contrastMode.value === "high" }, "a11y-btn"])}" data-v-57e1ef36>Alto</button><button id="a11y-contrast-dark" class="${ssrRenderClass([{ "a11y-active": contrastMode.value === "dark" }, "a11y-btn"])}" data-v-57e1ef36>Escuro</button></div></div><div class="a11y-section" data-v-57e1ef36><h4 data-v-57e1ef36>Leitor de Tela (TTS)</h4><p class="a11y-hint" data-v-57e1ef36>Lê o conteúdo principal da página em voz alta</p><div class="a11y-tts-status" role="status" aria-live="polite" data-v-57e1ef36>${ssrInterpolate(ttsStatus.value)}</div><div class="a11y-btn-group" data-v-57e1ef36><button id="a11y-tts-play" class="${ssrRenderClass([{ "a11y-active": speaking.value }, "a11y-btn"])}" aria-label="Reproduzir texto da página" data-v-57e1ef36>`);
+          _push2(`</button></div></div><div class="a11y-section" data-v-ab91caa5><h4 data-v-ab91caa5>Contraste</h4><div class="a11y-contrast-controls" data-v-ab91caa5><button id="a11y-contrast-normal" class="${ssrRenderClass([{ "a11y-active": contrastMode.value === "normal" }, "a11y-btn"])}" data-v-ab91caa5>Normal</button><button id="a11y-contrast-high" class="${ssrRenderClass([{ "a11y-active": contrastMode.value === "high" }, "a11y-btn"])}" data-v-ab91caa5>Alto</button><button id="a11y-contrast-dark" class="${ssrRenderClass([{ "a11y-active": contrastMode.value === "dark" }, "a11y-btn"])}" data-v-ab91caa5>Escuro</button></div></div><div class="a11y-section" data-v-ab91caa5><h4 data-v-ab91caa5>Leitor de Tela (TTS)</h4><p class="a11y-hint" data-v-ab91caa5>Lê o conteúdo principal da página em voz alta</p><div class="a11y-tts-status" role="status" aria-live="polite" data-v-ab91caa5>${ssrInterpolate(ttsStatus.value)}</div><div class="a11y-btn-group" data-v-ab91caa5><button id="a11y-tts-play" class="${ssrRenderClass([{ "a11y-active": speaking.value }, "a11y-btn"])}" aria-label="Reproduzir texto da página" data-v-ab91caa5>`);
           _push2(ssrRenderComponent(unref(Play), { size: 18 }, null, _parent));
-          _push2(` ${ssrInterpolate(speaking.value ? "Pausar" : "Ler Página")}</button><button id="a11y-tts-stop" class="a11y-btn" aria-label="Parar leitura completamente"${ssrIncludeBooleanAttr(!speaking.value) ? " disabled" : ""} data-v-57e1ef36>`);
+          _push2(` ${ssrInterpolate(speaking.value ? "Pausar" : "Ler Página")}</button><button id="a11y-tts-stop" class="a11y-btn" aria-label="Parar leitura completamente"${ssrIncludeBooleanAttr(!speaking.value) ? " disabled" : ""} data-v-ab91caa5>`);
           _push2(ssrRenderComponent(unref(Square), { size: 18 }, null, _parent));
-          _push2(` Parar </button></div></div><div class="a11y-section" data-v-57e1ef36><h4 data-v-57e1ef36>Libras (VLibras)</h4><p class="a11y-hint" data-v-57e1ef36>Traduz o conteúdo para Língua Brasileira de Sinais</p>`);
+          _push2(` Parar </button></div></div><div class="a11y-section" data-v-ab91caa5><h4 data-v-ab91caa5>Libras (VLibras)</h4><p class="a11y-hint" data-v-ab91caa5>Traduz o conteúdo para Língua Brasileira de Sinais</p>`);
           if (vlibrasStatus.value) {
-            _push2(`<div class="a11y-vlibras-status" role="status" data-v-57e1ef36>${ssrInterpolate(vlibrasStatus.value)}</div>`);
+            _push2(`<div class="a11y-vlibras-status" role="status" data-v-ab91caa5>${ssrInterpolate(vlibrasStatus.value)}</div>`);
           } else {
             _push2(`<!---->`);
           }
-          _push2(`<button id="a11y-vlibras-toggle" class="${ssrRenderClass([{ "a11y-active": vlibrasEnabled.value }, "a11y-btn a11y-btn-vlibras"])}" data-v-57e1ef36>`);
+          _push2(`<button id="a11y-vlibras-toggle" class="${ssrRenderClass([{ "a11y-active": vlibrasEnabled.value }, "a11y-btn a11y-btn-vlibras"])}" data-v-ab91caa5>`);
           _push2(ssrRenderComponent(unref(Globe), { size: 18 }, null, _parent));
-          _push2(` ${ssrInterpolate(vlibrasEnabled.value ? "Desativar VLibras" : "Ativar VLibras")}</button></div><div class="a11y-section" data-v-57e1ef36><h4 data-v-57e1ef36>Navegação por Teclado</h4><p class="a11y-hint" data-v-57e1ef36>Use Tab para navegar, Enter para selecionar</p><ul class="a11y-shortcuts" data-v-57e1ef36><li data-v-57e1ef36><kbd data-v-57e1ef36>Tab</kbd> Próximo elemento</li><li data-v-57e1ef36><kbd data-v-57e1ef36>Shift+Tab</kbd> Elemento anterior</li><li data-v-57e1ef36><kbd data-v-57e1ef36>Enter</kbd> Ativar link/botão</li><li data-v-57e1ef36><kbd data-v-57e1ef36>Esc</kbd> Fechar menu</li></ul></div></div></div>`);
+          _push2(` ${ssrInterpolate(vlibrasEnabled.value ? "Desativar VLibras" : "Ativar VLibras")}</button></div><div class="a11y-section" data-v-ab91caa5><h4 data-v-ab91caa5>Navegação por Teclado</h4><p class="a11y-hint" data-v-ab91caa5>Use Tab para navegar, Enter para selecionar</p><ul class="a11y-shortcuts" data-v-ab91caa5><li data-v-ab91caa5><kbd data-v-ab91caa5>Tab</kbd> Próximo elemento</li><li data-v-ab91caa5><kbd data-v-ab91caa5>Shift+Tab</kbd> Elemento anterior</li><li data-v-ab91caa5><kbd data-v-ab91caa5>Enter</kbd> Ativar link/botão</li><li data-v-ab91caa5><kbd data-v-ab91caa5>Esc</kbd> Fechar menu</li></ul></div></div></div>`);
         } else {
           _push2(`<!---->`);
         }
@@ -1007,7 +1007,7 @@ _sfc_main$4.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("components/AccessibilityWidget.vue");
   return _sfc_setup$4 ? _sfc_setup$4(props, ctx) : void 0;
 };
-const __nuxt_component_0$1 = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["__scopeId", "data-v-57e1ef36"]]);
+const __nuxt_component_0$1 = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["__scopeId", "data-v-ab91caa5"]]);
 const firstNonUndefined = (...args) => args.find((arg) => arg !== void 0);
 // @__NO_SIDE_EFFECTS__
 function defineNuxtLink(options) {
@@ -1299,7 +1299,8 @@ const _sfc_main$3 = {
     const themes = [
       { value: "light", label: "Claro", icon: "☀️" },
       { value: "dark", label: "Escuro", icon: "🌙" },
-      { value: "sepia", label: "Sépia", icon: "📜" }
+      { value: "sepia", label: "Sépia", icon: "📜" },
+      { value: "white", label: "Branco", icon: "⬜" }
     ];
     const currentTheme = computed(() => colorMode.value);
     return (_ctx, _push, _parent, _attrs) => {
@@ -1307,7 +1308,7 @@ const _sfc_main$3 = {
         class: "theme-switcher",
         "aria-label": `Tema atual: ${themes.find((t) => t.value === unref(currentTheme))?.label}. Clique para mudar.`,
         title: `Mudar tema: ${themes.find((t) => t.value === unref(currentTheme))?.label}`
-      }, _attrs))} data-v-3fc161e2><span class="theme-icon" data-v-3fc161e2>${ssrInterpolate(themes.find((t) => t.value === unref(currentTheme))?.icon)}</span><span class="theme-label" data-v-3fc161e2>${ssrInterpolate(themes.find((t) => t.value === unref(currentTheme))?.label)}</span></button>`);
+      }, _attrs))} data-v-1fb55e6a><span class="theme-icon" data-v-1fb55e6a>${ssrInterpolate(themes.find((t) => t.value === unref(currentTheme))?.icon)}</span><span class="theme-label" data-v-1fb55e6a>${ssrInterpolate(themes.find((t) => t.value === unref(currentTheme))?.label)}</span></button>`);
     };
   }
 };
@@ -1317,7 +1318,7 @@ _sfc_main$3.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("components/ThemeSwitcher.vue");
   return _sfc_setup$3 ? _sfc_setup$3(props, ctx) : void 0;
 };
-const __nuxt_component_2 = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["__scopeId", "data-v-3fc161e2"]]);
+const __nuxt_component_2 = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["__scopeId", "data-v-1fb55e6a"]]);
 const defineRouteProvider = (name = "RouteProvider") => defineComponent({
   name,
   props: {
@@ -1408,25 +1409,31 @@ const _sfc_main$2 = {
     const currentYear = (/* @__PURE__ */ new Date()).getFullYear();
     const config = /* @__PURE__ */ useRuntimeConfig();
     const siteBase = config.public.siteBase || "https://hautlys.github.io/Autitude";
+    const menuOpen = ref(false);
     const config_data = {
       whatsappUrl: "https://wa.me/5512991968683",
       instagramUrl: "https://www.instagram.com/clinicaautitude"
+    };
+    const closeMenu = () => {
+      menuOpen.value = false;
+      (void 0).body.style.overflow = "";
     };
     return (_ctx, _push, _parent, _attrs) => {
       const _component_AccessibilityWidget = __nuxt_component_0$1;
       const _component_NuxtLink = __nuxt_component_0;
       const _component_ThemeSwitcher = __nuxt_component_2;
       const _component_NuxtPage = __nuxt_component_3;
-      _push(`<div${ssrRenderAttrs(mergeProps({ class: "app" }, _attrs))} data-v-7e83faca><a href="#main" class="skip-link" data-v-7e83faca>Pular para o conteúdo principal</a>`);
+      _push(`<div${ssrRenderAttrs(mergeProps({ class: "app" }, _attrs))} data-v-25152026><a href="#main" class="skip-link" data-v-25152026>Pular para o conteúdo principal</a>`);
       _push(ssrRenderComponent(_component_AccessibilityWidget, null, null, _parent));
-      _push(`<div class="ambient-bg" data-v-7e83faca></div><div class="menu-overlay" data-v-7e83faca></div><nav class="navbar" data-v-7e83faca><div class="nav-container" data-v-7e83faca>`);
+      _push(`<div class="ambient-bg" data-v-25152026></div><div class="${ssrRenderClass([{ active: menuOpen.value }, "menu-overlay"])}" data-v-25152026></div><nav class="navbar" data-v-25152026><div class="nav-container" data-v-25152026>`);
       _push(ssrRenderComponent(_component_NuxtLink, {
         to: "/",
-        class: "logo"
+        class: "logo",
+        onClick: closeMenu
       }, {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
-            _push2(`<img${ssrRenderAttr("src", `${unref(siteBase)}/small-logo.png`)} alt="Autitude" class="logo-img" data-v-7e83faca${_scopeId}><span class="logo-text" data-v-7e83faca${_scopeId}>Autitude</span>`);
+            _push2(`<img${ssrRenderAttr("src", `${unref(siteBase)}/small-logo.png`)} alt="Autitude" class="logo-img" data-v-25152026${_scopeId}><span class="logo-text" data-v-25152026${_scopeId}>Autitude</span>`);
           } else {
             return [
               createVNode("img", {
@@ -1440,10 +1447,11 @@ const _sfc_main$2 = {
         }),
         _: 1
       }, _parent));
-      _push(`<div class="nav-links" data-v-7e83faca>`);
+      _push(`<div class="${ssrRenderClass([{ "nav-active": menuOpen.value }, "nav-links"])}" data-v-25152026>`);
       _push(ssrRenderComponent(_component_NuxtLink, {
         to: "/",
-        class: "nav-link"
+        class: "nav-link",
+        onClick: closeMenu
       }, {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
@@ -1458,7 +1466,8 @@ const _sfc_main$2 = {
       }, _parent));
       _push(ssrRenderComponent(_component_NuxtLink, {
         to: "/sobre",
-        class: "nav-link"
+        class: "nav-link",
+        onClick: closeMenu
       }, {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
@@ -1473,7 +1482,8 @@ const _sfc_main$2 = {
       }, _parent));
       _push(ssrRenderComponent(_component_NuxtLink, {
         to: "/servicos",
-        class: "nav-link"
+        class: "nav-link",
+        onClick: closeMenu
       }, {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
@@ -1488,7 +1498,8 @@ const _sfc_main$2 = {
       }, _parent));
       _push(ssrRenderComponent(_component_NuxtLink, {
         to: "/equipe",
-        class: "nav-link"
+        class: "nav-link",
+        onClick: closeMenu
       }, {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
@@ -1503,7 +1514,8 @@ const _sfc_main$2 = {
       }, _parent));
       _push(ssrRenderComponent(_component_NuxtLink, {
         to: "/contato",
-        class: "nav-link"
+        class: "nav-link",
+        onClick: closeMenu
       }, {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
@@ -1518,7 +1530,8 @@ const _sfc_main$2 = {
       }, _parent));
       _push(ssrRenderComponent(_component_NuxtLink, {
         to: "/agendar",
-        class: "btn btn-primary btn-sm"
+        class: "btn btn-primary btn-sm",
+        onClick: closeMenu
       }, {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
@@ -1532,16 +1545,16 @@ const _sfc_main$2 = {
         _: 1
       }, _parent));
       _push(ssrRenderComponent(_component_ThemeSwitcher, null, null, _parent));
-      _push(`</div><button class="menu-toggle" aria-label="Menu" data-v-7e83faca><span data-v-7e83faca></span><span data-v-7e83faca></span><span data-v-7e83faca></span></button></div></nav><main id="main" data-v-7e83faca>`);
+      _push(`</div><button class="${ssrRenderClass([{ active: menuOpen.value }, "menu-toggle"])}" aria-label="Menu"${ssrRenderAttr("aria-expanded", menuOpen.value)} data-v-25152026><span data-v-25152026></span><span data-v-25152026></span><span data-v-25152026></span></button></div></nav><main id="main" data-v-25152026>`);
       _push(ssrRenderComponent(_component_NuxtPage, null, null, _parent));
-      _push(`</main><footer class="footer" data-v-7e83faca><div class="container" data-v-7e83faca><div class="footer-grid" data-v-7e83faca><div class="footer-brand" data-v-7e83faca>`);
+      _push(`</main><footer class="footer" data-v-25152026><div class="container" data-v-25152026><div class="footer-grid" data-v-25152026><div class="footer-brand" data-v-25152026>`);
       _push(ssrRenderComponent(_component_NuxtLink, {
         to: "/",
         class: "logo"
       }, {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
-            _push2(`<img${ssrRenderAttr("src", `${unref(siteBase)}/small-logo.png`)} alt="Autitude" class="logo-img" data-v-7e83faca${_scopeId}><span class="logo-text" data-v-7e83faca${_scopeId}>Autitude</span>`);
+            _push2(`<img${ssrRenderAttr("src", `${unref(siteBase)}/small-logo.png`)} alt="Autitude" class="logo-img" data-v-25152026${_scopeId}><span class="logo-text" data-v-25152026${_scopeId}>Autitude</span>`);
           } else {
             return [
               createVNode("img", {
@@ -1555,7 +1568,7 @@ const _sfc_main$2 = {
         }),
         _: 1
       }, _parent));
-      _push(`<p data-v-7e83faca>Clínica especializada em Terapia Ocupacional e Integração Sensorial em Pindamonhangaba-SP.</p></div><div class="footer-links" data-v-7e83faca><h4 data-v-7e83faca>Navegação</h4>`);
+      _push(`<p data-v-25152026>Clínica especializada em Terapia Ocupacional e Integração Sensorial em Pindamonhangaba-SP.</p></div><div class="footer-links" data-v-25152026><h4 data-v-25152026>Navegação</h4>`);
       _push(ssrRenderComponent(_component_NuxtLink, { to: "/" }, {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
@@ -1604,7 +1617,7 @@ const _sfc_main$2 = {
         }),
         _: 1
       }, _parent));
-      _push(`</div><div class="footer-services" data-v-7e83faca><h4 data-v-7e83faca>Atendimento</h4>`);
+      _push(`</div><div class="footer-services" data-v-25152026><h4 data-v-25152026>Atendimento</h4>`);
       _push(ssrRenderComponent(_component_NuxtLink, { to: "/agendar" }, {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
@@ -1629,7 +1642,7 @@ const _sfc_main$2 = {
         }),
         _: 1
       }, _parent));
-      _push(`<a${ssrRenderAttr("href", config_data.whatsappUrl)} data-v-7e83faca>WhatsApp</a><a${ssrRenderAttr("href", config_data.instagramUrl)} target="_blank" rel="noopener" data-v-7e83faca>Instagram</a></div><div class="footer-contact" data-v-7e83faca><h4 data-v-7e83faca>Localização</h4><p data-v-7e83faca>Rua Major José dos Santos Moreira, 328</p><p data-v-7e83faca>Pindamonhangaba, SP</p><p data-v-7e83faca>Seg a Sex: 8h às 18h</p><div class="footer-map" data-v-7e83faca><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3676.52123456789!2d-45.45!3d-22.85!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjLCsDUxJzAwLjAiUyA0NcKwMjcnMDAuMCJF!5e0!3m2!1spt-BR!2sbr!4v1600000000000" width="100%" height="120" style="${ssrRenderStyle({ "border": "0", "border-radius": "8px" })}" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" data-v-7e83faca></iframe></div></div></div><div class="footer-bottom" data-v-7e83faca><p data-v-7e83faca>© ${ssrInterpolate(unref(currentYear))} Autitude. Todos os direitos reservados.</p></div></div></footer></div>`);
+      _push(`<a${ssrRenderAttr("href", config_data.whatsappUrl)} data-v-25152026>WhatsApp</a><a${ssrRenderAttr("href", config_data.instagramUrl)} target="_blank" rel="noopener" data-v-25152026>Instagram</a></div><div class="footer-contact" data-v-25152026><h4 data-v-25152026>Localização</h4><p data-v-25152026>Rua Major José dos Santos Moreira, 328</p><p data-v-25152026>Pindamonhangaba, SP</p><p data-v-25152026>Seg a Sex: 8h às 18h</p><div class="footer-map" data-v-25152026><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3676.52123456789!2d-45.45!3d-22.85!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjLCsDUxJzAwLjAiUyA0NcKwMjcnMDAuMCJF!5e0!3m2!1spt-BR!2sbr!4v1600000000000" width="100%" height="120" style="${ssrRenderStyle({ "border": "0", "border-radius": "8px" })}" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" data-v-25152026></iframe></div></div></div><div class="footer-bottom" data-v-25152026><p data-v-25152026>© ${ssrInterpolate(unref(currentYear))} Autitude. Todos os direitos reservados.</p></div></div></footer></div>`);
     };
   }
 };
@@ -1639,7 +1652,7 @@ _sfc_main$2.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("app.vue");
   return _sfc_setup$2 ? _sfc_setup$2(props, ctx) : void 0;
 };
-const AppComponent = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-7e83faca"]]);
+const AppComponent = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-25152026"]]);
 const _sfc_main$1 = {
   __name: "nuxt-error-page",
   __ssrInlineRender: true,

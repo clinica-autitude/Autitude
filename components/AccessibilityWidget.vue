@@ -720,4 +720,432 @@ onUnmounted(() => {
     width: 440px;
   }
 }
+
+/* White theme overrides */
+[data-theme="white"] .a11y-btn-floating {
+  background: #7B5CBF;
+  color: #ffffff;
+}
+
+[data-theme="white"] .a11y-menu {
+  background: #ffffff;
+  border: 1px solid rgba(123, 92, 191, 0.12);
+}
+
+[data-theme="white"] .a11y-menu-header {
+  background: #7B5CBF;
+  color: #ffffff;
+}
+
+[data-theme="white"] .a11y-section {
+  border-color: rgba(123, 92, 191, 0.12);
+}
+
+[data-theme="white"] .a11y-btn {
+  background: #ffffff;
+  border-color: rgba(123, 92, 191, 0.12);
+  color: #1a1a2e;
+}
+
+[data-theme="white"] .a11y-btn:hover {
+  background: #E8E0F5;
+  border-color: #7B5CBF;
+}
+
+[data-theme="white"] .a11y-btn.a11y-active {
+  background: #7B5CBF;
+  color: #ffffff;
+}
+
+[data-theme="white"] .a11y-btn-vlibras {
+  background: #7B5CBF;
+  color: #ffffff;
+}
+
+[data-theme="white"] .a11y-font-value {
+  color: #7B5CBF;
+}
+
+[data-theme="white"] .a11y-hint {
+  color: #6b6b8f;
+}
+
+[data-theme="white"] .a11y-shortcuts li {
+  color: #3d3d5c;
+}
+
+[data-theme="white"] .a11y-shortcuts kbd {
+  background: #f0f0f0;
+  color: #1a1a2e;
+  border-color: #ddd;
+}
+
+[data-theme="white"] .a11y-tts-status {
+  background: #E8E0F5;
+  color: #7B5CBF;
+}
+
+[data-theme="white"] .a11y-vlibras-status {
+  background: #E0F5E8;
+  color: #4CAF50;
+}
+
+[data-theme="white"] .a11y-dark-toggle {
+  background: #ffffff;
+  border-color: #E8E0F5;
+  color: #1a1a2e;
+}
+
+[data-theme="white"] .a11y-dark-toggle:hover {
+  border-color: #7B5CBF;
+  background: #E8E0F5;
+}
+
+[data-theme="white"] .toggle-label {
+  color: #1a1a2e;
+}
+
+[data-theme="white"] .toggle-track {
+  background: #E8E0F5;
+}
+
+[data-theme="white"] .toggle-thumb {
+  background: #7B5CBF;
+}
+
+[data-theme="white"] .toggle-thumb svg {
+  color: #ffffff;
+}
+
+/* Sepia theme overrides */
+[data-theme="sepia"] .a11y-btn-floating {
+  background: #7B5CBF;
+  color: #FFFEF8;
+}
+
+[data-theme="sepia"] .a11y-menu {
+  background: #FFFEF8;
+  border: 1px solid rgba(155, 126, 217, 0.12);
+}
+
+[data-theme="sepia"] .a11y-menu-header {
+  background: #7B5CBF;
+  color: #FFFEF8;
+}
+
+[data-theme="sepia"] .a11y-section {
+  border-color: rgba(155, 126, 217, 0.12);
+}
+
+[data-theme="sepia"] .a11y-btn {
+  background: #FFFEF8;
+  border-color: rgba(155, 126, 217, 0.12);
+  color: #3d2e1f;
+}
+
+[data-theme="sepia"] .a11y-btn:hover {
+  background: #CDBFF0;
+  border-color: #7B5CBF;
+}
+
+[data-theme="sepia"] .a11y-btn.a11y-active {
+  background: #7B5CBF;
+  color: #FFFEF8;
+}
+
+[data-theme="sepia"] .a11y-btn-vlibras {
+  background: #7B5CBF;
+  color: #FFFEF8;
+}
+
+[data-theme="sepia"] .a11y-font-value {
+  color: #7B5CBF;
+}
+
+[data-theme="sepia"] .a11y-hint {
+  color: #7a6352;
+}
+
+[data-theme="sepia"] .a11y-shortcuts li {
+  color: #5c4a38;
+}
+
+[data-theme="sepia"] .a11y-shortcuts kbd {
+  background: #f5f0e6;
+  color: #3d2e1f;
+  border-color: #ddd;
+}
+
+[data-theme="sepia"] .a11y-tts-status {
+  background: #CDBFF0;
+  color: #7B5CBF;
+}
+
+[data-theme="sepia"] .a11y-vlibras-status {
+  background: #C4DEC9;
+  color: #6BA882;
+}
+
+[data-theme="sepia"] .a11y-dark-toggle {
+  background: #FFFEF8;
+  border-color: #CDBFF0;
+  color: #3d2e1f;
+}
+
+[data-theme="sepia"] .a11y-dark-toggle:hover {
+  border-color: #7B5CBF;
+  background: #CDBFF0;
+}
+
+[data-theme="sepia"] .toggle-label {
+  color: #3d2e1f;
+}
+
+[data-theme="sepia"] .toggle-track {
+  background: #CDBFF0;
+}
+
+[data-theme="sepia"] .toggle-thumb {
+  background: #7B5CBF;
+}
+
+[data-theme="sepia"] .toggle-thumb svg {
+  color: #FFFEF8;
+}
+
+/* High contrast overrides */
+[data-a11y-contrast="high"] .a11y-btn-floating {
+  background: #0000cc;
+  color: #ffffff;
+  border: 2px solid #000000;
+}
+
+[data-a11y-contrast="high"] .a11y-menu {
+  background: #ffffff;
+  border: 3px solid #000000;
+}
+
+[data-a11y-contrast="high"] .a11y-menu-header {
+  background: #0000cc;
+  color: #ffffff;
+}
+
+[data-a11y-contrast="high"] .a11y-section h4 {
+  color: #000000;
+}
+
+[data-a11y-contrast="high"] .a11y-section {
+  border-color: #000000;
+}
+
+[data-a11y-contrast="high"] .a11y-btn {
+  background: #ffffff;
+  border: 2px solid #000000;
+  color: #000000;
+}
+
+[data-a11y-contrast="high"] .a11y-btn:hover {
+  background: #000000;
+  color: #ffffff;
+}
+
+[data-a11y-contrast="high"] .a11y-btn.a11y-active {
+  background: #000000;
+  color: #ffffff;
+  border-color: #000000;
+}
+
+[data-a11y-contrast="high"] .a11y-btn-vlibras {
+  background: #0000cc;
+  color: #ffffff;
+  border: 2px solid #000000;
+}
+
+[data-a11y-contrast="high"] .a11y-font-value {
+  color: #0000cc;
+}
+
+[data-a11y-contrast="high"] .a11y-hint {
+  color: #000000;
+}
+
+[data-a11y-contrast="high"] .a11y-shortcuts li {
+  color: #000000;
+}
+
+[data-a11y-contrast="high"] .a11y-shortcuts kbd {
+  background: #ffffff;
+  color: #000000;
+  border: 2px solid #000000;
+}
+
+[data-a11y-contrast="high"] .a11y-tts-status {
+  background: #ffff00;
+  color: #000000;
+  border: 2px solid #000000;
+}
+
+[data-a11y-contrast="high"] .a11y-vlibras-status {
+  background: #ffff00;
+  color: #000000;
+  border: 2px solid #000000;
+}
+
+[data-a11y-contrast="high"] .a11y-dark-toggle {
+  background: #ffffff;
+  border: 2px solid #000000;
+  color: #000000;
+}
+
+[data-a11y-contrast="high"] .a11y-dark-toggle:hover {
+  background: #ffff00;
+  border-color: #000000;
+}
+
+[data-a11y-contrast="high"] .a11y-dark-toggle.dark-active {
+  background: #0000cc;
+  color: #ffffff;
+}
+
+[data-a11y-contrast="high"] .toggle-label {
+  color: #000000;
+}
+
+[data-a11y-contrast="high"] .toggle-track {
+  background: #ffff00;
+  border: 2px solid #000000;
+}
+
+[data-a11y-contrast="high"] .toggle-thumb {
+  background: #000000;
+}
+
+[data-a11y-contrast="high"] .toggle-thumb svg {
+  color: #ffff00;
+}
+
+/* Dark contrast overrides */
+[data-a11y-contrast="dark"] .a11y-btn-floating {
+  background: #00ff00;
+  color: #000000;
+  border: 2px solid #ffffff;
+}
+
+[data-a11y-contrast="dark"] .a11y-overlay {
+  background: rgba(0, 0, 0, 0.9);
+}
+
+[data-a11y-contrast="dark"] .a11y-menu {
+  background: #111111;
+  border: 3px solid #ffffff;
+}
+
+[data-a11y-contrast="dark"] .a11y-menu-header {
+  background: #00ff00;
+  color: #000000;
+}
+
+[data-a11y-contrast="dark"] .a11y-section h4 {
+  color: #ffffff;
+}
+
+[data-a11y-contrast="dark"] .a11y-section {
+  border-color: #ffffff;
+}
+
+[data-a11y-contrast="dark"] .a11y-close-btn {
+  background: rgba(0, 0, 0, 0.3);
+  color: #000000;
+}
+
+[data-a11y-contrast="dark"] .a11y-btn {
+  background: #111111;
+  border: 2px solid #ffffff;
+  color: #ffffff;
+}
+
+[data-a11y-contrast="dark"] .a11y-btn:hover {
+  background: #ffffff;
+  color: #000000;
+}
+
+[data-a11y-contrast="dark"] .a11y-btn.a11y-active {
+  background: #00ff00;
+  color: #000000;
+  border-color: #00ff00;
+}
+
+[data-a11y-contrast="dark"] .a11y-btn-vlibras {
+  background: #00ff00;
+  color: #000000;
+  border: 2px solid #ffffff;
+}
+
+[data-a11y-contrast="dark"] .a11y-font-value {
+  color: #00ff00;
+}
+
+[data-a11y-contrast="dark"] .a11y-hint {
+  color: #cccccc;
+}
+
+[data-a11y-contrast="dark"] .a11y-shortcuts li {
+  color: #ffffff;
+}
+
+[data-a11y-contrast="dark"] .a11y-shortcuts kbd {
+  background: #222222;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+}
+
+[data-a11y-contrast="dark"] .a11y-tts-status {
+  background: #ffff00;
+  color: #000000;
+  border: 2px solid #ffffff;
+}
+
+[data-a11y-contrast="dark"] .a11y-vlibras-status {
+  background: #ffff00;
+  color: #000000;
+  border: 2px solid #ffffff;
+}
+
+[data-a11y-contrast="dark"] .a11y-dark-toggle {
+  background: #111111;
+  border: 2px solid #ffffff;
+  color: #ffffff;
+}
+
+[data-a11y-contrast="dark"] .a11y-dark-toggle:hover {
+  background: #333333;
+  border-color: #00ff00;
+}
+
+[data-a11y-contrast="dark"] .a11y-dark-toggle.dark-active {
+  background: #00ff00;
+  color: #000000;
+  border-color: #00ff00;
+}
+
+[data-a11y-contrast="dark"] .toggle-label {
+  color: #ffffff;
+}
+
+[data-a11y-contrast="dark"] .toggle-track {
+  background: #333333;
+  border: 2px solid #ffffff;
+}
+
+[data-a11y-contrast="dark"] .a11y-dark-toggle.dark-active .toggle-track {
+  background: #00cc00;
+}
+
+[data-a11y-contrast="dark"] .toggle-thumb {
+  background: #ffffff;
+}
+
+[data-a11y-contrast="dark"] .toggle-thumb svg {
+  color: #000000;
+}
 </style>
