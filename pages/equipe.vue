@@ -2,6 +2,10 @@
 import { Award, Heart, Users, Star } from 'lucide-vue-next'
 
 useHead({
+  title: 'Equipe | Autitude - Dra. Juliana Mariani',
+  meta: [
+    { name: 'description', content: 'Conheça a equipe da Autitude. Dra. Juliana Mariani - Terapeuta Ocupacional CREFITO 20083-TO.' }
+  ],
   script: [
     {
       type: 'application/ld+json',

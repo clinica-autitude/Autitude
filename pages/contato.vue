@@ -3,6 +3,10 @@ import { ref } from 'vue'
 import { MapPin, MessageCircle, Mail, Clock } from 'lucide-vue-next'
 
 useHead({
+  title: 'Contato | Autitude - Fale Conosco',
+  meta: [
+    { name: 'description', content: 'Entre em contato com a Autitude. WhatsApp, e-mail ou formulário de contato.' }
+  ],
   script: [
     {
       type: 'application/ld+json',

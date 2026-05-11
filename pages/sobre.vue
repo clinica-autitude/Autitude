@@ -2,6 +2,10 @@
 import { Target, Lightbulb, Heart, Award, Users, Star } from 'lucide-vue-next'
 
 useHead({
+  title: 'Sobre Nós | Autitude - Clínica de Terapia Ocupacional',
+  meta: [
+    { name: 'description', content: 'Conheça a história da Autitude - clínica especializada em Terapia Ocupacional e Integração Sensorial em Pindamonhangaba-SP.' }
+  ],
   script: [
     {
       type: 'application/ld+json',

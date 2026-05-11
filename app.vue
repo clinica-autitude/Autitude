@@ -1,13 +1,33 @@
 <script setup>
+import { ref, onMounted } from 'vue'
 const currentYear = new Date().getFullYear()
 const config = useRuntimeConfig()
 const siteBase = config.public.siteBase || 'https://hautlys.github.io/Autitude'
+const menuOpen = ref(false)
 
 const config_data = {
   phone: '5512991968683',
   whatsappUrl: 'https://wa.me/5512991968683',
   instagramUrl: 'https://www.instagram.com/clinicaautitude'
 }
+
+const toggleMenu = () => {
+  menuOpen.value = !menuOpen.value
+  document.body.style.overflow = menuOpen.value ? 'hidden' : ''
+}
+
+const closeMenu = () => {
+  menuOpen.value = false
+  document.body.style.overflow = ''
+}
+
+onMounted(() => {
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && menuOpen.value) {
+      closeMenu()
+    }
+  })
+})
 </script>
 
 <template>
@@ -17,26 +37,26 @@ const config_data = {
     
     <div class="ambient-bg"></div>
 
-    <div class="menu-overlay"></div>
+    <div class="menu-overlay" :class="{ active: menuOpen }" @click="closeMenu"></div>
 
     <nav class="navbar">
       <div class="nav-container">
-        <NuxtLink to="/" class="logo">
+        <NuxtLink to="/" class="logo" @click="closeMenu">
           <img :src="`${siteBase}/small-logo.png`" alt="Autitude" class="logo-img">
           <span class="logo-text">Autitude</span>
         </NuxtLink>
         
-        <div class="nav-links">
-          <NuxtLink to="/" class="nav-link">Início</NuxtLink>
-          <NuxtLink to="/sobre" class="nav-link">Sobre</NuxtLink>
-          <NuxtLink to="/servicos" class="nav-link">Serviços</NuxtLink>
-          <NuxtLink to="/equipe" class="nav-link">Equipe</NuxtLink>
-          <NuxtLink to="/contato" class="nav-link">Contato</NuxtLink>
-          <NuxtLink to="/agendar" class="btn btn-primary btn-sm">Agendar</NuxtLink>
+        <div class="nav-links" :class="{ 'nav-active': menuOpen }">
+          <NuxtLink to="/" class="nav-link" @click="closeMenu">Início</NuxtLink>
+          <NuxtLink to="/sobre" class="nav-link" @click="closeMenu">Sobre</NuxtLink>
+          <NuxtLink to="/servicos" class="nav-link" @click="closeMenu">Serviços</NuxtLink>
+          <NuxtLink to="/equipe" class="nav-link" @click="closeMenu">Equipe</NuxtLink>
+          <NuxtLink to="/contato" class="nav-link" @click="closeMenu">Contato</NuxtLink>
+          <NuxtLink to="/agendar" class="btn btn-primary btn-sm" @click="closeMenu">Agendar</NuxtLink>
           <ThemeSwitcher />
         </div>
         
-        <button class="menu-toggle" aria-label="Menu">
+        <button class="menu-toggle" :class="{ active: menuOpen }" @click="toggleMenu" aria-label="Menu" :aria-expanded="menuOpen">
           <span></span>
           <span></span>
           <span></span>
@@ -243,6 +263,18 @@ const config_data = {
   transition: all 0.3s var(--ease-smooth);
 }
 
+.menu-toggle.active span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
 main {
   min-height: 100vh;
 }
@@ -326,6 +358,15 @@ main {
 
 .menu-overlay {
   display: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+
+.menu-overlay.active {
+  display: block;
+  opacity: 1;
+  visibility: visible;
 }
 
 @media (max-width: 900px) {
@@ -405,5 +446,28 @@ main {
   .footer-brand p {
     text-align: center;
   }
+}
+
+/* Accessibility widget global styles */
+[data-a11y-contrast="high"] #accessibility-controls {
+  z-index: 9999;
+}
+
+[data-a11y-contrast="high"] .a11y-btn-floating {
+  border: 3px solid #000000;
+}
+
+[data-a11y-contrast="dark"] #accessibility-controls {
+  z-index: 9999;
+}
+
+[data-a11y-contrast="dark"] .a11y-btn-floating {
+  border: 3px solid #ffffff;
+}
+
+/* Ensure all themes work with accessibility widget */
+[data-theme="white"] #accessibility-controls,
+[data-theme="sepia"] #accessibility-controls {
+  z-index: 9999;
 }
 </style>

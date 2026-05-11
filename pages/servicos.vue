@@ -2,6 +2,10 @@
 import { Stethoscope, Brain, Target, Baby, ClipboardCheck } from 'lucide-vue-next'
 
 useHead({
+  title: 'Serviços | Autitude - Terapia Ocupacional e Integração Sensorial',
+  meta: [
+    { name: 'description', content: 'Serviços especializados: Terapia Ocupacional, Integração Sensorial, ABA, Estimulação Precoce em Pindamonhangaba-SP.' }
+  ],
   script: [
     {
       type: 'application/ld+json',

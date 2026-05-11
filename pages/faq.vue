@@ -1,6 +1,13 @@
 <script setup>
 import { ref, computed } from 'vue'
 
+useHead({
+  title: 'FAQ | Autitude - Perguntas Frequentes',
+  meta: [
+    { name: 'description', content: 'Perguntas frequentes sobre Terapia Ocupacional, Integração Sensorial e nossos serviços.' }
+  ]
+})
+
 const config = {
   whatsappUrl: 'https://wa.me/5512991968683'
 }
@@ -231,7 +238,7 @@ const toggleFaq = (index) => {
 
 <style scoped>
 .hero-section {
-  padding-top: 140px;
+  padding-top: var(--space-section-top);
   padding-bottom: 4rem;
 }
 

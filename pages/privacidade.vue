@@ -1,4 +1,11 @@
 <script setup>
+useHead({
+  title: 'Política de Privacidade | Autitude',
+  meta: [
+    { name: 'description', content: 'Política de Privacidade da Autitude - Clínica de Terapia Ocupacional.' }
+  ]
+})
+
 const currentYear = new Date().getFullYear()
 </script>
 
@@ -75,7 +82,7 @@ const currentYear = new Date().getFullYear()
 
 <style scoped>
 .hero-section {
-  padding-top: 120px;
+  padding-top: var(--space-section-top);
 }
 
 .section-header {

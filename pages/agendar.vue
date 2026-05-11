@@ -1,6 +1,13 @@
 <script setup>
 import { ref, computed } from 'vue'
 
+useHead({
+  title: 'Agendar | Autitude - Agende sua Consulta',
+  meta: [
+    { name: 'description', content: 'Agende uma avaliação na Autitude. Preencha o formulário e retornaremos em até 24 horas.' }
+  ]
+})
+
 const config = {
   whatsappUrl: 'https://wa.me/5512991968683'
 }
