@@ -3,9 +3,9 @@ import { ref, computed } from 'vue'
 import ColorBends from '~/components/ColorBends.vue'
 
 useHead({
-  title: 'FAQ | Autitude - Perguntas Frequentes',
+  title: 'FAQ | Autitude - Desenvolvimento e Ação Humana',
   meta: [
-    { name: 'description', content: 'Perguntas frequentes sobre Terapia Ocupacional, Integração Sensorial e nossos serviços.' }
+    { name: 'description', content: 'Perguntas frequentes sobre o atendimento da Autitude: neuropsicologia, neuropsicopedagogia, fonoaudiologia, terapia ocupacional e integração sensorial.' }
   ]
 })
 
@@ -19,86 +19,96 @@ const openFaq = ref(null)
 const categories = [
   { id: 'all', name: 'Todas' },
   { id: 'general', name: 'Geral' },
-  { id: 'sensory', name: 'Sensorial' },
-  { id: 'therapy', name: 'Terapia' },
+  { id: 'neuro', name: 'Neurodivergência' },
+  { id: 'therapy', name: 'Especialidades' },
   { id: 'schedule', name: 'Agendamento' }
 ]
 
 const faqs = [
   {
     category: 'general',
-    question: 'O que é Terapia Ocupacional pediátrica?',
-    answer: 'A Terapia Ocupacional pediátrica é uma especialidade que ajuda crianças a desenvolver habilidades necessárias para realizar as atividades cotidianas, brincas e escolares. O terapeuta ocupacional utiliza atividades significativas para promover independência, coordenação motora, integração sensorial e participação nas rotinas diárias.'
+    question: 'O que é a Autitude?',
+    answer: 'A Autitude é um espaço especializado no atendimento de crianças, adolescentes e suas famílias, com foco no público neurodivergente. Nossa abordagem é humanizada, integrativa e baseada em evidências científicas, articulando diferentes especialidades em torno de cada pessoa.'
   },
   {
     category: 'general',
-    question: 'A partir de qual idade atende?',
-    answer: 'Atendemos crianças a partir de 0 anos, com foco especial na estimulação precoce nos primeiros anos de vida. Quanto mais cedo for identificada a necessidade de intervenção, melhor para o desenvolvimento da criança.'
+    question: 'Quais especialidades vocês oferecem?',
+    answer: 'Trabalhamos com Neuropsicologia, Neuropsicopedagogia, Fonoaudiologia e Terapia Ocupacional — especialidades que se articulam em torno de cada pessoa e de sua família. A Terapia Ocupacional conta com certificação internacional em Integração Sensorial.'
+  },
+  {
+    category: 'general',
+    question: 'A partir de qual idade vocês atendem?',
+    answer: 'Atendemos crianças, adolescentes e suas famílias. O cuidado pode começar mesmo nos primeiros anos de vida, favorecendo o desenvolvimento desde cedo.'
   },
   {
     category: 'general',
     question: 'Quanto tempo dura cada sessão?',
-    answer: 'As sessões têm duração de 45 a 60 minutos, dependendo da necessidade da criança e do tipo de intervenção. Avaliações iniciais geralmente duram mais tempo para serem completas.'
+    answer: 'As sessões têm duração de 45 a 60 minutos, de acordo com a necessidade e o tipo de intervenção. Avaliações iniciais costumam ser mais longas para uma escuta e investigação completas.'
   },
   {
     category: 'general',
-    question: 'Preciso estar presente durante a sessão?',
-    answer: 'Sim, a presença do responsável é fundamental durante as sessões, especialmente em crianças menores. Além disso, a orientação familiar é parte essencial do tratamento para garantir a generalização das habilidades aprendidas em casa.'
+    question: 'A família participa do processo?',
+    answer: 'Sim. Acreditamos que a família é parte essencial do cuidado. Por isso, oferecemos orientações e conduzimos o trabalho em parceria, para que as conquistas possam acontecer também no cotidiano.'
   },
   {
-    category: 'sensory',
+    category: 'neuro',
+    question: 'O que é neurodivergência?',
+    answer: 'Neurodivergência é um conceito que reconhece variações no funcionamento do cérebro humano, como o Transtorno do Espectro Autista (TEA), o TDAH, a dislexia, entre outras. Cada pessoa neurodivergente tem um perfil único, com potências e desafios próprios.'
+  },
+  {
+    category: 'neuro',
+    question: 'Como sei se meu filho precisa de avaliação?',
+    answer: 'Se você percebe desafios na comunicação, na aprendizagem, no comportamento, na regulação emocional ou na interação social, uma avaliação especializada pode ajudar a compreender o perfil e construir um plano de cuidado individualizado.'
+  },
+  {
+    category: 'neuro',
     question: 'O que é Integração Sensorial?',
-    answer: 'Integração Sensorial é uma abordagem terapêutica que trabalha o processamento das informações sensoriais pelo cérebro. Desenvolvida pela Dra. Jean Ayres, ajuda crianças que têm dificuldade em processar estímulos sensoriais do ambiente de forma organizada.'
+    answer: 'Integração Sensorial é uma abordagem terapêutica desenvolvida pela Dra. Jean Ayres que trabalha o processamento das informações sensoriais pelo cérebro, ajudando crianças e adolescentes a se organizarem melhor em relação aos estímulos do cotidiano.'
   },
   {
-    category: 'sensory',
+    category: 'neuro',
     question: 'Quais são os sinais de desregulação sensorial?',
-    answer: 'Os sinais incluem: rejeição a certas texturas de roupas ou alimentos, tapar os ouvidos com barulhos comuns, dificuldade em transições entre atividades, quedas frequentes, busca excessiva de movimento ou, ao contrário, medo de se mexer, dificuldade em se concentrar, reações intensas a estímulos sensoriais.'
-  },
-  {
-    category: 'sensory',
-    question: 'Como saber se meu filho precisa de terapia sensorial?',
-    answer: 'Se seu filho apresenta comportamentos que parecem incomuns para a idade, como dificuldade em se acalmar, seletividade alimentar extrema, rejeição a texturas, quedas frequentes, dificuldade com transições ou escolar atrasadas, uma avaliação com terapeuta ocupacional pode ajudar a identificar necessidades sensoriais.'
-  },
-  {
-    category: 'sensory',
-    question: 'O que é a "Sala Sensorial" (Snoezelen)?',
-    answer: 'A Sala Sensorial é um ambiente controlado com estímulos visuais, táteis, sonoros e próprioceptivos, desenhado para ajudar a criança a processar informações sensoriais de forma mais organizada. É um espaço seguro para exploração e regulação.'
+    answer: 'Alguns sinais incluem: rejeição a texturas de roupas ou alimentos, reação intensa a barulhos, dificuldade em transições, quedas frequentes, busca excessiva de movimento ou, ao contrário, medo de se movimentar, dificuldade de concentração e seletividade alimentar.'
   },
   {
     category: 'therapy',
-    question: 'Qual a diferença entre Terapia Ocupacional e Fisioterapia?',
-    answer: 'A Terapia Ocupacional foca em habilidades funcionais para realizar atividades diárias, enquanto a Fisioterapia se concentra na reabilitação física e motora. A TO trabalha habilidades específicas para independência em brincas, alimentação, vestuário, escolar, enquanto a FM trabalha força, movimento e postura.'
+    question: 'O que faz a Neuropsicologia?',
+    answer: 'A Neuropsicologia investiga o funcionamento cognitivo, emocional e comportamental, realiza avaliações neuropsicológicas e rastreamento de neurodivergências, além de oferecer orientação e apoio às famílias.'
   },
   {
     category: 'therapy',
-    question: 'O que é Estimulação Precoce?',
-    answer: 'Estimulação Precoce é um programa de intervenção destinado a crianças de 0 a 6 anos que visa otimizar o potencial de desenvolvimento através de atividades adequadas ao nível da criança. É especialmente importante quando há atrasos no desenvolvimento ou risco neurológico.'
+    question: 'O que faz a Neuropsicopedagogia?',
+    answer: 'A Neuropsicopedagogia identifica e acompanha dificuldades de aprendizagem, planeja e aplica planos pedagógicos individuais e apoia o desenvolvimento escolar, articulando neurociência e educação.'
   },
   {
     category: 'therapy',
-    question: 'Os pais participam do tratamento?',
-    answer: 'Sim! A família é parte essencial do tratamento. Os pais recebem orientações para aplicar estratégias em casa, garantindo que os progressos na terapia sejam generalizados para o cotidiano da criança. O sucesso do tratamento depende muito do envolvimento familiar.'
+    question: 'O que faz a Fonoaudiologia?',
+    answer: 'A Fonoaudiologia trabalha o desenvolvimento da linguagem, a comunicação social, a fala e a motricidade orofacial, com atenção especial ao atendimento de pessoas neurodivergentes.'
+  },
+  {
+    category: 'therapy',
+    question: 'O que faz a Terapia Ocupacional?',
+    answer: 'A Terapia Ocupacional promove a autonomia, a socialização, a independência funcional e o enfrentamento dos desafios do cotidiano, com certificação internacional em Integração Sensorial pela University of Southern California (USC, USA).'
   },
   {
     category: 'schedule',
     question: 'Como funciona o agendamento?',
-    answer: 'Você pode entrar em contato pelo WhatsApp ou preencher o formulário de agendamento. Retornaremos em até 24 horas para entender suas necessidades e agendar a avaliação inicial.'
+    answer: 'Você pode entrar em contato pelo WhatsApp ou preencher o formulário de agendamento em nosso site. Retornaremos em até 24 horas para entender suas necessidades e marcar a avaliação inicial.'
   },
   {
     category: 'schedule',
     question: 'Quanto custa a avaliação?',
-    answer: 'A avaliação inicial tem custo específico que varia conforme a extensão. Após a avaliação, apresentamos um plano de intervenção com as sessões recomendadas e investimento. Aceitamos diversas formas de pagamento.'
+    answer: 'A avaliação inicial tem investimento que pode variar conforme a especialidade e a extensão. Após a avaliação, apresentamos um plano de cuidado personalizado, com sessões e formas de pagamento adequadas a cada família.'
   },
   {
     category: 'schedule',
     question: 'Vocês atendem por plano de saúde?',
-    answer: 'Trabalhamos com alguns planos de saúde. Entre em contato para verificar se aceitamos o seu plano. Também oferecemos opções de pagamento particular com pacotes.'
+    answer: 'Trabalhamos com alguns planos de saúde e também com opções particulares, incluindo pacotes. Entre em contato para verificarmos o seu plano.'
   },
   {
     category: 'schedule',
-    question: 'Onde ficam localizados?',
-    answer: 'Estamos na Rua Major José dos Santos Moreira, 328, Pindamonhangaba-SP, com atendimento presencial mediante agendamento prévio. Também oferecemos orientações online para famílias de outras regiões.'
+    question: 'Onde vocês estão localizados?',
+    answer: 'Estamos na Rua Major José dos Santos Moreira, 328 — Vila Rica, Pindamonhangaba-SP. O atendimento é presencial, com agendamento prévio, e também oferecemos orientações online para famílias de outras regiões.'
   }
 ]
 
@@ -107,11 +117,11 @@ const filteredFaqs = computed(() => {
   return faqs.filter(faq => faq.category === activeCategory.value)
 })
 
-const sensoryApproach = [
-  { title: 'Avaliação', description: 'Avaliação completa do perfil sensorial e funcional da criança' },
-  { title: 'Plano', description: 'Elaboração de plano personalizado com metas específicas' },
-  { title: 'Intervenção', description: 'Sessões terapêuticas com atividades estruturadas' },
-  { title: 'Orientação', description: 'Orientação familiar para generalização em casa' }
+const approach = [
+  { title: 'Acolhimento', description: 'Escuta atenta da história e das necessidades de cada família' },
+  { title: 'Avaliação', description: 'Investigação cuidadosa do perfil único de cada pessoa' },
+  { title: 'Plano', description: 'Construção de um plano individualizado e baseado em evidências' },
+  { title: 'Acompanhamento', description: 'Cuidado contínuo, com orientação à família e à rede de apoio' }
 ]
 
 const toggleFaq = (index) => {
@@ -124,9 +134,9 @@ const toggleFaq = (index) => {
     <section class="hero-section">
       <div class="container">
         <div class="section-title">
-          <span class="section-tag">Perguntas Frequentes</span>
-          <h2>O que Você Precisa Saber</h2>
-          <p>Tire suas dúvidas sobre Terapia Ocupacional e Integração Sensorial.</p>
+          <span class="section-tag">Perguntas frequentes</span>
+          <h2>O que você precisa saber</h2>
+          <p>Tire suas dúvidas sobre o cuidado que oferecemos na Autitude.</p>
         </div>
 
         <div class="faq-categories">
@@ -176,37 +186,37 @@ const toggleFaq = (index) => {
             <p>
               A <strong>Integração Sensorial</strong> é uma abordagem terapêutica desenvolvida pela Dra. Jean Ayres, 
               fundamentada na ideia de que o processamento das informações sensoriais é essencial para o desenvolvimento 
-              e comportamento humano.
+              e o comportamento humano.
             </p>
             <p>
-              Quando o cérebro processa as informações sensoriais de forma desorganizada, a criança pode apresentar 
-              dificuldades em atividades cotidianas, comportamento desregulado e desafios no aprendizado.
+              Quando o cérebro processa as informações sensoriais de forma desorganizada, a criança ou o adolescente pode apresentar 
+              dificuldades em atividades cotidianas, comportamento desregulado e desafios na aprendizagem.
             </p>
             
-            <h3>Sistema Sensorial</h3>
+            <h3>Sistema sensorial</h3>
             <p>
-              O sistema sensorial inclui 8 sentidos que trabalham juntos: toque, olfato, paladar, visão, audição, 
+              O sistema sensorial inclui 8 sentidos que trabalham juntos: tato, olfato, paladar, visão, audição, 
               propriocepção (consciência do corpo), vestibular (equilíbrio e movimento) e interocepção.
             </p>
           </div>
           
           <div class="sensory-signs">
-            <h3>Sinais de Regulação Sensorial</h3>
+            <h3>Sinais de regulação sensorial</h3>
             <ul>
-              <li><strong>Hiporreativo:</strong> Busca estímulos intensos, não percebe dor/temperatura, bate objetos</li>
-              <li><strong>Hipersensível:</strong> Reage excessivamente a ruídos, texturas, luzes</li>
-              <li><strong>Desorganizado:</strong> Dificuldade em se concentrar, transições</li>
-              <li><strong>Motor:</strong> Coordenação ruim, quedas frequentes</li>
-              <li><strong>Alimentar:</strong> Seletividade alimentar extrema</li>
-              <li><strong>Sonoro:</strong> Tapando ouvidos ou procurando barulho</li>
+              <li><strong>Hiporreativo:</strong> busca estímulos intensos, parece não perceber dor ou temperatura</li>
+              <li><strong>Hipersensível:</strong> reage excessivamente a ruídos, texturas e luzes</li>
+              <li><strong>Desorganizado:</strong> dificuldade de concentração e nas transições</li>
+              <li><strong>Motor:</strong> coordenação ruim e quedas frequentes</li>
+              <li><strong>Alimentar:</strong> seletividade alimentar extrema</li>
+              <li><strong>Sonoro:</strong> tapar os ouvidos ou buscar barulhos de forma intensa</li>
             </ul>
           </div>
         </div>
 
         <div class="sensory-approach">
-          <h3>Abordagem Terapêutica</h3>
+          <h3>Como conduzimos o cuidado</h3>
           <div class="approach-grid">
-            <div class="approach-step" v-for="step in sensoryApproach" :key="step.title">
+            <div class="approach-step" v-for="step in approach" :key="step.title">
               <div class="step-icon">
                 <div class="step-icon-inner"></div>
               </div>
@@ -223,7 +233,7 @@ const toggleFaq = (index) => {
         <div class="cta-card">
           <ColorBends
             class="cta-bg-effect"
-            :colors="['#E8E0F5', '#FFE0E8', '#CDBFF0', '#F2A07B']"
+            :colors="['#6B4FA3', '#8FC176', '#3D2D5E', '#5C9F45']"
             :rotation="40"
             :speed="0.18"
             :scale="1.25"
@@ -235,8 +245,9 @@ const toggleFaq = (index) => {
             transparent
           />
           <div class="cta-content">
+            <span class="cta-tag">Autitude — Desenvolvimento e Ação Humana</span>
             <h2>Ainda tem dúvidas?</h2>
-            <p>Entre em contato conosco para saber como podemos ajudar seu filho.</p>
+            <p>💜 Cuidamos de pessoas. Potencializamos possibilidades.</p>
             <div class="cta-buttons">
               <NuxtLink to="/agendar" class="btn btn-primary btn-lg">Agendar Avaliação</NuxtLink>
               <a :href="config.whatsappUrl" class="btn btn-whatsapp btn-lg" target="_blank" rel="noopener">
@@ -271,12 +282,13 @@ const toggleFaq = (index) => {
 
 .section-tag {
   display: inline-block;
-  background: var(--pastel-lavender);
-  color: var(--primary-dark);
+  background: var(--lilac-soft);
+  color: var(--lilac-deep);
+  border: 1px solid var(--lilac-light);
   padding: 0.3rem 1rem;
   border-radius: var(--radius-full);
   font-size: 0.8125rem;
-  font-weight: 500;
+  font-weight: 600;
   margin-bottom: 1rem;
 }
 
@@ -291,7 +303,7 @@ const toggleFaq = (index) => {
 .category-btn {
   padding: 0.625rem 1.25rem;
   background: var(--surface);
-  border: 2px solid var(--pastel-lavender);
+  border: 2px solid var(--lilac-soft);
   border-radius: var(--radius-full);
   font-size: 0.9375rem;
   cursor: pointer;
@@ -299,13 +311,13 @@ const toggleFaq = (index) => {
 }
 
 .category-btn:hover {
-  border-color: var(--primary-light);
+  border-color: var(--lilac-light);
 }
 
 .category-btn.active {
-  background: var(--primary);
+  background: var(--lilac);
   color: var(--white);
-  border-color: var(--primary);
+  border-color: var(--lilac);
 }
 
 .faq-list {
@@ -340,8 +352,8 @@ const toggleFaq = (index) => {
 .faq-number {
   width: 32px;
   height: 32px;
-  background: var(--primary-light);
-  color: var(--primary);
+  background: var(--lilac-light);
+  color: var(--lilac-deep);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -406,7 +418,7 @@ const toggleFaq = (index) => {
 }
 
 .sensory-section {
-  background: var(--surface);
+  background: var(--surface-alt);
 }
 
 .sensory-showcase {
@@ -455,7 +467,7 @@ const toggleFaq = (index) => {
 }
 
 .sensory-signs li strong {
-  color: var(--primary);
+  color: var(--lilac-deep);
 }
 
 .sensory-approach {
@@ -490,7 +502,7 @@ const toggleFaq = (index) => {
 .step-icon {
   width: 48px;
   height: 48px;
-  background: var(--pastel-lavender);
+  background: var(--lilac-soft);
   border-radius: var(--radius-lg);
   display: flex;
   align-items: center;
@@ -501,7 +513,7 @@ const toggleFaq = (index) => {
 .step-icon-inner {
   width: 20px;
   height: 20px;
-  background: var(--primary);
+  background: var(--lilac);
   border-radius: 6px;
   opacity: 0.5;
 }
@@ -547,6 +559,17 @@ const toggleFaq = (index) => {
 .cta-content p {
   margin-bottom: 1.5rem;
   color: var(--text-secondary);
+}
+
+.cta-tag {
+  display: inline-block;
+  padding: 0.375rem 1rem;
+  background: rgba(255,255,255,0.6);
+  border-radius: var(--radius-full);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--primary-dark);
+  margin-bottom: 1rem;
 }
 
 .cta-buttons {

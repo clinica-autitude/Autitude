@@ -78,40 +78,40 @@ const toggleTheme = () => {
 /* Light theme explicit styling */
 [data-theme="light"] .theme-switcher {
   background: #ffffff;
-  border-color: rgba(123, 92, 191, 0.12);
-  color: #1a1a2e;
+  border-color: var(--border);
+  color: var(--text);
 }
 
 [data-theme="light"] .theme-switcher:hover {
-  background: #7B5CBF;
-  border-color: #7B5CBF;
+  background: var(--lilac);
+  border-color: var(--lilac);
   color: #ffffff;
 }
 
 /* Sepia theme explicit styling */
 [data-theme="sepia"] .theme-switcher {
   background: #FFFEF8;
-  border-color: rgba(155, 126, 217, 0.12);
-  color: #3d2e1f;
+  border-color: var(--border);
+  color: var(--text);
 }
 
 [data-theme="sepia"] .theme-switcher:hover {
-  background: #7B5CBF;
-  border-color: #7B5CBF;
-  color: #FFFEF8;
+  background: var(--lilac);
+  border-color: var(--lilac);
+  color: #ffffff;
 }
 
 /* Dark theme explicit styling */
 [data-theme="dark"] .theme-switcher {
-  background: #1a1824;
-  border-color: #2a2640;
-  color: #e8e6f0;
+  background: var(--surface);
+  border-color: var(--border);
+  color: var(--text);
 }
 
 [data-theme="dark"] .theme-switcher:hover {
-  background: #c4a8e8;
-  border-color: #c4a8e8;
-  color: #0d0b12;
+  background: var(--lilac);
+  border-color: var(--lilac);
+  color: var(--text-dark);
 }
 
 /* High contrast overrides */

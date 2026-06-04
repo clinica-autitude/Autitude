@@ -1,81 +1,96 @@
 # LLMS.txt - Site Information for AI Systems
-# Autitude - Clínica de Terapia Ocupacional e Integração Sensorial
+# Autitude - Desenvolvimento e Ação Humana
 
 ## SITE INFORMATION
-- Name: Autitude
-- Type: Pediatric Occupational Therapy Clinic
-- Location: Rua Major José dos Santos Moreira, 328, Pindamonhangaba-SP, Brazil
+- Name: Autitude - Desenvolvimento e Ação Humana
+- Tagline: Desenvolvimento com acolhimento, ciência e humanidade.
+- Slogan: Cuidamos de pessoas. Potencializamos possibilidades.
+- Type: Multidisciplinary clinic specialized in children, adolescents and families, focused on neurodivergent individuals
+- Location: Rua Major José dos Santos Moreira, 328 — Vila Rica, Pindamonhangaba-SP, Brazil
 - Coordinates: -22.9309, -45.4607
 - Phone: +5512991968683
 - Email: contato@autitude.com.br
+- WhatsApp: https://wa.me/5512991968683
+- Instagram: https://www.instagram.com/clinicaautitude (@clinicaautitude)
 - Website: https://hautlys.github.io/Autitude
-- Professional: Dra. Juliana Mariani - CREFITO 20083-TO
-- Certification: North Carolina University USA
+
+## BRAND PILLARS
+- Acolher (Welcome)
+- Compreender (Understand)
+- Desenvolver (Develop)
+- Incluir (Include)
+
+## ABOUT
+A Autitude Desenvolvimento e Ação Humana é um espaço especializado no atendimento de crianças, adolescentes e suas famílias, com foco no público neurodivergente.
+
+Nossa abordagem é humanizada, integrativa e baseada em evidências científicas.
+
+Cada indivíduo é único. Nosso cuidado também.
 
 ## SERVICES OFFERED
-1. Terapia Ocupacional (Occupational Therapy)
-   - Motor fino e grosso (Fine and gross motor)
-   - Coordenação motora (Motor coordination)
-   - Autonomia pessoal (Personal autonomy)
-   - Atividades de vida diária (Daily living activities)
+1. Neuropsicologia
+   - Avaliação neuropsicológica
+   - Rastreamento de neurodivergências
+   - Desenvolvimento cognitivo, emocional e comportamental
+   - Orientação e apoio às famílias
 
-2. Integração Sensorial (Sensory Integration)
-   - Developed by Dr. Jean Ayress
-   - 8 sensory systems processing
-   - Sala Snoezelen / Sala Sensorial
-   - Individualized intervention programs
+2. Neuropsicopedagogia
+   - Avaliação das dificuldades de aprendizagem
+   - Identificação de desafios pedagógicos
+   - Planejamento e aplicação de plano pedagógico individual
+   - Apoio ao desenvolvimento escolar
 
-3. ABA (Análise do Comportamento Aplicada)
-   - Applied Behavior Analysis
-   - Functional behavior assessment
-   - Skill teaching
-   - Data analysis
+3. Fonoaudiologia
+   - Desenvolvimento da linguagem
+   - Comunicação social
+   - Fala e motricidade orofacial
+   - Atendimento especializado em neurodivergência
 
-4. Estimulação Precoce (Early Intervention)
-   - Ages 0-6 years
-   - Development monitoring
-   - Parent support
-
-5. Avaliação Comportamental (Behavioral Assessment)
-   - Sensory evaluation
-   - Motor profile
-   - Independence scale
+4. Terapia Ocupacional
+   - Avaliação e intervenção em Integração Sensorial
+   - Certificação internacional em Integração Sensorial (University of Southern California — USC, USA)
+   - Desenvolvimento da autonomia
+   - Socialização
+   - Enfrentamento dos desafios do cotidiano
+   - Promoção da independência funcional
 
 ## PAGE STRUCTURE
 - / (Home) - Main landing page
-- /sobre - About the clinic
-- /servicos - Services details
-- /equipe - Team/Professional
+- /sobre - About the clinic (Quem somos)
+- /servicos - Services details (Nossas especialidades)
+- /equipe - Team / Professionals
 - /contato - Contact information
 - /agendar - Schedule appointment
 - /faq - Frequently asked questions
 - /privacidade - Privacy policy
 
-## KEY TREATMENTS
-- Autism Spectrum Disorder (TEA)
-- ADHD (TDAH)
-- Sensory processing disorders
-- Developmental delays
-- Motor coordination issues
-- Early intervention
+## KEY TREATMENTS / FOCUS
+- Neurodivergence (autism spectrum, ADHD, learning disabilities, sensory processing differences)
+- Neuropsychological assessment
+- Speech, language and social communication
+- School learning difficulties
+- Sensory integration
+- Occupational therapy and functional independence
+- Family guidance and support
 
 ## AREAS SERVED
-- Pindamonhangaba-SP and surrounding regions
+- Pindamonhangaba-SP and surrounding regions (Vale do Paraíba)
 - Online guidance available for other regions
 
 ## BUSINESS HOURS
 - Monday to Friday: 8h às 18h
 
 ## SEO KEYWORDS
-terapia ocupacional, integração sensorial, Pindamonhangaba, desenvolvimento infantil, estimulação precoce,儿科职业治疗,感觉统合, autism, TDAH, ABA, pediatric therapy
+autitude, neurodivergência, neuropsicologia, neuropsicopedagogia, fonoaudiologia, terapia ocupacional, integração sensorial, Pindamonhangaba, desenvolvimento infantil, TEA, TDAH, aprendizagem, acolhimento, ação humana, autitude desenvolvimento, autitude pindamonhangaba
 
 ## CONTENT TYPE
-Educational and healthcare content for parents about child development, sensory processing, and occupational therapy.
+Educational and healthcare content for families about child and adolescent development, neurodivergence, neuropsychology, neuropsychopedagogy, speech therapy and occupational therapy, always with a humanized and evidence-based approach.
 
 ## TARGET AUDIENCE
-- Parents of children with developmental needs
+- Families of children and adolescents with developmental needs
+- Neurodivergent individuals and their families
 - Healthcare professionals
-- Educators
+- Educators and schools
 
 ## LAST UPDATED
-2024
+2026

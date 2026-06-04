@@ -1,12 +1,12 @@
 <script setup>
-import { Stethoscope, Brain, Target, Baby, ClipboardCheck } from 'lucide-vue-next'
+import { Brain, BookOpen, Mic, Activity } from 'lucide-vue-next'
 import ColorBends from '~/components/ColorBends.vue'
 import Squares from '~/components/Squares.vue'
 
 useHead({
-  title: 'Serviços | Autitude - Terapia Ocupacional e Integração Sensorial',
+  title: 'Especialidades | Autitude - Desenvolvimento e Ação Humana',
   meta: [
-    { name: 'description', content: 'Serviços especializados: Terapia Ocupacional, Integração Sensorial, ABA, Estimulação Precoce em Pindamonhangaba-SP.' }
+    { name: 'description', content: 'Neuropsicologia, Neuropsicopedagogia, Fonoaudiologia e Terapia Ocupacional em Pindamonhangaba-SP. Atendimento especializado para crianças, adolescentes e famílias, com foco no público neurodivergente.' }
   ],
   script: [
     {
@@ -14,18 +14,17 @@ useHead({
       children: JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'WebPage',
-        name: 'Serviços - Autitude',
-        description: 'Serviços especializados: Terapia Ocupacional, Integração Sensorial, ABA, Estimulação Precoce em Pindamonhangaba-SP.',
+        name: 'Especialidades - Autitude',
+        description: 'Neuropsicologia, Neuropsicopedagogia, Fonoaudiologia e Terapia Ocupacional em Pindamonhangaba-SP.',
         url: 'https://hautlys.github.io/Autitude/servicos',
         mainEntity: {
           '@type': 'MedicalBusiness',
-          name: 'Autitude - Serviços',
+          name: 'Autitude - Desenvolvimento e Ação Humana',
           provides: [
-            'Terapia Ocupacional',
-            'Integração Sensorial',
-            'ABA - Análise do Comportamento Aplicada',
-            'Estimulação Precoce',
-            'Avaliação Comportamental'
+            'Neuropsicologia',
+            'Neuropsicopedagogia',
+            'Fonoaudiologia',
+            'Terapia Ocupacional'
           ]
         }
       })
@@ -37,61 +36,61 @@ const whatsappUrl = 'https://wa.me/5512991968683'
 
 const services = [
   {
-    title: 'Terapia Ocupacional',
-    description: 'Intervenções para desenvolver habilidades motoras, cognitivas e funcionais.',
+    title: 'Neuropsicologia',
+    description: 'Investigação detalhada do funcionamento cognitivo, emocional e comportamental para compreender o perfil único de cada pessoa.',
     color: 'linear-gradient(135deg, var(--pastel-lavender) 0%, var(--primary-light) 100%)',
-    icon: Stethoscope,
-    items: ['Motor fino e grosso', 'Coordenação motora', 'Autonomia pessoal', 'Atividades de vida diária']
-  },
-  {
-    title: 'Integração Sensorial',
-    description: 'Abordagem especializada para organizar o processamento sensorial. Desenvolvida pela Dra. Jean Ayres, trabalha as 8 sensações do corpo.',
-    color: 'linear-gradient(135deg, var(--pastel-pink) 0%, var(--secondary-light) 100%)',
     icon: Brain,
     items: [
-      'Diagnóstico sensorial completo',
-      'Terapia de Integração Sensorial (SIT)',
-      'Sala Snoezelen / Sala Sensorial',
-      'Programa de intervenção individualizado',
-      'Orientação para escola e família',
-      'Estratégias de regulação sensorial'
+      'Avaliação neuropsicológica',
+      'Rastreamento de neurodivergências',
+      'Desenvolvimento cognitivo, emocional e comportamental',
+      'Orientação e apoio às famílias'
     ]
   },
   {
-    title: 'ABA (Análise do Comportamento Aplicada)',
-    description: 'Metodologia científica baseada em princípios do comportamento para desenvolver habilidades sociais, comunicativas e comportamentais.',
-    color: 'linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%)',
-    icon: Target,
+    title: 'Neuropsicopedagogia',
+    description: 'Cuidado especializado das dificuldades de aprendizagem, articulando neurociência e pedagogia para potencializar o percurso escolar.',
+    color: 'linear-gradient(135deg, var(--pastel-pink) 0%, var(--secondary-light) 100%)',
+    icon: BookOpen,
     items: [
-      'Avaliação funcional do comportamento',
-      'Intervenção comportamental individualizada',
-      'Ensino estruturado de habilidades',
-      'Redução de comportamentos problemáticos',
-      'Acompanhamento e orientação familiar',
-      'Registro e análise de dados'
+      'Avaliação das dificuldades de aprendizagem',
+      'Identificação de desafios pedagógicos',
+      'Planejamento e aplicação de plano pedagógico individual',
+      'Apoio ao desenvolvimento escolar'
     ]
   },
   {
-    title: 'Estimulação Precoce',
-    description: 'Intervenções para os primeiros anos de vida.',
+    title: 'Fonoaudiologia',
+    description: 'Acompanhamento da linguagem, fala, comunicação social e motricidade orofacial, com olhar atento à neurodivergência.',
     color: 'linear-gradient(135deg, var(--pastel-mint) 0%, var(--accent-light) 100%)',
-    icon: Baby,
-    items: ['Avaliação do desenvolvimento', 'Programa de estimulação', 'Suporte aos pais', 'Monitoramento']
+    icon: Mic,
+    items: [
+      'Desenvolvimento da linguagem',
+      'Comunicação social',
+      'Fala e motricidade orofacial',
+      'Atendimento especializado em neurodivergência'
+    ]
   },
   {
-    title: 'Avaliação Comportamental',
-    description: 'Processos avaliativos para compreender o perfil funcional.',
+    title: 'Terapia Ocupacional',
+    description: 'Promoção da autonomia, socialização e independência funcional, com certificação internacional em Integração Sensorial pela University of Southern California (USC, USA).',
     color: 'linear-gradient(135deg, var(--pastel-peach) 0%, var(--secondary-light) 100%)',
-    icon: ClipboardCheck,
-    items: ['Avaliação sensorial', 'Perfil motor', 'Escala de independência', 'Relatório completo']
+    icon: Activity,
+    items: [
+      'Certificação internacional em Integração Sensorial (USC, USA)',
+      'Desenvolvimento da autonomia',
+      'Socialização',
+      'Enfrentamento dos desafios do cotidiano',
+      'Promoção da independência funcional'
+    ]
   }
 ]
 
 const processSteps = [
-  { title: 'Contato', description: 'Você entra em contato pelo WhatsApp ou formulário.' },
-  { title: 'Agendamento', description: 'Marcamos uma avaliação inicial.' },
-  { title: 'Avaliação', description: 'Realizamos avaliação completa do desenvolvimento.' },
-  { title: 'Plano', description: 'Elaboramos um plano personalizado.' }
+  { title: 'Acolhimento', description: 'Você entra em contato pelo WhatsApp ou formulário de agendamento.' },
+  { title: 'Avaliação', description: 'Realizamos uma escuta cuidadosa e avaliação especializada.' },
+  { title: 'Plano', description: 'Construímos juntos um plano individualizado e baseado em evidências.' },
+  { title: 'Acompanhamento', description: 'Conduzimos o cuidado com a família e a rede de apoio.' }
 ]
 </script>
 
@@ -103,15 +102,15 @@ const processSteps = [
           direction="diagonal"
           :speed="1"
           :square-size="40"
-          border-color="#999"
-          hover-fill-color="#222"
+          border-color="#6B4FA3"
+          hover-fill-color="#3D2D5E"
         />
       </div>
       <div class="container">
         <div class="section-header">
-          <span class="section-tag">Nossos Serviços</span>
-          <h1>Tratamentos especializados</h1>
-          <p>Oferecemos intervenções especializadas para o desenvolvimento integral da criança.</p>
+          <span class="section-tag">Nossas especialidades</span>
+          <h1>Cuidado integrado e interdisciplinar</h1>
+          <p>Uma equipe multidisciplinar trabalhando em conjunto pelo desenvolvimento de cada criança, adolescente e família.</p>
         </div>
 
         <div class="services-showcase">
@@ -168,7 +167,7 @@ const processSteps = [
         <div class="cta-card">
           <ColorBends
             class="cta-bg-effect"
-            :colors="['#CDBFF0', '#FFD4C4', '#C4EAD8', '#7B5CBF', '#F2A07B']"
+            :colors="['#6B4FA3', '#8FC176', '#8FB1F0', '#3D2D5E', '#5C9F45']"
             :rotation="28"
             :speed="0.16"
             :scale="1.3"
@@ -180,8 +179,9 @@ const processSteps = [
             transparent
           />
           <div class="cta-content">
+            <span class="cta-tag">Autitude — Desenvolvimento e Ação Humana</span>
             <h2>Agende uma avaliação</h2>
-            <p>Nossa equipe está pronta para entender as necessidades do seu filho.</p>
+            <p>💜 Cuidamos de pessoas. Potencializamos possibilidades.</p>
             <div class="cta-actions">
               <NuxtLink to="/agendar" class="btn btn-primary btn-lg">
                 Agendar Agora
@@ -199,7 +199,7 @@ const processSteps = [
 
 <style scoped>
 .icon-primary {
-  color: var(--primary);
+  color: var(--lilac-deep);
 }
 
 .hero-section {
@@ -245,11 +245,12 @@ const processSteps = [
 .section-tag {
   display: inline-block;
   padding: 0.375rem 1rem;
-  background: var(--pastel-lavender);
+  background: var(--lilac-soft);
+  border: 1px solid var(--lilac-light);
   border-radius: var(--radius-full);
   font-size: 0.8125rem;
   font-weight: 600;
-  color: var(--primary-dark);
+  color: var(--lilac-deep);
   margin-bottom: 1rem;
 }
 
@@ -280,13 +281,13 @@ const processSteps = [
   right: 1.5rem;
   width: 40px;
   height: 40px;
-  background: var(--primary-light);
+  background: var(--lilac-light);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 700;
-  color: var(--primary);
+  color: var(--lilac-deep);
   font-size: 1rem;
 }
 
@@ -343,12 +344,12 @@ const processSteps = [
   top: 0.5em;
   width: 6px;
   height: 6px;
-  background: var(--primary);
+  background: var(--lilac);
   border-radius: 50%;
 }
 
 .process-section {
-  background: var(--surface);
+  background: var(--surface-alt);
 }
 
 .header-content {
@@ -417,6 +418,17 @@ const processSteps = [
   z-index: 1;
   padding: 3rem;
   text-align: center;
+}
+
+.cta-tag {
+  display: inline-block;
+  padding: 0.375rem 1rem;
+  background: rgba(255,255,255,0.6);
+  border-radius: var(--radius-full);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--primary-dark);
+  margin-bottom: 1rem;
 }
 
 .cta-content h2 {

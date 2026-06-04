@@ -1,6 +1,6 @@
-import { defineComponent, useTemplateRef, ref, watch, mergeProps, useSSRContext } from 'file:///home/ubuntu/Autitude/node_modules/vue/index.mjs';
-import { ssrRenderAttrs } from 'file:///home/ubuntu/Autitude/node_modules/vue/server-renderer/index.mjs';
-import * as THREE from 'file:///home/ubuntu/Autitude/node_modules/three/build/three.module.js';
+import { defineComponent, useTemplateRef, ref, watch, mergeProps, useSSRContext } from 'file:///home/ubuntu/Autitude/node_modules/.pnpm/vue@3.5.35/node_modules/vue/index.mjs';
+import { ssrRenderAttrs } from 'file:///home/ubuntu/Autitude/node_modules/.pnpm/vue@3.5.35/node_modules/vue/server-renderer/index.mjs';
+import * as THREE from 'file:///home/ubuntu/Autitude/node_modules/.pnpm/three@0.184.0/node_modules/three/build/three.module.js';
 
 const MAX_COLORS = 8;
 const _sfc_main = /* @__PURE__ */ defineComponent({

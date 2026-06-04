@@ -7,20 +7,20 @@ import { resolve as resolve$1, dirname as dirname$1, join } from 'node:path';
 import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 
-const suspectProtoRx = /"(?:_|\\u0{2}5[Ff]){2}(?:p|\\u0{2}70)(?:r|\\u0{2}72)(?:o|\\u0{2}6[Ff])(?:t|\\u0{2}74)(?:o|\\u0{2}6[Ff])(?:_|\\u0{2}5[Ff]){2}"\s*:/;
-const suspectConstructorRx = /"(?:c|\\u0063)(?:o|\\u006[Ff])(?:n|\\u006[Ee])(?:s|\\u0073)(?:t|\\u0074)(?:r|\\u0072)(?:u|\\u0075)(?:c|\\u0063)(?:t|\\u0074)(?:o|\\u006[Ff])(?:r|\\u0072)"\s*:/;
-const JsonSigRx = /^\s*["[{]|^\s*-?\d{1,16}(\.\d{1,17})?([Ee][+-]?\d+)?\s*$/;
-function jsonParseTransform(key, value) {
+const suspectProtoRx$1 = /"(?:_|\\u0{2}5[Ff]){2}(?:p|\\u0{2}70)(?:r|\\u0{2}72)(?:o|\\u0{2}6[Ff])(?:t|\\u0{2}74)(?:o|\\u0{2}6[Ff])(?:_|\\u0{2}5[Ff]){2}"\s*:/;
+const suspectConstructorRx$1 = /"(?:c|\\u0063)(?:o|\\u006[Ff])(?:n|\\u006[Ee])(?:s|\\u0073)(?:t|\\u0074)(?:r|\\u0072)(?:u|\\u0075)(?:c|\\u0063)(?:t|\\u0074)(?:o|\\u006[Ff])(?:r|\\u0072)"\s*:/;
+const JsonSigRx$1 = /^\s*["[{]|^\s*-?\d{1,16}(\.\d{1,17})?([Ee][+-]?\d+)?\s*$/;
+function jsonParseTransform$1(key, value) {
   if (key === "__proto__" || key === "constructor" && value && typeof value === "object" && "prototype" in value) {
-    warnKeyDropped(key);
+    warnKeyDropped$1(key);
     return;
   }
   return value;
 }
-function warnKeyDropped(key) {
+function warnKeyDropped$1(key) {
   console.warn(`[destr] Dropping "${key}" key to prevent prototype pollution.`);
 }
-function destr(value, options = {}) {
+function destr$1(value, options = {}) {
   if (typeof value !== "string") {
     return value;
   }
@@ -53,18 +53,18 @@ function destr(value, options = {}) {
       }
     }
   }
-  if (!JsonSigRx.test(value)) {
+  if (!JsonSigRx$1.test(value)) {
     if (options.strict) {
       throw new SyntaxError("[destr] Invalid JSON");
     }
     return value;
   }
   try {
-    if (suspectProtoRx.test(value) || suspectConstructorRx.test(value)) {
+    if (suspectProtoRx$1.test(value) || suspectConstructorRx$1.test(value)) {
       if (options.strict) {
         throw new Error("[destr] Possible prototype pollution");
       }
-      return JSON.parse(value, jsonParseTransform);
+      return JSON.parse(value, jsonParseTransform$1);
     }
     return JSON.parse(value);
   } catch (error) {
@@ -75,31 +75,31 @@ function destr(value, options = {}) {
   }
 }
 
-const HASH_RE = /#/g;
-const AMPERSAND_RE = /&/g;
-const SLASH_RE = /\//g;
-const EQUAL_RE = /=/g;
+const HASH_RE$1 = /#/g;
+const AMPERSAND_RE$1 = /&/g;
+const SLASH_RE$1 = /\//g;
+const EQUAL_RE$1 = /=/g;
 const IM_RE = /\?/g;
-const PLUS_RE = /\+/g;
-const ENC_CARET_RE = /%5e/gi;
-const ENC_BACKTICK_RE = /%60/gi;
-const ENC_PIPE_RE = /%7c/gi;
-const ENC_SPACE_RE = /%20/gi;
+const PLUS_RE$1 = /\+/g;
+const ENC_CARET_RE$1 = /%5e/gi;
+const ENC_BACKTICK_RE$1 = /%60/gi;
+const ENC_PIPE_RE$1 = /%7c/gi;
+const ENC_SPACE_RE$1 = /%20/gi;
 const ENC_SLASH_RE = /%2f/gi;
 const ENC_ENC_SLASH_RE = /%252f/gi;
-function encode(text) {
-  return encodeURI("" + text).replace(ENC_PIPE_RE, "|");
+function encode$1(text) {
+  return encodeURI("" + text).replace(ENC_PIPE_RE$1, "|");
 }
-function encodeQueryValue(input) {
-  return encode(typeof input === "string" ? input : JSON.stringify(input)).replace(PLUS_RE, "%2B").replace(ENC_SPACE_RE, "+").replace(HASH_RE, "%23").replace(AMPERSAND_RE, "%26").replace(ENC_BACKTICK_RE, "`").replace(ENC_CARET_RE, "^").replace(SLASH_RE, "%2F");
+function encodeQueryValue$1(input) {
+  return encode$1(typeof input === "string" ? input : JSON.stringify(input)).replace(PLUS_RE$1, "%2B").replace(ENC_SPACE_RE$1, "+").replace(HASH_RE$1, "%23").replace(AMPERSAND_RE$1, "%26").replace(ENC_BACKTICK_RE$1, "`").replace(ENC_CARET_RE$1, "^").replace(SLASH_RE$1, "%2F");
 }
-function encodeQueryKey(text) {
-  return encodeQueryValue(text).replace(EQUAL_RE, "%3D");
+function encodeQueryKey$1(text) {
+  return encodeQueryValue$1(text).replace(EQUAL_RE$1, "%3D");
 }
 function encodePath(text) {
-  return encode(text).replace(HASH_RE, "%23").replace(IM_RE, "%3F").replace(ENC_ENC_SLASH_RE, "%2F").replace(AMPERSAND_RE, "%26").replace(PLUS_RE, "%2B");
+  return encode$1(text).replace(HASH_RE$1, "%23").replace(IM_RE, "%3F").replace(ENC_ENC_SLASH_RE, "%2F").replace(AMPERSAND_RE$1, "%26").replace(PLUS_RE$1, "%2B");
 }
-function decode(text = "") {
+function decode$1(text = "") {
   try {
     return decodeURIComponent("" + text);
   } catch {
@@ -107,16 +107,16 @@ function decode(text = "") {
   }
 }
 function decodePath(text) {
-  return decode(text.replace(ENC_SLASH_RE, "%252F"));
+  return decode$1(text.replace(ENC_SLASH_RE, "%252F"));
 }
-function decodeQueryKey(text) {
-  return decode(text.replace(PLUS_RE, " "));
+function decodeQueryKey$1(text) {
+  return decode$1(text.replace(PLUS_RE$1, " "));
 }
-function decodeQueryValue(text) {
-  return decode(text.replace(PLUS_RE, " "));
+function decodeQueryValue$1(text) {
+  return decode$1(text.replace(PLUS_RE$1, " "));
 }
 
-function parseQuery(parametersString = "") {
+function parseQuery$1(parametersString = "") {
   const object = /* @__PURE__ */ Object.create(null);
   if (parametersString[0] === "?") {
     parametersString = parametersString.slice(1);
@@ -126,11 +126,11 @@ function parseQuery(parametersString = "") {
     if (s.length < 2) {
       continue;
     }
-    const key = decodeQueryKey(s[1]);
+    const key = decodeQueryKey$1(s[1]);
     if (key === "__proto__" || key === "constructor") {
       continue;
     }
-    const value = decodeQueryValue(s[2] || "");
+    const value = decodeQueryValue$1(s[2] || "");
     if (object[key] === void 0) {
       object[key] = value;
     } else if (Array.isArray(object[key])) {
@@ -141,53 +141,53 @@ function parseQuery(parametersString = "") {
   }
   return object;
 }
-function encodeQueryItem(key, value) {
+function encodeQueryItem$1(key, value) {
   if (typeof value === "number" || typeof value === "boolean") {
     value = String(value);
   }
   if (!value) {
-    return encodeQueryKey(key);
+    return encodeQueryKey$1(key);
   }
   if (Array.isArray(value)) {
     return value.map(
-      (_value) => `${encodeQueryKey(key)}=${encodeQueryValue(_value)}`
+      (_value) => `${encodeQueryKey$1(key)}=${encodeQueryValue$1(_value)}`
     ).join("&");
   }
-  return `${encodeQueryKey(key)}=${encodeQueryValue(value)}`;
+  return `${encodeQueryKey$1(key)}=${encodeQueryValue$1(value)}`;
 }
-function stringifyQuery(query) {
-  return Object.keys(query).filter((k) => query[k] !== void 0).map((k) => encodeQueryItem(k, query[k])).filter(Boolean).join("&");
+function stringifyQuery$1(query) {
+  return Object.keys(query).filter((k) => query[k] !== void 0).map((k) => encodeQueryItem$1(k, query[k])).filter(Boolean).join("&");
 }
 
-const PROTOCOL_STRICT_REGEX = /^[\s\w\0+.-]{2,}:([/\\]{1,2})/;
-const PROTOCOL_REGEX = /^[\s\w\0+.-]{2,}:([/\\]{2})?/;
-const PROTOCOL_RELATIVE_REGEX = /^([/\\]\s*){2,}[^/\\]/;
+const PROTOCOL_STRICT_REGEX$1 = /^[\s\w\0+.-]{2,}:([/\\]{1,2})/;
+const PROTOCOL_REGEX$1 = /^[\s\w\0+.-]{2,}:([/\\]{2})?/;
+const PROTOCOL_RELATIVE_REGEX$1 = /^([/\\]\s*){2,}[^/\\]/;
 const PROTOCOL_SCRIPT_RE = /^[\s\0]*(blob|data|javascript|vbscript):$/i;
 const TRAILING_SLASH_RE = /\/$|\/\?|\/#/;
-const JOIN_LEADING_SLASH_RE = /^\.?\//;
-function hasProtocol(inputString, opts = {}) {
+const JOIN_LEADING_SLASH_RE$1 = /^\.?\//;
+function hasProtocol$1(inputString, opts = {}) {
   if (typeof opts === "boolean") {
     opts = { acceptRelative: opts };
   }
   if (opts.strict) {
-    return PROTOCOL_STRICT_REGEX.test(inputString);
+    return PROTOCOL_STRICT_REGEX$1.test(inputString);
   }
-  return PROTOCOL_REGEX.test(inputString) || (opts.acceptRelative ? PROTOCOL_RELATIVE_REGEX.test(inputString) : false);
+  return PROTOCOL_REGEX$1.test(inputString) || (opts.acceptRelative ? PROTOCOL_RELATIVE_REGEX$1.test(inputString) : false);
 }
 function isScriptProtocol(protocol) {
   return !!protocol && PROTOCOL_SCRIPT_RE.test(protocol);
 }
-function hasTrailingSlash(input = "", respectQueryAndFragment) {
+function hasTrailingSlash$1(input = "", respectQueryAndFragment) {
   if (!respectQueryAndFragment) {
     return input.endsWith("/");
   }
   return TRAILING_SLASH_RE.test(input);
 }
-function withoutTrailingSlash(input = "", respectQueryAndFragment) {
+function withoutTrailingSlash$1(input = "", respectQueryAndFragment) {
   if (!respectQueryAndFragment) {
-    return (hasTrailingSlash(input) ? input.slice(0, -1) : input) || "/";
+    return (hasTrailingSlash$1(input) ? input.slice(0, -1) : input) || "/";
   }
-  if (!hasTrailingSlash(input, true)) {
+  if (!hasTrailingSlash$1(input, true)) {
     return input || "/";
   }
   let path = input;
@@ -201,11 +201,11 @@ function withoutTrailingSlash(input = "", respectQueryAndFragment) {
   const cleanPath = s0.endsWith("/") ? s0.slice(0, -1) : s0;
   return (cleanPath || "/") + (s.length > 0 ? `?${s.join("?")}` : "") + fragment;
 }
-function withTrailingSlash(input = "", respectQueryAndFragment) {
+function withTrailingSlash$1(input = "", respectQueryAndFragment) {
   if (!respectQueryAndFragment) {
     return input.endsWith("/") ? input : input + "/";
   }
-  if (hasTrailingSlash(input, true)) {
+  if (hasTrailingSlash$1(input, true)) {
     return input || "/";
   }
   let path = input;
@@ -227,24 +227,24 @@ function hasLeadingSlash(input = "") {
 function withLeadingSlash(input = "") {
   return hasLeadingSlash(input) ? input : "/" + input;
 }
-function withBase(input, base) {
-  if (isEmptyURL(base) || hasProtocol(input)) {
+function withBase$1(input, base) {
+  if (isEmptyURL$1(base) || hasProtocol$1(input)) {
     return input;
   }
-  const _base = withoutTrailingSlash(base);
+  const _base = withoutTrailingSlash$1(base);
   if (input.startsWith(_base)) {
     const nextChar = input[_base.length];
     if (!nextChar || nextChar === "/" || nextChar === "?") {
       return input;
     }
   }
-  return joinURL(_base, input);
+  return joinURL$1(_base, input);
 }
 function withoutBase(input, base) {
-  if (isEmptyURL(base)) {
+  if (isEmptyURL$1(base)) {
     return input;
   }
-  const _base = withoutTrailingSlash(base);
+  const _base = withoutTrailingSlash$1(base);
   if (!input.startsWith(_base)) {
     return input;
   }
@@ -255,27 +255,27 @@ function withoutBase(input, base) {
   const trimmed = input.slice(_base.length).replace(/^\/+/, "");
   return "/" + trimmed;
 }
-function withQuery(input, query) {
-  const parsed = parseURL(input);
-  const mergedQuery = { ...parseQuery(parsed.search), ...query };
-  parsed.search = stringifyQuery(mergedQuery);
-  return stringifyParsedURL(parsed);
+function withQuery$1(input, query) {
+  const parsed = parseURL$1(input);
+  const mergedQuery = { ...parseQuery$1(parsed.search), ...query };
+  parsed.search = stringifyQuery$1(mergedQuery);
+  return stringifyParsedURL$1(parsed);
 }
 function getQuery$1(input) {
-  return parseQuery(parseURL(input).search);
+  return parseQuery$1(parseURL$1(input).search);
 }
-function isEmptyURL(url) {
+function isEmptyURL$1(url) {
   return !url || url === "/";
 }
-function isNonEmptyURL(url) {
+function isNonEmptyURL$1(url) {
   return url && url !== "/";
 }
-function joinURL(base, ...input) {
+function joinURL$1(base, ...input) {
   let url = base || "";
-  for (const segment of input.filter((url2) => isNonEmptyURL(url2))) {
+  for (const segment of input.filter((url2) => isNonEmptyURL$1(url2))) {
     if (url) {
-      const _segment = segment.replace(JOIN_LEADING_SLASH_RE, "");
-      url = withTrailingSlash(url) + _segment;
+      const _segment = segment.replace(JOIN_LEADING_SLASH_RE$1, "");
+      url = withTrailingSlash$1(url) + _segment;
     } else {
       url = segment;
     }
@@ -296,7 +296,7 @@ function joinRelativeURL(..._input) {
         continue;
       }
       if (s === "..") {
-        if (segments.length === 1 && hasProtocol(segments[0])) {
+        if (segments.length === 1 && hasProtocol$1(segments[0])) {
           continue;
         }
         segments.pop();
@@ -327,8 +327,8 @@ function joinRelativeURL(..._input) {
   return url;
 }
 
-const protocolRelative = Symbol.for("ufo:protocolRelative");
-function parseURL(input = "", defaultProto) {
+const protocolRelative$1 = Symbol.for("ufo:protocolRelative");
+function parseURL$1(input = "", defaultProto) {
   const _specialProtoMatch = input.match(
     /^[\s\0]*(blob:|data:|javascript:|vbscript:)(.*)/i
   );
@@ -344,15 +344,15 @@ function parseURL(input = "", defaultProto) {
       hash: ""
     };
   }
-  if (!hasProtocol(input, { acceptRelative: true })) {
-    return parsePath(input);
+  if (!hasProtocol$1(input, { acceptRelative: true })) {
+    return parsePath$1(input);
   }
   const [, protocol = "", auth, hostAndPath = ""] = input.replace(/\\/g, "/").match(/^[\s\0]*([\w+.-]{2,}:)?\/\/([^/@]+@)?(.*)/) || [];
   let [, host = "", path = ""] = hostAndPath.match(/([^#/?]*)(.*)?/) || [];
   if (protocol === "file:") {
     path = path.replace(/\/(?=[A-Za-z]:)/, "");
   }
-  const { pathname, search, hash } = parsePath(path);
+  const { pathname, search, hash } = parsePath$1(path);
   return {
     protocol: protocol.toLowerCase(),
     auth: auth ? auth.slice(0, Math.max(0, auth.length - 1)) : "",
@@ -360,10 +360,10 @@ function parseURL(input = "", defaultProto) {
     pathname,
     search,
     hash,
-    [protocolRelative]: !protocol
+    [protocolRelative$1]: !protocol
   };
 }
-function parsePath(input = "") {
+function parsePath$1(input = "") {
   const [pathname = "", search = "", hash = ""] = (input.match(/([^#?]*)(\?[^#]*)?(#.*)?/) || []).splice(1);
   return {
     pathname,
@@ -371,13 +371,13 @@ function parsePath(input = "") {
     hash
   };
 }
-function stringifyParsedURL(parsed) {
+function stringifyParsedURL$1(parsed) {
   const pathname = parsed.pathname || "";
   const search = parsed.search ? (parsed.search.startsWith("?") ? "" : "?") + parsed.search : "";
   const hash = parsed.hash || "";
   const auth = parsed.auth ? parsed.auth + "@" : "";
   const host = parsed.host || "";
-  const proto = parsed.protocol || parsed[protocolRelative] ? (parsed.protocol || "") + "//" : "";
+  const proto = parsed.protocol || parsed[protocolRelative$1] ? (parsed.protocol || "") + "//" : "";
   return proto + auth + host + pathname + search + hash;
 }
 
@@ -610,7 +610,7 @@ function _routerNodeToTable(initialPath, initialNode) {
   return table;
 }
 
-function isPlainObject(value) {
+function isPlainObject$1(value) {
   if (value === null || typeof value !== "object") {
     return false;
   }
@@ -627,9 +627,9 @@ function isPlainObject(value) {
   return true;
 }
 
-function _defu(baseObject, defaults, namespace = ".", merger) {
-  if (!isPlainObject(defaults)) {
-    return _defu(baseObject, {}, namespace, merger);
+function _defu$1(baseObject, defaults, namespace = ".", merger) {
+  if (!isPlainObject$1(defaults)) {
+    return _defu$1(baseObject, {}, namespace, merger);
   }
   const object = { ...defaults };
   for (const key of Object.keys(baseObject)) {
@@ -645,8 +645,8 @@ function _defu(baseObject, defaults, namespace = ".", merger) {
     }
     if (Array.isArray(value) && Array.isArray(object[key])) {
       object[key] = [...value, ...object[key]];
-    } else if (isPlainObject(value) && isPlainObject(object[key])) {
-      object[key] = _defu(
+    } else if (isPlainObject$1(value) && isPlainObject$1(object[key])) {
+      object[key] = _defu$1(
         value,
         object[key],
         (namespace ? `${namespace}.` : "") + key.toString(),
@@ -658,19 +658,13 @@ function _defu(baseObject, defaults, namespace = ".", merger) {
   }
   return object;
 }
-function createDefu(merger) {
+function createDefu$1(merger) {
   return (...arguments_) => (
     // eslint-disable-next-line unicorn/no-array-reduce
-    arguments_.reduce((p, c) => _defu(p, c, "", merger), {})
+    arguments_.reduce((p, c) => _defu$1(p, c, "", merger), {})
   );
 }
-const defu = createDefu();
-const defuFn = createDefu((object, key, currentValue) => {
-  if (object[key] !== void 0 && typeof currentValue === "function") {
-    object[key] = currentValue(object[key]);
-    return true;
-  }
-});
+const defu$1 = createDefu$1();
 
 function o(n){throw new Error(`${n} is not implemented yet!`)}let i$1 = class i extends EventEmitter{__unenv__={};readableEncoding=null;readableEnded=true;readableFlowing=false;readableHighWaterMark=0;readableLength=0;readableObjectMode=false;readableAborted=false;readableDidRead=false;closed=false;errored=null;readable=false;destroyed=false;static from(e,t){return new i(t)}constructor(e){super();}_read(e){}read(e){}setEncoding(e){return this}pause(){return this}resume(){return this}isPaused(){return  true}unpipe(e){return this}unshift(e,t){}wrap(e){return this}push(e,t){return  false}_destroy(e,t){this.removeAllListeners();}destroy(e){return this.destroyed=true,this._destroy(e),this}pipe(e,t){return {}}compose(e,t){throw new Error("Method not implemented.")}[Symbol.asyncDispose](){return this.destroy(),Promise.resolve()}async*[Symbol.asyncIterator](){throw o("Readable.asyncIterator")}iterator(e){throw o("Readable.iterator")}map(e,t){throw o("Readable.map")}filter(e,t){throw o("Readable.filter")}forEach(e,t){throw o("Readable.forEach")}reduce(e,t,r){throw o("Readable.reduce")}find(e,t){throw o("Readable.find")}findIndex(e,t){throw o("Readable.findIndex")}some(e,t){throw o("Readable.some")}toArray(e){throw o("Readable.toArray")}every(e,t){throw o("Readable.every")}flatMap(e,t){throw o("Readable.flatMap")}drop(e,t){throw o("Readable.drop")}take(e,t){throw o("Readable.take")}asIndexedPairs(e){throw o("Readable.asIndexedPairs")}};let l$1 = class l extends EventEmitter{__unenv__={};writable=true;writableEnded=false;writableFinished=false;writableHighWaterMark=0;writableLength=0;writableObjectMode=false;writableCorked=0;closed=false;errored=null;writableNeedDrain=false;writableAborted=false;destroyed=false;_data;_encoding="utf8";constructor(e){super();}pipe(e,t){return {}}_write(e,t,r){if(this.writableEnded){r&&r();return}if(this._data===void 0)this._data=e;else {const s=typeof this._data=="string"?Buffer$1.from(this._data,this._encoding||t||"utf8"):this._data,a=typeof e=="string"?Buffer$1.from(e,t||this._encoding||"utf8"):e;this._data=Buffer$1.concat([s,a]);}this._encoding=t,r&&r();}_writev(e,t){}_destroy(e,t){}_final(e){}write(e,t,r){const s=typeof t=="string"?this._encoding:"utf8",a=typeof t=="function"?t:typeof r=="function"?r:void 0;return this._write(e,s,a),true}setDefaultEncoding(e){return this}end(e,t,r){const s=typeof e=="function"?e:typeof t=="function"?t:typeof r=="function"?r:void 0;if(this.writableEnded)return s&&s(),this;const a=e===s?void 0:e;if(a){const u=t===s?void 0:t;this.write(a,u,s);}return this.writableEnded=true,this.writableFinished=true,this.emit("close"),this.emit("finish"),this}cork(){}uncork(){}destroy(e){return this.destroyed=true,delete this._data,this.removeAllListeners(),this}compose(e,t){throw new Error("Method not implemented.")}[Symbol.asyncDispose](){return Promise.resolve()}};const c=class{allowHalfOpen=true;_destroy;constructor(e=new i$1,t=new l$1){Object.assign(this,e),Object.assign(this,t),this._destroy=m(e._destroy,t._destroy);}};function _(){return Object.assign(c.prototype,i$1.prototype),Object.assign(c.prototype,l$1.prototype),c}function m(...n){return function(...e){for(const t of n)t(...e);}}const g=_();class A extends g{__unenv__={};bufferSize=0;bytesRead=0;bytesWritten=0;connecting=false;destroyed=false;pending=false;localAddress="";localPort=0;remoteAddress="";remoteFamily="";remotePort=0;autoSelectFamilyAttemptedAddresses=[];readyState="readOnly";constructor(e){super();}write(e,t,r){return  false}connect(e,t,r){return this}end(e,t,r){return this}setEncoding(e){return this}pause(){return this}resume(){return this}setTimeout(e,t){return this}setNoDelay(e){return this}setKeepAlive(e,t){return this}address(){return {}}unref(){return this}ref(){return this}destroySoon(){this.destroy();}resetAndDestroy(){const e=new Error("ERR_SOCKET_CLOSED");return e.code="ERR_SOCKET_CLOSED",this.destroy(e),this}}class y extends i$1{aborted=false;httpVersion="1.1";httpVersionMajor=1;httpVersionMinor=1;complete=true;connection;socket;headers={};trailers={};method="GET";url="/";statusCode=200;statusMessage="";closed=false;errored=null;readable=false;constructor(e){super(),this.socket=this.connection=e||new A;}get rawHeaders(){const e=this.headers,t=[];for(const r in e)if(Array.isArray(e[r]))for(const s of e[r])t.push(r,s);else t.push(r,e[r]);return t}get rawTrailers(){return []}setTimeout(e,t){return this}get headersDistinct(){return p(this.headers)}get trailersDistinct(){return p(this.trailers)}}function p(n){const e={};for(const[t,r]of Object.entries(n))t&&(e[t]=(Array.isArray(r)?r:[r]).filter(Boolean));return e}class w extends l$1{statusCode=200;statusMessage="";upgrading=false;chunkedEncoding=false;shouldKeepAlive=false;useChunkedEncodingByDefault=false;sendDate=false;finished=false;headersSent=false;strictContentLength=false;connection=null;socket=null;req;_headers={};constructor(e){super(),this.req=e;}assignSocket(e){e._httpMessage=this,this.socket=e,this.connection=e,this.emit("socket",e),this._flush();}_flush(){this.flushHeaders();}detachSocket(e){}writeContinue(e){}writeHead(e,t,r){e&&(this.statusCode=e),typeof t=="string"&&(this.statusMessage=t,t=void 0);const s=r||t;if(s&&!Array.isArray(s))for(const a in s)this.setHeader(a,s[a]);return this.headersSent=true,this}writeProcessing(){}setTimeout(e,t){return this}appendHeader(e,t){e=e.toLowerCase();const r=this._headers[e],s=[...Array.isArray(r)?r:[r],...Array.isArray(t)?t:[t]].filter(Boolean);return this._headers[e]=s.length>1?s:s[0],this}setHeader(e,t){return this._headers[e.toLowerCase()]=t,this}setHeaders(e){for(const[t,r]of Object.entries(e))this.setHeader(t,r);return this}getHeader(e){return this._headers[e.toLowerCase()]}getHeaders(){return this._headers}getHeaderNames(){return Object.keys(this._headers)}hasHeader(e){return e.toLowerCase()in this._headers}removeHeader(e){delete this._headers[e.toLowerCase()];}addTrailers(e){}flushHeaders(){}writeEarlyHints(e,t){typeof t=="function"&&t();}}const E=(()=>{const n=function(){};return n.prototype=Object.create(null),n})();function R(n={}){const e=new E,t=Array.isArray(n)||H(n)?n:Object.entries(n);for(const[r,s]of t)if(s){if(e[r]===void 0){e[r]=s;continue}e[r]=[...Array.isArray(e[r])?e[r]:[e[r]],...Array.isArray(s)?s:[s]];}return e}function H(n){return typeof n?.entries=="function"}function v(n={}){if(n instanceof Headers)return n;const e=new Headers;for(const[t,r]of Object.entries(n))if(r!==void 0){if(Array.isArray(r)){for(const s of r)e.append(t,String(s));continue}e.set(t,String(r));}return e}const S=new Set([101,204,205,304]);async function b(n,e){const t=new y,r=new w(t);t.url=e.url?.toString()||"/";let s;if(!t.url.startsWith("/")){const d=new URL(t.url);s=d.host,t.url=d.pathname+d.search+d.hash;}t.method=e.method||"GET",t.headers=R(e.headers||{}),t.headers.host||(t.headers.host=e.host||s||"localhost"),t.connection.encrypted=t.connection.encrypted||e.protocol==="https",t.body=e.body||null,t.__unenv__=e.context,await n(t,r);let a=r._data;(S.has(r.statusCode)||t.method.toUpperCase()==="HEAD")&&(a=null,delete r._headers["content-length"]);const u={status:r.statusCode,statusText:r.statusMessage,headers:r._headers,body:a};return t.destroy(),r.destroy(),u}async function C(n,e,t={}){try{const r=await b(n,{url:e,...t});return new Response(r.body,{status:r.status,statusText:r.statusText,headers:v(r.headers)})}catch(r){return new Response(r.toString(),{status:Number.parseInt(r.statusCode||r.code)||500,statusText:r.statusText})}}
 
@@ -1508,27 +1502,27 @@ function _normalizeNodeHeaders(nodeHeaders) {
   return headers;
 }
 
-function defineEventHandler(handler) {
+function defineEventHandler$1(handler) {
   if (typeof handler === "function") {
     handler.__is_handler__ = true;
     return handler;
   }
   const _hooks = {
-    onRequest: _normalizeArray(handler.onRequest),
-    onBeforeResponse: _normalizeArray(handler.onBeforeResponse)
+    onRequest: _normalizeArray$1(handler.onRequest),
+    onBeforeResponse: _normalizeArray$1(handler.onBeforeResponse)
   };
   const _handler = (event) => {
-    return _callHandler(event, handler.handler, _hooks);
+    return _callHandler$1(event, handler.handler, _hooks);
   };
   _handler.__is_handler__ = true;
   _handler.__resolve__ = handler.handler.__resolve__;
   _handler.__websocket__ = handler.websocket;
   return _handler;
 }
-function _normalizeArray(input) {
+function _normalizeArray$1(input) {
   return input ? Array.isArray(input) ? input : [input] : void 0;
 }
-async function _callHandler(event, handler, hooks) {
+async function _callHandler$1(event, handler, hooks) {
   if (hooks.onRequest) {
     for (const hook of hooks.onRequest) {
       await hook(event);
@@ -1546,7 +1540,7 @@ async function _callHandler(event, handler, hooks) {
   }
   return response.body;
 }
-const eventHandler = defineEventHandler;
+const eventHandler = defineEventHandler$1;
 function isEventHandler(input) {
   return hasProp(input, "__is_handler__");
 }
@@ -1709,7 +1703,7 @@ function createResolver(stack) {
         res = {
           ...res,
           ..._res,
-          route: joinURL(res.route || "/", _res.route || "/")
+          route: joinURL$1(res.route || "/", _res.route || "/")
         };
       }
       return res;
@@ -1727,7 +1721,7 @@ function normalizeLayer(input) {
     handler = toEventHandler(handler, void 0, input.route);
   }
   return {
-    route: withoutTrailingSlash(input.route),
+    route: withoutTrailingSlash$1(input.route),
     match: input.match,
     handler
   };
@@ -1794,7 +1788,7 @@ function websocketOptions(evResolver, appOptions) {
     ...appOptions.websocket,
     async resolve(info) {
       const url = info.request?.url || info.url || "/";
-      const { pathname } = typeof url === "string" ? parseURL(url) : url;
+      const { pathname } = typeof url === "string" ? parseURL$1(url) : url;
       const resolved = await evResolver(pathname);
       return resolved?.handler?.__websocket__ || {};
     }
@@ -2383,10 +2377,10 @@ function createFetch(globalOptions = {}) {
     }
     if (typeof context.request === "string") {
       if (context.options.baseURL) {
-        context.request = withBase(context.request, context.options.baseURL);
+        context.request = withBase$1(context.request, context.options.baseURL);
       }
       if (context.options.query) {
-        context.request = withQuery(context.request, context.options.query);
+        context.request = withQuery$1(context.request, context.options.query);
         delete context.options.query;
       }
       if ("query" in context.options) {
@@ -2461,7 +2455,7 @@ function createFetch(globalOptions = {}) {
       switch (responseType) {
         case "json": {
           const data = await context.response.text();
-          const parseFunction = context.options.parseResponse || destr;
+          const parseFunction = context.options.parseResponse || destr$1;
           context.response._data = parseFunction(data);
           break;
         }
@@ -2529,8 +2523,140 @@ function createNodeFetch() {
 const fetch = globalThis.fetch ? (...args) => globalThis.fetch(...args) : createNodeFetch();
 const Headers$1 = globalThis.Headers || s$1;
 const AbortController = globalThis.AbortController || i;
-const ofetch = createFetch({ fetch, Headers: Headers$1, AbortController });
-const $fetch = ofetch;
+createFetch({ fetch, Headers: Headers$1, AbortController });
+
+const storageKeyProperties = [
+  "has",
+  "hasItem",
+  "get",
+  "getItem",
+  "getItemRaw",
+  "set",
+  "setItem",
+  "setItemRaw",
+  "del",
+  "remove",
+  "removeItem",
+  "getMeta",
+  "setMeta",
+  "removeMeta",
+  "getKeys",
+  "clear",
+  "mount",
+  "unmount"
+];
+function prefixStorage(storage, base) {
+  base = normalizeBaseKey$1(base);
+  if (!base) {
+    return storage;
+  }
+  const nsStorage = { ...storage };
+  for (const property of storageKeyProperties) {
+    nsStorage[property] = (key = "", ...args) => (
+      // @ts-ignore
+      storage[property](base + key, ...args)
+    );
+  }
+  nsStorage.getKeys = (key = "", ...arguments_) => storage.getKeys(base + key, ...arguments_).then((keys) => keys.map((key2) => key2.slice(base.length)));
+  nsStorage.keys = nsStorage.getKeys;
+  nsStorage.getItems = async (items, commonOptions) => {
+    const prefixedItems = items.map(
+      (item) => typeof item === "string" ? base + item : { ...item, key: base + item.key }
+    );
+    const results = await storage.getItems(prefixedItems, commonOptions);
+    return results.map((entry) => ({
+      key: entry.key.slice(base.length),
+      value: entry.value
+    }));
+  };
+  nsStorage.setItems = async (items, commonOptions) => {
+    const prefixedItems = items.map((item) => ({
+      key: base + item.key,
+      value: item.value,
+      options: item.options
+    }));
+    return storage.setItems(prefixedItems, commonOptions);
+  };
+  return nsStorage;
+}
+function normalizeKey$2(key) {
+  if (!key) {
+    return "";
+  }
+  return key.split("?")[0]?.replace(/[/\\]/g, ":").replace(/:+/g, ":").replace(/^:|:$/g, "") || "";
+}
+function normalizeBaseKey$1(base) {
+  base = normalizeKey$2(base);
+  return base ? base + ":" : "";
+}
+
+const suspectProtoRx = /"(?:_|\\u0{2}5[Ff]){2}(?:p|\\u0{2}70)(?:r|\\u0{2}72)(?:o|\\u0{2}6[Ff])(?:t|\\u0{2}74)(?:o|\\u0{2}6[Ff])(?:_|\\u0{2}5[Ff]){2}"\s*:/;
+const suspectConstructorRx = /"(?:c|\\u0063)(?:o|\\u006[Ff])(?:n|\\u006[Ee])(?:s|\\u0073)(?:t|\\u0074)(?:r|\\u0072)(?:u|\\u0075)(?:c|\\u0063)(?:t|\\u0074)(?:o|\\u006[Ff])(?:r|\\u0072)"\s*:/;
+const JsonSigRx = /^\s*["[{]|^\s*-?\d{1,16}(\.\d{1,17})?([Ee][+-]?\d+)?\s*$/;
+function jsonParseTransform(key, value) {
+  if (key === "__proto__" || key === "constructor" && value && typeof value === "object" && "prototype" in value) {
+    warnKeyDropped(key);
+    return;
+  }
+  return value;
+}
+function warnKeyDropped(key) {
+  console.warn(`[destr] Dropping "${key}" key to prevent prototype pollution.`);
+}
+function destr(value, options = {}) {
+  if (typeof value !== "string") {
+    return value;
+  }
+  if (value[0] === '"' && value[value.length - 1] === '"' && value.indexOf("\\") === -1) {
+    return value.slice(1, -1);
+  }
+  const _value = value.trim();
+  if (_value.length <= 9) {
+    switch (_value.toLowerCase()) {
+      case "true": {
+        return true;
+      }
+      case "false": {
+        return false;
+      }
+      case "undefined": {
+        return void 0;
+      }
+      case "null": {
+        return null;
+      }
+      case "nan": {
+        return Number.NaN;
+      }
+      case "infinity": {
+        return Number.POSITIVE_INFINITY;
+      }
+      case "-infinity": {
+        return Number.NEGATIVE_INFINITY;
+      }
+    }
+  }
+  if (!JsonSigRx.test(value)) {
+    if (options.strict) {
+      throw new SyntaxError("[destr] Invalid JSON");
+    }
+    return value;
+  }
+  try {
+    if (suspectProtoRx.test(value) || suspectConstructorRx.test(value)) {
+      if (options.strict) {
+        throw new Error("[destr] Possible prototype pollution");
+      }
+      return JSON.parse(value, jsonParseTransform);
+    }
+    return JSON.parse(value);
+  } catch (error) {
+    if (options.strict) {
+      throw error;
+    }
+    return value;
+  }
+}
 
 function wrapToPromise(value) {
   if (!value || typeof value.then !== "function") {
@@ -2595,61 +2721,6 @@ function base64Encode(input) {
     return Buffer.from(input).toString("base64");
   }
   return globalThis.btoa(String.fromCodePoint(...input));
-}
-
-const storageKeyProperties = [
-  "has",
-  "hasItem",
-  "get",
-  "getItem",
-  "getItemRaw",
-  "set",
-  "setItem",
-  "setItemRaw",
-  "del",
-  "remove",
-  "removeItem",
-  "getMeta",
-  "setMeta",
-  "removeMeta",
-  "getKeys",
-  "clear",
-  "mount",
-  "unmount"
-];
-function prefixStorage(storage, base) {
-  base = normalizeBaseKey(base);
-  if (!base) {
-    return storage;
-  }
-  const nsStorage = { ...storage };
-  for (const property of storageKeyProperties) {
-    nsStorage[property] = (key = "", ...args) => (
-      // @ts-ignore
-      storage[property](base + key, ...args)
-    );
-  }
-  nsStorage.getKeys = (key = "", ...arguments_) => storage.getKeys(base + key, ...arguments_).then((keys) => keys.map((key2) => key2.slice(base.length)));
-  nsStorage.keys = nsStorage.getKeys;
-  nsStorage.getItems = async (items, commonOptions) => {
-    const prefixedItems = items.map(
-      (item) => typeof item === "string" ? base + item : { ...item, key: base + item.key }
-    );
-    const results = await storage.getItems(prefixedItems, commonOptions);
-    return results.map((entry) => ({
-      key: entry.key.slice(base.length),
-      value: entry.value
-    }));
-  };
-  nsStorage.setItems = async (items, commonOptions) => {
-    const prefixedItems = items.map((item) => ({
-      key: base + item.key,
-      value: item.value,
-      options: item.options
-    }));
-    return storage.setItems(prefixedItems, commonOptions);
-  };
-  return nsStorage;
 }
 function normalizeKey$1(key) {
   if (!key) {
@@ -3627,7 +3698,7 @@ function defineCachedEventHandler(handler, opts = defaultCacheOptions()) {
       const _path = event.node.req.originalUrl || event.node.req.url || event.path;
       let _pathname;
       try {
-        _pathname = escapeKey(decodeURI(parseURL(_path).pathname)).slice(0, 16) || "index";
+        _pathname = escapeKey(decodeURI(parseURL$1(_path).pathname)).slice(0, 16) || "index";
       } catch {
         _pathname = "-";
       }
@@ -3780,7 +3851,7 @@ function defineCachedEventHandler(handler, opts = defaultCacheOptions()) {
     },
     _opts
   );
-  return defineEventHandler(async (event) => {
+  return defineEventHandler$1(async (event) => {
     if (opts.headersOnly) {
       if (handleCacheHeaders(event, { maxAge: opts.maxAge })) {
         return;
@@ -3918,6 +3989,68 @@ function klona(x) {
 	return x;
 }
 
+function isPlainObject(value) {
+  if (value === null || typeof value !== "object") {
+    return false;
+  }
+  const prototype = Object.getPrototypeOf(value);
+  if (prototype !== null && prototype !== Object.prototype && Object.getPrototypeOf(prototype) !== null) {
+    return false;
+  }
+  if (Symbol.iterator in value) {
+    return false;
+  }
+  if (Symbol.toStringTag in value) {
+    return Object.prototype.toString.call(value) === "[object Module]";
+  }
+  return true;
+}
+
+function _defu(baseObject, defaults, namespace = ".", merger) {
+  if (!isPlainObject(defaults)) {
+    return _defu(baseObject, {}, namespace, merger);
+  }
+  const object = { ...defaults };
+  for (const key of Object.keys(baseObject)) {
+    if (key === "__proto__" || key === "constructor") {
+      continue;
+    }
+    const value = baseObject[key];
+    if (value === null || value === void 0) {
+      continue;
+    }
+    if (merger && merger(object, key, value, namespace)) {
+      continue;
+    }
+    if (Array.isArray(value) && Array.isArray(object[key])) {
+      object[key] = [...value, ...object[key]];
+    } else if (isPlainObject(value) && isPlainObject(object[key])) {
+      object[key] = _defu(
+        value,
+        object[key],
+        (namespace ? `${namespace}.` : "") + key.toString(),
+        merger
+      );
+    } else {
+      object[key] = value;
+    }
+  }
+  return object;
+}
+function createDefu(merger) {
+  return (...arguments_) => (
+    // eslint-disable-next-line unicorn/no-array-reduce
+    arguments_.reduce((p, c) => _defu(p, c, "", merger), {})
+  );
+}
+const defu = createDefu();
+const defuFn = createDefu((object, key, currentValue) => {
+  if (object[key] !== void 0 && typeof currentValue === "function") {
+    object[key] = currentValue(object[key]);
+    return true;
+  }
+});
+
 const inlineAppConfig = {
   "nuxt": {}
 };
@@ -3983,7 +4116,7 @@ function snakeCase(str) {
 
 function getEnv(key, opts) {
   const envKey = snakeCase(key).toUpperCase();
-  return destr(
+  return destr$1(
     process.env[opts.prefix + envKey] ?? process.env[opts.altPrefix + envKey]
   );
 }
@@ -4022,7 +4155,7 @@ function _expandFromEnv(value) {
 const _inlineRuntimeConfig = {
   "app": {
     "baseURL": "/Autitude/",
-    "buildId": "7a171b54-5f25-447d-aa98-015814ccdc15",
+    "buildId": "387fdbbd-cd6f-4f6c-b857-3780e3bc1531",
     "buildAssetsDir": "/_nuxt/",
     "cdnURL": ""
   },
@@ -4279,10 +4412,10 @@ function createRouteRulesHandler(ctx) {
         } else if (targetPath.startsWith("//")) {
           targetPath = targetPath.replace(/^\/+/, "/");
         }
-        target = joinURL(target.slice(0, -3), targetPath);
+        target = joinURL$1(target.slice(0, -3), targetPath);
       } else if (event.path.includes("?")) {
         const query = getQuery$1(event.path);
-        target = withQuery(target, query);
+        target = withQuery$1(target, query);
       }
       return sendRedirect(event, target, routeRules.redirect.statusCode);
     }
@@ -4299,10 +4432,10 @@ function createRouteRulesHandler(ctx) {
         } else if (targetPath.startsWith("//")) {
           targetPath = targetPath.replace(/^\/+/, "/");
         }
-        target = joinURL(target.slice(0, -3), targetPath);
+        target = joinURL$1(target.slice(0, -3), targetPath);
       } else if (event.path.includes("?")) {
         const query = getQuery$1(event.path);
-        target = withQuery(target, query);
+        target = withQuery$1(target, query);
       }
       return proxyRequest(event, target, {
         fetch: ctx.localFetch,
@@ -4321,7 +4454,7 @@ function getRouteRules(event) {
   return event.context._nitro.routeRules;
 }
 function getRouteRulesForPath(path) {
-  return defu({}, ..._routeRulesMatcher.matchAll(path).reverse());
+  return defu$1({}, ..._routeRulesMatcher.matchAll(path).reverse());
 }
 
 function _captureError(error, type) {
@@ -4409,9 +4542,13 @@ const errorHandler$0 = (async function errorhandler(error, event, { defaultHandl
 	
 	const reqHeaders = getRequestHeaders(event);
 	
-	const isRenderingError = event.path.startsWith("/__nuxt_error") || !!reqHeaders["x-nuxt-error"];
+	const isRenderingError = event.path.startsWith("/__nuxt_error") || !!reqHeaders["x-nuxt-error"] || !!event.context.nuxt?.["~rendering-error"];
+	if (!isRenderingError) {
+		event.context.nuxt ||= {};
+		event.context.nuxt["~rendering-error"] = true;
+	}
 	
-	const res = isRenderingError ? null : await useNitroApp().localFetch(withQuery(joinURL(useRuntimeConfig(event).app.baseURL, "/__nuxt_error"), errorObject), {
+	const res = isRenderingError ? null : await useNitroApp().localFetch(withQuery$1(joinURL$1(useRuntimeConfig(event).app.baseURL, "/__nuxt_error"), errorObject), {
 		headers: {
 			...reqHeaders,
 			"x-nuxt-error": "true"
@@ -4523,415 +4660,436 @@ async function errorHandler(error, event) {
 
 const script = "\"use strict\";(()=>{const t=window,e=document.documentElement,c=[\"dark\",\"light\"],n=getStorageValue(\"localStorage\",\"nuxt-color-mode\")||\"light\";let i=n===\"system\"?u():n;const r=e.getAttribute(\"data-color-mode-forced\");r&&(i=r),l(i),t[\"__NUXT_COLOR_MODE__\"]={preference:n,value:i,getColorScheme:u,addColorScheme:l,removeColorScheme:d};function l(o){const s=\"\"+o+\"\",a=\"\";e.classList?e.classList.add(s):e.className+=\" \"+s,a&&e.setAttribute(\"data-\"+a,o)}function d(o){const s=\"\"+o+\"\",a=\"\";e.classList?e.classList.remove(s):e.className=e.className.replace(new RegExp(s,\"g\"),\"\"),a&&e.removeAttribute(\"data-\"+a)}function f(o){return t.matchMedia(\"(prefers-color-scheme\"+o+\")\")}function u(){if(t.matchMedia&&f(\"\").media!==\"not all\"){for(const o of c)if(f(\":\"+o).matches)return o}return\"light\"}})();function getStorageValue(t,e){switch(t){case\"localStorage\":return window.localStorage.getItem(e);case\"sessionStorage\":return window.sessionStorage.getItem(e);case\"cookie\":return getCookie(e);default:return null}}function getCookie(t){const c=(\"; \"+window.document.cookie).split(\"; \"+t+\"=\");if(c.length===2)return c.pop()?.split(\";\").shift()}";
 
-const _CQ6zc0c08u3gh3O3Y3tJwGhlhAfBuRdnNpkrlOdUhM = (function(nitro) {
+const _n2vttsND8II5tenQR8sGAP3GzNfr6SFrAjaxgQ0Toc = (function(nitro) {
   nitro.hooks.hook("render:html", (htmlContext) => {
     htmlContext.head.push(`<script>${script}<\/script>`);
   });
 });
 
 const plugins = [
-  _CQ6zc0c08u3gh3O3Y3tJwGhlhAfBuRdnNpkrlOdUhM
+  _n2vttsND8II5tenQR8sGAP3GzNfr6SFrAjaxgQ0Toc
 ];
 
 const assets = {
-  "/_payload.json": {
-    "type": "application/json;charset=utf-8",
-    "etag": "\"45-RzYnkeDCfz4i/jTHsHTd9CeuQHE\"",
-    "mtime": "2026-05-11T07:38:45.625Z",
-    "size": 69,
-    "path": "../public/_payload.json"
-  },
   "/_redirects": {
     "type": "text/plain; charset=utf-8",
     "etag": "\"17-XhAJEZACACf1E4TpyZvGieSw1AY\"",
-    "mtime": "2026-05-11T07:38:45.680Z",
+    "mtime": "2026-06-04T21:35:23.896Z",
     "size": 23,
     "path": "../public/_redirects"
   },
   "/favicon-png.svg": {
     "type": "image/svg+xml",
     "etag": "\"c7-L9GCYawR71ifKa1+wxD8rtdYIvI\"",
-    "mtime": "2026-05-11T07:38:45.680Z",
+    "mtime": "2026-06-04T21:35:23.896Z",
     "size": 199,
     "path": "../public/favicon-png.svg"
   },
   "/favicon.svg": {
     "type": "image/svg+xml",
-    "etag": "\"21c-HKMLryqWXHTxT+ZF8D4dJToNfT4\"",
-    "mtime": "2026-05-11T07:38:45.681Z",
-    "size": 540,
+    "etag": "\"21d-zvcFpL7zclX1//zOmWUaWDUEXCg\"",
+    "mtime": "2026-06-04T21:35:23.896Z",
+    "size": 541,
     "path": "../public/favicon.svg"
+  },
+  "/_payload.json": {
+    "type": "application/json;charset=utf-8",
+    "etag": "\"45-Un3zLihTv1sBJFlaTyTmz+pR7ww\"",
+    "mtime": "2026-06-04T21:35:23.845Z",
+    "size": 69,
+    "path": "../public/_payload.json"
   },
   "/index.html": {
     "type": "text/html;charset=utf-8",
-    "etag": "\"177e2-T96wYnCLvWdPB7TOBRjLj4Ajri8\"",
-    "mtime": "2026-05-11T07:38:45.609Z",
-    "size": 96226,
+    "etag": "\"19835-huN+KeCP71pUKCZwCp5SHzg4i0k\"",
+    "mtime": "2026-06-04T21:35:23.830Z",
+    "size": 104501,
     "path": "../public/index.html"
   },
   "/robots.txt": {
     "type": "text/plain; charset=utf-8",
     "etag": "\"8f-uy/qmXbMA6qdQQaMQZlVqptM1nA\"",
-    "mtime": "2026-05-11T07:38:45.681Z",
+    "mtime": "2026-06-04T21:35:23.897Z",
     "size": 143,
     "path": "../public/robots.txt"
   },
   "/sitemap.xml": {
     "type": "application/xml",
     "etag": "\"4ca-JAjC5IZ7jJdrrCaW7j97g7Id24o\"",
-    "mtime": "2026-05-11T07:38:45.681Z",
+    "mtime": "2026-06-04T21:35:23.897Z",
     "size": 1226,
     "path": "../public/sitemap.xml"
+  },
+  "/_nuxt/B-XkQxx-.js": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"488-pWCMJ1mcBBQ1Ue3XQ38tjpk5Y78\"",
+    "mtime": "2026-06-04T21:35:23.879Z",
+    "size": 1160,
+    "path": "../public/_nuxt/B-XkQxx-.js"
+  },
+  "/_nuxt/BZtkTLOY.js": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"129-Jmz6y1QqG6gVwziUuYINixqnv6U\"",
+    "mtime": "2026-06-04T21:35:23.879Z",
+    "size": 297,
+    "path": "../public/_nuxt/BZtkTLOY.js"
+  },
+  "/_nuxt/BhSRIyxR.js": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"3a1-SsiDzLZ3W9flYa2zl2Z5gNjZl7w\"",
+    "mtime": "2026-06-04T21:35:23.879Z",
+    "size": 929,
+    "path": "../public/_nuxt/BhSRIyxR.js"
+  },
+  "/_nuxt/Bo_Yu506.js": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"13d3b-D14oYTO9IJYlYaFzk4Iyb3xWIAU\"",
+    "mtime": "2026-06-04T21:35:23.880Z",
+    "size": 81211,
+    "path": "../public/_nuxt/Bo_Yu506.js"
+  },
+  "/_nuxt/BstO1Po3.js": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"1c16-22sZWPCp8EDcTIJ+dHi1VVXa7s0\"",
+    "mtime": "2026-06-04T21:35:23.880Z",
+    "size": 7190,
+    "path": "../public/_nuxt/BstO1Po3.js"
+  },
+  "/_nuxt/C1iq16sc.js": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"2413-bPD3Qa/6u4z+S77w2tUCmXIzGJE\"",
+    "mtime": "2026-06-04T21:35:23.880Z",
+    "size": 9235,
+    "path": "../public/_nuxt/C1iq16sc.js"
+  },
+  "/_nuxt/C2nc0NNZ.js": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"28ef-VtkfI0P8rJWgIlFRC3IOM6qMR08\"",
+    "mtime": "2026-06-04T21:35:23.880Z",
+    "size": 10479,
+    "path": "../public/_nuxt/C2nc0NNZ.js"
+  },
+  "/_nuxt/D-EIuVK7.js": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"f9-2eVEKHZ0bTXfQRK0XF62CYLXNr8\"",
+    "mtime": "2026-06-04T21:35:23.880Z",
+    "size": 249,
+    "path": "../public/_nuxt/D-EIuVK7.js"
+  },
+  "/_nuxt/DDBYb3CY.js": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"21d4-MK8GgFp7IZb/gtxrrVCnPlHbIxI\"",
+    "mtime": "2026-06-04T21:35:23.880Z",
+    "size": 8660,
+    "path": "../public/_nuxt/DDBYb3CY.js"
+  },
+  "/_nuxt/DNRbKA_i.js": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"139d-N23gUD03oGKI5qazIvOeD46B/jk\"",
+    "mtime": "2026-06-04T21:35:23.881Z",
+    "size": 5021,
+    "path": "../public/_nuxt/DNRbKA_i.js"
+  },
+  "/_nuxt/DfXaHm_s.js": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"1a08-yERClyYBax/yw6FFDJyuMAAa9L8\"",
+    "mtime": "2026-06-04T21:35:23.882Z",
+    "size": 6664,
+    "path": "../public/_nuxt/DfXaHm_s.js"
+  },
+  "/_nuxt/Dr73crav.js": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"331bc-YtlgZ6XTm0ThFbxpJM14crvlPf4\"",
+    "mtime": "2026-06-04T21:35:23.883Z",
+    "size": 209340,
+    "path": "../public/_nuxt/Dr73crav.js"
+  },
+  "/_nuxt/Dh5EGfCn.js": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"16f-7pExywHLIPJOfbfWasJ0X778gCI\"",
+    "mtime": "2026-06-04T21:35:23.883Z",
+    "size": 367,
+    "path": "../public/_nuxt/Dh5EGfCn.js"
+  },
+  "/_nuxt/DsIsSm4U.js": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"d2a-TOqZLNUFC6sg+OyR2sKxVNQ7J08\"",
+    "mtime": "2026-06-04T21:35:23.884Z",
+    "size": 3370,
+    "path": "../public/_nuxt/DsIsSm4U.js"
   },
   "/small-logo.png": {
     "type": "image/png",
     "etag": "\"5fe9b-DiOeBFaSk+gc06iYjKEXsek0w08\"",
-    "mtime": "2026-05-11T07:38:45.681Z",
+    "mtime": "2026-06-04T21:35:23.899Z",
     "size": 392859,
     "path": "../public/small-logo.png"
   },
-  "/_nuxt/37ZepFZm.js": {
+  "/_nuxt/Ct9OFubF.js": {
     "type": "text/javascript; charset=utf-8",
-    "etag": "\"aa6-xVsNsffHn68tY76i449TFiTVLDg\"",
-    "mtime": "2026-05-11T07:38:45.671Z",
-    "size": 2726,
-    "path": "../public/_nuxt/37ZepFZm.js"
+    "etag": "\"7a043-mDXz5W6V3TrouH8oYhCVlKTLGHE\"",
+    "mtime": "2026-06-04T21:35:23.880Z",
+    "size": 499779,
+    "path": "../public/_nuxt/Ct9OFubF.js"
   },
-  "/_nuxt/B3Z-0jVW.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"d2a-mv9dZGNKzO+m/cBob+pOkoruapU\"",
-    "mtime": "2026-05-11T07:38:45.672Z",
-    "size": 3370,
-    "path": "../public/_nuxt/B3Z-0jVW.js"
-  },
-  "/_nuxt/B3ri-eND.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"f9-VheGVjKgAlgfpS3/8rhrYm3vgoo\"",
-    "mtime": "2026-05-11T07:38:45.671Z",
-    "size": 249,
-    "path": "../public/_nuxt/B3ri-eND.js"
-  },
-  "/_nuxt/BAPiqhvb.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"f2c2-pqxqAl21H5XFljfWy5MMhyBf1g0\"",
-    "mtime": "2026-05-11T07:38:45.671Z",
-    "size": 62146,
-    "path": "../public/_nuxt/BAPiqhvb.js"
-  },
-  "/_nuxt/BJcdAbCY.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"3ab-Na6opA2xlTfTq63HvApNSmQfi90\"",
-    "mtime": "2026-05-11T07:38:45.671Z",
-    "size": 939,
-    "path": "../public/_nuxt/BJcdAbCY.js"
-  },
-  "/_nuxt/BhVULNYo.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"e7c-We3zZ/CZ33OMYRc4S9vmMY1MxC8\"",
-    "mtime": "2026-05-11T07:38:45.671Z",
-    "size": 3708,
-    "path": "../public/_nuxt/BhVULNYo.js"
-  },
-  "/_nuxt/BiCKhRFI.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"27f4-lXPHdQ8u/B7aN6OZu02RTSjghoM\"",
-    "mtime": "2026-05-11T07:38:45.671Z",
-    "size": 10228,
-    "path": "../public/_nuxt/BiCKhRFI.js"
-  },
-  "/_nuxt/C8X9vncA.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"5af-oy9OB2n+thXv8JlbGB3WE1+2rX0\"",
-    "mtime": "2026-05-11T07:38:45.672Z",
-    "size": 1455,
-    "path": "../public/_nuxt/C8X9vncA.js"
-  },
-  "/_nuxt/CKBYV8QG.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"d9-pwEugVKcpnkj88YT0NNaMSrmf+Y\"",
-    "mtime": "2026-05-11T07:38:45.672Z",
-    "size": 217,
-    "path": "../public/_nuxt/CKBYV8QG.js"
-  },
-  "/_nuxt/C_bT3LFb.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"a17-L7RivUjlgxWXf4w/nuFvlI2bg1Q\"",
-    "mtime": "2026-05-11T07:38:45.672Z",
-    "size": 2583,
-    "path": "../public/_nuxt/C_bT3LFb.js"
-  },
-  "/_nuxt/D40uXuTL.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"3eb-Ovk2ityRbllOxBIlolkasJEmtvM\"",
-    "mtime": "2026-05-11T07:38:45.672Z",
-    "size": 1003,
-    "path": "../public/_nuxt/D40uXuTL.js"
-  },
-  "/_nuxt/DTeytFos.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"219b-CVwTSieUFVai8Y5QfIne3Gro5Dc\"",
-    "mtime": "2026-05-11T07:38:45.672Z",
-    "size": 8603,
-    "path": "../public/_nuxt/DTeytFos.js"
-  },
-  "/_nuxt/DqG9-URk.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"ff5-z/QJNQhVtGfBj79XZSNhLBWbXAg\"",
-    "mtime": "2026-05-11T07:38:45.672Z",
-    "size": 4085,
-    "path": "../public/_nuxt/DqG9-URk.js"
-  },
-  "/_nuxt/C5Xh6ySZ.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"32163-/XqsWDoo8gZ+5Wpd3leruPogZFY\"",
-    "mtime": "2026-05-11T07:38:45.672Z",
-    "size": 205155,
-    "path": "../public/_nuxt/C5Xh6ySZ.js"
-  },
-  "/_nuxt/DqqgAM_n.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"1b8c-Wm86xWc023iaxHxMrZ8YLZVxtmA\"",
-    "mtime": "2026-05-11T07:38:45.672Z",
-    "size": 7052,
-    "path": "../public/_nuxt/DqqgAM_n.js"
-  },
-  "/_nuxt/ES1YFu5t.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"7a003-Z7DfXX1U8+E73o2li+QoUCeYbhE\"",
-    "mtime": "2026-05-11T07:38:45.672Z",
-    "size": 499715,
-    "path": "../public/_nuxt/ES1YFu5t.js"
+  "/full-logo-no-bg.png": {
+    "type": "image/png",
+    "etag": "\"9ffad-zl451o+vNLIcoX/D0AftwbkWKKw\"",
+    "mtime": "2026-06-04T21:35:23.897Z",
+    "size": 655277,
+    "path": "../public/full-logo-no-bg.png"
   },
   "/full-logo.png": {
     "type": "image/png",
     "etag": "\"a4c82-vtV9YTllxbQh/j09leaTkV/ap2k\"",
-    "mtime": "2026-05-11T07:38:45.680Z",
+    "mtime": "2026-06-04T21:35:23.896Z",
     "size": 674946,
     "path": "../public/full-logo.png"
   },
-  "/_nuxt/IVE2Kz1T.js": {
+  "/_nuxt/DvcEPhkI.js": {
     "type": "text/javascript; charset=utf-8",
-    "etag": "\"1642-9G7eM5BiXV0QM21bg5Uh8tLdIjc\"",
-    "mtime": "2026-05-11T07:38:45.673Z",
-    "size": 5698,
-    "path": "../public/_nuxt/IVE2Kz1T.js"
+    "etag": "\"42d-O+u0dqcwtEvlCtRKzoQDS+EwUsg\"",
+    "mtime": "2026-06-04T21:35:23.884Z",
+    "size": 1069,
+    "path": "../public/_nuxt/DvcEPhkI.js"
   },
-  "/_nuxt/_...BeQcnW4n.css": {
+  "/_nuxt/FACMpYIG.js": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"e7c-+8+70hGneWafUXLYnFDCawhegKk\"",
+    "mtime": "2026-06-04T21:35:23.885Z",
+    "size": 3708,
+    "path": "../public/_nuxt/FACMpYIG.js"
+  },
+  "/_nuxt/LmM3Cn33.js": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"c66-eiKkZLeN3iupbqEJTRX5MlupDRo\"",
+    "mtime": "2026-06-04T21:35:23.886Z",
+    "size": 3174,
+    "path": "../public/_nuxt/LmM3Cn33.js"
+  },
+  "/_nuxt/Yw5a3fKg.js": {
+    "type": "text/javascript; charset=utf-8",
+    "etag": "\"106fb-7CjctO+AtzNG6Xo5QK6U85qe0m0\"",
+    "mtime": "2026-06-04T21:35:23.886Z",
+    "size": 67323,
+    "path": "../public/_nuxt/Yw5a3fKg.js"
+  },
+  "/_nuxt/_...C_Uu2CkW.css": {
     "type": "text/css; charset=utf-8",
-    "etag": "\"337-hSLh8HrHXPo7Po2X79rU3W4cG34\"",
-    "mtime": "2026-05-11T07:38:45.673Z",
+    "etag": "\"337-Or5HH3/4BRuu2cs0UGRj/fLEUCc\"",
+    "mtime": "2026-06-04T21:35:23.886Z",
     "size": 823,
-    "path": "../public/_nuxt/_...BeQcnW4n.css"
+    "path": "../public/_nuxt/_...C_Uu2CkW.css"
   },
-  "/_nuxt/_slug_.CWvGWWjE.css": {
+  "/_nuxt/_slug_.BQg2zAju.css": {
     "type": "text/css; charset=utf-8",
-    "etag": "\"b0-NBLdHENAUXHvXJIriR3c20Ssuwc\"",
-    "mtime": "2026-05-11T07:38:45.673Z",
+    "etag": "\"b0-FKkxqAY6Pq0qzAscOIOEPPH53w4\"",
+    "mtime": "2026-06-04T21:35:23.886Z",
     "size": 176,
-    "path": "../public/_nuxt/_slug_.CWvGWWjE.css"
+    "path": "../public/_nuxt/_slug_.BQg2zAju.css"
   },
-  "/_nuxt/agendar.B9PCDUee.css": {
+  "/_nuxt/contato.CnxraV18.css": {
     "type": "text/css; charset=utf-8",
-    "etag": "\"14df-6Zo+0N4zSeCWgq1jrQNimtTjU5I\"",
-    "mtime": "2026-05-11T07:38:45.673Z",
-    "size": 5343,
-    "path": "../public/_nuxt/agendar.B9PCDUee.css"
+    "etag": "\"f14-yeeQoXjtBw8H9Reu9a2H5x+bn0M\"",
+    "mtime": "2026-06-04T21:35:23.887Z",
+    "size": 3860,
+    "path": "../public/_nuxt/contato.CnxraV18.css"
   },
-  "/_nuxt/contato.CVg54LqV.css": {
+  "/_nuxt/agendar.CwcNfwBT.css": {
     "type": "text/css; charset=utf-8",
-    "etag": "\"ef5-n9x8okMdmqwPnYqe8P9W54v1S2Y\"",
-    "mtime": "2026-05-11T07:38:45.673Z",
-    "size": 3829,
-    "path": "../public/_nuxt/contato.CVg54LqV.css"
+    "etag": "\"152a-9l9Ttt93jbGxdFuVP62nwIK++Tw\"",
+    "mtime": "2026-06-04T21:35:23.887Z",
+    "size": 5418,
+    "path": "../public/_nuxt/agendar.CwcNfwBT.css"
   },
-  "/_nuxt/entry.Dk7BIzmW.css": {
+  "/_nuxt/entry.BNT6JVWr.css": {
     "type": "text/css; charset=utf-8",
-    "etag": "\"551c-RBYtZN6Rfi8RW570D2YnIaFgyaI\"",
-    "mtime": "2026-05-11T07:38:45.673Z",
-    "size": 21788,
-    "path": "../public/_nuxt/entry.Dk7BIzmW.css"
+    "etag": "\"568e-9S4dUgxiJhpMqkjMl6x8wEns3bk\"",
+    "mtime": "2026-06-04T21:35:23.887Z",
+    "size": 22158,
+    "path": "../public/_nuxt/entry.BNT6JVWr.css"
   },
-  "/_nuxt/equipe.BS0-kbQo.css": {
+  "/_nuxt/equipe.DnF17zjB.css": {
     "type": "text/css; charset=utf-8",
-    "etag": "\"f9a-dJH4RWzidfbaRDCrKpoKz1Nkc+g\"",
-    "mtime": "2026-05-11T07:38:45.673Z",
-    "size": 3994,
-    "path": "../public/_nuxt/equipe.BS0-kbQo.css"
+    "etag": "\"109a-KnaBACAjpN2eHtJH0ztRcmUnszI\"",
+    "mtime": "2026-06-04T21:35:23.888Z",
+    "size": 4250,
+    "path": "../public/_nuxt/equipe.DnF17zjB.css"
   },
-  "/_nuxt/error-404.DL_4WIao.css": {
+  "/_nuxt/error-404.CQudxkU6.css": {
     "type": "text/css; charset=utf-8",
-    "etag": "\"dca-KnjyV0UbpsrliiJzZx69defY74k\"",
-    "mtime": "2026-05-11T07:38:45.673Z",
+    "etag": "\"dca-2wtnOKqCryoRDrzs6FZXa13dG3w\"",
+    "mtime": "2026-06-04T21:35:23.888Z",
     "size": 3530,
-    "path": "../public/_nuxt/error-404.DL_4WIao.css"
+    "path": "../public/_nuxt/error-404.CQudxkU6.css"
   },
-  "/_nuxt/error-500.I1Dtv2V5.css": {
+  "/_nuxt/faq.C38mFhjV.css": {
     "type": "text/css; charset=utf-8",
-    "etag": "\"75a-vEGyJqldBVJrnMfcLsrGaHcxYl0\"",
-    "mtime": "2026-05-11T07:38:45.674Z",
+    "etag": "\"1597-ww6OkI94ybffaImtBpm+WCJrATE\"",
+    "mtime": "2026-06-04T21:35:23.889Z",
+    "size": 5527,
+    "path": "../public/_nuxt/faq.C38mFhjV.css"
+  },
+  "/_nuxt/error-500.mRm3rbDl.css": {
+    "type": "text/css; charset=utf-8",
+    "etag": "\"75a-lYF8rPg78FQfT2asC++QKy5p748\"",
+    "mtime": "2026-06-04T21:35:23.888Z",
     "size": 1882,
-    "path": "../public/_nuxt/error-500.I1Dtv2V5.css"
+    "path": "../public/_nuxt/error-500.mRm3rbDl.css"
   },
-  "/_nuxt/eshlKjVU.js": {
+  "/_nuxt/hY5muMzd.js": {
     "type": "text/javascript; charset=utf-8",
-    "etag": "\"1a11-I5oWkLpka/Yk+Aogv4iikJC0o78\"",
-    "mtime": "2026-05-11T07:38:45.674Z",
-    "size": 6673,
-    "path": "../public/_nuxt/eshlKjVU.js"
+    "etag": "\"b69-LQ3yhpzbvyXnclwF7pFSPnikDgs\"",
+    "mtime": "2026-06-04T21:35:23.889Z",
+    "size": 2921,
+    "path": "../public/_nuxt/hY5muMzd.js"
   },
-  "/_nuxt/faq.CY-4yU3Z.css": {
+  "/_nuxt/index.9RWoghu_.css": {
     "type": "text/css; charset=utf-8",
-    "etag": "\"14be-LWTYXtOcr1OAcTZ74i69W5BOtzA\"",
-    "mtime": "2026-05-11T07:38:45.674Z",
-    "size": 5310,
-    "path": "../public/_nuxt/faq.CY-4yU3Z.css"
+    "etag": "\"282e-c7ezMUagv8+8RzMui46bAg3rfL4\"",
+    "mtime": "2026-06-04T21:35:23.889Z",
+    "size": 10286,
+    "path": "../public/_nuxt/index.9RWoghu_.css"
   },
-  "/_nuxt/index._lDaBpyS.css": {
+  "/_nuxt/privacidade.Bt8s7MSE.css": {
     "type": "text/css; charset=utf-8",
-    "etag": "\"232c-0APBLy3xJ1w6fIvZU90NocqKqGw\"",
-    "mtime": "2026-05-11T07:38:45.674Z",
-    "size": 9004,
-    "path": "../public/_nuxt/index._lDaBpyS.css"
+    "etag": "\"3bb-BlsPgJhUIvJPBvlNtdo8buGxvJo\"",
+    "mtime": "2026-06-04T21:35:23.890Z",
+    "size": 955,
+    "path": "../public/_nuxt/privacidade.Bt8s7MSE.css"
   },
-  "/_nuxt/privacidade.CS2BfIzM.css": {
+  "/_nuxt/servicos.oZIEUuCC.css": {
     "type": "text/css; charset=utf-8",
-    "etag": "\"3b8-FkDeNEsavuVQJJFVQ86KyNnR1H0\"",
-    "mtime": "2026-05-11T07:38:45.674Z",
-    "size": 952,
-    "path": "../public/_nuxt/privacidade.CS2BfIzM.css"
+    "etag": "\"1058-vY9c7p+I+Kw07S0iW2Y3AZYu3j8\"",
+    "mtime": "2026-06-04T21:35:23.890Z",
+    "size": 4184,
+    "path": "../public/_nuxt/servicos.oZIEUuCC.css"
   },
-  "/_nuxt/servicos.DzgrFbCy.css": {
+  "/_nuxt/sobre.C6oln_3U.css": {
     "type": "text/css; charset=utf-8",
-    "etag": "\"f6f-oXJrDkJTC4S3WiJNevyv14Yf/mo\"",
-    "mtime": "2026-05-11T07:38:45.674Z",
-    "size": 3951,
-    "path": "../public/_nuxt/servicos.DzgrFbCy.css"
-  },
-  "/_nuxt/sobre.CLVHQQ-j.css": {
-    "type": "text/css; charset=utf-8",
-    "etag": "\"ec5-wPyFCOAtZx0VsMgW0My9c0S15jA\"",
-    "mtime": "2026-05-11T07:38:45.674Z",
-    "size": 3781,
-    "path": "../public/_nuxt/sobre.CLVHQQ-j.css"
+    "etag": "\"3553-bKRqxZ8Ey3Tm1vcZVf28dkwcE7w\"",
+    "mtime": "2026-06-04T21:35:23.891Z",
+    "size": 13651,
+    "path": "../public/_nuxt/sobre.C6oln_3U.css"
   },
   "/agendar/_payload.json": {
     "type": "application/json;charset=utf-8",
-    "etag": "\"45-KtdwOqCBVsC19l1OOiBaWlkXVRc\"",
-    "mtime": "2026-05-11T07:38:45.625Z",
+    "etag": "\"45-ijRN9kbdy7aCaTncEWPbrAM1W4Q\"",
+    "mtime": "2026-06-04T21:35:23.845Z",
     "size": 69,
     "path": "../public/agendar/_payload.json"
   },
-  "/_nuxt/mWZEbNDx.js": {
-    "type": "text/javascript; charset=utf-8",
-    "etag": "\"13d3b-rH0sQeYFfF/cd3RIwOu5CtIah+s\"",
-    "mtime": "2026-05-11T07:38:45.674Z",
-    "size": 81211,
-    "path": "../public/_nuxt/mWZEbNDx.js"
-  },
   "/agendar/index.html": {
     "type": "text/html;charset=utf-8",
-    "etag": "\"140e5-rOeQDp3s0FYms9FYAe9TTwhbCDU\"",
-    "mtime": "2026-05-11T07:38:45.609Z",
-    "size": 82149,
+    "etag": "\"15115-vu/Y97zPb7vcMHG1uPL7aS0UdI0\"",
+    "mtime": "2026-06-04T21:35:23.830Z",
+    "size": 86293,
     "path": "../public/agendar/index.html"
-  },
-  "/equipe/_payload.json": {
-    "type": "application/json;charset=utf-8",
-    "etag": "\"45-krLySE00ipnQrzrHwgUi29N1M44\"",
-    "mtime": "2026-05-11T07:38:45.625Z",
-    "size": 69,
-    "path": "../public/equipe/_payload.json"
-  },
-  "/equipe/index.html": {
-    "type": "text/html;charset=utf-8",
-    "etag": "\"140ae-+DeMbWUHRESqB7qsSXfWXslGDEc\"",
-    "mtime": "2026-05-11T07:38:45.609Z",
-    "size": 82094,
-    "path": "../public/equipe/index.html"
   },
   "/contato/_payload.json": {
     "type": "application/json;charset=utf-8",
-    "etag": "\"45-krLySE00ipnQrzrHwgUi29N1M44\"",
-    "mtime": "2026-05-11T07:38:45.625Z",
+    "etag": "\"45-ijRN9kbdy7aCaTncEWPbrAM1W4Q\"",
+    "mtime": "2026-06-04T21:35:23.845Z",
     "size": 69,
     "path": "../public/contato/_payload.json"
   },
   "/contato/index.html": {
     "type": "text/html;charset=utf-8",
-    "etag": "\"14591-I/7ygg5LVX3BZC7eCqir2Mg3DiI\"",
-    "mtime": "2026-05-11T07:38:45.609Z",
-    "size": 83345,
+    "etag": "\"15623-eok1oaEMPYo1oM/kd6+i4MowtJU\"",
+    "mtime": "2026-06-04T21:35:23.830Z",
+    "size": 87587,
     "path": "../public/contato/index.html"
+  },
+  "/equipe/_payload.json": {
+    "type": "application/json;charset=utf-8",
+    "etag": "\"45-atcYNJxDgF+fEd+EykkUrsx30qY\"",
+    "mtime": "2026-06-04T21:35:23.845Z",
+    "size": 69,
+    "path": "../public/equipe/_payload.json"
+  },
+  "/equipe/index.html": {
+    "type": "text/html;charset=utf-8",
+    "etag": "\"1524b-8sc44n9sJuYuuU20m2rlV+4bQ9w\"",
+    "mtime": "2026-06-04T21:35:23.830Z",
+    "size": 86603,
+    "path": "../public/equipe/index.html"
   },
   "/faq/_payload.json": {
     "type": "application/json;charset=utf-8",
-    "etag": "\"45-KtdwOqCBVsC19l1OOiBaWlkXVRc\"",
-    "mtime": "2026-05-11T07:38:45.625Z",
+    "etag": "\"45-ijRN9kbdy7aCaTncEWPbrAM1W4Q\"",
+    "mtime": "2026-06-04T21:35:23.845Z",
     "size": 69,
     "path": "../public/faq/_payload.json"
   },
   "/faq/index.html": {
     "type": "text/html;charset=utf-8",
-    "etag": "\"16394-3Blc6mif5Pis7H53HqeUC3o3rLE\"",
-    "mtime": "2026-05-11T07:38:45.609Z",
-    "size": 91028,
+    "etag": "\"1770d-3Xr3x7k45Dv7+AXQsoKwv2QV904\"",
+    "mtime": "2026-06-04T21:35:23.830Z",
+    "size": 96013,
     "path": "../public/faq/index.html"
   },
   "/privacidade/_payload.json": {
     "type": "application/json;charset=utf-8",
-    "etag": "\"45-KtdwOqCBVsC19l1OOiBaWlkXVRc\"",
-    "mtime": "2026-05-11T07:38:45.625Z",
+    "etag": "\"45-n1TnWIii0JYdIYEPXKl7udUQX8k\"",
+    "mtime": "2026-06-04T21:35:23.845Z",
     "size": 69,
     "path": "../public/privacidade/_payload.json"
   },
   "/privacidade/index.html": {
     "type": "text/html;charset=utf-8",
-    "etag": "\"12450-Ju+WI6iZbRwdfkP3xfRy4d967QI\"",
-    "mtime": "2026-05-11T07:38:45.609Z",
-    "size": 74832,
+    "etag": "\"1346f-mGuO4y1ksyFmh8sRArdjuzJgCKY\"",
+    "mtime": "2026-06-04T21:35:23.830Z",
+    "size": 78959,
     "path": "../public/privacidade/index.html"
   },
   "/servicos/_payload.json": {
     "type": "application/json;charset=utf-8",
-    "etag": "\"45-krLySE00ipnQrzrHwgUi29N1M44\"",
-    "mtime": "2026-05-11T07:38:45.626Z",
+    "etag": "\"45-atcYNJxDgF+fEd+EykkUrsx30qY\"",
+    "mtime": "2026-06-04T21:35:23.845Z",
     "size": 69,
     "path": "../public/servicos/_payload.json"
   },
-  "/servicos/index.html": {
-    "type": "text/html;charset=utf-8",
-    "etag": "\"1508a-A3Th6j2uZ1IdG0NVeVXEDTmuPj8\"",
-    "mtime": "2026-05-11T07:38:45.613Z",
-    "size": 86154,
-    "path": "../public/servicos/index.html"
-  },
-  "/sobre/index.html": {
-    "type": "text/html;charset=utf-8",
-    "etag": "\"1499b-cEY/7HLCJcAhN57uw71UsSJZOqg\"",
-    "mtime": "2026-05-11T07:38:45.608Z",
-    "size": 84379,
-    "path": "../public/sobre/index.html"
-  },
   "/sobre/_payload.json": {
     "type": "application/json;charset=utf-8",
-    "etag": "\"45-JH/6jUGXRFfCF1Ulw4eckDkcdaU\"",
-    "mtime": "2026-05-11T07:38:45.625Z",
+    "etag": "\"45-atcYNJxDgF+fEd+EykkUrsx30qY\"",
+    "mtime": "2026-06-04T21:35:23.845Z",
     "size": 69,
     "path": "../public/sobre/_payload.json"
   },
-  "/_nuxt/builds/meta/7a171b54-5f25-447d-aa98-015814ccdc15.json": {
-    "type": "application/json",
-    "etag": "\"a6-XTrU5ibEsXUZ4aHCvE/OABfkyRg\"",
-    "mtime": "2026-05-11T07:38:45.651Z",
-    "size": 166,
-    "path": "../public/_nuxt/builds/meta/7a171b54-5f25-447d-aa98-015814ccdc15.json"
+  "/sobre/index.html": {
+    "type": "text/html;charset=utf-8",
+    "etag": "\"1a29f-1sfrHYzqIK53Vk+geSAaoYBXoXo\"",
+    "mtime": "2026-06-04T21:35:23.830Z",
+    "size": 107167,
+    "path": "../public/sobre/index.html"
   },
   "/_nuxt/builds/latest.json": {
     "type": "application/json",
-    "etag": "\"47-nhNaXdFToBLTHTGqWHxWuGcUlcY\"",
-    "mtime": "2026-05-11T07:38:45.655Z",
+    "etag": "\"47-+oO/m1PRP2cJwL0Tt3Ps8mIAZ3I\"",
+    "mtime": "2026-06-04T21:35:23.868Z",
     "size": 71,
     "path": "../public/_nuxt/builds/latest.json"
+  },
+  "/servicos/index.html": {
+    "type": "text/html;charset=utf-8",
+    "etag": "\"15c45-x+9Os8jUeuRv9j41M5a/o10wr04\"",
+    "mtime": "2026-06-04T21:35:23.830Z",
+    "size": 89157,
+    "path": "../public/servicos/index.html"
+  },
+  "/_nuxt/builds/meta/387fdbbd-cd6f-4f6c-b857-3780e3bc1531.json": {
+    "type": "application/json",
+    "etag": "\"a6-thncip8KJxLNyfuLJtfbIFfg01o\"",
+    "mtime": "2026-06-04T21:35:23.865Z",
+    "size": 166,
+    "path": "../public/_nuxt/builds/meta/387fdbbd-cd6f-4f6c-b857-3780e3bc1531.json"
+  },
+  "/_nuxt/builds/meta/dev.json": {
+    "type": "application/json",
+    "etag": "\"37-9C145q3ZwZ4O+AKsCoSlO3cX6Ac\"",
+    "mtime": "2026-06-04T21:35:23.865Z",
+    "size": 55,
+    "path": "../public/_nuxt/builds/meta/dev.json"
   }
 };
 
@@ -5061,12 +5219,12 @@ function getAsset (id) {
 
 const METHODS = /* @__PURE__ */ new Set(["HEAD", "GET"]);
 const EncodingMap = { gzip: ".gz", br: ".br" };
-const _VeSnQO = eventHandler((event) => {
+const _KYTWQx = eventHandler((event) => {
   if (event.method && !METHODS.has(event.method)) {
     return;
   }
   let id = decodePath(
-    withLeadingSlash(withoutTrailingSlash(parseURL(event.path).pathname))
+    withLeadingSlash(withoutTrailingSlash$1(parseURL$1(event.path).pathname))
   );
   let asset;
   const encodingHeader = String(
@@ -5077,7 +5235,7 @@ const _VeSnQO = eventHandler((event) => {
     ""
   ];
   for (const encoding of encodings) {
-    for (const _id of [id + encoding, joinURL(id, "index.html" + encoding)]) {
+    for (const _id of [id + encoding, joinURL$1(id, "index.html" + encoding)]) {
       const _asset = getAsset(_id);
       if (_asset) {
         asset = _asset;
@@ -5125,15 +5283,251 @@ const _VeSnQO = eventHandler((event) => {
   return readAsset(id);
 });
 
+const HASH_RE = /#/g;
+const AMPERSAND_RE = /&/g;
+const SLASH_RE = /\//g;
+const EQUAL_RE = /=/g;
+const PLUS_RE = /\+/g;
+const ENC_CARET_RE = /%5e/gi;
+const ENC_BACKTICK_RE = /%60/gi;
+const ENC_PIPE_RE = /%7c/gi;
+const ENC_SPACE_RE = /%20/gi;
+function encode(text) {
+  return encodeURI("" + text).replace(ENC_PIPE_RE, "|");
+}
+function encodeQueryValue(input) {
+  return encode(typeof input === "string" ? input : JSON.stringify(input)).replace(PLUS_RE, "%2B").replace(ENC_SPACE_RE, "+").replace(HASH_RE, "%23").replace(AMPERSAND_RE, "%26").replace(ENC_BACKTICK_RE, "`").replace(ENC_CARET_RE, "^").replace(SLASH_RE, "%2F");
+}
+function encodeQueryKey(text) {
+  return encodeQueryValue(text).replace(EQUAL_RE, "%3D");
+}
+function decode(text = "") {
+  try {
+    return decodeURIComponent("" + text);
+  } catch {
+    return "" + text;
+  }
+}
+function decodeQueryKey(text) {
+  return decode(text.replace(PLUS_RE, " "));
+}
+function decodeQueryValue(text) {
+  return decode(text.replace(PLUS_RE, " "));
+}
+
+function parseQuery(parametersString = "") {
+  const object = /* @__PURE__ */ Object.create(null);
+  if (parametersString[0] === "?") {
+    parametersString = parametersString.slice(1);
+  }
+  for (const parameter of parametersString.split("&")) {
+    const s = parameter.match(/([^=]+)=?(.*)/) || [];
+    if (s.length < 2) {
+      continue;
+    }
+    const key = decodeQueryKey(s[1]);
+    if (key === "__proto__" || key === "constructor") {
+      continue;
+    }
+    const value = decodeQueryValue(s[2] || "");
+    if (object[key] === void 0) {
+      object[key] = value;
+    } else if (Array.isArray(object[key])) {
+      object[key].push(value);
+    } else {
+      object[key] = [object[key], value];
+    }
+  }
+  return object;
+}
+function encodeQueryItem(key, value) {
+  if (typeof value === "number" || typeof value === "boolean") {
+    value = String(value);
+  }
+  if (!value) {
+    return encodeQueryKey(key);
+  }
+  if (Array.isArray(value)) {
+    return value.map(
+      (_value) => `${encodeQueryKey(key)}=${encodeQueryValue(_value)}`
+    ).join("&");
+  }
+  return `${encodeQueryKey(key)}=${encodeQueryValue(value)}`;
+}
+function stringifyQuery(query) {
+  return Object.keys(query).filter((k) => query[k] !== void 0).map((k) => encodeQueryItem(k, query[k])).filter(Boolean).join("&");
+}
+
+const PROTOCOL_STRICT_REGEX = /^[\s\w\0+.-]{2,}:([/\\]{1,2})/;
+const PROTOCOL_REGEX = /^[\s\w\0+.-]{2,}:([/\\]{2})?/;
+const PROTOCOL_RELATIVE_REGEX = /^([/\\]\s*){2,}[^/\\]/;
+const JOIN_LEADING_SLASH_RE = /^\.?\//;
+function hasProtocol(inputString, opts = {}) {
+  if (typeof opts === "boolean") {
+    opts = { acceptRelative: opts };
+  }
+  if (opts.strict) {
+    return PROTOCOL_STRICT_REGEX.test(inputString);
+  }
+  return PROTOCOL_REGEX.test(inputString) || (opts.acceptRelative ? PROTOCOL_RELATIVE_REGEX.test(inputString) : false);
+}
+function hasTrailingSlash(input = "", respectQueryAndFragment) {
+  {
+    return input.endsWith("/");
+  }
+}
+function withoutTrailingSlash(input = "", respectQueryAndFragment) {
+  {
+    return (hasTrailingSlash(input) ? input.slice(0, -1) : input) || "/";
+  }
+}
+function withTrailingSlash(input = "", respectQueryAndFragment) {
+  {
+    return input.endsWith("/") ? input : input + "/";
+  }
+}
+function withBase(input, base) {
+  if (isEmptyURL(base) || hasProtocol(input)) {
+    return input;
+  }
+  const _base = withoutTrailingSlash(base);
+  if (input.startsWith(_base)) {
+    const nextChar = input[_base.length];
+    if (!nextChar || nextChar === "/" || nextChar === "?") {
+      return input;
+    }
+  }
+  return joinURL(_base, input);
+}
+function withQuery(input, query) {
+  const parsed = parseURL(input);
+  const mergedQuery = { ...parseQuery(parsed.search), ...query };
+  parsed.search = stringifyQuery(mergedQuery);
+  return stringifyParsedURL(parsed);
+}
+function isEmptyURL(url) {
+  return !url || url === "/";
+}
+function isNonEmptyURL(url) {
+  return url && url !== "/";
+}
+function joinURL(base, ...input) {
+  let url = base || "";
+  for (const segment of input.filter((url2) => isNonEmptyURL(url2))) {
+    if (url) {
+      const _segment = segment.replace(JOIN_LEADING_SLASH_RE, "");
+      url = withTrailingSlash(url) + _segment;
+    } else {
+      url = segment;
+    }
+  }
+  return url;
+}
+
+const protocolRelative = Symbol.for("ufo:protocolRelative");
+function parseURL(input = "", defaultProto) {
+  const _specialProtoMatch = input.match(
+    /^[\s\0]*(blob:|data:|javascript:|vbscript:)(.*)/i
+  );
+  if (_specialProtoMatch) {
+    const [, _proto, _pathname = ""] = _specialProtoMatch;
+    return {
+      protocol: _proto.toLowerCase(),
+      pathname: _pathname,
+      href: _proto + _pathname,
+      auth: "",
+      host: "",
+      search: "",
+      hash: ""
+    };
+  }
+  if (!hasProtocol(input, { acceptRelative: true })) {
+    return parsePath(input);
+  }
+  const [, protocol = "", auth, hostAndPath = ""] = input.replace(/\\/g, "/").match(/^[\s\0]*([\w+.-]{2,}:)?\/\/([^/@]+@)?(.*)/) || [];
+  let [, host = "", path = ""] = hostAndPath.match(/([^#/?]*)(.*)?/) || [];
+  if (protocol === "file:") {
+    path = path.replace(/\/(?=[A-Za-z]:)/, "");
+  }
+  const { pathname, search, hash } = parsePath(path);
+  return {
+    protocol: protocol.toLowerCase(),
+    auth: auth ? auth.slice(0, Math.max(0, auth.length - 1)) : "",
+    host,
+    pathname,
+    search,
+    hash,
+    [protocolRelative]: !protocol
+  };
+}
+function parsePath(input = "") {
+  const [pathname = "", search = "", hash = ""] = (input.match(/([^#?]*)(\?[^#]*)?(#.*)?/) || []).splice(1);
+  return {
+    pathname,
+    search,
+    hash
+  };
+}
+function stringifyParsedURL(parsed) {
+  const pathname = parsed.pathname || "";
+  const search = parsed.search ? (parsed.search.startsWith("?") ? "" : "?") + parsed.search : "";
+  const hash = parsed.hash || "";
+  const auth = parsed.auth ? parsed.auth + "@" : "";
+  const host = parsed.host || "";
+  const proto = parsed.protocol || parsed[protocolRelative] ? (parsed.protocol || "") + "//" : "";
+  return proto + auth + host + pathname + search + hash;
+}
+
+typeof setImmediate === "undefined" ? (fn) => fn() : setImmediate;
+
+function defineEventHandler(handler) {
+  if (typeof handler === "function") {
+    handler.__is_handler__ = true;
+    return handler;
+  }
+  const _hooks = {
+    onRequest: _normalizeArray(handler.onRequest),
+    onBeforeResponse: _normalizeArray(handler.onBeforeResponse)
+  };
+  const _handler = (event) => {
+    return _callHandler(event, handler.handler, _hooks);
+  };
+  _handler.__is_handler__ = true;
+  _handler.__resolve__ = handler.handler.__resolve__;
+  _handler.__websocket__ = handler.websocket;
+  return _handler;
+}
+function _normalizeArray(input) {
+  return input ? Array.isArray(input) ? input : [input] : void 0;
+}
+async function _callHandler(event, handler, hooks) {
+  if (hooks.onRequest) {
+    for (const hook of hooks.onRequest) {
+      await hook(event);
+      if (event.handled) {
+        return;
+      }
+    }
+  }
+  const body = await handler(event);
+  const response = { body };
+  if (hooks.onBeforeResponse) {
+    for (const hook of hooks.onBeforeResponse) {
+      await hook(event, response);
+    }
+  }
+  return response.body;
+}
+
 const _SxA8c9 = defineEventHandler(() => {});
 
-const _lazy_Cgh4uu = () => import('../routes/renderer.mjs').then(function (n) { return n.r; });
+const _lazy_QhFVAS = () => import('../routes/renderer.mjs').then(function (n) { return n.r; });
 
 const handlers = [
-  { route: '', handler: _VeSnQO, lazy: false, middleware: true, method: undefined },
-  { route: '/__nuxt_error', handler: _lazy_Cgh4uu, lazy: true, middleware: false, method: undefined },
+  { route: '', handler: _KYTWQx, lazy: false, middleware: true, method: undefined },
+  { route: '/__nuxt_error', handler: _lazy_QhFVAS, lazy: true, middleware: false, method: undefined },
   { route: '/__nuxt_island/**', handler: _SxA8c9, lazy: false, middleware: false, method: undefined },
-  { route: '/**', handler: _lazy_Cgh4uu, lazy: true, middleware: false, method: undefined }
+  { route: '/**', handler: _lazy_QhFVAS, lazy: true, middleware: false, method: undefined }
 ];
 
 function createNitroApp() {
@@ -5154,7 +5548,7 @@ function createNitroApp() {
     }
   };
   const h3App = createApp({
-    debug: destr(false),
+    debug: destr$1(false),
     onError: (error, event) => {
       captureError(error, { event, tags: ["request"] });
       return errorHandler(error, event);
@@ -5566,7 +5960,7 @@ const cert = process.env.NITRO_SSL_CERT;
 const key = process.env.NITRO_SSL_KEY;
 const nitroApp = useNitroApp();
 const server = cert && key ? new Server({ key, cert }, toNodeListener(nitroApp.h3App)) : new Server$1(toNodeListener(nitroApp.h3App));
-const port = destr(process.env.NITRO_PORT || process.env.PORT) || 3e3;
+const port = destr$1(process.env.NITRO_PORT || process.env.PORT) || 3e3;
 const host = process.env.NITRO_HOST || process.env.HOST;
 const path = process.env.NITRO_UNIX_SOCKET;
 const listener = server.listen(path ? { path } : { port, host }, (err) => {
@@ -5588,5 +5982,5 @@ trapUnhandledNodeErrors();
 setupGracefulShutdown(listener, nitroApp);
 const nodeServer = {};
 
-export { $fetch as $, getResponseStatus as a, getQuery as b, createError$1 as c, defineRenderHandler as d, encodePath as e, getRouteRules as f, getResponseStatusText as g, joinURL as h, useNitroApp as i, joinRelativeURL as j, hasProtocol as k, parseURL as l, decodePath as m, isScriptProtocol as n, getContext as o, parseQuery as p, withTrailingSlash as q, withoutTrailingSlash as r, sanitizeStatusCode as s, createHooks as t, useRuntimeConfig as u, executeAsync as v, withQuery as w, defu as x, nodeServer as y };
+export { sanitizeStatusCode as A, createHooks as B, executeAsync as C, defu as D, nodeServer as E, getRouteRules as a, getResponseStatusText as b, createError$1 as c, defineRenderHandler as d, encodePath as e, getResponseStatus as f, getQuery as g, useNitroApp as h, destr as i, joinRelativeURL as j, withQuery as k, i as l, l as m, hasProtocol$1 as n, joinURL$1 as o, parseQuery$1 as p, parseURL$1 as q, decodePath as r, s$1 as s, isScriptProtocol as t, useRuntimeConfig as u, withQuery$1 as v, withBase as w, getContext as x, withTrailingSlash$1 as y, withoutTrailingSlash$1 as z };
 //# sourceMappingURL=nitro.mjs.map

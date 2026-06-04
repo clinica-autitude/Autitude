@@ -22,9 +22,9 @@ const props = withDefaults(defineProps(), {
   centerX: 0.0,
   centerY: 0.0,
   zoom: 0.9,
-  color1: '#FF9FFC',
-  color2: '#5227FF',
-  color3: '#B19EEF',
+  color1: '#6B4FA3',
+  color2: '#8FC176',
+  color3: '#3D2D5E',
   className: ''
 })
 

@@ -19,7 +19,7 @@ interface SilkProps {
 const props = withDefaults(defineProps<SilkProps>(), {
   speed: 5,
   scale: 1,
-  color: '#7B7481',
+  color: '#6B4FA3',
   noiseIntensity: 1.5,
   rotation: 0,
   className: '',

@@ -550,13 +550,13 @@ onUnmounted(() => {
 .a11y-shortcuts kbd {
   display: inline-block;
   padding: 0.25rem 0.5rem;
-  background: #f0f0f0;
+  background: var(--surface-alt);
   border-radius: 4px;
   font-family: monospace;
   font-size: 0.7rem;
   font-weight: 600;
   color: var(--text);
-  border: 1px solid #ddd;
+  border: 1px solid var(--border);
 }
 
 .a11y-tts-status {
@@ -721,153 +721,153 @@ onUnmounted(() => {
   }
 }
 
-/* White theme overrides */
-[data-theme="white"] .a11y-btn-floating {
-  background: #7B5CBF;
+/* Light theme overrides */
+[data-theme="light"] .a11y-btn-floating {
+  background: var(--lilac);
   color: #ffffff;
 }
 
-[data-theme="white"] .a11y-menu {
+[data-theme="light"] .a11y-menu {
   background: #ffffff;
-  border: 1px solid rgba(123, 92, 191, 0.12);
+  border: 1px solid rgba(216, 192, 236, 0.18);
 }
 
-[data-theme="white"] .a11y-menu-header {
-  background: #7B5CBF;
+[data-theme="light"] .a11y-menu-header {
+  background: var(--lilac);
   color: #ffffff;
 }
 
-[data-theme="white"] .a11y-section {
-  border-color: rgba(123, 92, 191, 0.12);
+[data-theme="light"] .a11y-section {
+  border-color: rgba(216, 192, 236, 0.18);
 }
 
-[data-theme="white"] .a11y-btn {
+[data-theme="light"] .a11y-btn {
   background: #ffffff;
-  border-color: rgba(123, 92, 191, 0.12);
-  color: #1a1a2e;
+  border-color: rgba(216, 192, 236, 0.18);
+  color: var(--text);
 }
 
-[data-theme="white"] .a11y-btn:hover {
-  background: #E8E0F5;
-  border-color: #7B5CBF;
+[data-theme="light"] .a11y-btn:hover {
+  background: var(--lilac-soft);
+  border-color: var(--lilac);
 }
 
-[data-theme="white"] .a11y-btn.a11y-active {
-  background: #7B5CBF;
+[data-theme="light"] .a11y-btn.a11y-active {
+  background: var(--lilac);
   color: #ffffff;
 }
 
-[data-theme="white"] .a11y-btn-vlibras {
-  background: #7B5CBF;
+[data-theme="light"] .a11y-btn-vlibras {
+  background: var(--lilac);
   color: #ffffff;
 }
 
-[data-theme="white"] .a11y-font-value {
-  color: #7B5CBF;
+[data-theme="light"] .a11y-font-value {
+  color: var(--lilac-dark);
 }
 
-[data-theme="white"] .a11y-hint {
-  color: #6b6b8f;
+[data-theme="light"] .a11y-hint {
+  color: var(--text-light);
 }
 
-[data-theme="white"] .a11y-shortcuts li {
-  color: #3d3d5c;
+[data-theme="light"] .a11y-shortcuts li {
+  color: var(--text-secondary);
 }
 
-[data-theme="white"] .a11y-shortcuts kbd {
+[data-theme="light"] .a11y-shortcuts kbd {
   background: #f0f0f0;
-  color: #1a1a2e;
+  color: var(--text);
   border-color: #ddd;
 }
 
-[data-theme="white"] .a11y-tts-status {
-  background: #E8E0F5;
-  color: #7B5CBF;
+[data-theme="light"] .a11y-tts-status {
+  background: var(--lilac-soft);
+  color: var(--lilac-dark);
 }
 
-[data-theme="white"] .a11y-vlibras-status {
-  background: #E0F5E8;
+[data-theme="light"] .a11y-vlibras-status {
+  background: var(--blue-soft);
   color: #4CAF50;
 }
 
-[data-theme="white"] .a11y-dark-toggle {
+[data-theme="light"] .a11y-dark-toggle {
   background: #ffffff;
-  border-color: #E8E0F5;
-  color: #1a1a2e;
+  border-color: var(--lilac-soft);
+  color: var(--text);
 }
 
-[data-theme="white"] .a11y-dark-toggle:hover {
-  border-color: #7B5CBF;
-  background: #E8E0F5;
+[data-theme="light"] .a11y-dark-toggle:hover {
+  border-color: var(--lilac);
+  background: var(--lilac-soft);
 }
 
-[data-theme="white"] .toggle-label {
-  color: #1a1a2e;
+[data-theme="light"] .toggle-label {
+  color: var(--text);
 }
 
-[data-theme="white"] .toggle-track {
-  background: #E8E0F5;
+[data-theme="light"] .toggle-track {
+  background: var(--lilac-soft);
 }
 
-[data-theme="white"] .toggle-thumb {
-  background: #7B5CBF;
+[data-theme="light"] .toggle-thumb {
+  background: var(--lilac);
 }
 
-[data-theme="white"] .toggle-thumb svg {
+[data-theme="light"] .toggle-thumb svg {
   color: #ffffff;
 }
 
 /* Sepia theme overrides */
 [data-theme="sepia"] .a11y-btn-floating {
-  background: #7B5CBF;
-  color: #FFFEF8;
+  background: var(--lilac);
+  color: #ffffff;
 }
 
 [data-theme="sepia"] .a11y-menu {
   background: #FFFEF8;
-  border: 1px solid rgba(155, 126, 217, 0.12);
+  border: 1px solid rgba(216, 192, 236, 0.25);
 }
 
 [data-theme="sepia"] .a11y-menu-header {
-  background: #7B5CBF;
-  color: #FFFEF8;
+  background: var(--lilac);
+  color: #ffffff;
 }
 
 [data-theme="sepia"] .a11y-section {
-  border-color: rgba(155, 126, 217, 0.12);
+  border-color: rgba(216, 192, 236, 0.25);
 }
 
 [data-theme="sepia"] .a11y-btn {
   background: #FFFEF8;
-  border-color: rgba(155, 126, 217, 0.12);
+  border-color: rgba(216, 192, 236, 0.25);
   color: #3d2e1f;
 }
 
 [data-theme="sepia"] .a11y-btn:hover {
-  background: #CDBFF0;
-  border-color: #7B5CBF;
+  background: var(--lilac-light);
+  border-color: var(--lilac);
 }
 
 [data-theme="sepia"] .a11y-btn.a11y-active {
-  background: #7B5CBF;
+  background: var(--lilac);
   color: #FFFEF8;
 }
 
 [data-theme="sepia"] .a11y-btn-vlibras {
-  background: #7B5CBF;
+  background: var(--lilac);
   color: #FFFEF8;
 }
 
 [data-theme="sepia"] .a11y-font-value {
-  color: #7B5CBF;
+  color: var(--lilac-dark);
 }
 
 [data-theme="sepia"] .a11y-hint {
-  color: #7a6352;
+  color: var(--text-light);
 }
 
 [data-theme="sepia"] .a11y-shortcuts li {
-  color: #5c4a38;
+  color: var(--text-secondary);
 }
 
 [data-theme="sepia"] .a11y-shortcuts kbd {
@@ -877,24 +877,24 @@ onUnmounted(() => {
 }
 
 [data-theme="sepia"] .a11y-tts-status {
-  background: #CDBFF0;
-  color: #7B5CBF;
+  background: var(--lilac-light);
+  color: var(--lilac-dark);
 }
 
 [data-theme="sepia"] .a11y-vlibras-status {
-  background: #C4DEC9;
+  background: var(--blue-light);
   color: #6BA882;
 }
 
 [data-theme="sepia"] .a11y-dark-toggle {
   background: #FFFEF8;
-  border-color: #CDBFF0;
+  border-color: var(--lilac-light);
   color: #3d2e1f;
 }
 
 [data-theme="sepia"] .a11y-dark-toggle:hover {
-  border-color: #7B5CBF;
-  background: #CDBFF0;
+  border-color: var(--lilac);
+  background: var(--lilac-light);
 }
 
 [data-theme="sepia"] .toggle-label {
@@ -902,15 +902,15 @@ onUnmounted(() => {
 }
 
 [data-theme="sepia"] .toggle-track {
-  background: #CDBFF0;
+  background: var(--lilac-light);
 }
 
 [data-theme="sepia"] .toggle-thumb {
-  background: #7B5CBF;
+  background: var(--lilac);
 }
 
 [data-theme="sepia"] .toggle-thumb svg {
-  color: #FFFEF8;
+  color: #ffffff;
 }
 
 /* High contrast overrides */

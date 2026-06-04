@@ -1,8 +1,8 @@
 <script setup>
 useHead({
-  title: 'Política de Privacidade | Autitude',
+  title: 'Política de Privacidade | Autitude - Desenvolvimento e Ação Humana',
   meta: [
-    { name: 'description', content: 'Política de Privacidade da Autitude - Clínica de Terapia Ocupacional.' }
+    { name: 'description', content: 'Política de Privacidade da Autitude - Desenvolvimento e Ação Humana.' }
   ]
 })
 
@@ -23,7 +23,7 @@ const currentYear = new Date().getFullYear()
             <h2>1. Coleta de Informações</h2>
             <p>
               A Autitude coleta informações pessoais fornecidas por você através dos formulários 
-              de contato e agendamento, incluindo: nome, telefone, e-mail e informações sobre a criança.
+              de contato e agendamento, incluindo: nome, telefone, e-mail e informações sobre a criança ou adolescente.
             </p>
           </article>
 
@@ -71,6 +71,7 @@ const currentYear = new Date().getFullYear()
         </div>
 
         <div class="text-center mt-8">
+          <p style="color: var(--text-secondary); margin-bottom: 1rem;">💜 Cuidamos de pessoas. Potencializamos possibilidades.</p>
           <NuxtLink to="/agendar" class="btn btn-primary">
             Agendar Consulta
           </NuxtLink>
@@ -118,7 +119,7 @@ const currentYear = new Date().getFullYear()
 .privacy-card h2 {
   font-size: 1.125rem;
   margin-bottom: 0.75rem;
-  color: var(--primary);
+  color: var(--lilac-deep);
 }
 
 .privacy-card p {

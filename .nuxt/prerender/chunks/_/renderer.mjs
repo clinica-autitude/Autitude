@@ -1,12 +1,13 @@
-import { createRenderer, getRequestDependencies, getPreloadLinks, getPrefetchLinks } from 'file:///home/ubuntu/Autitude/node_modules/vue-bundle-renderer/dist/runtime.mjs';
-import { getResponseStatusText, getResponseStatus, getQuery, createError, appendResponseHeader } from 'file:///home/ubuntu/Autitude/node_modules/h3/dist/index.mjs';
-import { joinRelativeURL, encodePath, joinURL } from 'file:///home/ubuntu/Autitude/node_modules/ufo/dist/index.mjs';
-import { renderToString } from 'file:///home/ubuntu/Autitude/node_modules/vue/server-renderer/index.mjs';
+import { createRenderer, getRequestDependencies, getPreloadLinks, getPrefetchLinks } from 'file:///home/ubuntu/Autitude/node_modules/.pnpm/vue-bundle-renderer@2.2.0/node_modules/vue-bundle-renderer/dist/runtime.mjs';
+import { getResponseStatusText, getResponseStatus, getQuery, createError, appendResponseHeader } from 'file:///home/ubuntu/Autitude/node_modules/.pnpm/h3@1.15.11/node_modules/h3/dist/index.mjs';
+import { joinRelativeURL, encodePath, joinURL } from 'file:///home/ubuntu/Autitude/node_modules/.pnpm/ufo@1.6.4/node_modules/ufo/dist/index.mjs';
+import { renderToString } from 'file:///home/ubuntu/Autitude/node_modules/.pnpm/vue@3.5.35/node_modules/vue/server-renderer/index.mjs';
 import { u as useRuntimeConfig, a as useStorage, d as defineRenderHandler, g as getRouteRules, b as useNitroApp } from '../nitro/nitro.mjs';
-import { createHead as createHead$1, propsToString, renderSSRHead } from 'file:///home/ubuntu/Autitude/node_modules/unhead/dist/server.mjs';
-import { stringify, uneval } from 'file:///home/ubuntu/Autitude/node_modules/devalue/index.js';
-import { walkResolver } from 'file:///home/ubuntu/Autitude/node_modules/unhead/dist/utils.mjs';
-import { isRef, toValue, hasInjectionContext, inject, ref, watchEffect, getCurrentInstance, onBeforeUnmount, onDeactivated, onActivated } from 'file:///home/ubuntu/Autitude/node_modules/vue/index.mjs';
+import { createHead as createHead$1, propsToString, renderSSRHead } from 'file:///home/ubuntu/Autitude/node_modules/.pnpm/unhead@2.1.15/node_modules/unhead/dist/server.mjs';
+import { AsyncLocalStorage } from 'node:async_hooks';
+import { stringify, uneval } from 'file:///home/ubuntu/Autitude/node_modules/.pnpm/devalue@5.8.1/node_modules/devalue/index.js';
+import { walkResolver } from 'file:///home/ubuntu/Autitude/node_modules/.pnpm/unhead@2.1.15/node_modules/unhead/dist/utils.mjs';
+import { isRef, toValue, hasInjectionContext, inject, ref, watchEffect, getCurrentInstance, onBeforeUnmount, onDeactivated, onActivated } from 'file:///home/ubuntu/Autitude/node_modules/.pnpm/vue@3.5.35/node_modules/vue/index.mjs';
 import { DeprecationsPlugin, PromisesPlugin, TemplateParamsPlugin, AliasSortingPlugin } from 'file:///home/ubuntu/Autitude/node_modules/unhead/dist/plugins.mjs';
 
 const VueResolver = (_, value) => {
@@ -78,7 +79,7 @@ function createHead(options = {}) {
 
 const NUXT_PAYLOAD_EXTRACTION = true;
 
-const appHead = {"meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"name":"description","content":"Clínica Autitude - Especializada em Terapia Ocupacional e Integração Sensorial em Pindamonhangaba-SP. Atendimento especializado com certificação internacional pela North Carolina University. CREFITO 20083-TO"},{"name":"keywords","content":"terapia ocupacional, integração sensorial, Pindamonhangaba, desenvolvimento infantil, estimulação precoce,儿科职业治疗,感觉统合"},{"name":"author","content":"Autitude - Dra. Juliana Mariani"},{"name":"robots","content":"index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"},{"name":"theme-color","content":"#9B7ED9"},{"name":"googlebot","content":"index, follow"},{"name":"language","content":"Portuguese"},{"property":"og:title","content":"Autitude | Clínica de Terapia Ocupacional e Integração Sensorial"},{"property":"og:description","content":"Especializada em Terapia Ocupacional e Integração Sensorial em Pindamonhangaba-SP. CREFITO 20083-TO"},{"property":"og:type","content":"website"},{"property":"og:locale","content":"pt_BR"},{"property":"og:url","content":"https://hautlys.github.io/Autitude"},{"property":"og:image","content":"https://hautlys.github.io/Autitude/full-logo.png"},{"property":"og:image:width","content":"1200"},{"property":"og:image:height","content":"630"},{"property":"og:site_name","content":"Autitude"},{"name":"twitter:card","content":"summary_large_image"},{"name":"twitter:title","content":"Autitude | Clínica de Terapia Ocupacional e Integração Sensorial"},{"name":"twitter:description","content":"Especializada em Terapia Ocupacional e Integração Sensorial em Pindamonhangaba-SP"},{"name":"twitter:image","content":"https://hautlys.github.io/Autitude/full-logo.png"},{"name":"twitter:creator","content":"@clinicaautitude"},{"name":"twitter:site","content":"@clinicaautitude"},{"name":"ICBM","content":"-22.9309, -45.4607"},{"name":"geo.position","content":"-22.9309;-45.4607"},{"name":"geo.region","content":"BR-SP"},{"name":"geo.placename","content":"Pindamonhangaba"},{"name":"alternateName","content":"Autitude Clínica de Terapia Ocupacional"}],"link":[{"rel":"canonical","href":"https://hautlys.github.io/Autitude"},{"rel":"preconnect","href":"https://fonts.googleapis.com"},{"rel":"preconnect","href":"https://fonts.gstatic.com","crossorigin":""},{"rel":"stylesheet","href":"https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Nunito:wght@400;600;700&display=swap"},{"rel":"alternate","href":"https://hautlys.github.io/Autitude","hreflang":"pt-BR"},{"rel":"index","href":"https://hautlys.github.io/Autitude/sitemap.xml"},{"rel":"help","href":"https://hautlys.github.io/Autitude/llms.txt","title":"LLMS Information"}],"style":[],"script":[],"noscript":[],"htmlAttrs":{"lang":"pt-BR"},"title":"Autitude | Clínica de Terapia Ocupacional e Integração Sensorial"};
+const appHead = {"meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"name":"description","content":"Autitude — Desenvolvimento e Ação Humana. Espaço especializado em crianças, adolescentes e famílias, com foco no público neurodivergente. Neuropsicologia, Neuropsicopedagogia, Fonoaudiologia e Terapia Ocupacional em Pindamonhangaba-SP."},{"name":"keywords","content":"autitude, neurodivergência, neuropsicologia, neuropsicopedagogia, fonoaudiologia, terapia ocupacional, integração sensorial, Pindamonhangaba, desenvolvimento infantil, TEA, TDAH"},{"name":"author","content":"Autitude - Desenvolvimento e Ação Humana"},{"name":"robots","content":"index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"},{"name":"theme-color","content":"#6B4FA3"},{"name":"googlebot","content":"index, follow"},{"name":"language","content":"Portuguese"},{"property":"og:title","content":"Autitude | Desenvolvimento e Ação Humana"},{"property":"og:description","content":"Desenvolvimento com acolhimento, ciência e humanidade. Cuidamos de pessoas. Potencializamos possibilidades."},{"property":"og:type","content":"website"},{"property":"og:locale","content":"pt_BR"},{"property":"og:url","content":"https://hautlys.github.io/Autitude"},{"property":"og:image","content":"https://hautlys.github.io/Autitude/full-logo.png"},{"property":"og:image:width","content":"1200"},{"property":"og:image:height","content":"630"},{"property":"og:site_name","content":"Autitude - Desenvolvimento e Ação Humana"},{"name":"twitter:card","content":"summary_large_image"},{"name":"twitter:title","content":"Autitude | Desenvolvimento e Ação Humana"},{"name":"twitter:description","content":"Desenvolvimento com acolhimento, ciência e humanidade. Cuidamos de pessoas. Potencializamos possibilidades."},{"name":"twitter:image","content":"https://hautlys.github.io/Autitude/full-logo.png"},{"name":"twitter:creator","content":"@clinicaautitude"},{"name":"twitter:site","content":"@clinicaautitude"},{"name":"ICBM","content":"-22.9309, -45.4607"},{"name":"geo.position","content":"-22.9309;-45.4607"},{"name":"geo.region","content":"BR-SP"},{"name":"geo.placename","content":"Pindamonhangaba"},{"name":"alternateName","content":"Autitude Desenvolvimento e Ação Humana"}],"link":[{"rel":"canonical","href":"https://hautlys.github.io/Autitude"},{"rel":"preconnect","href":"https://fonts.googleapis.com"},{"rel":"preconnect","href":"https://fonts.gstatic.com","crossorigin":""},{"rel":"stylesheet","href":"https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Nunito:wght@400;600;700&display=swap"},{"rel":"alternate","href":"https://hautlys.github.io/Autitude","hreflang":"pt-BR"},{"rel":"index","href":"https://hautlys.github.io/Autitude/sitemap.xml"},{"rel":"help","href":"https://hautlys.github.io/Autitude/llms.txt","title":"LLMS Information"}],"style":[],"script":[],"noscript":[],"htmlAttrs":{"lang":"pt-BR"},"title":"Autitude | Desenvolvimento e Ação Humana"};
 
 const appRootTag = "div";
 
@@ -190,6 +191,7 @@ function getRenderer(ssrContext) {
 // @ts-expect-error file will be produced after app build
 const getSSRStyles = lazyCachedFunction(() => import('../build/styles.mjs').then((r) => r.default || r));
 
+const prerenderRenderingURLs = new AsyncLocalStorage() ;
 const payloadCache = useStorage("internal:nuxt:prerender:payload") ;
 useStorage("internal:nuxt:prerender:island") ;
 useStorage("internal:nuxt:prerender:island-props") ;
@@ -299,7 +301,7 @@ async function renderInlineStyles(usedModules) {
 
 const renderSSRHeadOptions = {"omitLineBreaks":false};
 
-const entryIds = ["node_modules/nuxt/dist/app/entry.js"];
+const entryIds = ["node_modules/.pnpm/nuxt@3.21.7_@parcel+watcher@2.5.6_@types+node@25.9.1_@vue+compiler-sfc@3.5.35_cac@6.7.1_a5959e0d07a4ba42d0e8d0815fe97614/node_modules/nuxt/dist/app/entry.js"];
 
 // @ts-expect-error private property consumed by vite-generated url helpers
 globalThis.__buildAssetsURL = buildAssetsURL;
@@ -310,8 +312,7 @@ const APP_TELEPORT_OPEN_TAG = HAS_APP_TELEPORTS ? `<${appTeleportTag}${propsToSt
 const APP_TELEPORT_CLOSE_TAG = HAS_APP_TELEPORTS ? `</${appTeleportTag}>` : "";
 const PAYLOAD_URL_RE = /^[^?]*\/_payload.json(?:\?.*)?$/ ;
 const PAYLOAD_FILENAME = "_payload.json" ;
-const handler = defineRenderHandler(async (event) => {
-	const nitroApp = useNitroApp();
+const handler = defineRenderHandler((event) => {
 	
 	const ssrError = event.path.startsWith("/__nuxt_error") ? getQuery(event) : null;
 	if (ssrError && !("__unenv__" in event.node.req)) {
@@ -321,6 +322,27 @@ const handler = defineRenderHandler(async (event) => {
 			message: "Page Not Found: /__nuxt_error"
 		});
 	}
+	
+	
+	
+	
+	if (prerenderRenderingURLs) {
+		const url = new URL(event.path, "http://localhost");
+		const renderingURL = url.pathname + url.search;
+		const stack = prerenderRenderingURLs.getStore();
+		if (stack?.includes(renderingURL)) {
+			const chain = [...stack, renderingURL].filter((u) => !u.startsWith("/__nuxt_error")).map((u) => `"${u}"`).join(" -> ");
+			throw createError({
+				status: 508,
+				statusText: `Loop detected while prerendering "${renderingURL}" (${chain}). Check for \`useFetch\`/\`$fetch\` calls targeting a URL that is currently being rendered.`
+			});
+		}
+		return prerenderRenderingURLs.run([...stack || [], renderingURL], () => renderRoute(event, ssrError));
+	}
+	return renderRoute(event, ssrError);
+});
+async function renderRoute(event, ssrError) {
+	const nitroApp = useNitroApp();
 	
 	const ssrContext = createSSRContext(event);
 	
@@ -337,6 +359,9 @@ const handler = defineRenderHandler(async (event) => {
 	}
 	
 	const routeOptions = getRouteRules(event);
+	if (routeOptions.ssr === false) {
+		ssrContext.noSSR = true;
+	}
 	
 	const _PAYLOAD_EXTRACTION = !ssrContext.noSSR && (NUXT_PAYLOAD_EXTRACTION);
 	const isRenderingPayload = (_PAYLOAD_EXTRACTION || false) && PAYLOAD_URL_RE.test(ssrContext.url);
@@ -344,12 +369,9 @@ const handler = defineRenderHandler(async (event) => {
 		const url = ssrContext.url.substring(0, ssrContext.url.lastIndexOf("/")) || "/";
 		ssrContext.url = url;
 		event._path = event.node.req.url = url;
-		if (await payloadCache.hasItem(url)) {
-			return payloadCache.getItem(url);
+		if (await payloadCache.hasItem(url + ".json")) {
+			return payloadCache.getItem(url + ".json");
 		}
-	}
-	if (routeOptions.ssr === false) {
-		ssrContext.noSSR = true;
 	}
 	const payloadURL = _PAYLOAD_EXTRACTION ? joinURL(ssrContext.runtimeConfig.app.cdnURL || ssrContext.runtimeConfig.app.baseURL, ssrContext.url.replace(/\?.*$/, ""), PAYLOAD_FILENAME) + "?" + ssrContext.runtimeConfig.app.buildId : undefined;
 	
@@ -389,7 +411,7 @@ const handler = defineRenderHandler(async (event) => {
 	if (isRenderingPayload) {
 		const response = renderPayloadResponse(ssrContext);
 		{
-			await payloadCache.setItem(ssrContext.url, response);
+			await payloadCache.setItem(ssrContext.url + ".json", response);
 		}
 		return response;
 	}
@@ -397,7 +419,7 @@ const handler = defineRenderHandler(async (event) => {
 		
 		appendResponseHeader(event, "x-nitro-prerender", joinURL(ssrContext.url.replace(/\?.*$/, ""), PAYLOAD_FILENAME));
 		
-		await payloadCache.setItem(ssrContext.url === "/" ? "/" : ssrContext.url.replace(/\/$/, ""), renderPayloadResponse(ssrContext));
+		await payloadCache.setItem((ssrContext.url === "/" ? "/" : ssrContext.url.replace(/\/$/, "")) + ".json", renderPayloadResponse(ssrContext));
 	}
 	const NO_SCRIPTS = routeOptions.noScripts;
 	
@@ -463,6 +485,7 @@ const handler = defineRenderHandler(async (event) => {
 			data: ssrContext.payload
 		})  }, {
 			...headEntryOptions,
+			
 			tagPosition: "bodyClose",
 			tagPriority: "high"
 		});
@@ -474,6 +497,8 @@ const handler = defineRenderHandler(async (event) => {
 			type: resource.module ? "module" : null,
 			src: renderer.rendererContext.buildAssetsURL(resource.file),
 			defer: resource.module ? null : true,
+			
+			
 			tagPosition,
 			crossorigin: ""
 		})) }, headEntryOptions);
@@ -500,7 +525,7 @@ const handler = defineRenderHandler(async (event) => {
 			"x-powered-by": "Nuxt"
 		}
 	};
-});
+}
 function normalizeChunks(chunks) {
 	const result = [];
 	for (const _chunk of chunks) {

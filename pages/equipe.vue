@@ -3,9 +3,9 @@ import { Award, Heart, Users, Star } from 'lucide-vue-next'
 import ColorBends from '~/components/ColorBends.vue'
 
 useHead({
-  title: 'Equipe | Autitude - Dra. Juliana Mariani',
+  title: 'Equipe | Autitude - Desenvolvimento e Ação Humana',
   meta: [
-    { name: 'description', content: 'Conheça a equipe da Autitude. Dra. Juliana Mariani - Terapeuta Ocupacional CREFITO 20083-TO.' }
+    { name: 'description', content: 'Conheça a equipe da Autitude — profissionais dedicados ao cuidado de crianças, adolescentes e famílias, com foco no público neurodivergente.' }
   ],
   script: [
     {
@@ -14,17 +14,17 @@ useHead({
         '@context': 'https://schema.org',
         '@type': 'WebPage',
         name: 'Equipe - Autitude',
-        description: 'Conheça a equipe da Autitude. Dra. Juliana Mariani - Terapeuta Ocupacional CREFITO 20083-TO.',
+        description: 'Conheça a equipe da Autitude — profissionais dedicados ao cuidado de crianças, adolescentes e famílias.',
         url: 'https://hautlys.github.io/Autitude/equipe',
         mainEntity: {
           '@type': 'MedicalBusiness',
-          name: 'Autitude - Nossa Equipe',
+          name: 'Autitude - Desenvolvimento e Ação Humana',
           employee: [
             {
               '@type': 'Person',
               name: 'Dra. Juliana Mariani',
               jobTitle: 'Terapeuta Ocupacional',
-              description: 'Especialista em Integração Sensorial com certificação pela North Carolina University (USA)',
+              description: 'Especialista em Integração Sensorial com certificação internacional pela University of Southern California (USC, USA).',
               identifier: 'CREFITO 20083-TO'
             }
           ]
@@ -38,16 +38,16 @@ const team = [
   {
     name: 'Dra. Juliana Mariani',
     role: 'Terapeuta Ocupacional | CREFITO 20083-TO',
-    bio: 'Especialista em Integração Sensorial com certificação pela North Carolina University (USA). Mais de 15 anos de experiência em terapia ocupacional pediátrica e desenvolvimento infantil.',
-    tags: ['CREFITO 20083-TO', 'Integração Sensorial', 'Certificação NC University', 'Terapia Pediátrica']
+    bio: 'Especialista em Integração Sensorial com certificação internacional pela University of Southern California (USC, USA). Atua há mais de 15 anos com terapia ocupacional pediátrica, desenvolvimento infantil e cuidado de pessoas neurodivergentes e suas famílias.',
+    tags: ['CREFITO 20083-TO', 'Integração Sensorial', 'Certificação USC', 'Terapia Pediátrica']
   }
 ]
 
 const culture = [
-  { title: 'Excelência', description: 'Profissionais em constante atualização científica e técnica.', icon: Award },
-  { title: 'Humanização', description: 'Cada criança é única. Tratamos com respeito e sensibilidade.', icon: Heart },
-  { title: 'Parceria', description: 'Família é parte essencial do processo de desenvolvimento.', icon: Users },
-  { title: 'Crescimento', description: 'Acompanhamos cada passo com atenção e dedicação.', icon: Star }
+  { title: 'Excelência', description: 'Prática baseada em evidências e em constante atualização.', icon: Award },
+  { title: 'Humanização', description: 'Cada pessoa é única. Cuidamos com respeito e sensibilidade.', icon: Heart },
+  { title: 'Parceria', description: 'A família é parte essencial do processo de desenvolvimento.', icon: Users },
+  { title: 'Crescimento', description: 'Acompanhamos cada conquista com atenção e dedicação.', icon: Star }
 ]
 </script>
 
@@ -56,9 +56,9 @@ const culture = [
     <section class="hero-section">
       <div class="container">
         <div class="section-header">
-          <span class="section-tag">Nossa Profissional</span>
-          <h1>Especialista dedicada</h1>
-          <p>Comprometida com o desenvolvimento das crianças.</p>
+          <span class="section-tag">Nossa profissional</span>
+          <h1>Cuidado conduzido por mãos especializadas</h1>
+          <p>Profissionais dedicados ao desenvolvimento integral de cada pessoa e de sua família.</p>
         </div>
 
         <div class="team-showcase">
@@ -106,7 +106,7 @@ const culture = [
         <div class="cta-card">
           <ColorBends
             class="cta-bg-effect"
-            :colors="['#CDBFF0', '#E0F5E8', '#E8E0F5', '#8FD9B6']"
+            :colors="['#6B4FA3', '#8FB1F0', '#8FC176', '#3D2D5E']"
             :rotation="15"
             :speed="0.12"
             :scale="1.4"
@@ -118,8 +118,9 @@ const culture = [
             transparent
           />
           <div class="cta-content">
+            <span class="cta-tag">Autitude — Desenvolvimento e Ação Humana</span>
             <h2>Gostaria de nos conhecer?</h2>
-            <p>Agende uma visita e descubra como podemos ajudar no desenvolvimento do seu filho.</p>
+            <p>💜 Cuidamos de pessoas. Potencializamos possibilidades.</p>
             <div class="cta-actions">
               <NuxtLink to="/agendar" class="btn btn-primary btn-lg">
                 Agendar Visita
@@ -137,7 +138,7 @@ const culture = [
 
 <style scoped>
 .icon-primary {
-  color: var(--primary);
+  color: var(--lilac-deep);
 }
 
 .hero-section {
@@ -163,11 +164,12 @@ const culture = [
 .section-tag {
   display: inline-block;
   padding: 0.375rem 1rem;
-  background: var(--pastel-lavender);
+  background: var(--lilac-soft);
+  border: 1px solid var(--lilac-light);
   border-radius: var(--radius-full);
   font-size: 0.8125rem;
   font-weight: 600;
-  color: var(--primary-dark);
+  color: var(--lilac-deep);
   margin-bottom: 1rem;
 }
 
@@ -198,7 +200,7 @@ const culture = [
 .visual-shape {
   width: 180px;
   height: 180px;
-  background: linear-gradient(135deg, var(--pastel-lavender) 0%, var(--primary-light) 100%);
+  background: linear-gradient(135deg, var(--lilac-soft) 0%, var(--lilac-light) 100%);
   border-radius: 50%;
 }
 
@@ -224,7 +226,7 @@ const culture = [
 
 .member-role {
   font-size: 1rem;
-  color: var(--primary);
+  color: var(--lilac-deep);
   font-weight: 600;
   margin-bottom: 1rem;
 }
@@ -244,15 +246,16 @@ const culture = [
 
 .tag {
   padding: 0.375rem 0.875rem;
-  background: var(--pastel-lavender);
+  background: var(--lilac-soft);
+  border: 1px solid var(--lilac-light);
   border-radius: var(--radius-full);
   font-size: 0.75rem;
-  font-weight: 500;
-  color: var(--primary-dark);
+  font-weight: 600;
+  color: var(--lilac-deep);
 }
 
 .values-section {
-  background: var(--surface);
+  background: var(--surface-alt);
 }
 
 .header-content {
@@ -288,7 +291,7 @@ const culture = [
 .value-icon-wrapper {
   width: 56px;
   height: 56px;
-  background: var(--pastel-lavender);
+  background: var(--lilac-soft);
   border-radius: var(--radius-lg);
   display: flex;
   align-items: center;
@@ -340,8 +343,19 @@ const culture = [
 
 .cta-content p {
   font-size: 1.0625rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   color: var(--text-secondary);
+}
+
+.cta-tag {
+  display: inline-block;
+  padding: 0.375rem 1rem;
+  background: rgba(255,255,255,0.6);
+  border-radius: var(--radius-full);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--primary-dark);
+  margin-bottom: 1rem;
 }
 
 .cta-actions {

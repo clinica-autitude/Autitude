@@ -23,9 +23,9 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {
   direction: 'right',
   speed: 1,
-  borderColor: '#999',
+  borderColor: '#6B4FA3',
   squareSize: 40,
-  hoverFillColor: '#222'
+  hoverFillColor: '#3D2D5E'
 });
 
 const canvasRef = useTemplateRef<HTMLCanvasElement>('canvasRef');

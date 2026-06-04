@@ -4,9 +4,9 @@ import { MapPin, MessageCircle, Mail, Clock } from 'lucide-vue-next'
 import DotGrid from '~/components/DotGrid.vue'
 
 useHead({
-  title: 'Contato | Autitude - Fale Conosco',
+  title: 'Contato | Autitude - Desenvolvimento e Ação Humana',
   meta: [
-    { name: 'description', content: 'Entre em contato com a Autitude. WhatsApp, e-mail ou formulário de contato.' }
+    { name: 'description', content: 'Entre em contato com a Autitude. Estamos na Vila Rica, em Pindamonhangaba-SP. WhatsApp, e-mail ou formulário de contato.' }
   ],
   script: [
     {
@@ -19,7 +19,7 @@ useHead({
         url: 'https://hautlys.github.io/Autitude/contato',
         mainEntity: {
           '@type': 'MedicalBusiness',
-          name: 'Autitude - Clínica de Terapia Ocupacional',
+          name: 'Autitude - Desenvolvimento e Ação Humana',
           contactPoint: {
             '@type': 'ContactPoint',
             telephone: '+5512991968683',
@@ -36,10 +36,13 @@ useHead({
 const config = {
   address: {
     street: 'Rua Major José dos Santos Moreira, 328',
+    neighborhood: 'Vila Rica',
     city: 'Pindamonhangaba',
     state: 'SP'
   },
   whatsappUrl: 'https://wa.me/5512991968683',
+  phoneDisplay: '(12) 99196-8683',
+  instagramHandle: '@clinicaautitude',
   hours: {
     weekdays: '8h às 18h'
   }
@@ -49,13 +52,13 @@ const contactInfo = [
   {
     title: 'Localização',
     content: config.address.street,
-    detail: `${config.address.city}, ${config.address.state}`,
+    detail: `${config.address.neighborhood} — ${config.address.city}, ${config.address.state}`,
     icon: MapPin,
     color: 'linear-gradient(135deg, var(--pastel-lavender) 0%, var(--primary-light) 100%)'
   },
   {
     title: 'WhatsApp',
-    content: 'Respostas rápidas para suas dúvidas',
+    content: config.phoneDisplay,
     link: `${config.whatsappUrl}?text=${encodeURIComponent('Olá! Gostaria de mais informações.')}`,
     linkText: 'Chamar no WhatsApp',
     btnClass: 'btn-whatsapp',
@@ -106,8 +109,8 @@ const handleSubmit = () => {
         <DotGrid
           :dot-size="14"
           :gap="28"
-          base-color="#CDBFF0"
-          active-color="#7B5CBF"
+          base-color="#6B4FA3"
+          active-color="#3D2D5E"
           :proximity="120"
           :speed-trigger="80"
           :shock-radius="200"
@@ -120,8 +123,8 @@ const handleSubmit = () => {
       <div class="container">
         <div class="section-header">
           <span class="section-tag">Contato</span>
-          <h1>Fale conosco</h1>
-          <p>Estamos prontos para atender você e sua família.</p>
+          <h1>Fale com a Autitude</h1>
+          <p>Estamos prontos para acolher você e sua família.</p>
         </div>
 
         <div class="contact-showcase">
@@ -219,23 +222,24 @@ const handleSubmit = () => {
               <MapPin :size="32" class="icon-primary" />
             </div>
             <div class="location-details">
-              <h3>Nosso Endereço</h3>
+              <h3>Nosso endereço</h3>
               <p class="address">Rua Major José dos Santos Moreira, 328</p>
-              <p class="city">Pindamonhangaba, SP</p>
+              <p class="city">Vila Rica — Pindamonhangaba, SP</p>
               <div class="location-meta">
                 <span>Seg a Sex: 8h às 18h</span>
               </div>
             </div>
           </div>
           <div class="location-map">
-            <iframe 
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d918.6308949951824!2d-45.460713999999996!3d-22.9309369!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ccf1835a97b90d%3A0x8c2cb7aa78bd7f92!2sAutitude%20Desenvolvimento%20e%20A%C3%A7%C3%A3o%20Humana!5e0!3m2!1spt-BR!2sbr!4v1778250238052!5m2!1spt-BR!2sbr" 
-              width="100%" 
-              height="100%" 
-              style="border:0;" 
-              allowfullscreen="" 
-              loading="lazy" 
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3674.523716039893!2d-45.46558491270433!3d-22.93093188518779!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ccf1835a97b90d%3A0x8c2cb7aa78bd7f92!2sAutitude%20Desenvolvimento%20e%20A%C3%A7%C3%A3o%20Humana!5e0!3m2!1sen!2sbr!4v1780604277186!5m2!1sen!2sbr"
+              width="100%"
+              height="100%"
+              style="border:0;"
+              allowfullscreen=""
+              loading="lazy"
               referrerpolicy="no-referrer-when-downgrade"
+              title="Localização da Autitude — Rua Major José dos Santos Moreira, 328, Vila Rica, Pindamonhangaba-SP"
             ></iframe>
           </div>
         </div>
@@ -246,7 +250,7 @@ const handleSubmit = () => {
 
 <style scoped>
 .icon-primary {
-  color: var(--primary);
+  color: var(--lilac-deep);
 }
 
 .hero-section {
@@ -285,11 +289,12 @@ const handleSubmit = () => {
 .section-tag {
   display: inline-block;
   padding: 0.375rem 1rem;
-  background: var(--pastel-lavender);
+  background: var(--lilac-soft);
+  border: 1px solid var(--lilac-light);
   border-radius: var(--radius-full);
   font-size: 0.8125rem;
   font-weight: 600;
-  color: var(--primary-dark);
+  color: var(--lilac-deep);
   margin-bottom: 1rem;
 }
 
@@ -396,7 +401,7 @@ const handleSubmit = () => {
 }
 
 .location-section {
-  background: var(--surface);
+  background: var(--surface-alt);
 }
 
 .location-card {
@@ -418,7 +423,7 @@ const handleSubmit = () => {
   width: 72px;
   height: 72px;
   min-width: 72px;
-  background: var(--pastel-lavender);
+  background: var(--lilac-soft);
   border-radius: var(--radius-xl);
   display: flex;
   align-items: center;

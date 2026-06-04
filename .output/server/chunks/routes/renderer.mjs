@@ -1,5 +1,5 @@
 import { createRenderer, getRequestDependencies, getPreloadLinks, getPrefetchLinks } from 'vue-bundle-renderer/runtime';
-import { j as joinRelativeURL, u as useRuntimeConfig, g as getResponseStatusText, a as getResponseStatus, e as encodePath, d as defineRenderHandler, b as getQuery, c as createError, f as getRouteRules, h as joinURL, i as useNitroApp } from '../nitro/nitro.mjs';
+import { j as joinRelativeURL, u as useRuntimeConfig, e as encodePath, d as defineRenderHandler, g as getQuery, c as createError, a as getRouteRules, b as getResponseStatusText, f as getResponseStatus, h as useNitroApp } from '../nitro/nitro.mjs';
 import { renderToString } from 'vue/server-renderer';
 import { createHead as createHead$1, propsToString, renderSSRHead } from 'unhead/server';
 import { stringify, uneval } from 'devalue';
@@ -76,7 +76,7 @@ function createHead(options = {}) {
 
 const NUXT_RUNTIME_PAYLOAD_EXTRACTION = false;
 
-const appHead = {"meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"name":"description","content":"Clínica Autitude - Especializada em Terapia Ocupacional e Integração Sensorial em Pindamonhangaba-SP. Atendimento especializado com certificação internacional pela North Carolina University. CREFITO 20083-TO"},{"name":"keywords","content":"terapia ocupacional, integração sensorial, Pindamonhangaba, desenvolvimento infantil, estimulação precoce,儿科职业治疗,感觉统合"},{"name":"author","content":"Autitude - Dra. Juliana Mariani"},{"name":"robots","content":"index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"},{"name":"theme-color","content":"#9B7ED9"},{"name":"googlebot","content":"index, follow"},{"name":"language","content":"Portuguese"},{"property":"og:title","content":"Autitude | Clínica de Terapia Ocupacional e Integração Sensorial"},{"property":"og:description","content":"Especializada em Terapia Ocupacional e Integração Sensorial em Pindamonhangaba-SP. CREFITO 20083-TO"},{"property":"og:type","content":"website"},{"property":"og:locale","content":"pt_BR"},{"property":"og:url","content":"https://hautlys.github.io/Autitude"},{"property":"og:image","content":"https://hautlys.github.io/Autitude/full-logo.png"},{"property":"og:image:width","content":"1200"},{"property":"og:image:height","content":"630"},{"property":"og:site_name","content":"Autitude"},{"name":"twitter:card","content":"summary_large_image"},{"name":"twitter:title","content":"Autitude | Clínica de Terapia Ocupacional e Integração Sensorial"},{"name":"twitter:description","content":"Especializada em Terapia Ocupacional e Integração Sensorial em Pindamonhangaba-SP"},{"name":"twitter:image","content":"https://hautlys.github.io/Autitude/full-logo.png"},{"name":"twitter:creator","content":"@clinicaautitude"},{"name":"twitter:site","content":"@clinicaautitude"},{"name":"ICBM","content":"-22.9309, -45.4607"},{"name":"geo.position","content":"-22.9309;-45.4607"},{"name":"geo.region","content":"BR-SP"},{"name":"geo.placename","content":"Pindamonhangaba"},{"name":"alternateName","content":"Autitude Clínica de Terapia Ocupacional"}],"link":[{"rel":"canonical","href":"https://hautlys.github.io/Autitude"},{"rel":"preconnect","href":"https://fonts.googleapis.com"},{"rel":"preconnect","href":"https://fonts.gstatic.com","crossorigin":""},{"rel":"stylesheet","href":"https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Nunito:wght@400;600;700&display=swap"},{"rel":"alternate","href":"https://hautlys.github.io/Autitude","hreflang":"pt-BR"},{"rel":"index","href":"https://hautlys.github.io/Autitude/sitemap.xml"},{"rel":"help","href":"https://hautlys.github.io/Autitude/llms.txt","title":"LLMS Information"}],"style":[],"script":[],"noscript":[],"htmlAttrs":{"lang":"pt-BR"},"title":"Autitude | Clínica de Terapia Ocupacional e Integração Sensorial"};
+const appHead = {"meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"name":"description","content":"Autitude — Desenvolvimento e Ação Humana. Espaço especializado em crianças, adolescentes e famílias, com foco no público neurodivergente. Neuropsicologia, Neuropsicopedagogia, Fonoaudiologia e Terapia Ocupacional em Pindamonhangaba-SP."},{"name":"keywords","content":"autitude, neurodivergência, neuropsicologia, neuropsicopedagogia, fonoaudiologia, terapia ocupacional, integração sensorial, Pindamonhangaba, desenvolvimento infantil, TEA, TDAH"},{"name":"author","content":"Autitude - Desenvolvimento e Ação Humana"},{"name":"robots","content":"index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"},{"name":"theme-color","content":"#6B4FA3"},{"name":"googlebot","content":"index, follow"},{"name":"language","content":"Portuguese"},{"property":"og:title","content":"Autitude | Desenvolvimento e Ação Humana"},{"property":"og:description","content":"Desenvolvimento com acolhimento, ciência e humanidade. Cuidamos de pessoas. Potencializamos possibilidades."},{"property":"og:type","content":"website"},{"property":"og:locale","content":"pt_BR"},{"property":"og:url","content":"https://hautlys.github.io/Autitude"},{"property":"og:image","content":"https://hautlys.github.io/Autitude/full-logo.png"},{"property":"og:image:width","content":"1200"},{"property":"og:image:height","content":"630"},{"property":"og:site_name","content":"Autitude - Desenvolvimento e Ação Humana"},{"name":"twitter:card","content":"summary_large_image"},{"name":"twitter:title","content":"Autitude | Desenvolvimento e Ação Humana"},{"name":"twitter:description","content":"Desenvolvimento com acolhimento, ciência e humanidade. Cuidamos de pessoas. Potencializamos possibilidades."},{"name":"twitter:image","content":"https://hautlys.github.io/Autitude/full-logo.png"},{"name":"twitter:creator","content":"@clinicaautitude"},{"name":"twitter:site","content":"@clinicaautitude"},{"name":"ICBM","content":"-22.9309, -45.4607"},{"name":"geo.position","content":"-22.9309;-45.4607"},{"name":"geo.region","content":"BR-SP"},{"name":"geo.placename","content":"Pindamonhangaba"},{"name":"alternateName","content":"Autitude Desenvolvimento e Ação Humana"}],"link":[{"rel":"canonical","href":"https://hautlys.github.io/Autitude"},{"rel":"preconnect","href":"https://fonts.googleapis.com"},{"rel":"preconnect","href":"https://fonts.gstatic.com","crossorigin":""},{"rel":"stylesheet","href":"https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Nunito:wght@400;600;700&display=swap"},{"rel":"alternate","href":"https://hautlys.github.io/Autitude","hreflang":"pt-BR"},{"rel":"index","href":"https://hautlys.github.io/Autitude/sitemap.xml"},{"rel":"help","href":"https://hautlys.github.io/Autitude/llms.txt","title":"LLMS Information"}],"style":[],"script":[],"noscript":[],"htmlAttrs":{"lang":"pt-BR"},"title":"Autitude | Desenvolvimento e Ação Humana"};
 
 const appRootTag = "div";
 
@@ -188,17 +188,6 @@ function getRenderer(ssrContext) {
 // @ts-expect-error file will be produced after app build
 const getSSRStyles = lazyCachedFunction(() => import('../build/styles.mjs').then((r) => r.default || r));
 
-function renderPayloadResponse(ssrContext) {
-	return {
-		body: encodeForwardSlashes(stringify(splitPayload(ssrContext).payload, ssrContext["~payloadReducers"])) ,
-		statusCode: getResponseStatus(ssrContext.event),
-		statusMessage: getResponseStatusText(ssrContext.event),
-		headers: {
-			"content-type": "application/json;charset=utf-8" ,
-			"x-powered-by": "Nuxt"
-		}
-	};
-}
 function renderPayloadJsonScript(opts) {
 	const contents = opts.data ? encodeForwardSlashes(stringify(opts.data, opts.ssrContext["~payloadReducers"])) : "";
 	const payload = {
@@ -219,19 +208,6 @@ function renderPayloadJsonScript(opts) {
 
 function encodeForwardSlashes(str) {
 	return str.replaceAll("/", "\\u002F");
-}
-function splitPayload(ssrContext) {
-	const { data, prerenderedAt, ...initial } = ssrContext.payload;
-	return {
-		initial: {
-			...initial,
-			prerenderedAt
-		},
-		payload: {
-			data,
-			prerenderedAt
-		}
-	};
 }
 
 const unheadOptions = {
@@ -284,7 +260,7 @@ async function renderInlineStyles(usedModules) {
 
 const renderSSRHeadOptions = {"omitLineBreaks":false};
 
-const entryIds = ["node_modules/nuxt/dist/app/entry.js"];
+const entryIds = ["node_modules/.pnpm/nuxt@3.21.7_@parcel+watcher@2.5.6_@types+node@25.9.1_@vue+compiler-sfc@3.5.35_cac@6.7.1_a5959e0d07a4ba42d0e8d0815fe97614/node_modules/nuxt/dist/app/entry.js"];
 
 // @ts-expect-error private property consumed by vite-generated url helpers
 globalThis.__buildAssetsURL = buildAssetsURL;
@@ -293,10 +269,7 @@ globalThis.__publicAssetsURL = publicAssetsURL;
 const HAS_APP_TELEPORTS = !!(appTeleportAttrs.id);
 const APP_TELEPORT_OPEN_TAG = HAS_APP_TELEPORTS ? `<${appTeleportTag}${propsToString(appTeleportAttrs)}>` : "";
 const APP_TELEPORT_CLOSE_TAG = HAS_APP_TELEPORTS ? `</${appTeleportTag}>` : "";
-const PAYLOAD_URL_RE = /^[^?]*\/_payload.json(?:\?.*)?$/ ;
-const PAYLOAD_FILENAME = "_payload.json" ;
-const handler = defineRenderHandler(async (event) => {
-	const nitroApp = useNitroApp();
+const handler = defineRenderHandler((event) => {
 	
 	const ssrError = event.path.startsWith("/__nuxt_error") ? getQuery(event) : null;
 	if (ssrError && !("__unenv__" in event.node.req)) {
@@ -306,6 +279,10 @@ const handler = defineRenderHandler(async (event) => {
 			message: "Page Not Found: /__nuxt_error"
 		});
 	}
+	return renderRoute(event, ssrError);
+});
+async function renderRoute(event, ssrError) {
+	const nitroApp = useNitroApp();
 	
 	const ssrContext = createSSRContext(event);
 	
@@ -322,18 +299,11 @@ const handler = defineRenderHandler(async (event) => {
 	}
 	
 	const routeOptions = getRouteRules(event);
-	
-	const _PAYLOAD_EXTRACTION = !ssrContext.noSSR && (NUXT_RUNTIME_PAYLOAD_EXTRACTION);
-	const isRenderingPayload = (_PAYLOAD_EXTRACTION || false) && PAYLOAD_URL_RE.test(ssrContext.url);
-	if (isRenderingPayload) {
-		const url = ssrContext.url.substring(0, ssrContext.url.lastIndexOf("/")) || "/";
-		ssrContext.url = url;
-		event._path = event.node.req.url = url;
-	}
 	if (routeOptions.ssr === false) {
 		ssrContext.noSSR = true;
 	}
-	const payloadURL = _PAYLOAD_EXTRACTION ? joinURL(ssrContext.runtimeConfig.app.cdnURL || ssrContext.runtimeConfig.app.baseURL, ssrContext.url.replace(/\?.*$/, ""), PAYLOAD_FILENAME) + "?" + ssrContext.runtimeConfig.app.buildId : undefined;
+	
+	!ssrContext.noSSR && (NUXT_RUNTIME_PAYLOAD_EXTRACTION);
 	
 	const renderer = await getRenderer(ssrContext);
 	{
@@ -354,7 +324,7 @@ const handler = defineRenderHandler(async (event) => {
 	});
 	
 	
-	const inlinedStyles = !ssrContext["~renderResponse"] && !ssrContext._renderResponse && !isRenderingPayload ? await renderInlineStyles(ssrContext.modules ?? []) : [];
+	const inlinedStyles = !ssrContext["~renderResponse"] && !ssrContext._renderResponse && true ? await renderInlineStyles(ssrContext.modules ?? []) : [];
 	await ssrContext.nuxt?.hooks.callHook("app:rendered", {
 		ssrContext,
 		renderResult: _rendered
@@ -367,23 +337,9 @@ const handler = defineRenderHandler(async (event) => {
 	if (ssrContext.payload?.error && !ssrError) {
 		throw ssrContext.payload.error;
 	}
-	
-	if (isRenderingPayload) {
-		const response = renderPayloadResponse(ssrContext);
-		return response;
-	}
 	const NO_SCRIPTS = routeOptions.noScripts;
 	
 	const { styles, scripts } = getRequestDependencies(ssrContext, renderer.rendererContext);
-	
-	if (_PAYLOAD_EXTRACTION && !NO_SCRIPTS) {
-		ssrContext.head.push({ link: [{
-			rel: "preload",
-			as: "fetch",
-			crossorigin: "anonymous",
-			href: payloadURL
-		} ] }, headEntryOptions);
-	}
 	if (ssrContext["~preloadManifest"] && !NO_SCRIPTS) {
 		ssrContext.head.push({ link: [{
 			rel: "preload",
@@ -427,15 +383,12 @@ const handler = defineRenderHandler(async (event) => {
 		ssrContext.head.push({ link: getPreloadLinks(ssrContext, renderer.rendererContext) }, headEntryOptions);
 		ssrContext.head.push({ link: getPrefetchLinks(ssrContext, renderer.rendererContext) }, headEntryOptions);
 		
-		ssrContext.head.push({ script: _PAYLOAD_EXTRACTION ? renderPayloadJsonScript({
-			ssrContext,
-			data: splitPayload(ssrContext).initial,
-			src: payloadURL
-		})  : renderPayloadJsonScript({
+		ssrContext.head.push({ script: renderPayloadJsonScript({
 			ssrContext,
 			data: ssrContext.payload
 		})  }, {
 			...headEntryOptions,
+			
 			tagPosition: "bodyClose",
 			tagPriority: "high"
 		});
@@ -447,6 +400,8 @@ const handler = defineRenderHandler(async (event) => {
 			type: resource.module ? "module" : null,
 			src: renderer.rendererContext.buildAssetsURL(resource.file),
 			defer: resource.module ? null : true,
+			
+			
 			tagPosition,
 			crossorigin: ""
 		})) }, headEntryOptions);
@@ -473,7 +428,7 @@ const handler = defineRenderHandler(async (event) => {
 			"x-powered-by": "Nuxt"
 		}
 	};
-});
+}
 function normalizeChunks(chunks) {
 	const result = [];
 	for (const _chunk of chunks) {

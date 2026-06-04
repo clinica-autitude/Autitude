@@ -3,9 +3,9 @@ import { ref, computed } from 'vue'
 import DotGrid from '~/components/DotGrid.vue'
 
 useHead({
-  title: 'Agendar | Autitude - Agende sua Consulta',
+  title: 'Agendar | Autitude - Desenvolvimento e Ação Humana',
   meta: [
-    { name: 'description', content: 'Agende uma avaliação na Autitude. Preencha o formulário e retornaremos em até 24 horas.' }
+    { name: 'description', content: 'Agende uma avaliação na Autitude. Cuidamos de pessoas e potencializamos possibilidades. Retornamos em até 24 horas.' }
   ]
 })
 
@@ -28,7 +28,7 @@ const form = ref({
 const isSubmitting = ref(false)
 
 const whatsappLink = computed(() => {
-  const text = encodeURIComponent('Olá! Gostaria de agendar uma avaliação.')
+  const text = encodeURIComponent('Olá! Gostaria de agendar uma avaliação na Autitude.')
   return `${config.whatsappUrl}?text=${text}`
 })
 
@@ -65,7 +65,7 @@ const handleSubmit = async () => {
     `*Responsável:* ${form.value.parentName}\n` +
     `*Telefone:* ${form.value.phone}\n` +
     `${form.value.email ? `*E-mail:* ${form.value.email}\n` : ''}` +
-    `${form.value.childName ? `*Criança:* ${form.value.childName}\n` : ''}` +
+    `${form.value.childName ? `*Criança/Adolescente:* ${form.value.childName}\n` : ''}` +
     `${form.value.childAge ? `*Idade:* ${form.value.childAge}\n` : ''}` +
     `${form.value.message ? `\n*Observações:* ${form.value.message}` : ''}`
 
@@ -83,8 +83,8 @@ const handleSubmit = async () => {
         <DotGrid
           :dot-size="14"
           :gap="28"
-          base-color="#CDBFF0"
-          active-color="#7B5CBF"
+          base-color="#6B4FA3"
+          active-color="#3D2D5E"
           :proximity="120"
           :speed-trigger="80"
           :shock-radius="200"
@@ -98,16 +98,16 @@ const handleSubmit = async () => {
         <div class="section-header">
           <span class="section-tag">Agendamento</span>
           <h1>Agende sua consulta</h1>
-          <p>Preencha o formulário e retornaremos em até 24 horas.</p>
+          <p>Preencha o formulário e retornaremos em até 24 horas. Cuidamos de pessoas. Potencializamos possibilidades.</p>
         </div>
 
         <div class="schedule-showcase">
           <form class="schedule-form" @submit.prevent="handleSubmit">
             <div class="form-section">
-              <h3>Dados do Responsável</h3>
+              <h3>Sobre você</h3>
               <div class="form-grid">
                 <div class="form-group">
-                  <label class="form-label" for="parentName">Nome do Responsável *</label>
+                  <label class="form-label" for="parentName">Seu nome *</label>
                   <input
                     type="text"
                     id="parentName"
@@ -145,19 +145,19 @@ const handleSubmit = async () => {
                 </div>
 
                 <div class="form-group">
-                  <label class="form-label" for="childName">Nome da Criança</label>
+                  <label class="form-label" for="childName">Nome da criança ou adolescente</label>
                   <input
                     type="text"
                     id="childName"
                     class="form-input"
                     v-model="form.childName"
-                    placeholder="Nome da criança"
+                    placeholder="Nome da criança ou adolescente"
                   >
                 </div>
               </div>
 
               <div class="form-group">
-                <label class="form-label">Idade da Criança</label>
+                <label class="form-label">Idade da criança ou adolescente</label>
                 <div class="age-selector">
                   <button type="button" class="age-btn age-btn-minus" @click="decrementAge" :disabled="!canDecrement">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
@@ -178,7 +178,7 @@ const handleSubmit = async () => {
             </div>
 
             <div class="form-section">
-              <h3>Informações Adicionais</h3>
+              <h3>Contexto e expectativas</h3>
               <div class="form-group">
                 <label class="form-label" for="message">Observações</label>
                 <textarea
@@ -282,11 +282,12 @@ const handleSubmit = async () => {
 .section-tag {
   display: inline-block;
   padding: 0.375rem 1rem;
-  background: var(--pastel-lavender);
+  background: var(--lilac-soft);
+  border: 1px solid var(--lilac-light);
   border-radius: var(--radius-full);
   font-size: 0.8125rem;
   font-weight: 600;
-  color: var(--primary-dark);
+  color: var(--lilac-deep);
   margin-bottom: 1rem;
 }
 
@@ -344,8 +345,8 @@ const handleSubmit = async () => {
 }
 
 .age-selector:focus-within {
-  border-color: var(--primary);
-  box-shadow: 0 0 0 4px rgba(167, 139, 250, 0.2), var(--shadow-md);
+  border-color: var(--lilac);
+  box-shadow: 0 0 0 4px rgba(216, 192, 236, 0.25), var(--shadow-md);
 }
 
 .age-btn {
@@ -387,31 +388,31 @@ const handleSubmit = async () => {
 }
 
 .age-btn-minus {
-  background: linear-gradient(145deg, #fdf2f8 0%, #fce7f3 100%);
-  box-shadow: 0 2px 6px rgba(244, 114, 182, 0.2);
+  background: linear-gradient(145deg, var(--pink-light) 0%, var(--pink-soft) 100%);
+  box-shadow: 0 2px 6px rgba(92, 159, 69, 0.35);
 }
 
 .age-btn-minus svg {
-  color: var(--primary);
+  color: var(--lilac-deep);
 }
 
 .age-btn-minus:hover:not(:disabled) {
-  box-shadow: 0 4px 12px rgba(244, 114, 182, 0.3);
+  box-shadow: 0 4px 12px rgba(92, 159, 69, 0.55);
   transform: scale(1.08);
 }
 
 .age-btn-plus {
-  background: linear-gradient(145deg, #ede9fe 0%, #ddd6fe 100%);
-  box-shadow: 0 2px 6px rgba(167, 139, 250, 0.25);
+  background: linear-gradient(145deg, var(--lilac-soft) 0%, var(--lilac-light) 100%);
+  box-shadow: 0 2px 6px rgba(107, 79, 163, 0.35);
 }
 
 .age-btn-plus svg {
-  color: var(--primary-dark);
+  color: var(--lilac-deep);
 }
 
 .age-btn-plus:hover:not(:disabled) {
-  background: linear-gradient(145deg, #c4b5fd 0%, #a78bfa 100%);
-  box-shadow: 0 4px 12px rgba(167, 139, 250, 0.35);
+  background: linear-gradient(145deg, var(--lilac) 0%, var(--lilac-dark) 100%);
+  box-shadow: 0 4px 12px rgba(107, 79, 163, 0.55);
   transform: scale(1.08);
 }
 
@@ -431,7 +432,7 @@ const handleSubmit = async () => {
 .age-value {
   font-size: 2.75rem;
   font-weight: 800;
-  background: linear-gradient(135deg, #1e1b4b 0%, #4c1d95 50%, #7c3aed 100%);
+  background: var(--gradient-primary);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -490,16 +491,16 @@ const handleSubmit = async () => {
 .block-icon {
   width: 40px;
   height: 40px;
-  background: var(--pastel-lavender);
+  background: var(--lilac-soft);
   border-radius: var(--radius-lg);
 }
 
 .block-icon.whatsapp {
-  background: #E8F5E9;
+  background: var(--blue-soft);
 }
 
 .block-icon.time {
-  background: var(--pastel-peach);
+  background: var(--yellow-soft);
 }
 
 .block-header h3 {
@@ -525,7 +526,7 @@ const handleSubmit = async () => {
 .step-num {
   width: 24px;
   height: 24px;
-  background: var(--primary);
+  background: var(--lilac);
   color: white;
   border-radius: 50%;
   display: flex;
@@ -546,7 +547,7 @@ const handleSubmit = async () => {
 }
 
 .hours-block {
-  background: var(--pastel-mint);
+  background: var(--blue-soft);
 }
 
 .days {

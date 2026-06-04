@@ -1,8 +1,8 @@
 <script setup>
 useHead({
-  title: '404 - Página Não Encontrada | Autitude',
+  title: 'Página não encontrada | Autitude - Desenvolvimento e Ação Humana',
   meta: [
-    { name: 'description', content: 'Página não encontrada. Volte para a página inicial.' }
+    { name: 'description', content: 'Página não encontrada. Volte para a página inicial da Autitude.' }
   ]
 })
 </script>
@@ -14,8 +14,8 @@ useHead({
         <div class="error-visual">
           <span class="error-code">404</span>
         </div>
-        <h1>Página Não Encontrada</h1>
-        <p>Desculpe, a página que você está procurando não existe ou foi movida.</p>
+        <h1>Página não encontrada</h1>
+        <p>Desculpe, a página que você procura não existe ou foi movida. Vamos voltar para cuidar de você.</p>
         <div class="error-actions">
           <NuxtLink to="/" class="btn btn-primary btn-lg">
             Voltar ao Início

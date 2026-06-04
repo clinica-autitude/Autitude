@@ -1,11 +1,11 @@
 import process from 'node:process';globalThis._importMeta_=globalThis._importMeta_||{url:"file:///_entry.js",env:process.env};import { hasInjectionContext, inject, defineComponent, shallowRef, h, resolveComponent, computed, unref, getCurrentInstance, ref, Suspense, Fragment, createApp, provide, shallowReactive, onErrorCaptured, onServerPrefetch, createVNode, resolveDynamicComponent, reactive, effectScope, defineAsyncComponent, mergeProps, getCurrentScope, toRef, withCtx, createTextVNode, isRef, isReadonly, useSSRContext, isShallow, isReactive, toRaw } from 'vue';
-import { p as parseQuery, k as hasProtocol, h as joinURL, l as parseURL, e as encodePath, m as decodePath, w as withQuery, n as isScriptProtocol, o as getContext, q as withTrailingSlash, r as withoutTrailingSlash, s as sanitizeStatusCode, $ as $fetch, t as createHooks, c as createError$1, v as executeAsync, x as defu } from '../nitro/nitro.mjs';
+import http from 'node:http';
+import https from 'node:https';
+import { w as withBase, i as destr, k as withQuery, l as i, s, m as l, p as parseQuery, n as hasProtocol, o as joinURL, q as parseURL, e as encodePath, r as decodePath, t as isScriptProtocol, v as withQuery$1, x as getContext, y as withTrailingSlash, z as withoutTrailingSlash, A as sanitizeStatusCode, B as createHooks, c as createError$1, C as executeAsync, D as defu } from '../nitro/nitro.mjs';
 import { u as useHead$1, h as headSymbol, b as baseURL } from '../routes/renderer.mjs';
 import { RouterView, createMemoryHistory, createRouter, START_LOCATION } from 'vue-router';
 import { ssrRenderSuspense, ssrRenderComponent, ssrRenderVNode, ssrRenderAttrs, ssrRenderClass, ssrRenderAttr, ssrRenderStyle, ssrInterpolate, ssrRenderTeleport, ssrIncludeBooleanAttr } from 'vue/server-renderer';
 import { Settings, X, Sun, Moon, Minus, Plus, Play, Square, Globe } from 'lucide-vue-next';
-import 'node:http';
-import 'node:https';
 import 'node:events';
 import 'node:buffer';
 import 'node:fs';
@@ -17,6 +17,374 @@ import 'unhead/server';
 import 'devalue';
 import 'unhead/utils';
 import 'unhead/plugins';
+
+class FetchError extends Error {
+  constructor(message, opts) {
+    super(message, opts);
+    this.name = "FetchError";
+    if (opts?.cause && !this.cause) {
+      this.cause = opts.cause;
+    }
+  }
+}
+function createFetchError(ctx) {
+  const errorMessage = ctx.error?.message || ctx.error?.toString() || "";
+  const method = ctx.request?.method || ctx.options?.method || "GET";
+  const url = ctx.request?.url || String(ctx.request) || "/";
+  const requestStr = `[${method}] ${JSON.stringify(url)}`;
+  const statusStr = ctx.response ? `${ctx.response.status} ${ctx.response.statusText}` : "<no response>";
+  const message = `${requestStr}: ${statusStr}${errorMessage ? ` ${errorMessage}` : ""}`;
+  const fetchError = new FetchError(
+    message,
+    ctx.error ? { cause: ctx.error } : void 0
+  );
+  for (const key of ["request", "options", "response"]) {
+    Object.defineProperty(fetchError, key, {
+      get() {
+        return ctx[key];
+      }
+    });
+  }
+  for (const [key, refKey] of [
+    ["data", "_data"],
+    ["status", "status"],
+    ["statusCode", "status"],
+    ["statusText", "statusText"],
+    ["statusMessage", "statusText"]
+  ]) {
+    Object.defineProperty(fetchError, key, {
+      get() {
+        return ctx.response && ctx.response[refKey];
+      }
+    });
+  }
+  return fetchError;
+}
+
+const payloadMethods = new Set(
+  Object.freeze(["PATCH", "POST", "PUT", "DELETE"])
+);
+function isPayloadMethod(method = "GET") {
+  return payloadMethods.has(method.toUpperCase());
+}
+function isJSONSerializable(value) {
+  if (value === void 0) {
+    return false;
+  }
+  const t = typeof value;
+  if (t === "string" || t === "number" || t === "boolean" || t === null) {
+    return true;
+  }
+  if (t !== "object") {
+    return false;
+  }
+  if (Array.isArray(value)) {
+    return true;
+  }
+  if (value.buffer) {
+    return false;
+  }
+  if (value instanceof FormData || value instanceof URLSearchParams) {
+    return false;
+  }
+  return value.constructor && value.constructor.name === "Object" || typeof value.toJSON === "function";
+}
+const textTypes = /* @__PURE__ */ new Set([
+  "image/svg",
+  "application/xml",
+  "application/xhtml",
+  "application/html"
+]);
+const JSON_RE = /^application\/(?:[\w!#$%&*.^`~-]*\+)?json(;.+)?$/i;
+function detectResponseType(_contentType = "") {
+  if (!_contentType) {
+    return "json";
+  }
+  const contentType = _contentType.split(";").shift() || "";
+  if (JSON_RE.test(contentType)) {
+    return "json";
+  }
+  if (contentType === "text/event-stream") {
+    return "stream";
+  }
+  if (textTypes.has(contentType) || contentType.startsWith("text/")) {
+    return "text";
+  }
+  return "blob";
+}
+function resolveFetchOptions(request, input, defaults, Headers) {
+  const headers = mergeHeaders(
+    input?.headers ?? request?.headers,
+    defaults?.headers,
+    Headers
+  );
+  let query;
+  if (defaults?.query || defaults?.params || input?.params || input?.query) {
+    query = {
+      ...defaults?.params,
+      ...defaults?.query,
+      ...input?.params,
+      ...input?.query
+    };
+  }
+  return {
+    ...defaults,
+    ...input,
+    query,
+    params: query,
+    headers
+  };
+}
+function mergeHeaders(input, defaults, Headers) {
+  if (!defaults) {
+    return new Headers(input);
+  }
+  const headers = new Headers(defaults);
+  if (input) {
+    for (const [key, value] of Symbol.iterator in input || Array.isArray(input) ? input : new Headers(input)) {
+      headers.set(key, value);
+    }
+  }
+  return headers;
+}
+async function callHooks(context, hooks) {
+  if (hooks) {
+    if (Array.isArray(hooks)) {
+      for (const hook of hooks) {
+        await hook(context);
+      }
+    } else {
+      await hooks(context);
+    }
+  }
+}
+
+const retryStatusCodes = /* @__PURE__ */ new Set([
+  408,
+  // Request Timeout
+  409,
+  // Conflict
+  425,
+  // Too Early (Experimental)
+  429,
+  // Too Many Requests
+  500,
+  // Internal Server Error
+  502,
+  // Bad Gateway
+  503,
+  // Service Unavailable
+  504
+  // Gateway Timeout
+]);
+const nullBodyResponses = /* @__PURE__ */ new Set([101, 204, 205, 304]);
+function createFetch(globalOptions = {}) {
+  const {
+    fetch = globalThis.fetch,
+    Headers = globalThis.Headers,
+    AbortController = globalThis.AbortController
+  } = globalOptions;
+  async function onError(context) {
+    const isAbort = context.error && context.error.name === "AbortError" && !context.options.timeout || false;
+    if (context.options.retry !== false && !isAbort) {
+      let retries;
+      if (typeof context.options.retry === "number") {
+        retries = context.options.retry;
+      } else {
+        retries = isPayloadMethod(context.options.method) ? 0 : 1;
+      }
+      const responseCode = context.response && context.response.status || 500;
+      if (retries > 0 && (Array.isArray(context.options.retryStatusCodes) ? context.options.retryStatusCodes.includes(responseCode) : retryStatusCodes.has(responseCode))) {
+        const retryDelay = typeof context.options.retryDelay === "function" ? context.options.retryDelay(context) : context.options.retryDelay || 0;
+        if (retryDelay > 0) {
+          await new Promise((resolve) => setTimeout(resolve, retryDelay));
+        }
+        return $fetchRaw(context.request, {
+          ...context.options,
+          retry: retries - 1
+        });
+      }
+    }
+    const error = createFetchError(context);
+    if (Error.captureStackTrace) {
+      Error.captureStackTrace(error, $fetchRaw);
+    }
+    throw error;
+  }
+  const $fetchRaw = async function $fetchRaw2(_request, _options = {}) {
+    const context = {
+      request: _request,
+      options: resolveFetchOptions(
+        _request,
+        _options,
+        globalOptions.defaults,
+        Headers
+      ),
+      response: void 0,
+      error: void 0
+    };
+    if (context.options.method) {
+      context.options.method = context.options.method.toUpperCase();
+    }
+    if (context.options.onRequest) {
+      await callHooks(context, context.options.onRequest);
+      if (!(context.options.headers instanceof Headers)) {
+        context.options.headers = new Headers(
+          context.options.headers || {}
+          /* compat */
+        );
+      }
+    }
+    if (typeof context.request === "string") {
+      if (context.options.baseURL) {
+        context.request = withBase(context.request, context.options.baseURL);
+      }
+      if (context.options.query) {
+        context.request = withQuery(context.request, context.options.query);
+        delete context.options.query;
+      }
+      if ("query" in context.options) {
+        delete context.options.query;
+      }
+      if ("params" in context.options) {
+        delete context.options.params;
+      }
+    }
+    if (context.options.body && isPayloadMethod(context.options.method)) {
+      if (isJSONSerializable(context.options.body)) {
+        const contentType = context.options.headers.get("content-type");
+        if (typeof context.options.body !== "string") {
+          context.options.body = contentType === "application/x-www-form-urlencoded" ? new URLSearchParams(
+            context.options.body
+          ).toString() : JSON.stringify(context.options.body);
+        }
+        if (!contentType) {
+          context.options.headers.set("content-type", "application/json");
+        }
+        if (!context.options.headers.has("accept")) {
+          context.options.headers.set("accept", "application/json");
+        }
+      } else if (
+        // ReadableStream Body
+        "pipeTo" in context.options.body && typeof context.options.body.pipeTo === "function" || // Node.js Stream Body
+        typeof context.options.body.pipe === "function"
+      ) {
+        if (!("duplex" in context.options)) {
+          context.options.duplex = "half";
+        }
+      }
+    }
+    let abortTimeout;
+    if (!context.options.signal && context.options.timeout) {
+      const controller = new AbortController();
+      abortTimeout = setTimeout(() => {
+        const error = new Error(
+          "[TimeoutError]: The operation was aborted due to timeout"
+        );
+        error.name = "TimeoutError";
+        error.code = 23;
+        controller.abort(error);
+      }, context.options.timeout);
+      context.options.signal = controller.signal;
+    }
+    try {
+      context.response = await fetch(
+        context.request,
+        context.options
+      );
+    } catch (error) {
+      context.error = error;
+      if (context.options.onRequestError) {
+        await callHooks(
+          context,
+          context.options.onRequestError
+        );
+      }
+      return await onError(context);
+    } finally {
+      if (abortTimeout) {
+        clearTimeout(abortTimeout);
+      }
+    }
+    const hasBody = (context.response.body || // https://github.com/unjs/ofetch/issues/324
+    // https://github.com/unjs/ofetch/issues/294
+    // https://github.com/JakeChampion/fetch/issues/1454
+    context.response._bodyInit) && !nullBodyResponses.has(context.response.status) && context.options.method !== "HEAD";
+    if (hasBody) {
+      const responseType = (context.options.parseResponse ? "json" : context.options.responseType) || detectResponseType(context.response.headers.get("content-type") || "");
+      switch (responseType) {
+        case "json": {
+          const data = await context.response.text();
+          const parseFunction = context.options.parseResponse || destr;
+          context.response._data = parseFunction(data);
+          break;
+        }
+        case "stream": {
+          context.response._data = context.response.body || context.response._bodyInit;
+          break;
+        }
+        default: {
+          context.response._data = await context.response[responseType]();
+        }
+      }
+    }
+    if (context.options.onResponse) {
+      await callHooks(
+        context,
+        context.options.onResponse
+      );
+    }
+    if (!context.options.ignoreResponseError && context.response.status >= 400 && context.response.status < 600) {
+      if (context.options.onResponseError) {
+        await callHooks(
+          context,
+          context.options.onResponseError
+        );
+      }
+      return await onError(context);
+    }
+    return context.response;
+  };
+  const $fetch = async function $fetch2(request, options) {
+    const r = await $fetchRaw(request, options);
+    return r._data;
+  };
+  $fetch.raw = $fetchRaw;
+  $fetch.native = (...args) => fetch(...args);
+  $fetch.create = (defaultOptions = {}, customGlobalOptions = {}) => createFetch({
+    ...globalOptions,
+    ...customGlobalOptions,
+    defaults: {
+      ...globalOptions.defaults,
+      ...customGlobalOptions.defaults,
+      ...defaultOptions
+    }
+  });
+  return $fetch;
+}
+
+function createNodeFetch() {
+  const useKeepAlive = JSON.parse(process.env.FETCH_KEEP_ALIVE || "false");
+  if (!useKeepAlive) {
+    return l;
+  }
+  const agentOptions = { keepAlive: true };
+  const httpAgent = new http.Agent(agentOptions);
+  const httpsAgent = new https.Agent(agentOptions);
+  const nodeFetchOptions = {
+    agent(parsedURL) {
+      return parsedURL.protocol === "http:" ? httpAgent : httpsAgent;
+    }
+  };
+  return function nodeFetchWithKeepAlive(input, init) {
+    return l(input, { ...nodeFetchOptions, ...init });
+  };
+}
+const fetch = globalThis.fetch ? (...args) => globalThis.fetch(...args) : createNodeFetch();
+const Headers = globalThis.Headers || s;
+const AbortController = globalThis.AbortController || i;
+const ofetch = createFetch({ fetch, Headers, AbortController });
+const $fetch = ofetch;
 
 if (!globalThis.$fetch) {
   globalThis.$fetch = $fetch.create({
@@ -43,7 +411,7 @@ function createNuxtApp(options) {
     globalName: "nuxt",
     versions: {
       get nuxt() {
-        return "3.21.4";
+        return "3.21.7";
       },
       get vue() {
         return nuxtApp.vueApp.version;
@@ -265,7 +633,17 @@ const isProcessingMiddleware = () => {
   }
   return false;
 };
-const URL_QUOTE_RE = /"/g;
+const HTML_ATTR_UNSAFE_RE = /[&"'<>]/g;
+const HTML_ATTR_ENCODE_MAP = {
+  "&": "%26",
+  '"': "%22",
+  "'": "%27",
+  "<": "%3C",
+  ">": "%3E"
+};
+function encodeForHtmlAttr(value) {
+  return value.replace(HTML_ATTR_UNSAFE_RE, (c) => HTML_ATTR_ENCODE_MAP[c]);
+}
 const navigateTo = (to, options) => {
   to ||= "/";
   const toPath = typeof to === "string" ? to : "path" in to ? resolveRouteObject(to) : useRouter().resolve(to).href;
@@ -289,8 +667,8 @@ const navigateTo = (to, options) => {
       const location2 = isExternal ? toPath : joinURL((/* @__PURE__ */ useRuntimeConfig()).app.baseURL, fullPath);
       const redirect = async function(response) {
         await nuxtApp.callHook("app:redirected");
-        const encodedLoc = location2.replace(URL_QUOTE_RE, "%22");
         const encodedHeader = encodeURL(location2, isExternalHost);
+        const encodedLoc = encodeForHtmlAttr(encodedHeader);
         nuxtApp.ssrContext["~renderResponse"] = {
           statusCode: sanitizeStatusCode(options?.redirectCode || 302, 302),
           body: `<!DOCTYPE html><html><head><meta http-equiv="refresh" content="0; url=${encodedLoc}"></head></html>`,
@@ -328,12 +706,13 @@ const navigateTo = (to, options) => {
   return options?.replace ? router.replace(encodedTo) : router.push(encodedTo);
 };
 function resolveRouteObject(to) {
-  return withQuery(to.path || "", to.query || {}) + (to.hash || "");
+  return withQuery$1(to.path || "", to.query || {}) + (to.hash || "");
 }
 function encodeURL(location2, isExternalHost = false) {
   const url = new URL(location2, "http://localhost");
   if (!isExternalHost) {
-    return url.pathname + url.search + url.hash;
+    const pathname = url.pathname.replace(/^\/{2,}/, "/");
+    return pathname + url.search + url.hash;
   }
   if (location2.startsWith("//")) {
     return url.toString().replace(url.protocol, "");
@@ -380,11 +759,25 @@ const createError = (error) => {
   });
   return nuxtError;
 };
-const unhead_k2P3m_ZDyjlr2mMYnoDPwavjsDN8hBlk9cFai0bbopU = /* @__PURE__ */ defineNuxtPlugin({
+function freezeHead(head) {
+  const realPush = head.push;
+  head.push = () => ({ dispose: () => {
+  }, patch: () => {
+  }, _poll: () => {
+  } });
+  return () => {
+    head.push = realPush;
+  };
+}
+const unhead_THLFxCn0va52jPnt5DKFCxd0eM_oqm0piwqNO6oqZ9U = /* @__PURE__ */ defineNuxtPlugin({
   name: "nuxt:head",
   enforce: "pre",
   setup(nuxtApp) {
     const head = nuxtApp.ssrContext.head;
+    if (nuxtApp.ssrContext.islandContext) {
+      const unfreeze = freezeHead(head);
+      nuxtApp.hooks.hookOnce("app:created", unfreeze);
+    }
     nuxtApp.vueApp.use(head);
   }
 });
@@ -416,12 +809,12 @@ const matcher = /* @__PURE__ */ (() => {
     return r;
   };
 })();
-const _routeRulesMatcher = (path) => defu({}, ...matcher("", path).map((r) => r.data).reverse());
+const _routeRulesMatcher = (path) => defu({}, ...matcher("", typeof path === "string" ? path.toLowerCase() : path).map((r) => r.data).reverse());
 const routeRulesMatcher$1 = _routeRulesMatcher;
 function getRouteRules(arg) {
   const path = typeof arg === "string" ? arg : arg.path;
   try {
-    return routeRulesMatcher$1(path);
+    return routeRulesMatcher$1(path.toLowerCase());
   } catch (e) {
     console.error("[nuxt] Error matching route rules.", e);
     return {};
@@ -431,52 +824,52 @@ const _routes = [
   {
     name: "faq",
     path: "/faq",
-    component: () => import('./faq-Cd93bBgP.mjs')
+    component: () => import('./faq-DWlIYWDD.mjs')
   },
   {
     name: "index",
     path: "/",
-    component: () => import('./index-BG7U7vC2.mjs')
+    component: () => import('./index-B_agcctB.mjs')
   },
   {
     name: "sobre",
     path: "/sobre",
-    component: () => import('./sobre-YBfn0rRo.mjs')
+    component: () => import('./sobre-Cty8x9zH.mjs')
   },
   {
     name: "equipe",
     path: "/equipe",
-    component: () => import('./equipe-K-tixciM.mjs')
+    component: () => import('./equipe-C2ik8ZVD.mjs')
   },
   {
     name: "agendar",
     path: "/agendar",
-    component: () => import('./agendar-CSOBjuan.mjs')
+    component: () => import('./agendar-DjQKHXAd.mjs')
   },
   {
     name: "contato",
     path: "/contato",
-    component: () => import('./contato-C-JqHWg4.mjs')
+    component: () => import('./contato-CBUVeqIi.mjs')
   },
   {
     name: "servicos",
     path: "/servicos",
-    component: () => import('./servicos-BoBXCeTz.mjs')
+    component: () => import('./servicos-BEBa9bSE.mjs')
   },
   {
     name: "slug",
     path: "/:slug(.*)*",
-    component: () => import('./_...slug_-BJ-iYomJ.mjs')
+    component: () => import('./_...slug_-DKrZ4HWa.mjs')
   },
   {
     name: "blog-slug",
     path: "/blog/:slug()",
-    component: () => import('./_slug_-fBy1IBe6.mjs')
+    component: () => import('./_slug_-B4C4GSuq.mjs')
   },
   {
     name: "privacidade",
     path: "/privacidade",
-    component: () => import('./privacidade-COGrPFyI.mjs')
+    component: () => import('./privacidade-BEzLXZzW.mjs')
   }
 ];
 const ROUTE_KEY_PARENTHESES_RE = /(:\w+)\([^)]+\)/g;
@@ -601,6 +994,8 @@ const globalMiddleware = [
   manifest_45route_45rule
 ];
 const namedMiddleware = {};
+Object.assign(/* @__PURE__ */ Object.create(null), {});
+const pageIslandRoutes = Object.assign(/* @__PURE__ */ Object.create(null), {});
 const plugin = /* @__PURE__ */ defineNuxtPlugin({
   name: "nuxt:router",
   enforce: "pre",
@@ -668,7 +1063,8 @@ const plugin = /* @__PURE__ */ defineNuxtPlugin({
       named: {}
     };
     const error = /* @__PURE__ */ useError();
-    if (!nuxtApp.ssrContext?.islandContext) {
+    const isServerPage = nuxtApp.ssrContext?.islandContext?.name?.startsWith("page_");
+    if (!nuxtApp.ssrContext?.islandContext || isServerPage) {
       router.afterEach(async (to, _from, failure) => {
         delete nuxtApp._processingMiddleware;
         if (failure) {
@@ -697,7 +1093,7 @@ const plugin = /* @__PURE__ */ defineNuxtPlugin({
     const resolvedInitialRoute = router.currentRoute.value;
     const hasDeferredRoute = false;
     syncCurrentRoute();
-    if (nuxtApp.ssrContext?.islandContext) {
+    if (nuxtApp.ssrContext?.islandContext && !isServerPage) {
       return { provide: { router } };
     }
     const initialLayout = nuxtApp.payload.state._layout;
@@ -708,7 +1104,7 @@ const plugin = /* @__PURE__ */ defineNuxtPlugin({
         to.meta.layout = initialLayout;
       }
       nuxtApp._processingMiddleware = true;
-      if (!nuxtApp.ssrContext?.islandContext) {
+      if (!nuxtApp.ssrContext?.islandContext || isServerPage) {
         const middlewareEntries = /* @__PURE__ */ new Set([...globalMiddleware, ...nuxtApp._middleware.global]);
         for (const component of to.matched) {
           const componentMiddleware = component.meta.middleware;
@@ -769,6 +1165,19 @@ const plugin = /* @__PURE__ */ defineNuxtPlugin({
         }
       }
     });
+    if (isServerPage) {
+      router.beforeResolve((to) => {
+        const expected = pageIslandRoutes[nuxtApp.ssrContext.islandContext.name];
+        const actual = to.matched.find((m) => m.components?.default?.__nuxt_island)?.components?.default;
+        if (!expected || expected !== actual?.__nuxt_island) {
+          nuxtApp.ssrContext["~renderResponse"] = {
+            statusCode: 400,
+            statusMessage: "Invalid island request path"
+          };
+          return false;
+        }
+      });
+    }
     router.onError(async () => {
       delete nuxtApp._processingMiddleware;
       await nuxtApp.callHook("page:loading:end");
@@ -833,7 +1242,7 @@ const reducers = [
   ["Ref", (data) => isRef(data) && data.value],
   ["Reactive", (data) => isReactive(data) && toRaw(data)]
 ];
-const revive_payload_server_MVtmlZaQpj6ApFmshWfUWl5PehCebzaBf2NuRMiIbms = /* @__PURE__ */ defineNuxtPlugin({
+const revive_payload_server_gF3J1Q1sr9JLs3y_81bFkOWBnUipdXWqGru9Ex7Uf3o = /* @__PURE__ */ defineNuxtPlugin({
   name: "nuxt:revive-payload:server",
   setup() {
     for (const [reducer, fn] of reducers) {
@@ -871,7 +1280,7 @@ function useState(...args) {
   }
   return state;
 }
-const plugin_server_9Ca9_HhnjAGwBWpwAydRauMHxWoxTDY60BrArRnXN_A = /* @__PURE__ */ defineNuxtPlugin((nuxtApp) => {
+const plugin_server_8h7s0If21lrIdyJnjaRUzd_B4C24k7wcNk_9RPR9Cag = /* @__PURE__ */ defineNuxtPlugin((nuxtApp) => {
   const colorMode = nuxtApp.ssrContext?.islandContext ? ref({}).value : useState("color-mode", () => reactive({
     preference,
     value: preference,
@@ -910,19 +1319,19 @@ const path_resolver_6HWvyyRQPSmQSq7k0yXPt62ncT9YNqaSSte_MTqItGo = /* @__PURE__ *
     });
   });
 });
-const prerender_server_sqIxOBipVr4FbVMA9kqWL0wT8FPop6sKAXLVfifsJzk = /* @__PURE__ */ defineNuxtPlugin(async () => {
+const prerender_server_agOdZiRlnNbYl1D0dP2eI7P0CXpeD8TxMuKyX96gOp8 = /* @__PURE__ */ defineNuxtPlugin(async () => {
   {
     return;
   }
 });
 const plugins = [
-  unhead_k2P3m_ZDyjlr2mMYnoDPwavjsDN8hBlk9cFai0bbopU,
+  unhead_THLFxCn0va52jPnt5DKFCxd0eM_oqm0piwqNO6oqZ9U,
   plugin,
-  revive_payload_server_MVtmlZaQpj6ApFmshWfUWl5PehCebzaBf2NuRMiIbms,
+  revive_payload_server_gF3J1Q1sr9JLs3y_81bFkOWBnUipdXWqGru9Ex7Uf3o,
   components_plugin_z4hgvsiddfKkfXTP6M8M4zG5Cb7sGnDhcryKVM45Di4,
-  plugin_server_9Ca9_HhnjAGwBWpwAydRauMHxWoxTDY60BrArRnXN_A,
+  plugin_server_8h7s0If21lrIdyJnjaRUzd_B4C24k7wcNk_9RPR9Cag,
   path_resolver_6HWvyyRQPSmQSq7k0yXPt62ncT9YNqaSSte_MTqItGo,
-  prerender_server_sqIxOBipVr4FbVMA9kqWL0wT8FPop6sKAXLVfifsJzk
+  prerender_server_agOdZiRlnNbYl1D0dP2eI7P0CXpeD8TxMuKyX96gOp8
 ];
 const useColorMode = () => {
   return useState("color-mode").value;
@@ -958,41 +1367,41 @@ const _sfc_main$4 = {
         class: "accessibility-panel",
         role: "region",
         "aria-label": "Controles de acessibilidade"
-      }, _attrs))} data-v-5d3ca4bc><button id="a11y-toggle" class="a11y-btn-floating" aria-label="Abrir menu de acessibilidade"${ssrRenderAttr("aria-expanded", menuOpen.value)} data-v-5d3ca4bc>`);
+      }, _attrs))} data-v-917175b8><button id="a11y-toggle" class="a11y-btn-floating" aria-label="Abrir menu de acessibilidade"${ssrRenderAttr("aria-expanded", menuOpen.value)} data-v-917175b8>`);
       _push(ssrRenderComponent(unref(Settings), { size: 24 }, null, _parent));
-      _push(`<span class="a11y-label" data-v-5d3ca4bc>Acessibilidade</span></button>`);
+      _push(`<span class="a11y-label" data-v-917175b8>Acessibilidade</span></button>`);
       ssrRenderTeleport(_push, (_push2) => {
         if (menuOpen.value) {
-          _push2(`<div class="a11y-overlay" data-v-5d3ca4bc></div>`);
+          _push2(`<div class="a11y-overlay" data-v-917175b8></div>`);
         } else {
           _push2(`<!---->`);
         }
         if (menuOpen.value) {
-          _push2(`<div id="a11y-menu" class="a11y-menu" role="dialog" aria-modal="true" aria-labelledby="a11y-menu-title" data-v-5d3ca4bc><div class="a11y-menu-header" data-v-5d3ca4bc><h3 id="a11y-menu-title" data-v-5d3ca4bc>Configurações</h3><button id="a11y-close" class="a11y-close-btn" aria-label="Fechar menu" data-v-5d3ca4bc>`);
+          _push2(`<div id="a11y-menu" class="a11y-menu" role="dialog" aria-modal="true" aria-labelledby="a11y-menu-title" data-v-917175b8><div class="a11y-menu-header" data-v-917175b8><h3 id="a11y-menu-title" data-v-917175b8>Configurações</h3><button id="a11y-close" class="a11y-close-btn" aria-label="Fechar menu" data-v-917175b8>`);
           _push2(ssrRenderComponent(unref(X), { size: 24 }, null, _parent));
-          _push2(`</button></div><div class="a11y-menu-content" data-v-5d3ca4bc><div class="a11y-section" data-v-5d3ca4bc><h4 data-v-5d3ca4bc>Modo Escuro</h4><button id="a11y-dark-toggle" class="${ssrRenderClass([{ "dark-active": isDarkMode.value }, "a11y-dark-toggle"])}"${ssrRenderAttr("aria-pressed", isDarkMode.value)} data-v-5d3ca4bc><span class="toggle-track" data-v-5d3ca4bc><span class="toggle-thumb" data-v-5d3ca4bc>`);
+          _push2(`</button></div><div class="a11y-menu-content" data-v-917175b8><div class="a11y-section" data-v-917175b8><h4 data-v-917175b8>Modo Escuro</h4><button id="a11y-dark-toggle" class="${ssrRenderClass([{ "dark-active": isDarkMode.value }, "a11y-dark-toggle"])}"${ssrRenderAttr("aria-pressed", isDarkMode.value)} data-v-917175b8><span class="toggle-track" data-v-917175b8><span class="toggle-thumb" data-v-917175b8>`);
           if (isDarkMode.value) {
             _push2(ssrRenderComponent(unref(Sun), { size: 14 }, null, _parent));
           } else {
             _push2(ssrRenderComponent(unref(Moon), { size: 14 }, null, _parent));
           }
-          _push2(`</span></span><span class="toggle-label" data-v-5d3ca4bc>${ssrInterpolate(isDarkMode.value ? "Modo Escuro" : "Modo Claro")}</span></button></div><div class="a11y-section" data-v-5d3ca4bc><h4 data-v-5d3ca4bc>Tamanho da Fonte</h4><div class="a11y-font-controls" data-v-5d3ca4bc><button id="a11y-font-decrease" class="a11y-btn a11y-btn-icon" aria-label="Diminuir fonte" data-v-5d3ca4bc>`);
+          _push2(`</span></span><span class="toggle-label" data-v-917175b8>${ssrInterpolate(isDarkMode.value ? "Modo Escuro" : "Modo Claro")}</span></button></div><div class="a11y-section" data-v-917175b8><h4 data-v-917175b8>Tamanho da Fonte</h4><div class="a11y-font-controls" data-v-917175b8><button id="a11y-font-decrease" class="a11y-btn a11y-btn-icon" aria-label="Diminuir fonte" data-v-917175b8>`);
           _push2(ssrRenderComponent(unref(Minus), { size: 20 }, null, _parent));
-          _push2(`</button><span id="a11y-font-size" class="a11y-font-value" aria-live="polite" data-v-5d3ca4bc>${ssrInterpolate(fontSize.value)}%</span><button id="a11y-font-increase" class="a11y-btn a11y-btn-icon" aria-label="Aumentar fonte" data-v-5d3ca4bc>`);
+          _push2(`</button><span id="a11y-font-size" class="a11y-font-value" aria-live="polite" data-v-917175b8>${ssrInterpolate(fontSize.value)}%</span><button id="a11y-font-increase" class="a11y-btn a11y-btn-icon" aria-label="Aumentar fonte" data-v-917175b8>`);
           _push2(ssrRenderComponent(unref(Plus), { size: 20 }, null, _parent));
-          _push2(`</button></div></div><div class="a11y-section" data-v-5d3ca4bc><h4 data-v-5d3ca4bc>Contraste</h4><div class="a11y-contrast-controls" data-v-5d3ca4bc><button id="a11y-contrast-normal" class="${ssrRenderClass([{ "a11y-active": contrastMode.value === "normal" }, "a11y-btn"])}" data-v-5d3ca4bc>Normal</button><button id="a11y-contrast-high" class="${ssrRenderClass([{ "a11y-active": contrastMode.value === "high" }, "a11y-btn"])}" data-v-5d3ca4bc>Alto</button><button id="a11y-contrast-dark" class="${ssrRenderClass([{ "a11y-active": contrastMode.value === "dark" }, "a11y-btn"])}" data-v-5d3ca4bc>Escuro</button></div></div><div class="a11y-section" data-v-5d3ca4bc><h4 data-v-5d3ca4bc>Leitor de Tela (TTS)</h4><p class="a11y-hint" data-v-5d3ca4bc>Lê o conteúdo principal da página em voz alta</p><div class="a11y-tts-status" role="status" aria-live="polite" data-v-5d3ca4bc>${ssrInterpolate(ttsStatus.value)}</div><div class="a11y-btn-group" data-v-5d3ca4bc><button id="a11y-tts-play" class="${ssrRenderClass([{ "a11y-active": speaking.value }, "a11y-btn"])}" aria-label="Reproduzir texto da página" data-v-5d3ca4bc>`);
+          _push2(`</button></div></div><div class="a11y-section" data-v-917175b8><h4 data-v-917175b8>Contraste</h4><div class="a11y-contrast-controls" data-v-917175b8><button id="a11y-contrast-normal" class="${ssrRenderClass([{ "a11y-active": contrastMode.value === "normal" }, "a11y-btn"])}" data-v-917175b8>Normal</button><button id="a11y-contrast-high" class="${ssrRenderClass([{ "a11y-active": contrastMode.value === "high" }, "a11y-btn"])}" data-v-917175b8>Alto</button><button id="a11y-contrast-dark" class="${ssrRenderClass([{ "a11y-active": contrastMode.value === "dark" }, "a11y-btn"])}" data-v-917175b8>Escuro</button></div></div><div class="a11y-section" data-v-917175b8><h4 data-v-917175b8>Leitor de Tela (TTS)</h4><p class="a11y-hint" data-v-917175b8>Lê o conteúdo principal da página em voz alta</p><div class="a11y-tts-status" role="status" aria-live="polite" data-v-917175b8>${ssrInterpolate(ttsStatus.value)}</div><div class="a11y-btn-group" data-v-917175b8><button id="a11y-tts-play" class="${ssrRenderClass([{ "a11y-active": speaking.value }, "a11y-btn"])}" aria-label="Reproduzir texto da página" data-v-917175b8>`);
           _push2(ssrRenderComponent(unref(Play), { size: 18 }, null, _parent));
-          _push2(` ${ssrInterpolate(speaking.value ? "Pausar" : "Ler Página")}</button><button id="a11y-tts-stop" class="a11y-btn" aria-label="Parar leitura completamente"${ssrIncludeBooleanAttr(!speaking.value) ? " disabled" : ""} data-v-5d3ca4bc>`);
+          _push2(` ${ssrInterpolate(speaking.value ? "Pausar" : "Ler Página")}</button><button id="a11y-tts-stop" class="a11y-btn" aria-label="Parar leitura completamente"${ssrIncludeBooleanAttr(!speaking.value) ? " disabled" : ""} data-v-917175b8>`);
           _push2(ssrRenderComponent(unref(Square), { size: 18 }, null, _parent));
-          _push2(` Parar </button></div></div><div class="a11y-section" data-v-5d3ca4bc><h4 data-v-5d3ca4bc>Libras (VLibras)</h4><p class="a11y-hint" data-v-5d3ca4bc>Traduz o conteúdo para Língua Brasileira de Sinais</p>`);
+          _push2(` Parar </button></div></div><div class="a11y-section" data-v-917175b8><h4 data-v-917175b8>Libras (VLibras)</h4><p class="a11y-hint" data-v-917175b8>Traduz o conteúdo para Língua Brasileira de Sinais</p>`);
           if (vlibrasStatus.value) {
-            _push2(`<div class="a11y-vlibras-status" role="status" data-v-5d3ca4bc>${ssrInterpolate(vlibrasStatus.value)}</div>`);
+            _push2(`<div class="a11y-vlibras-status" role="status" data-v-917175b8>${ssrInterpolate(vlibrasStatus.value)}</div>`);
           } else {
             _push2(`<!---->`);
           }
-          _push2(`<button id="a11y-vlibras-toggle" class="${ssrRenderClass([{ "a11y-active": vlibrasEnabled.value }, "a11y-btn a11y-btn-vlibras"])}" data-v-5d3ca4bc>`);
+          _push2(`<button id="a11y-vlibras-toggle" class="${ssrRenderClass([{ "a11y-active": vlibrasEnabled.value }, "a11y-btn a11y-btn-vlibras"])}" data-v-917175b8>`);
           _push2(ssrRenderComponent(unref(Globe), { size: 18 }, null, _parent));
-          _push2(` ${ssrInterpolate(vlibrasEnabled.value ? "Desativar VLibras" : "Ativar VLibras")}</button></div><div class="a11y-section" data-v-5d3ca4bc><h4 data-v-5d3ca4bc>Navegação por Teclado</h4><p class="a11y-hint" data-v-5d3ca4bc>Use Tab para navegar, Enter para selecionar</p><ul class="a11y-shortcuts" data-v-5d3ca4bc><li data-v-5d3ca4bc><kbd data-v-5d3ca4bc>Tab</kbd> Próximo elemento</li><li data-v-5d3ca4bc><kbd data-v-5d3ca4bc>Shift+Tab</kbd> Elemento anterior</li><li data-v-5d3ca4bc><kbd data-v-5d3ca4bc>Enter</kbd> Ativar link/botão</li><li data-v-5d3ca4bc><kbd data-v-5d3ca4bc>Esc</kbd> Fechar menu</li></ul></div></div></div>`);
+          _push2(` ${ssrInterpolate(vlibrasEnabled.value ? "Desativar VLibras" : "Ativar VLibras")}</button></div><div class="a11y-section" data-v-917175b8><h4 data-v-917175b8>Navegação por Teclado</h4><p class="a11y-hint" data-v-917175b8>Use Tab para navegar, Enter para selecionar</p><ul class="a11y-shortcuts" data-v-917175b8><li data-v-917175b8><kbd data-v-917175b8>Tab</kbd> Próximo elemento</li><li data-v-917175b8><kbd data-v-917175b8>Shift+Tab</kbd> Elemento anterior</li><li data-v-917175b8><kbd data-v-917175b8>Enter</kbd> Ativar link/botão</li><li data-v-917175b8><kbd data-v-917175b8>Esc</kbd> Fechar menu</li></ul></div></div></div>`);
         } else {
           _push2(`<!---->`);
         }
@@ -1007,8 +1416,19 @@ _sfc_main$4.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("components/AccessibilityWidget.vue");
   return _sfc_setup$4 ? _sfc_setup$4(props, ctx) : void 0;
 };
-const __nuxt_component_0$1 = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["__scopeId", "data-v-5d3ca4bc"]]);
+const __nuxt_component_0$1 = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["__scopeId", "data-v-917175b8"]]);
 const firstNonUndefined = (...args) => args.find((arg) => arg !== void 0);
+function sanitizeExternalHref(value) {
+  let candidate = value.replace(/[\u0000-\u001f\s]+/g, "");
+  while (candidate.toLowerCase().startsWith("view-source:")) {
+    candidate = candidate.slice("view-source:".length);
+  }
+  const colon = candidate.indexOf(":");
+  if (colon > 0 && isScriptProtocol(candidate.slice(0, colon + 1))) {
+    return null;
+  }
+  return value;
+}
 // @__NO_SIDE_EFFECTS__
 function defineNuxtLink(options) {
   const componentName = options.componentName || "NuxtLink";
@@ -1063,12 +1483,14 @@ function defineNuxtLink(options) {
     const href = computed(() => {
       const effectiveTrailingSlash = unref(props.trailingSlash) ?? options.trailingSlash;
       if (!to.value || isAbsoluteUrl.value || isHashLinkWithoutHashMode(to.value)) {
-        return to.value;
+        const raw = to.value;
+        return typeof raw === "string" ? sanitizeExternalHref(raw) : raw;
       }
       if (isExternal.value) {
         const path = typeof to.value === "object" && "path" in to.value ? resolveRouteObject(to.value) : to.value;
         const href2 = typeof path === "object" ? router.resolve(path).href : path;
-        return applyTrailingSlashBehavior(href2, effectiveTrailingSlash);
+        const safe = typeof href2 === "string" ? sanitizeExternalHref(href2) : href2;
+        return safe === null ? null : applyTrailingSlashBehavior(safe, effectiveTrailingSlash);
       }
       if (typeof to.value === "object") {
         return router.resolve(to.value)?.href ?? null;
@@ -1086,6 +1508,9 @@ function defineNuxtLink(options) {
       isExactActive: link?.isExactActive ?? computed(() => to.value === router.currentRoute.value.path),
       route: link?.route ?? computed(() => router.resolve(to.value)),
       async navigate(_e) {
+        if (href.value === null) {
+          return;
+        }
         await navigateTo(href.value, { replace: unref(props.replace), external: isExternal.value || hasTarget.value });
       }
     };
@@ -1272,7 +1697,7 @@ function defineNuxtLink(options) {
             }
             event.preventDefault();
             try {
-              const encodedHref = encodeRoutePath(href.value);
+              const encodedHref = encodeRoutePath(href.value ?? "");
               return await (props.replace ? router.replace(encodedHref) : router.push(encodedHref));
             } finally {
             }
@@ -1307,7 +1732,7 @@ const _sfc_main$3 = {
         class: "theme-switcher",
         "aria-label": `Tema atual: ${themes.find((t) => t.value === unref(currentTheme))?.label}. Clique para mudar.`,
         title: `Mudar tema: ${themes.find((t) => t.value === unref(currentTheme))?.label}`
-      }, _attrs))} data-v-2dea53ff><span class="theme-icon" data-v-2dea53ff>${ssrInterpolate(themes.find((t) => t.value === unref(currentTheme))?.icon)}</span><span class="theme-label" data-v-2dea53ff>${ssrInterpolate(themes.find((t) => t.value === unref(currentTheme))?.label)}</span></button>`);
+      }, _attrs))} data-v-fef5388b><span class="theme-icon" data-v-fef5388b>${ssrInterpolate(themes.find((t) => t.value === unref(currentTheme))?.icon)}</span><span class="theme-label" data-v-fef5388b>${ssrInterpolate(themes.find((t) => t.value === unref(currentTheme))?.label)}</span></button>`);
     };
   }
 };
@@ -1317,7 +1742,7 @@ _sfc_main$3.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("components/ThemeSwitcher.vue");
   return _sfc_setup$3 ? _sfc_setup$3(props, ctx) : void 0;
 };
-const __nuxt_component_2 = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["__scopeId", "data-v-2dea53ff"]]);
+const __nuxt_component_2 = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["__scopeId", "data-v-fef5388b"]]);
 const defineRouteProvider = (name = "RouteProvider") => defineComponent({
   name,
   props: {
@@ -1422,9 +1847,9 @@ const _sfc_main$2 = {
       const _component_NuxtLink = __nuxt_component_0;
       const _component_ThemeSwitcher = __nuxt_component_2;
       const _component_NuxtPage = __nuxt_component_3;
-      _push(`<div${ssrRenderAttrs(mergeProps({ class: "app" }, _attrs))} data-v-25152026><a href="#main" class="skip-link" data-v-25152026>Pular para o conteúdo principal</a>`);
+      _push(`<div${ssrRenderAttrs(mergeProps({ class: "app" }, _attrs))} data-v-f08394f6><a href="#main" class="skip-link" data-v-f08394f6>Pular para o conteúdo principal</a>`);
       _push(ssrRenderComponent(_component_AccessibilityWidget, null, null, _parent));
-      _push(`<div class="ambient-bg" data-v-25152026></div><div class="${ssrRenderClass([{ active: menuOpen.value }, "menu-overlay"])}" data-v-25152026></div><nav class="navbar" data-v-25152026><div class="nav-container" data-v-25152026>`);
+      _push(`<div class="ambient-bg" data-v-f08394f6></div><div class="${ssrRenderClass([{ active: menuOpen.value }, "menu-overlay"])}" data-v-f08394f6></div><nav class="navbar" data-v-f08394f6><div class="nav-container" data-v-f08394f6>`);
       _push(ssrRenderComponent(_component_NuxtLink, {
         to: "/",
         class: "logo",
@@ -1432,7 +1857,7 @@ const _sfc_main$2 = {
       }, {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
-            _push2(`<img${ssrRenderAttr("src", `${unref(siteBase)}/small-logo.png`)} alt="Autitude" class="logo-img" data-v-25152026${_scopeId}><span class="logo-text" data-v-25152026${_scopeId}>Autitude</span>`);
+            _push2(`<img${ssrRenderAttr("src", `${unref(siteBase)}/small-logo.png`)} alt="Autitude" class="logo-img" data-v-f08394f6${_scopeId}><span class="logo-text" data-v-f08394f6${_scopeId}>Autitude</span>`);
           } else {
             return [
               createVNode("img", {
@@ -1446,7 +1871,7 @@ const _sfc_main$2 = {
         }),
         _: 1
       }, _parent));
-      _push(`<div class="${ssrRenderClass([{ "nav-active": menuOpen.value }, "nav-links"])}" data-v-25152026>`);
+      _push(`<div class="${ssrRenderClass([{ "nav-active": menuOpen.value }, "nav-links"])}" data-v-f08394f6>`);
       _push(ssrRenderComponent(_component_NuxtLink, {
         to: "/",
         class: "nav-link",
@@ -1544,16 +1969,16 @@ const _sfc_main$2 = {
         _: 1
       }, _parent));
       _push(ssrRenderComponent(_component_ThemeSwitcher, null, null, _parent));
-      _push(`</div><button class="${ssrRenderClass([{ active: menuOpen.value }, "menu-toggle"])}" aria-label="Menu"${ssrRenderAttr("aria-expanded", menuOpen.value)} data-v-25152026><span data-v-25152026></span><span data-v-25152026></span><span data-v-25152026></span></button></div></nav><main id="main" data-v-25152026>`);
+      _push(`</div><button class="${ssrRenderClass([{ active: menuOpen.value }, "menu-toggle"])}" aria-label="Menu"${ssrRenderAttr("aria-expanded", menuOpen.value)} data-v-f08394f6><span data-v-f08394f6></span><span data-v-f08394f6></span><span data-v-f08394f6></span></button></div></nav><main id="main" data-v-f08394f6>`);
       _push(ssrRenderComponent(_component_NuxtPage, null, null, _parent));
-      _push(`</main><footer class="footer" data-v-25152026><div class="container" data-v-25152026><div class="footer-grid" data-v-25152026><div class="footer-brand" data-v-25152026>`);
+      _push(`</main><footer class="footer" data-v-f08394f6><div class="container" data-v-f08394f6><div class="footer-grid" data-v-f08394f6><div class="footer-brand" data-v-f08394f6>`);
       _push(ssrRenderComponent(_component_NuxtLink, {
         to: "/",
         class: "logo"
       }, {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
-            _push2(`<img${ssrRenderAttr("src", `${unref(siteBase)}/small-logo.png`)} alt="Autitude" class="logo-img" data-v-25152026${_scopeId}><span class="logo-text" data-v-25152026${_scopeId}>Autitude</span>`);
+            _push2(`<img${ssrRenderAttr("src", `${unref(siteBase)}/small-logo.png`)} alt="Autitude" class="logo-img" data-v-f08394f6${_scopeId}><span class="logo-text" data-v-f08394f6${_scopeId}>Autitude</span>`);
           } else {
             return [
               createVNode("img", {
@@ -1567,7 +1992,7 @@ const _sfc_main$2 = {
         }),
         _: 1
       }, _parent));
-      _push(`<p data-v-25152026>Clínica especializada em Terapia Ocupacional e Integração Sensorial em Pindamonhangaba-SP.</p></div><div class="footer-links" data-v-25152026><h4 data-v-25152026>Navegação</h4>`);
+      _push(`<p data-v-f08394f6>Desenvolvimento com acolhimento, ciência e humanidade. Cuidamos de pessoas. Potencializamos possibilidades.</p></div><div class="footer-links" data-v-f08394f6><h4 data-v-f08394f6>Navegação</h4>`);
       _push(ssrRenderComponent(_component_NuxtLink, { to: "/" }, {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
@@ -1616,7 +2041,7 @@ const _sfc_main$2 = {
         }),
         _: 1
       }, _parent));
-      _push(`</div><div class="footer-services" data-v-25152026><h4 data-v-25152026>Atendimento</h4>`);
+      _push(`</div><div class="footer-services" data-v-f08394f6><h4 data-v-f08394f6>Atendimento</h4>`);
       _push(ssrRenderComponent(_component_NuxtLink, { to: "/agendar" }, {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
@@ -1641,7 +2066,7 @@ const _sfc_main$2 = {
         }),
         _: 1
       }, _parent));
-      _push(`<a${ssrRenderAttr("href", config_data.whatsappUrl)} data-v-25152026>WhatsApp</a><a${ssrRenderAttr("href", config_data.instagramUrl)} target="_blank" rel="noopener" data-v-25152026>Instagram</a></div><div class="footer-contact" data-v-25152026><h4 data-v-25152026>Localização</h4><p data-v-25152026>Rua Major José dos Santos Moreira, 328</p><p data-v-25152026>Pindamonhangaba, SP</p><p data-v-25152026>Seg a Sex: 8h às 18h</p><div class="footer-map" data-v-25152026><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3676.52123456789!2d-45.45!3d-22.85!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjLCsDUxJzAwLjAiUyA0NcKwMjcnMDAuMCJF!5e0!3m2!1spt-BR!2sbr!4v1600000000000" width="100%" height="120" style="${ssrRenderStyle({ "border": "0", "border-radius": "8px" })}" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" data-v-25152026></iframe></div></div></div><div class="footer-bottom" data-v-25152026><p data-v-25152026>© ${ssrInterpolate(unref(currentYear))} Autitude. Todos os direitos reservados.</p></div></div></footer></div>`);
+      _push(`<a${ssrRenderAttr("href", config_data.whatsappUrl)} data-v-f08394f6>WhatsApp</a><a${ssrRenderAttr("href", config_data.instagramUrl)} target="_blank" rel="noopener" data-v-f08394f6>Instagram</a></div><div class="footer-contact" data-v-f08394f6><h4 data-v-f08394f6>Localização</h4><p data-v-f08394f6>Rua Major José dos Santos Moreira, 328</p><p data-v-f08394f6>Vila Rica — Pindamonhangaba, SP</p><p data-v-f08394f6>Seg a Sex: 8h às 18h</p><div class="footer-map" data-v-f08394f6><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3674.523716039893!2d-45.46558491270433!3d-22.93093188518779!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ccf1835a97b90d%3A0x8c2cb7aa78bd7f92!2sAutitude%20Desenvolvimento%20e%20A%C3%A7%C3%A3o%20Humana!5e0!3m2!1sen!2sbr!4v1780604277186!5m2!1sen!2sbr" width="100%" height="180" style="${ssrRenderStyle({ "border": "0", "border-radius": "8px" })}" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Localização da Autitude — Rua Major José dos Santos Moreira, 328, Vila Rica, Pindamonhangaba-SP" data-v-f08394f6></iframe></div></div></div><div class="footer-bottom" data-v-f08394f6><p data-v-f08394f6>© ${ssrInterpolate(unref(currentYear))} Autitude. Todos os direitos reservados.</p></div></div></footer></div>`);
     };
   }
 };
@@ -1651,7 +2076,7 @@ _sfc_main$2.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("app.vue");
   return _sfc_setup$2 ? _sfc_setup$2(props, ctx) : void 0;
 };
-const AppComponent = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-25152026"]]);
+const AppComponent = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-f08394f6"]]);
 const _sfc_main$1 = {
   __name: "nuxt-error-page",
   __ssrInlineRender: true,
@@ -1666,8 +2091,8 @@ const _sfc_main$1 = {
     const statusText = _error.statusMessage ?? (is404 ? "Page Not Found" : "Internal Server Error");
     const description = _error.message || _error.toString();
     const stack = void 0;
-    const _Error404 = defineAsyncComponent(() => import('./error-404-BMQRylKT.mjs'));
-    const _Error = defineAsyncComponent(() => import('./error-500-DXUBLvLn.mjs'));
+    const _Error404 = defineAsyncComponent(() => import('./error-404-Cc7Y2v3w.mjs'));
+    const _Error = defineAsyncComponent(() => import('./error-500-BL55Qgqc.mjs'));
     const ErrorTemplate = is404 ? _Error404 : _Error;
     return (_ctx, _push, _parent, _attrs) => {
       _push(ssrRenderComponent(unref(ErrorTemplate), mergeProps({ status: unref(status), statusText: unref(statusText), statusCode: unref(status), statusMessage: unref(statusText), description: unref(description), stack: unref(stack) }, _attrs), null, _parent));
@@ -1677,7 +2102,7 @@ const _sfc_main$1 = {
 const _sfc_setup$1 = _sfc_main$1.setup;
 _sfc_main$1.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
-  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("node_modules/nuxt/dist/app/components/nuxt-error-page.vue");
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("node_modules/.pnpm/nuxt@3.21.7_@parcel+watcher@2.5.6_@types+node@25.9.1_@vue+compiler-sfc@3.5.35_cac@6.7.1_a5959e0d07a4ba42d0e8d0815fe97614/node_modules/nuxt/dist/app/components/nuxt-error-page.vue");
   return _sfc_setup$1 ? _sfc_setup$1(props, ctx) : void 0;
 };
 const _sfc_main = {
@@ -1736,7 +2161,7 @@ const _sfc_main = {
 const _sfc_setup = _sfc_main.setup;
 _sfc_main.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
-  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("node_modules/nuxt/dist/app/components/nuxt-root.vue");
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("node_modules/.pnpm/nuxt@3.21.7_@parcel+watcher@2.5.6_@types+node@25.9.1_@vue+compiler-sfc@3.5.35_cac@6.7.1_a5959e0d07a4ba42d0e8d0815fe97614/node_modules/nuxt/dist/app/components/nuxt-root.vue");
   return _sfc_setup ? _sfc_setup(props, ctx) : void 0;
 };
 let entry;
@@ -1759,5 +2184,5 @@ let entry;
 }
 const entry_default = ((ssrContext) => entry(ssrContext));
 
-export { _export_sfc as _, __nuxt_component_0 as a, useRoute as b, entry_default as default, useHead as u };
+export { _export_sfc as _, __nuxt_component_0 as a, useRuntimeConfig as b, useRoute as c, entry_default as default, useHead as u };
 //# sourceMappingURL=server.mjs.map

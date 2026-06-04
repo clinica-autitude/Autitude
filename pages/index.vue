@@ -1,11 +1,16 @@
 <script setup>
 import { 
-  Brain, Heart, Home, Sparkles, Stethoscope, 
-  Baby, ClipboardCheck, GraduationCap, Target, HandHeart 
+  Brain, Heart, Sparkles, HandHeart,
+  BookOpen, Mic, Activity
 } from 'lucide-vue-next'
 import ColorBends from '~/components/ColorBends.vue'
 import Silk from '~/components/Silk.vue'
+import MagicRings from '~/components/MagicRings.vue'
 
+const config = useRuntimeConfig()
+const siteBase = config.public.siteBase || 'https://hautlys.github.io/Autitude'
+const fullLogoUrl = `${siteBase}/full-logo.png`
+const heroLogoUrl = `${siteBase}/full-logo-no-bg.png`
 const whatsappUrl = 'https://wa.me/5512991968683'
 
 useHead({
@@ -15,8 +20,8 @@ useHead({
       children: JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'MedicalBusiness',
-        name: 'Autitude - Clínica de Terapia Ocupacional',
-        description: 'Clínica especializada em Terapia Ocupacional e Integração Sensorial em Pindamonhangaba-SP.',
+        name: 'Autitude - Desenvolvimento e Ação Humana',
+        description: 'Espaço especializado em crianças, adolescentes e famílias, com foco no público neurodivergente. Neuropsicologia, Neuropsicopedagogia, Fonoaudiologia e Terapia Ocupacional em Pindamonhangaba-SP.',
         url: 'https://hautlys.github.io/Autitude',
         logo: 'https://hautlys.github.io/Autitude/full-logo.png',
         image: 'https://hautlys.github.io/Autitude/full-logo.png',
@@ -44,48 +49,74 @@ useHead({
           }
         ],
         priceRange: '$$',
-        aggregateRating: {
-          '@type': 'AggregateRating',
-          ratingValue: '4.9',
-          reviewCount: '50'
-        },
         areaServed: {
           '@type': 'State',
           name: 'São Paulo'
         },
-        serviceType: ['Terapia Ocupacional', 'Integração Sensorial', 'Estimulação Precoce', 'ABA'],
-        medicalSpecialty: 'Pediatric Occupational Therapy',
-        knowsAbout: ['Terapia Ocupacional', 'Integração Sensorial', 'Estimulação Precoce', 'Desenvolvimento Infantil']
+        serviceType: ['Neuropsicologia', 'Neuropsicopedagogia', 'Fonoaudiologia', 'Terapia Ocupacional'],
+        medicalSpecialty: 'Neurodevelopmental care',
+        knowsAbout: ['Neurodivergência', 'Neuropsicologia', 'Neuropsicopedagogia', 'Fonoaudiologia', 'Terapia Ocupacional', 'Integração Sensorial', 'Desenvolvimento Infantil']
       })
     }
   ]
 })
 
-const features = [
+const pillars = [
   {
-    title: 'Especialização',
-    description: 'Equipe com certificação internacional em Integração Sensorial e abordagens baseadas em evidências.',
-    color: 'linear-gradient(135deg, var(--pastel-lavender) 0%, var(--primary-light) 100%)',
-    icon: GraduationCap
+    title: 'Acolher',
+    description: 'Receber cada família com escuta, respeito e presença.',
+    color: 'linear-gradient(135deg, #FFF1F4 0%, #FFE4EA 100%)',
+    solidColor: '#FFF1F4',
+    icon: Heart
   },
   {
-    title: 'Cuidado Humanizado',
-    description: 'Atendimento individualizado respeitando o ritmo e as necessidades de cada criança e família.',
-    color: 'linear-gradient(135deg, var(--pastel-pink) 0%, var(--secondary-light) 100%)',
+    title: 'Compreender',
+    description: 'Investigar o perfil único de cada pessoa com base em evidências.',
+    color: 'linear-gradient(135deg, #F0F6FE 0%, #DCEBFC 100%)',
+    solidColor: '#F0F6FE',
+    icon: Brain
+  },
+  {
+    title: 'Desenvolver',
+    description: 'Potencializar habilidades com cuidado integral e individualizado.',
+    color: 'linear-gradient(135deg, #F0FDF4 0%, #DCFCE7 100%)',
+    solidColor: '#F0FDF4',
+    icon: Sparkles
+  },
+  {
+    title: 'Incluir',
+    description: 'Construir caminhos de participação e pertencimento em cada contexto.',
+    color: 'linear-gradient(135deg, #FFFBEB 0%, #FEF3C7 100%)',
+    solidColor: '#FFFBEB',
     icon: HandHeart
-  },
-  {
-    title: 'Ambiente Acolhedor',
-    description: 'Espaço pensado para proporcionar segurança, conforto e estimulação adequada ao desenvolvimento.',
-    color: 'linear-gradient(135deg, var(--pastel-mint) 0%, var(--accent-light) 100%)',
-    icon: Home
   }
 ]
 
 const services = [
-  { name: 'Integração Sensorial', shortDesc: 'Processamento sensorial', color: 'linear-gradient(135deg, var(--pastel-lavender) 0%, var(--primary-light) 100%)', icon: Brain },
-  { name: 'Estimulação Precoce', shortDesc: 'Primeiros anos de vida', color: 'linear-gradient(135deg, var(--pastel-pink) 0%, var(--secondary-light) 100%)', icon: Baby },
-  { name: 'Avaliação Completa', shortDesc: 'Diagnóstico completo', color: 'linear-gradient(135deg, var(--pastel-mint) 0%, var(--accent-light) 100%)', icon: ClipboardCheck }
+  {
+    name: 'Neuropsicologia',
+    shortDesc: 'Avaliação e desenvolvimento cognitivo',
+    color: 'linear-gradient(135deg, var(--pastel-lavender) 0%, var(--primary-light) 100%)',
+    icon: Brain
+  },
+  {
+    name: 'Neuropsicopedagogia',
+    shortDesc: 'Apoio à aprendizagem',
+    color: 'linear-gradient(135deg, var(--pastel-pink) 0%, var(--secondary-light) 100%)',
+    icon: BookOpen
+  },
+  {
+    name: 'Fonoaudiologia',
+    shortDesc: 'Linguagem e comunicação',
+    color: 'linear-gradient(135deg, var(--pastel-mint) 0%, var(--accent-light) 100%)',
+    icon: Mic
+  },
+  {
+    name: 'Terapia Ocupacional',
+    shortDesc: 'Autonomia e Integração Sensorial',
+    color: 'linear-gradient(135deg, #FFF8D6 0%, #FEF3C7 100%)',
+    icon: Activity
+  }
 ]
 </script>
 
@@ -97,9 +128,39 @@ const services = [
           class="silk-bg"
           :speed="5"
           :scale="1"
-          color="#7B7481"
+          color="#6B4FA3"
           :noise-intensity="1.5"
           :rotation="0"
+        />
+        <div class="hero-rings" aria-hidden="true">
+          <MagicRings
+            color="#EE00FF"
+            colorTwo="#EE00FF"
+            :ringCount="6"
+            :speed="1"
+            :attenuation="10"
+            :lineThickness="2"
+            :baseRadius="0.35"
+            :radiusStep="0.1"
+            :scaleRate="0.1"
+            :opacity="1"
+            :blur="0"
+            :noiseAmount="0.1"
+            :rotation="0"
+            :ringGap="1.5"
+            :fadeIn="0.7"
+            :fadeOut="0.5"
+            :followMouse="true"
+            :mouseInfluence="0.2"
+            :hoverScale="1.2"
+            :parallax="0.10"
+            :clickBurst="true"
+          />
+        </div>
+        <img
+          :src="heroLogoUrl"
+          alt=""
+          class="hero-rings-logo"
         />
         <div class="gradient-blob blob-1"></div>
         <div class="gradient-blob blob-2"></div>
@@ -112,19 +173,23 @@ const services = [
             <div class="badge-wrapper">
               <span class="hero-badge">
                 <span class="badge-dot"></span>
-                Clínica Especializada
+                Cuidado humanizado e baseado em evidências
               </span>
             </div>
             
             <h1 class="hero-title">
-              Cuidado que
-              <span class="title-highlight">transforma</span>
-              vidas
+              Desenvolvimento com
+              <span class="title-highlight">acolhimento,</span>
+              ciência e humanidade.
             </h1>
             
             <p class="hero-subtitle">
-              Especialistas em Terapia Ocupacional e Integração Sensorial. 
-              O cuidado que seu filho merece, com carinho e excelência.
+              A Autitude é um espaço especializado no atendimento de crianças, adolescentes e suas famílias, com foco no público neurodivergente. 
+              Atuamos com uma abordagem humanizada, integrativa e baseada em evidências científicas.
+            </p>
+
+            <p class="hero-tagline">
+              💜 Cuidamos de pessoas. Potencializamos possibilidades.
             </p>
             
             <div class="hero-actions">
@@ -138,66 +203,67 @@ const services = [
           </div>
           
           <div class="hero-visual">
-            <div class="visual-card card-1">
+            <div
+              v-for="(pillar, index) in pillars"
+              :key="pillar.title"
+              class="visual-card"
+              :class="`card-${index + 1}`"
+              :style="{ background: pillar.solidColor }"
+            >
               <div class="card-accent">
-                <Sparkles :size="20" class="icon-primary" />
+                <component :is="pillar.icon" :size="20" class="card-icon" />
               </div>
-              <div class="card-text">Desenvolvimento Integral</div>
-            </div>
-            <div class="visual-card card-2">
-              <div class="card-accent">
-                <Heart :size="20" class="icon-primary" />
-              </div>
-              <div class="card-text">Cuidado Humanizado</div>
-            </div>
-            <div class="visual-card card-3">
-              <div class="card-accent">
-                <Target :size="20" class="icon-primary" />
-              </div>
-              <div class="card-text">Tratamento Personalizado</div>
+              <div class="card-text">{{ pillar.title }}</div>
             </div>
           </div>
         </div>
         
-        <div class="hero-stats">
-          <div class="stat-item">
-            <span class="stat-value">15+</span>
-            <span class="stat-label">Anos de Experiência</span>
-          </div>
-          <div class="stat-divider"></div>
-          <div class="stat-item">
-            <span class="stat-value">Certificada</span>
-            <span class="stat-label">NC University USA</span>
-          </div>
-          <div class="stat-divider"></div>
-          <div class="stat-item">
-            <span class="stat-value">Pindamonhangaba</span>
-            <span class="stat-label">Localização</span>
+        <div class="hero-pillars">
+          <p class="pillars-eyebrow">Cada indivíduo é único. Nosso cuidado também.</p>
+          <div class="pillars-row">
+            <span
+              v-for="(pillar, index) in pillars"
+              :key="`p-${pillar.title}`"
+              class="pillar-chip"
+            >
+              <span class="pillar-num">{{ index + 1 }}</span>
+              {{ pillar.title }}
+            </span>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="features" class="features section">
+    <section id="quem-somos" class="about-preview section">
       <div class="container">
         <div class="section-header">
           <div class="header-content">
-            <span class="section-tag">Por que escolher a Autitude</span>
-            <h2>Um atendimento único</h2>
-            <p>Combinamos excelência técnica com humanização para oferecer o melhor cuidado ao seu filho.</p>
+            <span class="section-tag">Quem somos</span>
+            <h2>Cada indivíduo é único. Nosso cuidado também.</h2>
+            <p>
+              A <strong>Autitude Desenvolvimento e Ação Humana</strong> é um espaço especializado 
+              no atendimento de crianças, adolescentes e suas famílias, com foco no público neurodivergente.
+            </p>
+            <p>
+              Nossa abordagem é humanizada, integrativa e baseada em evidências científicas.
+            </p>
           </div>
         </div>
         
-        <div class="features-grid">
-          <div class="feature-card" v-for="(feature, index) in features" :key="feature.title" :style="{ '--delay': index * 0.1 + 's' }">
-            <div class="feature-icon-wrapper" :style="{ background: feature.color }">
-              <component :is="feature.icon" :size="32" class="icon-primary feature-icon-inner" />
+        <div class="pillars-grid">
+          <div
+            class="pillar-card"
+            v-for="(pillar, index) in pillars"
+            :key="`card-${pillar.title}`"
+            :style="{ '--delay': index * 0.1 + 's' }"
+          >
+            <div class="pillar-icon-wrapper" :style="{ background: pillar.color }">
+              <component :is="pillar.icon" :size="32" class="icon-primary pillar-icon-inner" />
             </div>
-            <div class="feature-content">
-              <h3>{{ feature.title }}</h3>
-              <p>{{ feature.description }}</p>
+            <div class="pillar-content">
+              <h3>{{ pillar.title }}</h3>
+              <p>{{ pillar.description }}</p>
             </div>
-            <div class="feature-hover-overlay"></div>
           </div>
         </div>
       </div>
@@ -207,29 +273,13 @@ const services = [
       <div class="container">
         <div class="section-header">
           <div class="header-content">
-            <span class="section-tag">Nossos Serviços</span>
-            <h2>Especialidades</h2>
+            <span class="section-tag">Nossas especialidades</span>
+            <h2>Um cuidado integrado e interdisciplinar</h2>
+            <p>Uma equipe multidisciplinar trabalhando em conjunto pelo desenvolvimento de cada pessoa.</p>
           </div>
         </div>
         
         <div class="services-showcase">
-          <div class="service-main">
-            <div class="service-main-content">
-              <div class="service-icon-large">
-                <Stethoscope :size="32" class="icon-primary" />
-              </div>
-              <h3>Terapia Ocupacional</h3>
-              <p>Desenvolvemos habilidades motoras, cognitivas e funcionais para que sua criança atinja seu máximo potencial.</p>
-              <ul class="service-list">
-                <li>Motor fino e grosso</li>
-                <li>Coordenação motora</li>
-                <li>Autonomia pessoal</li>
-                <li>Atividades de vida diária</li>
-              </ul>
-              <NuxtLink to="/servicos" class="btn btn-primary">Ver Mais</NuxtLink>
-            </div>
-          </div>
-          
           <div class="service-cards-grid">
             <NuxtLink 
               v-for="service in services" 
@@ -251,7 +301,7 @@ const services = [
         
         <div class="section-cta">
           <NuxtLink to="/servicos" class="btn btn-secondary btn-lg">
-            Ver Todos os Serviços
+            Ver Todas as Especialidades
           </NuxtLink>
         </div>
       </div>
@@ -262,7 +312,7 @@ const services = [
         <div class="cta-wrapper">
           <ColorBends
             class="cta-bg-effect"
-            :colors="['#E8E0F5', '#E0F5E8', '#FFE0E8', '#CDBFF0', '#8FD9B6']"
+            :colors="['#6B4FA3', '#8FC176', '#8FB1F0', '#F0C850', '#3D2D5E']"
             :rotation="25"
             :speed="0.15"
             :scale="1.3"
@@ -274,9 +324,20 @@ const services = [
             transparent
           />
           <div class="cta-content">
-            <span class="cta-tag">Entre em contato</span>
-            <h2>Pronto para começar?</h2>
-            <p>Agende uma avaliação e descubra como podemos ajudar no desenvolvimento do seu filho.</p>
+            <span class="cta-tag">Autitude — Desenvolvimento e Ação Humana</span>
+            <h2>Pronto para nos conhecer?</h2>
+            <p>💜 Cuidamos de pessoas. Potencializamos possibilidades.</p>
+            <div class="cta-contact">
+              <a href="tel:+5512991968683" class="cta-contact-item">
+                📱 (12) 99196-8683
+              </a>
+              <a href="https://www.instagram.com/clinicaautitude" target="_blank" rel="noopener" class="cta-contact-item">
+                📷 @clinicaautitude
+              </a>
+              <a href="https://wa.me/5512991968683" target="_blank" rel="noopener" class="cta-contact-item">
+                💬 WhatsApp
+              </a>
+            </div>
             <div class="cta-actions">
               <NuxtLink to="/agendar" class="btn btn-primary btn-lg">
                 Agendar Avaliação
@@ -285,6 +346,9 @@ const services = [
                 Falar no WhatsApp
               </a>
             </div>
+            <p class="cta-address">
+              📍 Rua Major José dos Santos Moreira, 328 — Vila Rica — Pindamonhangaba/SP
+            </p>
           </div>
         </div>
       </div>
@@ -294,7 +358,7 @@ const services = [
 
 <style scoped>
 .icon-primary {
-  color: var(--primary);
+  color: var(--lilac-deep);
 }
 
 .hero {
@@ -310,6 +374,43 @@ const services = [
 .hero-bg {
   position: absolute;
   inset: 0;
+  isolation: isolate;
+}
+
+.hero-rings {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(95vh, 880px);
+  height: min(95vh, 880px);
+  z-index: 1;
+  user-select: none;
+}
+
+.hero-rings,
+.hero-rings > * {
+  width: 100%;
+  height: 100%;
+}
+
+.hero-rings :deep(canvas) {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.hero-rings-logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 68%;
+  max-width: 480px;
+  height: auto;
+  z-index: 2;
+  pointer-events: none;
+  filter: drop-shadow(0 0 32px rgba(255, 255, 255, 0.55));
 }
 
 .silk-bg {
@@ -317,6 +418,7 @@ const services = [
   inset: 0;
   z-index: 0;
   opacity: 0.4;
+  pointer-events: none;
 }
 
 .gradient-blob {
@@ -325,12 +427,13 @@ const services = [
   filter: blur(80px);
   opacity: 0.5;
   z-index: 1;
+  pointer-events: none;
 }
 
 .blob-1 {
   width: 600px;
   height: 600px;
-  background: var(--primary-light);
+  background: var(--lilac-light);
   top: -200px;
   right: -100px;
 }
@@ -338,7 +441,7 @@ const services = [
 .blob-2 {
   width: 400px;
   height: 400px;
-  background: var(--secondary-light);
+  background: var(--pink-light);
   bottom: -100px;
   left: -50px;
 }
@@ -346,7 +449,7 @@ const services = [
 .blob-3 {
   width: 300px;
   height: 300px;
-  background: var(--accent-light);
+  background: var(--blue-light);
   top: 40%;
   left: 30%;
 }
@@ -362,6 +465,8 @@ const services = [
   grid-template-columns: 1.2fr 0.8fr;
   gap: 4rem;
   align-items: center;
+  position: relative;
+  z-index: 2;
 }
 
 .hero-content {
@@ -377,11 +482,12 @@ const services = [
   align-items: center;
   gap: 0.5rem;
   padding: 0.5rem 1rem;
-  background: var(--surface);
+  background: var(--lilac-soft);
+  border: 1px solid var(--lilac-light);
   border-radius: var(--radius-full);
   font-size: 0.875rem;
   font-weight: 600;
-  color: var(--primary);
+  color: var(--lilac-deep);
   box-shadow: var(--shadow-sm);
 }
 
@@ -414,7 +520,7 @@ const services = [
 .hero-subtitle {
   font-size: 1.125rem;
   color: var(--text-secondary);
-  margin-bottom: 2rem;
+  margin-bottom: 1.25rem;
   line-height: 1.7;
 }
 
@@ -424,56 +530,23 @@ const services = [
   flex-wrap: wrap;
 }
 
-.hero-stats {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 3rem;
-  padding: 2rem 0;
-  border-top: 1px solid var(--border);
-}
-
-.stat-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-
-.stat-value {
-  font-size: 1.75rem;
-  font-weight: 700;
-  color: var(--primary);
-}
-
-.stat-label {
-  font-size: 0.8125rem;
-  color: var(--text-light);
-  margin-top: 0.25rem;
-}
-
-.stat-divider {
-  width: 1px;
-  height: 40px;
-  background: var(--primary-light);
-}
-
 .hero-visual {
   position: relative;
-  height: 420px;
+  height: 460px;
 }
 
 .visual-card {
   position: absolute;
   background: var(--surface);
-  padding: 1.25rem 1.75rem;
+  padding: 1.1rem 1.5rem;
   border-radius: var(--radius-xl);
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 10px 28px rgba(42, 36, 64, 0.22);
+  border: 1px solid color-mix(in srgb, var(--primary) 12%, transparent);
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.875rem;
   animation: float 6s ease-in-out infinite;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .visual-card:hover {
@@ -481,21 +554,83 @@ const services = [
 }
 
 .card-1 {
-  top: 5%;
-  right: 15%;
+  top: 2%;
+  right: 18%;
   animation-delay: 0s;
 }
 
 .card-2 {
-  top: 38%;
-  right: 5%;
-  animation-delay: -2s;
+  top: 26%;
+  right: 4%;
+  animation-delay: -1.5s;
 }
 
 .card-3 {
-  top: 70%;
-  right: 20%;
-  animation-delay: -4s;
+  top: 50%;
+  right: 22%;
+  animation-delay: -3s;
+}
+
+.card-4 {
+  top: 74%;
+  right: 6%;
+  animation-delay: -4.5s;
+}
+
+.hero-tagline {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: var(--primary);
+  margin: 0 0 1.75rem;
+  letter-spacing: 0.01em;
+}
+
+.hero-pillars {
+  margin-top: 1.5rem;
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+
+.pillars-eyebrow {
+  font-size: 0.9375rem;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+  font-style: italic;
+}
+
+.pillars-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.pillar-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: var(--surface);
+  border: 1px solid var(--lilac-light);
+  border-radius: var(--radius-full);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--lilac-deep);
+  box-shadow: var(--shadow-xs);
+}
+
+.pillar-num {
+  width: 22px;
+  height: 22px;
+  background: var(--lilac);
+  color: var(--white);
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
 }
 
 @keyframes float {
@@ -507,21 +642,30 @@ const services = [
   width: 40px;
   height: 40px;
   border-radius: 12px;
-  background: var(--gradient-primary);
+  background: color-mix(in srgb, var(--primary) 10%, transparent);
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.3s ease;
+}
+
+.card-icon {
+  color: var(--primary);
+  flex-shrink: 0;
 }
 
 .card-text {
-  font-weight: 600;
+  font-weight: 700;
   font-size: 0.9375rem;
-  color: var(--text);
+  color: var(--primary);
   white-space: nowrap;
+  letter-spacing: 0.01em;
+  transition: color 0.3s ease;
 }
 
-.features {
-  background: var(--surface);
+.about-preview {
+  background: var(--surface-alt);
 }
 
 .section-header {
@@ -530,40 +674,27 @@ const services = [
 }
 
 .header-content {
-  max-width: 600px;
+  max-width: 720px;
   margin: 0 auto;
-}
-
-.section-tag {
-  display: inline-block;
-  padding: 0.375rem 1rem;
-  background: var(--pastel-lavender);
-  border-radius: var(--radius-full);
-  font-size: 0.8125rem;
-  font-weight: 600;
-  color: var(--primary-dark);
-  margin-bottom: 1rem;
-}
-
-.section-header h2 {
-  margin-bottom: 0.75rem;
 }
 
 .section-header p {
   font-size: 1.0625rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.75rem;
 }
 
-.features-grid {
+.pillars-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 1.5rem;
-  max-width: 1000px;
+  max-width: 1100px;
   margin: 0 auto;
 }
 
-.feature-card {
+.pillar-card {
   background: var(--background);
-  padding: 2rem;
+  padding: 2rem 1.5rem;
   border-radius: var(--radius-xl);
   text-align: center;
   position: relative;
@@ -579,33 +710,50 @@ const services = [
   to { opacity: 1; transform: translateY(0); }
 }
 
-.feature-card:hover {
+.pillar-card:hover {
   transform: translateY(-8px);
   box-shadow: var(--shadow-lg);
 }
 
-.feature-icon-wrapper {
-  width: 80px;
-  height: 80px;
-  margin: 0 auto 1.5rem;
+.pillar-icon-wrapper {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 1.25rem;
   border-radius: var(--radius-xl);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.feature-icon-inner {
+.pillar-icon-inner {
   opacity: 1;
 }
 
-.feature-content h3 {
-  margin-bottom: 0.75rem;
-  font-size: 1.25rem;
+.pillar-content h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.125rem;
 }
 
-.feature-content p {
-  font-size: 0.9375rem;
+.pillar-content p {
+  font-size: 0.875rem;
   line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.section-tag {
+  display: inline-block;
+  padding: 0.375rem 1rem;
+  background: var(--lilac-soft);
+  border: 1px solid var(--lilac-light);
+  border-radius: var(--radius-full);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--lilac-deep);
+  margin-bottom: 1rem;
+}
+
+.section-header h2 {
+  margin-bottom: 0.75rem;
 }
 
 .services-preview {
@@ -613,71 +761,15 @@ const services = [
 }
 
 .services-showcase {
-  display: grid;
-  grid-template-columns: 1fr 1.2fr;
-  gap: 2rem;
   margin-bottom: 2.5rem;
 }
 
-.service-main {
-  background: var(--surface);
-  border-radius: var(--radius-2xl);
-  padding: 2.5rem;
-  box-shadow: var(--shadow-md);
-}
-
-.service-main-content {
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-}
-
-.service-icon-large {
-  width: 72px;
-  height: 72px;
-  background: var(--pastel-lavender);
-  border-radius: var(--radius-xl);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.service-main-content h3 {
-  font-size: 1.5rem;
-}
-
-.service-main-content > p {
-  font-size: 1rem;
-  line-height: 1.7;
-}
-
-.service-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.service-list li {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  font-size: 0.9375rem;
-  color: var(--text-secondary);
-}
-
-.service-list li::before {
-  content: '';
-  width: 8px;
-  height: 8px;
-  background: var(--primary);
-  border-radius: 50%;
-}
-
 .service-cards-grid {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .service-card-mini {
@@ -740,7 +832,6 @@ const services = [
 }
 
 .cta-section {
-  background: var(--surface);
   position: relative;
   overflow: hidden;
 }
@@ -748,8 +839,10 @@ const services = [
 .cta-wrapper {
   position: relative;
   background: var(--surface);
+  border: 1.5px solid var(--cta-card-border);
   border-radius: var(--radius-2xl);
   overflow: hidden;
+  box-shadow: var(--shadow-md);
 }
 
 .cta-bg-effect {
@@ -763,21 +856,24 @@ const services = [
   z-index: 1;
   padding: 4rem;
   text-align: center;
+  color: var(--cta-text);
 }
 
 .cta-tag {
   display: inline-block;
   padding: 0.375rem 1rem;
-  background: rgba(255,255,255,0.6);
+  background: var(--cta-tag-bg);
+  border: 1px solid var(--cta-card-border);
   border-radius: var(--radius-full);
   font-size: 0.8125rem;
   font-weight: 600;
-  color: var(--primary-dark);
+  color: var(--cta-tag-text);
   margin-bottom: 1rem;
 }
 
 .cta-content h2 {
   margin-bottom: 0.75rem;
+  color: var(--cta-text);
 }
 
 .cta-content p {
@@ -786,6 +882,7 @@ const services = [
   max-width: 500px;
   margin-left: auto;
   margin-right: auto;
+  color: var(--cta-text-secondary);
 }
 
 .cta-actions {
@@ -793,6 +890,34 @@ const services = [
   justify-content: center;
   gap: 1rem;
   flex-wrap: wrap;
+  margin-top: 1.75rem;
+}
+
+.cta-contact {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem 1.5rem;
+  margin: 1.5rem 0 0.5rem;
+  font-size: 0.9375rem;
+  color: var(--cta-text-secondary);
+}
+
+.cta-contact-item {
+  color: var(--cta-text-secondary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.cta-contact-item:hover {
+  color: var(--cta-text);
+}
+
+.cta-address {
+  margin-top: 1.25rem;
+  font-size: 0.9375rem;
+  color: var(--cta-text-secondary);
 }
 
 @media (max-width: 1024px) {
@@ -813,20 +938,12 @@ const services = [
     display: none;
   }
   
-  .features-grid {
+  .pillars-grid {
     grid-template-columns: repeat(2, 1fr);
   }
   
-  .services-showcase {
+  .service-cards-grid {
     grid-template-columns: 1fr;
-  }
-  
-  .service-main {
-    text-align: center;
-  }
-  
-  .service-list {
-    align-items: center;
   }
 }
 
@@ -836,17 +953,7 @@ const services = [
     padding-bottom: 2rem;
   }
   
-  .hero-stats {
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-  
-  .stat-divider {
-    width: 60px;
-    height: 1px;
-  }
-  
-  .features-grid {
+  .pillars-grid {
     grid-template-columns: 1fr;
   }
   

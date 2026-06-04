@@ -76,7 +76,7 @@ onMounted(() => {
               <img :src="`${siteBase}/small-logo.png`" alt="Autitude" class="logo-img">
               <span class="logo-text">Autitude</span>
             </NuxtLink>
-            <p>Clínica especializada em Terapia Ocupacional e Integração Sensorial em Pindamonhangaba-SP.</p>
+            <p>Desenvolvimento com acolhimento, ciência e humanidade. Cuidamos de pessoas. Potencializamos possibilidades.</p>
           </div>
           
           <div class="footer-links">
@@ -98,17 +98,18 @@ onMounted(() => {
           <div class="footer-contact">
             <h4>Localização</h4>
             <p>Rua Major José dos Santos Moreira, 328</p>
-            <p>Pindamonhangaba, SP</p>
+            <p>Vila Rica — Pindamonhangaba, SP</p>
             <p>Seg a Sex: 8h às 18h</p>
             <div class="footer-map">
-              <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3676.52123456789!2d-45.45!3d-22.85!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjLCsDUxJzAwLjAiUyA0NcKwMjcnMDAuMCJF!5e0!3m2!1spt-BR!2sbr!4v1600000000000"
-                width="100%" 
-                height="120" 
-                style="border:0;border-radius:8px;" 
-                allowfullscreen="" 
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3674.523716039893!2d-45.46558491270433!3d-22.93093188518779!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ccf1835a97b90d%3A0x8c2cb7aa78bd7f92!2sAutitude%20Desenvolvimento%20e%20A%C3%A7%C3%A3o%20Humana!5e0!3m2!1sen!2sbr!4v1780604277186!5m2!1sen!2sbr"
+                width="100%"
+                height="180"
+                style="border:0;border-radius:8px;"
+                allowfullscreen=""
                 loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade">
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Localização da Autitude — Rua Major José dos Santos Moreira, 328, Vila Rica, Pindamonhangaba-SP">
               </iframe>
             </div>
           </div>
@@ -165,7 +166,7 @@ onMounted(() => {
   z-index: 1000;
   padding: 1.25rem 0;
   transition: all 0.4s var(--ease-smooth);
-  background: var(--surface);
+  background: var(--background);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   box-shadow: var(--shadow-xs);
@@ -187,7 +188,7 @@ onMounted(() => {
   text-decoration: none;
   font-weight: 700;
   font-size: clamp(1.25rem, 3vw, 1.5rem);
-  color: var(--text-dark);
+  color: var(--text);
 }
 
 .logo-img {
@@ -280,7 +281,7 @@ main {
 }
 
 .footer {
-  background: var(--surface);
+  background: var(--background);
   padding: 4rem 0 2rem;
   margin-top: 4rem;
   border-top: 1px solid var(--border);
@@ -466,7 +467,7 @@ main {
 }
 
 /* Ensure all themes work with accessibility widget */
-[data-theme="white"] #accessibility-controls,
+[data-theme="light"] #accessibility-controls,
 [data-theme="sepia"] #accessibility-controls {
   z-index: 9999;
 }

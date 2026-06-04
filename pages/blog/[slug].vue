@@ -5,40 +5,50 @@ const slug = Array.isArray(route.params.slug) ? route.params.slug.join('/') : ro
 const seoContent = {
   'terapia-ocupacional-infantil': {
     title: 'Terapia Ocupacional Infantil - Autitude',
-    description: 'Descubra como a terapia ocupacional infantil pode ajudar no desenvolvimento do seu filho. Tratamento especializado em Pindamonhangaba-SP.',
-    keywords: 'terapia ocupacional infantil, desenvolvimento infantil,儿科职业治疗'
+    description: 'Descubra como a terapia ocupacional infantil pode ajudar no desenvolvimento da criança. Atendimento especializado em Pindamonhangaba-SP.',
+    keywords: 'terapia ocupacional infantil, integração sensorial, desenvolvimento infantil'
   },
   'integracao-sensorial': {
     title: 'Integração Sensorial - Autitude',
-    description: 'Entenda a integração sensorial e como ela afeta o desenvolvimento da criança. Tratamento especializado com certificação internacional.',
-    keywords: 'integração sensorial, sensory integration, tratamento sensorial'
+    description: 'Entenda a integração sensorial e como ela afeta o desenvolvimento. Atendimento especializado com certificação internacional pela University of Southern California (USC).',
+    keywords: 'integração sensorial, sensory integration, regulação sensorial'
   },
-  'estimulacao-precoce': {
-    title: 'Estimulação Precoce - Autitude',
-    description: 'A estimulação precoce é essencial nos primeiros anos de vida. Veja como podemos ajudar no desenvolvimento do seu filho.',
-    keywords: 'estimulação precoce, early intervention, desenvolvimento infantil'
+  'neuropsicologia-infantil': {
+    title: 'Neuropsicologia Infantil - Autitude',
+    description: 'A neuropsicologia infantil investiga o desenvolvimento cognitivo, emocional e comportamental da criança.',
+    keywords: 'neuropsicologia infantil, avaliação neuropsicológica, desenvolvimento infantil'
+  },
+  'neuropsicopedagogia': {
+    title: 'Neuropsicopedagogia - Autitude',
+    description: 'Apoio especializado para crianças e adolescentes com dificuldades de aprendizagem.',
+    keywords: 'neuropsicopedagogia, dificuldades de aprendizagem, aprendizagem'
+  },
+  'fonoaudiologia-infantil': {
+    title: 'Fonoaudiologia Infantil - Autitude',
+    description: 'Atendimento fonoaudiológico especializado em linguagem, comunicação e neurodivergência.',
+    keywords: 'fonoaudiologia infantil, linguagem, comunicação, neurodivergência'
   },
   'autismo-terapia': {
     title: 'Terapia para Autismo - Autitude',
-    description: 'Tratamento especializado para crianças no espectro autista. Abordagem humanizada e baseada em evidências.',
-    keywords: 'autismo, TEA, autism therapy,儿科治疗'
+    description: 'Cuidado integrado e humanizado para crianças e adolescentes no espectro autista.',
+    keywords: 'autismo, TEA, autismo infantil, cuidado humanizado'
   },
   'tdah-tratamento': {
-    title: 'Tratamento para TDAH - Autitude',
-    description: 'Apoio terapêutico para crianças com TDAH. Desenvolvimento de fokus e habilidades comportamentais.',
+    title: 'Acompanhamento para TDAH - Autitude',
+    description: 'Cuidado especializado para crianças e adolescentes com TDAH, com foco em regulação, aprendizagem e bem-estar.',
     keywords: 'TDAH, ADHD, atenção, hiperatividade'
   },
   'blog': {
     title: 'Blog - Autitude',
-    description: 'Artigos e informações sobre terapia ocupacional e integração sensorial para pais.',
-    keywords: 'blog, artigos, parenting, desenvolvimento infantil'
+    description: 'Conteúdos sobre desenvolvimento infantil, neurodivergência e cuidado integrado para famílias.',
+    keywords: 'blog, artigos, desenvolvimento infantil, neurodivergência'
   }
 }
 
 const content = seoContent[slug] || {
-  title: 'Autitude - Clínica de Terapia Ocupacional',
-  description: 'Clínica especializada em terapia ocupacional e integração sensorial em Pindamonhangaba-SP.',
-  keywords: 'terapia ocupacional, integração sensorial, Pindamonhangaba'
+  title: 'Autitude - Desenvolvimento e Ação Humana',
+  description: 'Espaço especializado em crianças, adolescentes e famílias, com foco no público neurodivergente. Pindamonhangaba-SP.',
+  keywords: 'autitude, neurodivergência, Pindamonhangaba, desenvolvimento infantil'
 }
 
 useHead({
