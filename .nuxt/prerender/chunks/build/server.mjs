@@ -1,40 +1,35 @@
 import process from 'node:process';globalThis._importMeta_=globalThis._importMeta_||{url:"file:///_entry.js",env:process.env};import { hasInjectionContext, inject, defineComponent, shallowRef, h, resolveComponent, computed, unref, getCurrentInstance, ref, Suspense, Fragment, createApp, provide, shallowReactive, onErrorCaptured, onServerPrefetch, createVNode, resolveDynamicComponent, reactive, effectScope, defineAsyncComponent, mergeProps, getCurrentScope, toRef, withCtx, createTextVNode, isRef, isReadonly, useSSRContext, isShallow, isReactive, toRaw } from 'file:///home/ubuntu/Autitude/node_modules/.pnpm/vue@3.5.35/node_modules/vue/index.mjs';
-import { $fetch } from 'file:///home/ubuntu/Autitude/node_modules/ofetch/dist/node.mjs';
+import { $fetch } from 'file:///home/ubuntu/Autitude/node_modules/.pnpm/ofetch@1.5.1/node_modules/ofetch/dist/node.mjs';
 import { u as useHead$1, h as headSymbol, b as baseURL } from '../_/renderer.mjs';
 import { createHooks } from 'file:///home/ubuntu/Autitude/node_modules/.pnpm/hookable@5.5.3/node_modules/hookable/dist/index.mjs';
 import { getContext, executeAsync } from 'file:///home/ubuntu/Autitude/node_modules/.pnpm/unctx@2.5.0/node_modules/unctx/dist/index.mjs';
 import { sanitizeStatusCode, createError as createError$1, appendHeader } from 'file:///home/ubuntu/Autitude/node_modules/.pnpm/h3@1.15.11/node_modules/h3/dist/index.mjs';
 import { RouterView, createMemoryHistory, createRouter, START_LOCATION } from 'file:///home/ubuntu/Autitude/node_modules/.pnpm/vue-router@5.1.0_@vue+compiler-sfc@3.5.35_vite@7.3.5_@types+node@25.9.1_jiti@2.7.0_terser@5.48.0_yaml@2.9.0__vue@3.5.35/node_modules/vue-router/vue-router.node.mjs';
-import { defu } from 'file:///home/ubuntu/Autitude/node_modules/defu/dist/defu.mjs';
+import { defu } from 'file:///home/ubuntu/Autitude/node_modules/.pnpm/defu@6.1.7/node_modules/defu/dist/defu.mjs';
 import { parseQuery, hasProtocol, joinURL, parseURL, encodePath, decodePath, isScriptProtocol, withQuery, withTrailingSlash, withoutTrailingSlash } from 'file:///home/ubuntu/Autitude/node_modules/.pnpm/ufo@1.6.4/node_modules/ufo/dist/index.mjs';
 import { ssrRenderSuspense, ssrRenderComponent, ssrRenderVNode, ssrRenderAttrs, ssrRenderClass, ssrRenderAttr, ssrRenderStyle, ssrInterpolate, ssrRenderTeleport, ssrIncludeBooleanAttr } from 'file:///home/ubuntu/Autitude/node_modules/.pnpm/vue@3.5.35/node_modules/vue/server-renderer/index.mjs';
 import { Settings, X, Sun, Moon, Minus, Plus, Play, Square, Globe } from 'file:///home/ubuntu/Autitude/node_modules/.pnpm/lucide-vue-next@1.0.0_vue@3.5.35/node_modules/lucide-vue-next/dist/cjs/lucide-vue-next.js';
 import 'file:///home/ubuntu/Autitude/node_modules/.pnpm/vue-bundle-renderer@2.2.0/node_modules/vue-bundle-renderer/dist/runtime.mjs';
 import '../nitro/nitro.mjs';
 import 'file:///home/ubuntu/Autitude/node_modules/.pnpm/destr@2.0.5/node_modules/destr/dist/index.mjs';
-import 'file:///home/ubuntu/Autitude/node_modules/.pnpm/ofetch@1.5.1/node_modules/ofetch/dist/node.mjs';
 import 'file:///home/ubuntu/Autitude/node_modules/.pnpm/node-mock-http@1.0.4/node_modules/node-mock-http/dist/index.mjs';
 import 'file:///home/ubuntu/Autitude/node_modules/.pnpm/unstorage@1.17.5_db0@0.3.4_ioredis@5.11.0/node_modules/unstorage/dist/index.mjs';
-import 'file:///home/ubuntu/Autitude/node_modules/unstorage/dist/index.mjs';
-import 'file:///home/ubuntu/Autitude/node_modules/unstorage/drivers/fs.mjs';
+import 'file:///home/ubuntu/Autitude/node_modules/.pnpm/unstorage@1.17.5_db0@0.3.4_ioredis@5.11.0/node_modules/unstorage/drivers/fs.mjs';
 import 'node:crypto';
 import 'file:///home/ubuntu/Autitude/node_modules/.pnpm/unstorage@1.17.5_db0@0.3.4_ioredis@5.11.0/node_modules/unstorage/drivers/fs-lite.mjs';
 import 'file:///home/ubuntu/Autitude/node_modules/.pnpm/unstorage@1.17.5_db0@0.3.4_ioredis@5.11.0/node_modules/unstorage/drivers/lru-cache.mjs';
-import 'file:///home/ubuntu/Autitude/node_modules/unstorage/drivers/fs-lite.mjs';
 import 'file:///home/ubuntu/Autitude/node_modules/.pnpm/ohash@2.0.11/node_modules/ohash/dist/index.mjs';
 import 'file:///home/ubuntu/Autitude/node_modules/.pnpm/klona@2.0.6/node_modules/klona/dist/index.mjs';
 import 'file:///home/ubuntu/Autitude/node_modules/.pnpm/scule@1.3.0/node_modules/scule/dist/index.mjs';
-import 'file:///home/ubuntu/Autitude/node_modules/.pnpm/defu@6.1.7/node_modules/defu/dist/defu.mjs';
 import 'file:///home/ubuntu/Autitude/node_modules/.pnpm/radix3@1.1.2/node_modules/radix3/dist/index.mjs';
 import 'node:fs';
 import 'node:url';
-import 'file:///home/ubuntu/Autitude/node_modules/pathe/dist/index.mjs';
-import 'file:///home/ubuntu/Autitude/node_modules/h3/dist/index.mjs';
+import 'file:///home/ubuntu/Autitude/node_modules/.pnpm/pathe@2.0.3/node_modules/pathe/dist/index.mjs';
 import 'file:///home/ubuntu/Autitude/node_modules/.pnpm/unhead@2.1.15/node_modules/unhead/dist/server.mjs';
 import 'node:async_hooks';
 import 'file:///home/ubuntu/Autitude/node_modules/.pnpm/devalue@5.8.1/node_modules/devalue/index.js';
 import 'file:///home/ubuntu/Autitude/node_modules/.pnpm/unhead@2.1.15/node_modules/unhead/dist/utils.mjs';
-import 'file:///home/ubuntu/Autitude/node_modules/unhead/dist/plugins.mjs';
+import 'file:///home/ubuntu/Autitude/node_modules/.pnpm/unhead@2.1.15/node_modules/unhead/dist/plugins.mjs';
 
 if (!globalThis.$fetch) {
   globalThis.$fetch = $fetch.create({
@@ -477,52 +472,52 @@ const _routes = [
   {
     name: "faq",
     path: "/faq",
-    component: () => import('./faq-DWlIYWDD.mjs')
+    component: () => import('./faq-DEhLbg5x.mjs')
   },
   {
     name: "index",
     path: "/",
-    component: () => import('./index-B_agcctB.mjs')
+    component: () => import('./index-DcAcV1Aa.mjs')
   },
   {
     name: "sobre",
     path: "/sobre",
-    component: () => import('./sobre-Cty8x9zH.mjs')
+    component: () => import('./sobre-CjhWedJq.mjs')
   },
   {
     name: "equipe",
     path: "/equipe",
-    component: () => import('./equipe-C2ik8ZVD.mjs')
+    component: () => import('./equipe-Do6Mg2_V.mjs')
   },
   {
     name: "agendar",
     path: "/agendar",
-    component: () => import('./agendar-DjQKHXAd.mjs')
+    component: () => import('./agendar-IJmvvQft.mjs')
   },
   {
     name: "contato",
     path: "/contato",
-    component: () => import('./contato-CBUVeqIi.mjs')
+    component: () => import('./contato-CqJqAi20.mjs')
   },
   {
     name: "servicos",
     path: "/servicos",
-    component: () => import('./servicos-BEBa9bSE.mjs')
+    component: () => import('./servicos-B-uqVTiQ.mjs')
   },
   {
     name: "slug",
     path: "/:slug(.*)*",
-    component: () => import('./_...slug_-DKrZ4HWa.mjs')
+    component: () => import('./_...slug_-CQ9mM6iW.mjs')
   },
   {
     name: "blog-slug",
     path: "/blog/:slug()",
-    component: () => import('./_slug_-B4C4GSuq.mjs')
+    component: () => import('./_slug_-Bhi2UG3o.mjs')
   },
   {
     name: "privacidade",
     path: "/privacidade",
-    component: () => import('./privacidade-BEzLXZzW.mjs')
+    component: () => import('./privacidade-1bZXh1mY.mjs')
   }
 ];
 const ROUTE_KEY_PARENTHESES_RE = /(:\w+)\([^)]+\)/g;
@@ -1780,8 +1775,8 @@ const _sfc_main$1 = {
     const statusText = _error.statusMessage ?? (is404 ? "Page Not Found" : "Internal Server Error");
     const description = _error.message || _error.toString();
     const stack = void 0;
-    const _Error404 = defineAsyncComponent(() => import('./error-404-Cc7Y2v3w.mjs'));
-    const _Error = defineAsyncComponent(() => import('./error-500-BL55Qgqc.mjs'));
+    const _Error404 = defineAsyncComponent(() => import('./error-404-Bi8KOpRy.mjs'));
+    const _Error = defineAsyncComponent(() => import('./error-500-CusQV2FA.mjs'));
     const ErrorTemplate = is404 ? _Error404 : _Error;
     return (_ctx, _push, _parent, _attrs) => {
       _push(ssrRenderComponent(unref(ErrorTemplate), mergeProps({ status: unref(status), statusText: unref(statusText), statusCode: unref(status), statusMessage: unref(statusText), description: unref(description), stack: unref(stack) }, _attrs), null, _parent));

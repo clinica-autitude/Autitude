@@ -1,0 +1,9 @@
+{
+  "pid": 16164,
+  "startedAt": 1780618535785,
+  "command": "dev",
+  "cwd": "/home/ubuntu/Autitude",
+  "port": 3005,
+  "hostname": "::",
+  "url": "http://localhost:3005"
+}

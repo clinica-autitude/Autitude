@@ -144,16 +144,16 @@ const services = [
             :radiusStep="0.1"
             :scaleRate="0.1"
             :opacity="1"
-            :blur="0"
+            :blur="0.5"
             :noiseAmount="0.1"
             :rotation="0"
             :ringGap="1.5"
             :fadeIn="0.7"
             :fadeOut="0.5"
             :followMouse="true"
-            :mouseInfluence="0.2"
-            :hoverScale="1.2"
-            :parallax="0.10"
+            :mouseInfluence="0.1"
+            :hoverScale="0.5"
+            :parallax="0.5"
             :clickBurst="true"
           />
         </div>
@@ -193,42 +193,13 @@ const services = [
             </p>
             
             <div class="hero-actions">
-              <NuxtLink to="/agendar" class="btn btn-primary btn-lg">
+              <NuxtLink to="/agendar" class="btn btn-primary">
                 Agendar Consulta
               </NuxtLink>
-              <NuxtLink to="/servicos" class="btn btn-secondary btn-lg">
+              <NuxtLink to="/servicos" class="btn btn-secondary">
                 Conhecer Serviços
               </NuxtLink>
             </div>
-          </div>
-          
-          <div class="hero-visual">
-            <div
-              v-for="(pillar, index) in pillars"
-              :key="pillar.title"
-              class="visual-card"
-              :class="`card-${index + 1}`"
-              :style="{ background: pillar.solidColor }"
-            >
-              <div class="card-accent">
-                <component :is="pillar.icon" :size="20" class="card-icon" />
-              </div>
-              <div class="card-text">{{ pillar.title }}</div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="hero-pillars">
-          <p class="pillars-eyebrow">Cada indivíduo é único. Nosso cuidado também.</p>
-          <div class="pillars-row">
-            <span
-              v-for="(pillar, index) in pillars"
-              :key="`p-${pillar.title}`"
-              class="pillar-chip"
-            >
-              <span class="pillar-num">{{ index + 1 }}</span>
-              {{ pillar.title }}
-            </span>
           </div>
         </div>
       </div>
@@ -362,7 +333,7 @@ const services = [
 }
 
 .hero {
-  min-height: 100vh;
+  min-height: clamp(640px, 85vh, 880px);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -462,16 +433,28 @@ const services = [
 
 .hero-wrapper {
   display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: 4rem;
+  grid-template-columns: minmax(320px, 0.85fr) minmax(0, 1fr);
+  gap: clamp(2rem, 4vw, 3.5rem);
   align-items: center;
   position: relative;
   z-index: 2;
 }
 
 .hero-content {
-  max-width: 560px;
+  max-width: clamp(320px, 32vw, 480px);
+  text-align: left;
 }
+
+/* Staggered entrance — reuses the global fadeInUp from main.css */
+.hero-content > * {
+  animation: fadeInUp 0.7s var(--ease-smooth) both;
+}
+
+.hero-content > :nth-child(1) { animation-delay: 0ms; }
+.hero-content > :nth-child(2) { animation-delay: 80ms; }
+.hero-content > :nth-child(3) { animation-delay: 160ms; }
+.hero-content > :nth-child(4) { animation-delay: 240ms; }
+.hero-content > :nth-child(5) { animation-delay: 320ms; }
 
 .badge-wrapper {
   margin-bottom: 1.5rem;
@@ -489,6 +472,8 @@ const services = [
   font-weight: 600;
   color: var(--lilac-deep);
   box-shadow: var(--shadow-sm);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .badge-dot {
@@ -505,9 +490,10 @@ const services = [
 }
 
 .hero-title {
-  font-size: clamp(2.5rem, 5vw, 3.5rem);
-  line-height: 1.15;
-  margin-bottom: 1.25rem;
+  font-size: clamp(1.75rem, 3.2vw, 2.5rem);
+  line-height: 1.2;
+  margin-bottom: 1rem;
+  letter-spacing: -0.015em;
 }
 
 .title-highlight {
@@ -518,150 +504,24 @@ const services = [
 }
 
 .hero-subtitle {
-  font-size: 1.125rem;
+  font-size: 0.9375rem;
   color: var(--text-secondary);
-  margin-bottom: 1.25rem;
-  line-height: 1.7;
+  margin-bottom: 1rem;
+  line-height: 1.65;
 }
 
 .hero-actions {
   display: flex;
-  gap: 1rem;
+  gap: 0.75rem;
   flex-wrap: wrap;
-}
-
-.hero-visual {
-  position: relative;
-  height: 460px;
-}
-
-.visual-card {
-  position: absolute;
-  background: var(--surface);
-  padding: 1.1rem 1.5rem;
-  border-radius: var(--radius-xl);
-  box-shadow: 0 10px 28px rgba(42, 36, 64, 0.22);
-  border: 1px solid color-mix(in srgb, var(--primary) 12%, transparent);
-  display: flex;
-  align-items: center;
-  gap: 0.875rem;
-  animation: float 6s ease-in-out infinite;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.visual-card:hover {
-  transform: scale(1.02);
-}
-
-.card-1 {
-  top: 2%;
-  right: 18%;
-  animation-delay: 0s;
-}
-
-.card-2 {
-  top: 26%;
-  right: 4%;
-  animation-delay: -1.5s;
-}
-
-.card-3 {
-  top: 50%;
-  right: 22%;
-  animation-delay: -3s;
-}
-
-.card-4 {
-  top: 74%;
-  right: 6%;
-  animation-delay: -4.5s;
 }
 
 .hero-tagline {
-  font-size: 1.0625rem;
+  font-size: 0.9375rem;
   font-weight: 600;
   color: var(--primary);
-  margin: 0 0 1.75rem;
+  margin: 0 0 1.5rem;
   letter-spacing: 0.01em;
-}
-
-.hero-pillars {
-  margin-top: 1.5rem;
-  padding: 1.5rem 0;
-  border-top: 1px solid var(--border);
-  text-align: center;
-}
-
-.pillars-eyebrow {
-  font-size: 0.9375rem;
-  color: var(--text-secondary);
-  margin-bottom: 1rem;
-  font-style: italic;
-}
-
-.pillars-row {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.75rem;
-}
-
-.pillar-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 1rem;
-  background: var(--surface);
-  border: 1px solid var(--lilac-light);
-  border-radius: var(--radius-full);
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: var(--lilac-deep);
-  box-shadow: var(--shadow-xs);
-}
-
-.pillar-num {
-  width: 22px;
-  height: 22px;
-  background: var(--lilac);
-  color: var(--white);
-  border-radius: 50%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.75rem;
-  font-weight: 700;
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
-
-.card-accent {
-  width: 40px;
-  height: 40px;
-  border-radius: 12px;
-  background: color-mix(in srgb, var(--primary) 10%, transparent);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  transition: background 0.3s ease;
-}
-
-.card-icon {
-  color: var(--primary);
-  flex-shrink: 0;
-}
-
-.card-text {
-  font-weight: 700;
-  font-size: 0.9375rem;
-  color: var(--primary);
-  white-space: nowrap;
-  letter-spacing: 0.01em;
-  transition: color 0.3s ease;
 }
 
 .about-preview {
@@ -923,27 +783,34 @@ const services = [
 @media (max-width: 1024px) {
   .hero-wrapper {
     grid-template-columns: 1fr;
-    text-align: center;
+    text-align: left;
   }
-  
+
   .hero-content {
     max-width: 100%;
   }
-  
+
   .hero-actions {
-    justify-content: center;
+    justify-content: flex-start;
   }
-  
-  .hero-visual {
-    display: none;
-  }
-  
+
   .pillars-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-  
+
   .service-cards-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  .hero-rings {
+    width: min(70vw, 480px);
+    height: min(70vw, 480px);
+  }
+
+  .hero-rings-logo {
+    max-width: 320px;
   }
 }
 
@@ -952,29 +819,43 @@ const services = [
     padding-top: clamp(4rem, 12vw, 6rem);
     padding-bottom: 2rem;
   }
-  
+
+  .hero-wrapper {
+    text-align: center;
+  }
+
+  .hero-content {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+
   .pillars-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .service-card-mini {
     flex-direction: column;
     text-align: center;
     gap: 1rem;
   }
-  
+
   .card-arrow {
     display: none;
   }
-  
+
   .cta-wrapper {
     padding: 2.5rem 1.5rem;
   }
-  
+
   .cta-actions {
     flex-direction: column;
   }
-  
+
   .cta-actions .btn {
     width: 100%;
   }
