@@ -1,9 +1,15 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 const currentYear = new Date().getFullYear()
 const config = useRuntimeConfig()
 const siteBase = config.public.siteBase || 'https://hautlys.github.io/Autitude'
 const menuOpen = ref(false)
+
+const isDev = import.meta.dev
+const logoSrc = computed(() => {
+  if (isDev) return '/small-logo.png'
+  return `${config.public.basePath || '/Autitude/'}/small-logo.png`
+})
 
 const config_data = {
   phone: '5512991968683',
@@ -42,7 +48,7 @@ onMounted(() => {
     <nav class="navbar">
       <div class="nav-container">
         <NuxtLink to="/" class="logo" @click="closeMenu">
-          <img :src="`${config.public.basePath || '/Autitude/'}/small-logo.png`" alt="Autitude" class="logo-img">
+          <img :src="logoSrc" alt="Autitude" class="logo-img">
           <span class="logo-text">Autitude</span>
         </NuxtLink>
         
@@ -73,7 +79,7 @@ onMounted(() => {
         <div class="footer-grid">
           <div class="footer-brand">
             <NuxtLink to="/" class="logo">
-              <img :src="`${config.public.basePath || '/Autitude/'}/small-logo.png`" alt="Autitude" class="logo-img">
+              <img :src="logoSrc" alt="Autitude" class="logo-img">
               <span class="logo-text">Autitude</span>
             </NuxtLink>
             <p>Desenvolvimento com acolhimento, ciência e humanidade. Cuidamos de pessoas. Potencializamos possibilidades.</p>

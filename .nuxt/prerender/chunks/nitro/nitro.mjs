@@ -4,20 +4,24 @@ import { createHooks } from 'file:///home/ubuntu/Autitude/node_modules/.pnpm/hoo
 import { createFetch, Headers as Headers$1 } from 'file:///home/ubuntu/Autitude/node_modules/.pnpm/ofetch@1.5.1/node_modules/ofetch/dist/node.mjs';
 import { fetchNodeRequestHandler, callNodeRequestHandler } from 'file:///home/ubuntu/Autitude/node_modules/.pnpm/node-mock-http@1.0.4/node_modules/node-mock-http/dist/index.mjs';
 import { parseURL, withoutBase, joinURL, getQuery, withQuery, decodePath, withLeadingSlash, withoutTrailingSlash } from 'file:///home/ubuntu/Autitude/node_modules/.pnpm/ufo@1.6.4/node_modules/ufo/dist/index.mjs';
-import { createStorage, defineDriver, prefixStorage } from 'file:///home/ubuntu/Autitude/node_modules/.pnpm/unstorage@1.17.5_db0@0.3.4_ioredis@5.11.0/node_modules/unstorage/dist/index.mjs';
-import unstorage_47drivers_47fs from 'file:///home/ubuntu/Autitude/node_modules/.pnpm/unstorage@1.17.5_db0@0.3.4_ioredis@5.11.0/node_modules/unstorage/drivers/fs.mjs';
+import { defineDriver, prefixStorage } from 'file:///home/ubuntu/Autitude/node_modules/.pnpm/unstorage@1.17.5_db0@0.3.4_ioredis@5.11.0/node_modules/unstorage/dist/index.mjs';
+import { createStorage } from 'file:///home/ubuntu/Autitude/node_modules/unstorage/dist/index.mjs';
+import unstorage_47drivers_47fs from 'file:///home/ubuntu/Autitude/node_modules/unstorage/drivers/fs.mjs';
 import crypto from 'node:crypto';
 import fsDriver from 'file:///home/ubuntu/Autitude/node_modules/.pnpm/unstorage@1.17.5_db0@0.3.4_ioredis@5.11.0/node_modules/unstorage/drivers/fs-lite.mjs';
 import lruCache from 'file:///home/ubuntu/Autitude/node_modules/.pnpm/unstorage@1.17.5_db0@0.3.4_ioredis@5.11.0/node_modules/unstorage/drivers/lru-cache.mjs';
+import unstorage_47drivers_47fs_45lite from 'file:///home/ubuntu/Autitude/node_modules/unstorage/drivers/fs-lite.mjs';
 import { digest } from 'file:///home/ubuntu/Autitude/node_modules/.pnpm/ohash@2.0.11/node_modules/ohash/dist/index.mjs';
 import { klona } from 'file:///home/ubuntu/Autitude/node_modules/.pnpm/klona@2.0.6/node_modules/klona/dist/index.mjs';
-import defu, { defuFn } from 'file:///home/ubuntu/Autitude/node_modules/.pnpm/defu@6.1.7/node_modules/defu/dist/defu.mjs';
+import { defuFn } from 'file:///home/ubuntu/Autitude/node_modules/defu/dist/defu.mjs';
 import { snakeCase } from 'file:///home/ubuntu/Autitude/node_modules/.pnpm/scule@1.3.0/node_modules/scule/dist/index.mjs';
 import { getContext } from 'file:///home/ubuntu/Autitude/node_modules/.pnpm/unctx@2.5.0/node_modules/unctx/dist/index.mjs';
+import defu from 'file:///home/ubuntu/Autitude/node_modules/.pnpm/defu@6.1.7/node_modules/defu/dist/defu.mjs';
 import { toRouteMatcher, createRouter } from 'file:///home/ubuntu/Autitude/node_modules/.pnpm/radix3@1.1.2/node_modules/radix3/dist/index.mjs';
 import { promises } from 'node:fs';
 import { fileURLToPath } from 'node:url';
-import { dirname, resolve } from 'file:///home/ubuntu/Autitude/node_modules/.pnpm/pathe@2.0.3/node_modules/pathe/dist/index.mjs';
+import { dirname, resolve } from 'file:///home/ubuntu/Autitude/node_modules/pathe/dist/index.mjs';
+import { defineEventHandler as defineEventHandler$1 } from 'file:///home/ubuntu/Autitude/node_modules/h3/dist/index.mjs';
 
 const serverAssets = [{"baseName":"server","dir":"/home/ubuntu/Autitude/server/assets"}];
 
@@ -71,7 +75,7 @@ const storage = createStorage({});
 storage.mount('/assets', assets$1);
 
 storage.mount('internal:nuxt:prerender', _47home_47ubuntu_47Autitude_47node_modules_47_46pnpm_47_64nuxt_43nitro_45server_643_4621_467_db0_640_463_464_ioredis_645_4611_460_magicast_640_465_463_nuxt_643_4621_467__64parcel_43w_cfb5bfad496b74e87e99e63f1b97c978_47node_modules_47_64nuxt_47nitro_45server_47dist_47runtime_47utils_47cache_45driver_46js({"driver":"/home/ubuntu/Autitude/node_modules/.pnpm/@nuxt+nitro-server@3.21.7_db0@0.3.4_ioredis@5.11.0_magicast@0.5.3_nuxt@3.21.7_@parcel+w_cfb5bfad496b74e87e99e63f1b97c978/node_modules/@nuxt/nitro-server/dist/runtime/utils/cache-driver.js","base":"/home/ubuntu/Autitude/.nuxt/cache/nitro/prerender"}));
-storage.mount('data', fsDriver({"driver":"fsLite","base":"./.data/kv"}));
+storage.mount('data', unstorage_47drivers_47fs_45lite({"driver":"fsLite","base":"./.data/kv"}));
 storage.mount('root', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"/home/ubuntu/Autitude","watchOptions":{"ignored":[null]}}));
 storage.mount('src', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"/home/ubuntu/Autitude/server","watchOptions":{"ignored":[null]}}));
 storage.mount('build', unstorage_47drivers_47fs({"driver":"fs","readOnly":false,"base":"/home/ubuntu/Autitude/.nuxt"}));
@@ -648,7 +652,7 @@ function _expandFromEnv(value) {
 const _inlineRuntimeConfig = {
   "app": {
     "baseURL": "/Autitude/",
-    "buildId": "d4024a16-0d93-4ba7-9dbe-b44243be5a69",
+    "buildId": "de8bd24f-ba66-4b52-8d5b-0ab33e0ba771",
     "buildAssetsDir": "/_nuxt/",
     "cdnURL": ""
   },
@@ -1134,7 +1138,7 @@ const _KYTWQx = eventHandler((event) => {
   return readAsset(id);
 });
 
-const _SxA8c9 = defineEventHandler(() => {});
+const _SxA8c9 = defineEventHandler$1(() => {});
 
 const _lazy_QhFVAS = () => import('../_/renderer.mjs').then(function (n) { return n.r; });
 

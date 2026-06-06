@@ -1,7 +1,7 @@
 <script setup>
-import { 
+import {
   Brain, Heart, Sparkles, HandHeart,
-  BookOpen, Mic, Activity
+  BookOpen, Mic, Activity, Puzzle
 } from 'lucide-vue-next'
 import ColorBends from '~/components/ColorBends.vue'
 import Silk from '~/components/Silk.vue'
@@ -101,7 +101,7 @@ const services = [
   },
   {
     name: 'Neuropsicopedagogia',
-    shortDesc: 'Apoio à aprendizagem',
+    shortDesc: 'Avaliação e plano pedagógico individualizado',
     color: 'linear-gradient(135deg, var(--pastel-pink) 0%, var(--secondary-light) 100%)',
     icon: BookOpen
   },
@@ -113,9 +113,15 @@ const services = [
   },
   {
     name: 'Terapia Ocupacional',
-    shortDesc: 'Autonomia e Integração Sensorial',
+    shortDesc: 'Avaliação Clínica, Integração Sensorial e Autonomia Pessoal e Social',
     color: 'linear-gradient(135deg, #FFF8D6 0%, #FEF3C7 100%)',
     icon: Activity
+  },
+  {
+    name: 'Terapia ABA Humanizada',
+    shortDesc: 'Desenvolvimento de habilidades e Aprendizado',
+    color: 'linear-gradient(135deg, var(--pastel-lavender) 0%, var(--pastel-mint) 100%)',
+    icon: Puzzle
   }
 ]
 </script>
@@ -170,39 +176,37 @@ const services = [
       <div class="container">
         <div class="hero-wrapper">
           <div class="hero-content">
-            <div class="badge-wrapper">
-              <span class="hero-badge">
-                <span class="badge-dot"></span>
-                Cuidado humanizado e baseado em evidências
-              </span>
-            </div>
-            
             <h1 class="hero-title">
               Desenvolvimento com
               <span class="title-highlight">acolhimento,</span>
               ciência e humanidade.
             </h1>
-            
+
             <p class="hero-subtitle">
-              A Autitude é um espaço especializado no atendimento de crianças, adolescentes e suas famílias, com foco no público neurodivergente. 
+              A Autitude é um espaço especializado no atendimento de crianças, adolescentes e suas famílias, com foco no público neurodivergente.
               Atuamos com uma abordagem humanizada, integrativa e baseada em evidências científicas.
             </p>
 
             <p class="hero-tagline">
               💜 Cuidamos de pessoas. Potencializamos possibilidades.
             </p>
-            
+
             <div class="hero-actions">
               <NuxtLink to="/agendar" class="btn btn-primary">
                 Agendar Consulta
               </NuxtLink>
-              <NuxtLink to="/servicos" class="btn btn-secondary">
+              <NuxtLink to="/servicos" class="btn">
                 Conhecer Serviços
               </NuxtLink>
             </div>
           </div>
         </div>
       </div>
+
+      <span class="hero-badge" aria-label="Cuidado humanizado e baseado em evidências">
+        <span class="badge-line"></span>
+        Cuidado humanizado e baseado em evidências
+      </span>
     </section>
 
     <section id="quem-somos" class="about-preview section">
@@ -210,17 +214,37 @@ const services = [
         <div class="section-header">
           <div class="header-content">
             <span class="section-tag">Quem somos</span>
-            <h2>Cada indivíduo é único. Nosso cuidado também.</h2>
-            <p>
-              A <strong>Autitude Desenvolvimento e Ação Humana</strong> é um espaço especializado 
-              no atendimento de crianças, adolescentes e suas famílias, com foco no público neurodivergente.
-            </p>
-            <p>
-              Nossa abordagem é humanizada, integrativa e baseada em evidências científicas.
-            </p>
+            <h2>Cada indivíduo é único.<br>Nosso cuidado também.</h2>
           </div>
         </div>
-        
+
+        <div class="history-block">
+          <div class="history-content">
+            <span class="history-eyebrow">Nossa história</span>
+            <p class="history-lead">
+              Há mais de 20 anos, acreditamos que cada pessoa tem um caminho próprio de desenvolvimento
+              e que o nosso trabalho é caminhar junto, não na frente.
+            </p>
+            <p>
+              Nossa clínica nasceu da prática de profissionais que ouvem antes de concluir,
+              que adaptam antes de padronizar, e que medem sucesso pelo que cada pessoa
+              conquista para a própria vida.
+            </p>
+            <p>
+              Trabalhamos com foco em desenvolvimento real e independência progressiva,
+              construídos no ritmo e nas potências de quem atendemos.
+            </p>
+          </div>
+
+          <figure class="history-quote">
+            <span class="quote-mark" aria-hidden="true">“</span>
+            <blockquote>
+              Neurodivergência não é um problema a corrigir, é uma forma de ser que merece suporte
+              qualificado, respeitoso e eficaz.
+            </blockquote>
+          </figure>
+        </div>
+
         <div class="pillars-grid">
           <div
             class="pillar-card"
@@ -245,17 +269,17 @@ const services = [
         <div class="section-header">
           <div class="header-content">
             <span class="section-tag">Nossas especialidades</span>
-            <h2>Um cuidado integrado e interdisciplinar</h2>
-            <p>Uma equipe multidisciplinar trabalhando em conjunto pelo desenvolvimento de cada pessoa.</p>
+            <h2>Um cuidado integrado e transdisciplinar</h2>
+            <p>Profissionais alinhados às necessidades e trabalhando em conjunto pelo desenvolvimento de cada pessoa.</p>
           </div>
         </div>
-        
+
         <div class="services-showcase">
           <div class="service-cards-grid">
-            <NuxtLink 
-              v-for="service in services" 
+            <NuxtLink
+              v-for="service in services"
               :key="service.name"
-              to="/servicos" 
+              to="/servicos"
               class="service-card-mini"
             >
               <div class="card-mini-icon" :style="{ background: service.color }">
@@ -269,9 +293,9 @@ const services = [
             </NuxtLink>
           </div>
         </div>
-        
+
         <div class="section-cta">
-          <NuxtLink to="/servicos" class="btn btn-secondary btn-lg">
+          <NuxtLink to="/servicos" class="btn btn-lg">
             Ver Todas as Especialidades
           </NuxtLink>
         </div>
@@ -353,10 +377,11 @@ const services = [
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: min(95vh, 880px);
-  height: min(95vh, 880px);
+  width: min(85vh, 760px);
+  height: min(85vh, 760px);
   z-index: 1;
   user-select: none;
+  opacity: 0.75;
 }
 
 .hero-rings,
@@ -437,21 +462,19 @@ const services = [
 }
 
 .hero-wrapper {
-  display: grid;
-  grid-template-columns: minmax(280px, 380px) 1fr;
-  gap: clamp(2rem, 5vw, 5rem);
-  align-items: center;
+  display: block;
   position: relative;
   z-index: 2;
   width: 100%;
-  max-width: 1400px;
+  max-width: 920px;
   margin: 0 auto;
+  text-align: center;
 }
 
 .hero-content {
-  max-width: 380px;
-  text-align: left;
-  justify-self: start;
+  text-align: center;
+  margin: 0 auto;
+  max-width: 720px;
 }
 
 /* Staggered entrance — reuses the global fadeInUp from main.css */
@@ -463,43 +486,40 @@ const services = [
 .hero-content > :nth-child(2) { animation-delay: 80ms; }
 .hero-content > :nth-child(3) { animation-delay: 160ms; }
 .hero-content > :nth-child(4) { animation-delay: 240ms; }
-.hero-content > :nth-child(5) { animation-delay: 320ms; }
-
-.badge-wrapper {
-  margin-bottom: 1.5rem;
-}
 
 .hero-badge {
+  position: absolute;
+  top: 50%;
+  right: clamp(1rem, 4vw, 2.5rem);
+  transform: translateY(-50%);
+  z-index: 3;
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 1rem;
-  background: var(--lilac-soft);
-  border: 1px solid var(--lilac-light);
-  border-radius: var(--radius-full);
+  gap: 0.9rem;
+  padding: 0.25rem 0.25rem 0.25rem 0;
   font-size: 0.875rem;
   font-weight: 600;
   color: var(--lilac-deep);
-  box-shadow: var(--shadow-sm);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  line-height: 1.45;
+  max-width: 230px;
+  text-align: left;
+  letter-spacing: 0.005em;
+  animation: fadeInUp 0.7s var(--ease-smooth) both;
+  animation-delay: 320ms;
 }
 
-.badge-dot {
-  width: 8px;
-  height: 8px;
-  background: var(--success);
-  border-radius: 50%;
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
+.badge-line {
+  display: block;
+  width: 3px;
+  align-self: stretch;
+  min-height: 44px;
+  background: var(--gradient-primary);
+  border-radius: var(--radius-full);
+  flex-shrink: 0;
 }
 
 .hero-title {
-  font-size: clamp(1.75rem, 3.2vw, 2.5rem);
+  font-size: clamp(1.85rem, 3.6vw, 2.75rem);
   line-height: 1.2;
   margin-bottom: 1rem;
   letter-spacing: -0.015em;
@@ -513,24 +533,34 @@ const services = [
 }
 
 .hero-subtitle {
-  font-size: 0.9375rem;
+  font-size: 1rem;
   color: var(--text-secondary);
   margin-bottom: 1rem;
-  line-height: 1.65;
+  line-height: 1.7;
+  max-width: 60ch;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .hero-actions {
   display: flex;
   gap: 0.75rem;
   flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 1.5rem;
 }
 
 .hero-tagline {
   font-size: 0.9375rem;
   font-weight: 600;
   color: var(--primary);
-  margin: 0 0 1.5rem;
+  margin: 0.5rem 0 0.5rem;
   letter-spacing: 0.01em;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
 }
 
 .about-preview {
@@ -635,10 +665,80 @@ const services = [
 
 .service-cards-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
-  max-width: 900px;
+  max-width: 1100px;
   margin: 0 auto;
+}
+
+.history-block {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  max-width: 1100px;
+  margin: 0 auto 3rem;
+  align-items: start;
+}
+
+.history-eyebrow {
+  display: inline-block;
+  padding: 0.3rem 0.8rem;
+  background: var(--lilac-soft);
+  border: 1px solid var(--lilac-light);
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--lilac-deep);
+  margin-bottom: 1rem;
+}
+
+.history-content p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+}
+
+.history-lead {
+  font-size: 1.0625rem !important;
+  color: var(--text) !important;
+  font-weight: 500;
+}
+
+.history-quote {
+  position: relative;
+  background: linear-gradient(135deg,
+    color-mix(in srgb, var(--lilac) 8%, var(--surface)),
+    color-mix(in srgb, var(--pastel-pink) 6%, var(--surface)));
+  border: 1px solid var(--lilac-light);
+  border-radius: var(--radius-xl);
+  padding: 2rem 1.75rem 1.75rem;
+  margin: 0;
+  box-shadow: var(--shadow-sm);
+}
+
+.quote-mark {
+  position: absolute;
+  top: -0.5rem;
+  left: 1.25rem;
+  font-family: 'Nunito', serif;
+  font-size: 4.5rem;
+  line-height: 1;
+  color: var(--lilac);
+  font-weight: 800;
+  opacity: 0.5;
+}
+
+.history-quote blockquote {
+  font-size: 1.0625rem;
+  line-height: 1.55;
+  color: var(--lilac-deep);
+  font-weight: 600;
+  margin: 0;
+  font-style: italic;
+  letter-spacing: -0.01em;
 }
 
 .service-card-mini {
@@ -790,18 +890,11 @@ const services = [
 }
 
 @media (max-width: 1024px) {
-  .hero-wrapper {
-    grid-template-columns: 1fr;
-    text-align: left;
-  }
-
-  .hero-content {
-    max-width: 100%;
-    justify-self: stretch;
-  }
-
-  .hero-actions {
-    justify-content: flex-start;
+  .hero-badge {
+    position: static;
+    transform: none;
+    margin: 1.5rem auto 0;
+    max-width: 320px;
   }
 
   .pillars-grid {
@@ -809,6 +902,10 @@ const services = [
   }
 
   .service-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .history-block {
     grid-template-columns: 1fr;
   }
 }
@@ -844,7 +941,15 @@ const services = [
     justify-content: center;
   }
 
+  .hero-badge {
+    margin-top: 1.25rem;
+  }
+
   .pillars-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .service-cards-grid {
     grid-template-columns: 1fr;
   }
 

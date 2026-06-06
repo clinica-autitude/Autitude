@@ -1,35 +1,40 @@
 import process from 'node:process';globalThis._importMeta_=globalThis._importMeta_||{url:"file:///_entry.js",env:process.env};import { hasInjectionContext, inject, defineComponent, shallowRef, h, resolveComponent, computed, unref, getCurrentInstance, ref, Suspense, Fragment, createApp, provide, shallowReactive, onErrorCaptured, onServerPrefetch, createVNode, resolveDynamicComponent, reactive, effectScope, defineAsyncComponent, mergeProps, getCurrentScope, toRef, withCtx, createTextVNode, isRef, isReadonly, useSSRContext, isShallow, isReactive, toRaw } from 'file:///home/ubuntu/Autitude/node_modules/.pnpm/vue@3.5.35/node_modules/vue/index.mjs';
-import { $fetch } from 'file:///home/ubuntu/Autitude/node_modules/.pnpm/ofetch@1.5.1/node_modules/ofetch/dist/node.mjs';
+import { $fetch } from 'file:///home/ubuntu/Autitude/node_modules/ofetch/dist/node.mjs';
 import { u as useHead$1, h as headSymbol, b as baseURL } from '../_/renderer.mjs';
 import { createHooks } from 'file:///home/ubuntu/Autitude/node_modules/.pnpm/hookable@5.5.3/node_modules/hookable/dist/index.mjs';
 import { getContext, executeAsync } from 'file:///home/ubuntu/Autitude/node_modules/.pnpm/unctx@2.5.0/node_modules/unctx/dist/index.mjs';
 import { sanitizeStatusCode, createError as createError$1, appendHeader } from 'file:///home/ubuntu/Autitude/node_modules/.pnpm/h3@1.15.11/node_modules/h3/dist/index.mjs';
 import { RouterView, createMemoryHistory, createRouter, START_LOCATION } from 'file:///home/ubuntu/Autitude/node_modules/.pnpm/vue-router@5.1.0_@vue+compiler-sfc@3.5.35_vite@7.3.5_@types+node@25.9.1_jiti@2.7.0_terser@5.48.0_yaml@2.9.0__vue@3.5.35/node_modules/vue-router/vue-router.node.mjs';
-import { defu } from 'file:///home/ubuntu/Autitude/node_modules/.pnpm/defu@6.1.7/node_modules/defu/dist/defu.mjs';
+import { defu } from 'file:///home/ubuntu/Autitude/node_modules/defu/dist/defu.mjs';
 import { parseQuery, hasProtocol, joinURL, parseURL, encodePath, decodePath, isScriptProtocol, withQuery, withTrailingSlash, withoutTrailingSlash } from 'file:///home/ubuntu/Autitude/node_modules/.pnpm/ufo@1.6.4/node_modules/ufo/dist/index.mjs';
 import { ssrRenderSuspense, ssrRenderComponent, ssrRenderVNode, ssrRenderAttrs, ssrRenderClass, ssrRenderAttr, ssrRenderStyle, ssrInterpolate, ssrRenderTeleport, ssrIncludeBooleanAttr } from 'file:///home/ubuntu/Autitude/node_modules/.pnpm/vue@3.5.35/node_modules/vue/server-renderer/index.mjs';
 import { Settings, X, Sun, Moon, Minus, Plus, Play, Square, Globe } from 'file:///home/ubuntu/Autitude/node_modules/.pnpm/lucide-vue-next@1.0.0_vue@3.5.35/node_modules/lucide-vue-next/dist/cjs/lucide-vue-next.js';
 import 'file:///home/ubuntu/Autitude/node_modules/.pnpm/vue-bundle-renderer@2.2.0/node_modules/vue-bundle-renderer/dist/runtime.mjs';
 import '../nitro/nitro.mjs';
 import 'file:///home/ubuntu/Autitude/node_modules/.pnpm/destr@2.0.5/node_modules/destr/dist/index.mjs';
+import 'file:///home/ubuntu/Autitude/node_modules/.pnpm/ofetch@1.5.1/node_modules/ofetch/dist/node.mjs';
 import 'file:///home/ubuntu/Autitude/node_modules/.pnpm/node-mock-http@1.0.4/node_modules/node-mock-http/dist/index.mjs';
 import 'file:///home/ubuntu/Autitude/node_modules/.pnpm/unstorage@1.17.5_db0@0.3.4_ioredis@5.11.0/node_modules/unstorage/dist/index.mjs';
-import 'file:///home/ubuntu/Autitude/node_modules/.pnpm/unstorage@1.17.5_db0@0.3.4_ioredis@5.11.0/node_modules/unstorage/drivers/fs.mjs';
+import 'file:///home/ubuntu/Autitude/node_modules/unstorage/dist/index.mjs';
+import 'file:///home/ubuntu/Autitude/node_modules/unstorage/drivers/fs.mjs';
 import 'node:crypto';
 import 'file:///home/ubuntu/Autitude/node_modules/.pnpm/unstorage@1.17.5_db0@0.3.4_ioredis@5.11.0/node_modules/unstorage/drivers/fs-lite.mjs';
 import 'file:///home/ubuntu/Autitude/node_modules/.pnpm/unstorage@1.17.5_db0@0.3.4_ioredis@5.11.0/node_modules/unstorage/drivers/lru-cache.mjs';
+import 'file:///home/ubuntu/Autitude/node_modules/unstorage/drivers/fs-lite.mjs';
 import 'file:///home/ubuntu/Autitude/node_modules/.pnpm/ohash@2.0.11/node_modules/ohash/dist/index.mjs';
 import 'file:///home/ubuntu/Autitude/node_modules/.pnpm/klona@2.0.6/node_modules/klona/dist/index.mjs';
 import 'file:///home/ubuntu/Autitude/node_modules/.pnpm/scule@1.3.0/node_modules/scule/dist/index.mjs';
+import 'file:///home/ubuntu/Autitude/node_modules/.pnpm/defu@6.1.7/node_modules/defu/dist/defu.mjs';
 import 'file:///home/ubuntu/Autitude/node_modules/.pnpm/radix3@1.1.2/node_modules/radix3/dist/index.mjs';
 import 'node:fs';
 import 'node:url';
-import 'file:///home/ubuntu/Autitude/node_modules/.pnpm/pathe@2.0.3/node_modules/pathe/dist/index.mjs';
+import 'file:///home/ubuntu/Autitude/node_modules/pathe/dist/index.mjs';
+import 'file:///home/ubuntu/Autitude/node_modules/h3/dist/index.mjs';
 import 'file:///home/ubuntu/Autitude/node_modules/.pnpm/unhead@2.1.15/node_modules/unhead/dist/server.mjs';
 import 'node:async_hooks';
 import 'file:///home/ubuntu/Autitude/node_modules/.pnpm/devalue@5.8.1/node_modules/devalue/index.js';
 import 'file:///home/ubuntu/Autitude/node_modules/.pnpm/unhead@2.1.15/node_modules/unhead/dist/utils.mjs';
-import 'file:///home/ubuntu/Autitude/node_modules/.pnpm/unhead@2.1.15/node_modules/unhead/dist/plugins.mjs';
+import 'file:///home/ubuntu/Autitude/node_modules/unhead/dist/plugins.mjs';
 
 if (!globalThis.$fetch) {
   globalThis.$fetch = $fetch.create({
@@ -472,52 +477,52 @@ const _routes = [
   {
     name: "faq",
     path: "/faq",
-    component: () => import('./faq-DEhLbg5x.mjs')
+    component: () => import('./faq-DcpPBuWL.mjs')
   },
   {
     name: "index",
     path: "/",
-    component: () => import('./index-DlO-cs8c.mjs')
+    component: () => import('./index-Py225SAP.mjs')
   },
   {
     name: "sobre",
     path: "/sobre",
-    component: () => import('./sobre-CjhWedJq.mjs')
+    component: () => import('./sobre-NiJJeFtk.mjs')
   },
   {
     name: "equipe",
     path: "/equipe",
-    component: () => import('./equipe-Do6Mg2_V.mjs')
+    component: () => import('./equipe-B_lI2VMZ.mjs')
   },
   {
     name: "agendar",
     path: "/agendar",
-    component: () => import('./agendar-IJmvvQft.mjs')
+    component: () => import('./agendar-Dh4tUsZO.mjs')
   },
   {
     name: "contato",
     path: "/contato",
-    component: () => import('./contato-CqJqAi20.mjs')
+    component: () => import('./contato-CBUVeqIi.mjs')
   },
   {
     name: "servicos",
     path: "/servicos",
-    component: () => import('./servicos-B-uqVTiQ.mjs')
+    component: () => import('./servicos-BBivlpNj.mjs')
   },
   {
     name: "slug",
     path: "/:slug(.*)*",
-    component: () => import('./_...slug_-CQ9mM6iW.mjs')
+    component: () => import('./_...slug_-DKrZ4HWa.mjs')
   },
   {
     name: "blog-slug",
     path: "/blog/:slug()",
-    component: () => import('./_slug_-Bhi2UG3o.mjs')
+    component: () => import('./_slug_-B4C4GSuq.mjs')
   },
   {
     name: "privacidade",
     path: "/privacidade",
-    component: () => import('./privacidade-1bZXh1mY.mjs')
+    component: () => import('./privacidade-BEzLXZzW.mjs')
   }
 ];
 const ROUTE_KEY_PARENTHESES_RE = /(:\w+)\([^)]+\)/g;
@@ -1518,6 +1523,9 @@ const _sfc_main$2 = {
     const config = /* @__PURE__ */ useRuntimeConfig();
     config.public.siteBase || "https://hautlys.github.io/Autitude";
     const menuOpen = ref(false);
+    const logoSrc = computed(() => {
+      return `${config.public.basePath || "/Autitude/"}/small-logo.png`;
+    });
     const config_data = {
       whatsappUrl: "https://wa.me/5512991968683",
       instagramUrl: "https://www.instagram.com/clinicaautitude"
@@ -1531,9 +1539,9 @@ const _sfc_main$2 = {
       const _component_NuxtLink = __nuxt_component_0;
       const _component_ThemeSwitcher = __nuxt_component_2;
       const _component_NuxtPage = __nuxt_component_3;
-      _push(`<div${ssrRenderAttrs(mergeProps({ class: "app" }, _attrs))} data-v-17bad717><a href="#main" class="skip-link" data-v-17bad717>Pular para o conteúdo principal</a>`);
+      _push(`<div${ssrRenderAttrs(mergeProps({ class: "app" }, _attrs))} data-v-12853595><a href="#main" class="skip-link" data-v-12853595>Pular para o conteúdo principal</a>`);
       _push(ssrRenderComponent(_component_AccessibilityWidget, null, null, _parent));
-      _push(`<div class="ambient-bg" data-v-17bad717></div><div class="${ssrRenderClass([{ active: menuOpen.value }, "menu-overlay"])}" data-v-17bad717></div><nav class="navbar" data-v-17bad717><div class="nav-container" data-v-17bad717>`);
+      _push(`<div class="ambient-bg" data-v-12853595></div><div class="${ssrRenderClass([{ active: menuOpen.value }, "menu-overlay"])}" data-v-12853595></div><nav class="navbar" data-v-12853595><div class="nav-container" data-v-12853595>`);
       _push(ssrRenderComponent(_component_NuxtLink, {
         to: "/",
         class: "logo",
@@ -1541,11 +1549,11 @@ const _sfc_main$2 = {
       }, {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
-            _push2(`<img${ssrRenderAttr("src", `${unref(config).public.basePath || "/Autitude/"}/small-logo.png`)} alt="Autitude" class="logo-img" data-v-17bad717${_scopeId}><span class="logo-text" data-v-17bad717${_scopeId}>Autitude</span>`);
+            _push2(`<img${ssrRenderAttr("src", logoSrc.value)} alt="Autitude" class="logo-img" data-v-12853595${_scopeId}><span class="logo-text" data-v-12853595${_scopeId}>Autitude</span>`);
           } else {
             return [
               createVNode("img", {
-                src: `${unref(config).public.basePath || "/Autitude/"}/small-logo.png`,
+                src: logoSrc.value,
                 alt: "Autitude",
                 class: "logo-img"
               }, null, 8, ["src"]),
@@ -1555,7 +1563,7 @@ const _sfc_main$2 = {
         }),
         _: 1
       }, _parent));
-      _push(`<div class="${ssrRenderClass([{ "nav-active": menuOpen.value }, "nav-links"])}" data-v-17bad717>`);
+      _push(`<div class="${ssrRenderClass([{ "nav-active": menuOpen.value }, "nav-links"])}" data-v-12853595>`);
       _push(ssrRenderComponent(_component_NuxtLink, {
         to: "/",
         class: "nav-link",
@@ -1653,20 +1661,20 @@ const _sfc_main$2 = {
         _: 1
       }, _parent));
       _push(ssrRenderComponent(_component_ThemeSwitcher, null, null, _parent));
-      _push(`</div><button class="${ssrRenderClass([{ active: menuOpen.value }, "menu-toggle"])}" aria-label="Menu"${ssrRenderAttr("aria-expanded", menuOpen.value)} data-v-17bad717><span data-v-17bad717></span><span data-v-17bad717></span><span data-v-17bad717></span></button></div></nav><main id="main" data-v-17bad717>`);
+      _push(`</div><button class="${ssrRenderClass([{ active: menuOpen.value }, "menu-toggle"])}" aria-label="Menu"${ssrRenderAttr("aria-expanded", menuOpen.value)} data-v-12853595><span data-v-12853595></span><span data-v-12853595></span><span data-v-12853595></span></button></div></nav><main id="main" data-v-12853595>`);
       _push(ssrRenderComponent(_component_NuxtPage, null, null, _parent));
-      _push(`</main><footer class="footer" data-v-17bad717><div class="container" data-v-17bad717><div class="footer-grid" data-v-17bad717><div class="footer-brand" data-v-17bad717>`);
+      _push(`</main><footer class="footer" data-v-12853595><div class="container" data-v-12853595><div class="footer-grid" data-v-12853595><div class="footer-brand" data-v-12853595>`);
       _push(ssrRenderComponent(_component_NuxtLink, {
         to: "/",
         class: "logo"
       }, {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
-            _push2(`<img${ssrRenderAttr("src", `${unref(config).public.basePath || "/Autitude/"}/small-logo.png`)} alt="Autitude" class="logo-img" data-v-17bad717${_scopeId}><span class="logo-text" data-v-17bad717${_scopeId}>Autitude</span>`);
+            _push2(`<img${ssrRenderAttr("src", logoSrc.value)} alt="Autitude" class="logo-img" data-v-12853595${_scopeId}><span class="logo-text" data-v-12853595${_scopeId}>Autitude</span>`);
           } else {
             return [
               createVNode("img", {
-                src: `${unref(config).public.basePath || "/Autitude/"}/small-logo.png`,
+                src: logoSrc.value,
                 alt: "Autitude",
                 class: "logo-img"
               }, null, 8, ["src"]),
@@ -1676,7 +1684,7 @@ const _sfc_main$2 = {
         }),
         _: 1
       }, _parent));
-      _push(`<p data-v-17bad717>Desenvolvimento com acolhimento, ciência e humanidade. Cuidamos de pessoas. Potencializamos possibilidades.</p></div><div class="footer-links" data-v-17bad717><h4 data-v-17bad717>Navegação</h4>`);
+      _push(`<p data-v-12853595>Desenvolvimento com acolhimento, ciência e humanidade. Cuidamos de pessoas. Potencializamos possibilidades.</p></div><div class="footer-links" data-v-12853595><h4 data-v-12853595>Navegação</h4>`);
       _push(ssrRenderComponent(_component_NuxtLink, { to: "/" }, {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
@@ -1725,7 +1733,7 @@ const _sfc_main$2 = {
         }),
         _: 1
       }, _parent));
-      _push(`</div><div class="footer-services" data-v-17bad717><h4 data-v-17bad717>Atendimento</h4>`);
+      _push(`</div><div class="footer-services" data-v-12853595><h4 data-v-12853595>Atendimento</h4>`);
       _push(ssrRenderComponent(_component_NuxtLink, { to: "/agendar" }, {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
@@ -1750,7 +1758,7 @@ const _sfc_main$2 = {
         }),
         _: 1
       }, _parent));
-      _push(`<a${ssrRenderAttr("href", config_data.whatsappUrl)} data-v-17bad717>WhatsApp</a><a${ssrRenderAttr("href", config_data.instagramUrl)} target="_blank" rel="noopener" data-v-17bad717>Instagram</a></div><div class="footer-contact" data-v-17bad717><h4 data-v-17bad717>Localização</h4><p data-v-17bad717>Rua Major José dos Santos Moreira, 328</p><p data-v-17bad717>Vila Rica — Pindamonhangaba, SP</p><p data-v-17bad717>Seg a Sex: 8h às 18h</p><div class="footer-map" data-v-17bad717><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3674.523716039893!2d-45.46558491270433!3d-22.93093188518779!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ccf1835a97b90d%3A0x8c2cb7aa78bd7f92!2sAutitude%20Desenvolvimento%20e%20A%C3%A7%C3%A3o%20Humana!5e0!3m2!1sen!2sbr!4v1780604277186!5m2!1sen!2sbr" width="100%" height="180" style="${ssrRenderStyle({ "border": "0", "border-radius": "8px" })}" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Localização da Autitude — Rua Major José dos Santos Moreira, 328, Vila Rica, Pindamonhangaba-SP" data-v-17bad717></iframe></div></div></div><div class="footer-bottom" data-v-17bad717><p data-v-17bad717>© ${ssrInterpolate(unref(currentYear))} Autitude. Todos os direitos reservados.</p></div></div></footer></div>`);
+      _push(`<a${ssrRenderAttr("href", config_data.whatsappUrl)} data-v-12853595>WhatsApp</a><a${ssrRenderAttr("href", config_data.instagramUrl)} target="_blank" rel="noopener" data-v-12853595>Instagram</a></div><div class="footer-contact" data-v-12853595><h4 data-v-12853595>Localização</h4><p data-v-12853595>Rua Major José dos Santos Moreira, 328</p><p data-v-12853595>Vila Rica — Pindamonhangaba, SP</p><p data-v-12853595>Seg a Sex: 8h às 18h</p><div class="footer-map" data-v-12853595><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3674.523716039893!2d-45.46558491270433!3d-22.93093188518779!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ccf1835a97b90d%3A0x8c2cb7aa78bd7f92!2sAutitude%20Desenvolvimento%20e%20A%C3%A7%C3%A3o%20Humana!5e0!3m2!1sen!2sbr!4v1780604277186!5m2!1sen!2sbr" width="100%" height="180" style="${ssrRenderStyle({ "border": "0", "border-radius": "8px" })}" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Localização da Autitude — Rua Major José dos Santos Moreira, 328, Vila Rica, Pindamonhangaba-SP" data-v-12853595></iframe></div></div></div><div class="footer-bottom" data-v-12853595><p data-v-12853595>© ${ssrInterpolate(unref(currentYear))} Autitude. Todos os direitos reservados.</p></div></div></footer></div>`);
     };
   }
 };
@@ -1760,7 +1768,7 @@ _sfc_main$2.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("app.vue");
   return _sfc_setup$2 ? _sfc_setup$2(props, ctx) : void 0;
 };
-const AppComponent = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-17bad717"]]);
+const AppComponent = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-12853595"]]);
 const _sfc_main$1 = {
   __name: "nuxt-error-page",
   __ssrInlineRender: true,
@@ -1775,8 +1783,8 @@ const _sfc_main$1 = {
     const statusText = _error.statusMessage ?? (is404 ? "Page Not Found" : "Internal Server Error");
     const description = _error.message || _error.toString();
     const stack = void 0;
-    const _Error404 = defineAsyncComponent(() => import('./error-404-Bi8KOpRy.mjs'));
-    const _Error = defineAsyncComponent(() => import('./error-500-CusQV2FA.mjs'));
+    const _Error404 = defineAsyncComponent(() => import('./error-404-Cc7Y2v3w.mjs'));
+    const _Error = defineAsyncComponent(() => import('./error-500-BL55Qgqc.mjs'));
     const ErrorTemplate = is404 ? _Error404 : _Error;
     return (_ctx, _push, _parent, _attrs) => {
       _push(ssrRenderComponent(unref(ErrorTemplate), mergeProps({ status: unref(status), statusText: unref(statusText), statusCode: unref(status), statusMessage: unref(statusText), description: unref(description), stack: unref(stack) }, _attrs), null, _parent));

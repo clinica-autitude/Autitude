@@ -261,68 +261,84 @@ a:hover {
   background: var(--primary-light);
 }
 
-/* Buttons */
+/* Buttons — base: pill, transparent, lilac translucent border (ghost style) */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0.875rem 1.75rem;
+  padding: 0.7rem 1.5rem;
   border-radius: var(--radius-full);
   font-family: 'Nunito', sans-serif;
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 600;
   cursor: pointer;
   transition: all var(--transition-base);
   text-decoration: none;
-  border: none;
+  border: 1.5px solid color-mix(in srgb, var(--lilac) 30%, transparent);
+  background: transparent;
+  color: var(--primary-dark);
   white-space: nowrap;
+  line-height: 1.2;
+}
+
+.btn:hover {
+  background: color-mix(in srgb, var(--lilac) 8%, transparent);
+  border-color: var(--lilac);
+  transform: translateY(-2px);
+  color: var(--lilac-dark);
 }
 
 .btn-primary {
   background: var(--gradient-primary);
   color: var(--white);
+  border-color: transparent;
   box-shadow: var(--shadow-sm);
 }
 
 .btn-primary:hover {
-  transform: translateY(-2px);
+  background: var(--gradient-primary);
+  border-color: transparent;
   box-shadow: var(--shadow-md);
   color: var(--white);
+  transform: translateY(-2px);
 }
 
 .btn-secondary {
-  background: var(--white);
+  background: transparent;
   color: var(--lilac);
-  border: 2px solid var(--lilac);
+  border: 1.5px solid var(--lilac);
 }
 
 .btn-secondary:hover {
   background: var(--lilac-soft);
   border-color: var(--lilac-dark);
-  transform: translateY(-2px);
   color: var(--lilac-dark);
+  transform: translateY(-2px);
 }
 
 .btn-whatsapp {
   background: var(--whatsapp);
   color: var(--white);
+  border-color: transparent;
 }
 
 .btn-whatsapp:hover {
   background: var(--whatsapp-dark);
+  border-color: transparent;
+  color: var(--white);
   transform: translateY(-2px);
   box-shadow: var(--shadow-sm);
 }
 
 .btn-sm {
-  padding: 0.625rem 1.25rem;
-  font-size: 0.875rem;
+  padding: 0.5rem 1.1rem;
+  font-size: 0.85rem;
 }
 
 .btn-lg {
-  padding: 1rem 2.5rem;
-  font-size: 1.125rem;
+  padding: 0.85rem 1.85rem;
+  font-size: 1rem;
 }
 
 /* Container */
@@ -1197,15 +1213,17 @@ a:hover {
 [data-theme="dark"] .btn-primary {
   background: var(--gradient-primary);
   color: var(--text-dark);
+  border-color: transparent;
 }
 
 [data-theme="dark"] .btn-primary:hover {
   box-shadow: 0 6px 24px rgba(226, 200, 245, 0.4);
   color: var(--text-dark);
+  border-color: transparent;
 }
 
 [data-theme="dark"] .btn-secondary {
-  background: var(--surface);
+  background: transparent;
   border-color: var(--primary);
   color: var(--text);
 }
@@ -1219,6 +1237,7 @@ a:hover {
 [data-theme="dark"] .btn-whatsapp {
   background: var(--whatsapp);
   color: var(--text-dark);
+  border-color: transparent;
 }
 
 [data-theme="dark"] .btn-whatsapp:hover {

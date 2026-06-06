@@ -1,9 +1,11 @@
 <template>
-  <div ref="containerRef" :class="className" :style="style" class="w-full h-full"></div>
+  <div ref="containerRef" :class="className" :style="style" class="w-full h-full">
+    <div v-if="webglFailed" class="silk-fallback" aria-hidden="true" />
+  </div>
 </template>
 
 <script setup lang="ts">
-import { onMounted, onUnmounted, watch, type CSSProperties, useTemplateRef } from 'vue';
+import { onMounted, onUnmounted, ref, watch, type CSSProperties, useTemplateRef } from 'vue';
 import { Renderer, Program, Mesh, Plane, Camera } from 'ogl';
 
 interface SilkProps {
@@ -27,6 +29,7 @@ const props = withDefaults(defineProps<SilkProps>(), {
 });
 
 const containerRef = useTemplateRef<HTMLDivElement>('containerRef');
+const webglFailed = ref(false);
 
 const hexToNormalizedRGB = (hex: string): [number, number, number] => {
   const clean = hex.replace('#', '');
@@ -119,7 +122,10 @@ let animateId = 0;
 const initSilk = () => {
   const container = containerRef.value;
   if (!container) return;
-  if (!isWebGLAvailable()) return;
+  if (!isWebGLAvailable()) {
+    webglFailed.value = true;
+    return;
+  }
 
   try {
     renderer = new Renderer({
@@ -128,114 +134,112 @@ const initSilk = () => {
     });
   } catch {
     console.warn('[Silk] WebGL unavailable, skipping background effect.');
+    webglFailed.value = true;
     return;
   }
 
-  const gl = renderer.gl;
-  gl.clearColor(0, 0, 0, 0);
-  gl.canvas.style.backgroundColor = 'transparent';
+  try {
+    const gl = renderer.gl;
+    gl.clearColor(0, 0, 0, 0);
+    gl.canvas.style.backgroundColor = 'transparent';
 
-  camera = new Camera(gl, { fov: 75 });
-  camera.position.z = 1;
+    camera = new Camera(gl, { fov: 75 });
+    camera.position.z = 1;
 
-  const resize = () => {
-    if (!container || !camera) return;
+    const resize = () => {
+      if (!container || !camera || !renderer) return;
 
-    let width = container.offsetWidth;
-    let height = container.offsetHeight;
+      let width = container.offsetWidth;
+      let height = container.offsetHeight;
 
-    let parent = container.parentElement;
-    while (parent && (!width || !height)) {
-      if (parent.offsetWidth && parent.offsetHeight) {
-        width = parent.offsetWidth;
-        height = parent.offsetHeight;
-        break;
+      let parent = container.parentElement;
+      while (parent && (!width || !height)) {
+        if (parent.offsetWidth && parent.offsetHeight) {
+          width = parent.offsetWidth;
+          height = parent.offsetHeight;
+          break;
+        }
+        parent = parent.parentElement;
       }
-      parent = parent.parentElement;
-    }
 
-    if (!width || !height) {
-      width = window.innerWidth;
-      height = window.innerHeight;
-    }
+      if (!width || !height) {
+        width = window.innerWidth;
+        height = window.innerHeight;
+      }
 
-    width = Math.max(width, 300);
-    height = Math.max(height, 300);
+      width = Math.max(width, 300);
+      height = Math.max(height, 300);
 
-    renderer!.setSize(width, height);
-    camera.perspective({ aspect: width / height });
+      renderer.setSize(width, height);
+      camera.perspective({ aspect: width / height });
 
-    if (mesh) {
-      const distance = camera.position.z;
-      const fov = camera.fov * (Math.PI / 180);
-      const height2 = 2 * Math.tan(fov / 2) * distance;
-      const width2 = height2 * (width / height);
+      if (mesh) {
+        const distance = camera.position.z;
+        const fov = camera.fov * (Math.PI / 180);
+        const height2 = 2 * Math.tan(fov / 2) * distance;
+        const width2 = height2 * (width / height);
 
-      mesh.scale.set(width2, height2, 1);
-    }
-  };
+        mesh.scale.set(width2, height2, 1);
+      }
+    };
 
-  window.addEventListener('resize', resize);
+    window.addEventListener('resize', resize);
 
-  const geometry = new Plane(gl, {
-    width: 1,
-    height: 1
-  });
+    const geometry = new Plane(gl, {
+      width: 1,
+      height: 1
+    });
 
-  const colorRGB = hexToNormalizedRGB(props.color);
+    const colorRGB = hexToNormalizedRGB(props.color);
 
-  program = new Program(gl, {
-    vertex: vertexShader,
-    fragment: fragmentShader,
-    uniforms: {
-      uSpeed: { value: props.speed },
-      uScale: { value: props.scale },
-      uNoiseIntensity: { value: props.noiseIntensity },
-      uColor: { value: colorRGB },
-      uRotation: { value: props.rotation },
-      uTime: { value: 0 }
-    }
-  });
+    program = new Program(gl, {
+      vertex: vertexShader,
+      fragment: fragmentShader,
+      uniforms: {
+        uSpeed: { value: props.speed },
+        uScale: { value: props.scale },
+        uNoiseIntensity: { value: props.noiseIntensity },
+        uColor: { value: colorRGB },
+        uRotation: { value: props.rotation },
+        uTime: { value: 0 }
+      }
+    });
 
-  mesh = new Mesh(gl, { geometry, program });
-  container.appendChild(gl.canvas);
+    mesh = new Mesh(gl, { geometry, program });
+    container.appendChild(gl.canvas);
 
-  gl.canvas.style.width = '100%';
-  gl.canvas.style.height = '100%';
-  gl.canvas.style.display = 'block';
-  gl.canvas.style.position = 'absolute';
-  gl.canvas.style.top = '0';
-  gl.canvas.style.left = '0';
-  gl.canvas.style.zIndex = '0';
+    gl.canvas.style.width = '100%';
+    gl.canvas.style.height = '100%';
+    gl.canvas.style.display = 'block';
+    gl.canvas.style.position = 'absolute';
+    gl.canvas.style.top = '0';
+    gl.canvas.style.left = '0';
+    gl.canvas.style.zIndex = '0';
 
-  let lastTime = 0;
-  const update = (t: number) => {
+    let lastTime = 0;
+    const update = (t: number) => {
+      animateId = requestAnimationFrame(update);
+      const deltaTime = (t - lastTime) / 1000;
+      lastTime = t;
+
+      if (program && mesh && camera && renderer) {
+        program.uniforms.uTime.value += 0.1 * deltaTime;
+        program.uniforms.uSpeed.value = props.speed;
+        program.uniforms.uScale.value = props.scale;
+        program.uniforms.uNoiseIntensity.value = props.noiseIntensity;
+        program.uniforms.uColor.value = hexToNormalizedRGB(props.color);
+        program.uniforms.uRotation.value = props.rotation;
+        renderer.render({ scene: mesh, camera });
+      }
+    };
     animateId = requestAnimationFrame(update);
-    const deltaTime = (t - lastTime) / 1000;
-    lastTime = t;
 
-    if (program && mesh && camera) {
-      program.uniforms.uTime.value += 0.1 * deltaTime;
-      program.uniforms.uSpeed.value = props.speed;
-      program.uniforms.uScale.value = props.scale;
-      program.uniforms.uNoiseIntensity.value = props.noiseIntensity;
-      program.uniforms.uColor.value = hexToNormalizedRGB(props.color);
-      program.uniforms.uRotation.value = props.rotation;
-      renderer!.render({ scene: mesh, camera });
-    }
-  };
-  animateId = requestAnimationFrame(update);
-
-  resize();
-
-  return () => {
-    cancelAnimationFrame(animateId);
-    window.removeEventListener('resize', resize);
-    if (container && gl.canvas.parentNode === container) {
-      container.removeChild(gl.canvas);
-    }
-    gl.getExtension('WEBGL_lose_context')?.loseContext();
-  };
+    resize();
+  } catch (err) {
+    console.warn('[Silk] WebGL initialization failed, using fallback.', err);
+    webglFailed.value = true;
+    cleanup();
+  }
 };
 
 const cleanup = () => {
@@ -276,6 +280,15 @@ div {
   height: 100% !important;
   min-height: 100% !important;
   display: block !important;
+}
+
+.silk-fallback {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(107, 79, 163, 0.18), rgba(61, 45, 94, 0.12));
+  pointer-events: none;
 }
 
 :deep(canvas) {

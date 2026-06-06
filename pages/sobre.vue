@@ -1,6 +1,6 @@
 <script setup>
 import {
-  HandHeart, Brain, Sparkles, Users, BookOpen, Mic, Activity,
+  HandHeart, Brain, Sparkles, Users, BookOpen, Mic, Activity, Puzzle,
   MapPin, ArrowUpRight, ArrowDown, Compass, ShieldCheck, Quote,
   Clock
 } from 'lucide-vue-next'
@@ -46,7 +46,7 @@ const specialties = [
   },
   {
     name: 'Neuropsicopedagogia',
-    blurb: 'Identificação de desafios pedagógicos e plano individual de aprendizagem, com apoio ao desenvolvimento escolar.',
+    blurb: 'Avaliação e plano pedagógico individualizado, com identificação de desafios e apoio ao desenvolvimento escolar.',
     icon: BookOpen,
     tone: 'pink'
   },
@@ -58,9 +58,16 @@ const specialties = [
   },
   {
     name: 'Terapia Ocupacional',
-    blurb: 'Autonomia, socialização e independência funcional, com certificação internacional em Integração Sensorial (USC, USA).',
+    blurb: 'Avaliação clínica, integração sensorial e promoção da autonomia pessoal e social, com certificação internacional (USC, USA).',
     icon: Activity,
     tone: 'yellow'
+  },
+  {
+    name: 'Terapia ABA Humanizada',
+    blurb: 'Aplicação humanizada da ABA para o desenvolvimento de habilidades comunicativas, sociais, funcionais e de aprendizagem.',
+    icon: Puzzle,
+    tone: 'lavender',
+    span: 'full'
   }
 ]
 
@@ -174,6 +181,7 @@ const differentiators = [
             v-for="(s, i) in specialties"
             :key="s.name"
             class="bento__card bento__card--specialty"
+            :class="{ 'bento__card--specialty-full': s.span === 'full' }"
             :data-tone="s.tone"
           >
             <span class="card__index">0{{ i + 1 }}</span>
@@ -687,6 +695,10 @@ const differentiators = [
   min-height: 220px;
 }
 
+.bento__card--specialty-full {
+  grid-column: span 6;
+}
+
 /* FEATURE */
 .bento__card--feature {
   display: flex;
@@ -811,12 +823,14 @@ const differentiators = [
   .bento__card--wide { grid-column: span 6; }
   .bento__card--half { grid-column: span 3; }
   .bento__card--location { grid-column: span 6; }
+  .bento__card--specialty-full { grid-column: span 6; }
 }
 @media (max-width: 720px) {
   .bento { grid-template-columns: 1fr; }
   .bento__card,
   .bento__card--statement,
   .bento__card--specialty,
+  .bento__card--specialty-full,
   .bento__card--feature,
   .bento__card--wide,
   .bento__card--half,

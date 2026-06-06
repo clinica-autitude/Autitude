@@ -136,6 +136,7 @@ const autoRotateRef = ref(props.autoRotate);
 const pointerTargetRef = ref(new THREE.Vector2(0, 0));
 const pointerCurrentRef = ref(new THREE.Vector2(0, 0));
 const pointerSmoothRef = ref(8);
+const webglFailed = ref(false);
 
 const isWebGLAvailable = () => {
   try {
@@ -149,122 +150,149 @@ const isWebGLAvailable = () => {
 let cleanup: (() => void) | null = null;
 
 const setup = () => {
-  if (!isWebGLAvailable()) return;
-  const container = containerRef.value!;
-  const scene = new THREE.Scene();
-  const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
-
-  const geometry = new THREE.PlaneGeometry(2, 2);
-  const uColorsArray = Array.from({ length: MAX_COLORS }, () => new THREE.Vector3(0, 0, 0));
-
-  const material = new THREE.ShaderMaterial({
-    vertexShader: vert,
-    fragmentShader: frag,
-    uniforms: {
-      uCanvas: { value: new THREE.Vector2(1, 1) },
-      uTime: { value: 0 },
-      uSpeed: { value: props.speed },
-      uRot: { value: new THREE.Vector2(1, 0) },
-      uColorCount: { value: 0 },
-      uColors: { value: uColorsArray },
-      uTransparent: { value: props.transparent ? 1 : 0 },
-      uScale: { value: props.scale },
-      uFrequency: { value: props.frequency },
-      uWarpStrength: { value: props.warpStrength },
-      uPointer: { value: new THREE.Vector2(0, 0) },
-      uMouseInfluence: { value: props.mouseInfluence },
-      uParallax: { value: props.parallax },
-      uNoise: { value: props.noise }
-    },
-    premultipliedAlpha: true,
-    transparent: true
-  });
-  materialRef.value = material;
-
-  const mesh = new THREE.Mesh(geometry, material);
-  scene.add(mesh);
-
-  let renderer: THREE.WebGLRenderer;
-  try {
-    renderer = new THREE.WebGLRenderer({
-      antialias: false,
-      powerPreference: 'high-performance',
-      alpha: true
-    });
-  } catch {
-    console.warn('[ColorBends] WebGL unavailable, skipping effect.');
+  if (!isWebGLAvailable()) {
+    webglFailed.value = true;
     return;
   }
-  rendererRef.value = renderer;
-  (renderer as any).outputColorSpace = (THREE as any).SRGBColorSpace;
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
-  renderer.setClearColor(0x000000, props.transparent ? 0 : 1);
-  renderer.domElement.style.width = '100%';
-  renderer.domElement.style.height = '100%';
-  renderer.domElement.style.display = 'block';
-  container.appendChild(renderer.domElement);
+  const container = containerRef.value!;
 
-  const clock = new THREE.Clock();
+  let renderer: THREE.WebGLRenderer | null = null;
+  let geometry: THREE.PlaneGeometry | null = null;
+  let material: THREE.ShaderMaterial | null = null;
+  let handleResize: (() => void) | null = null;
+  let handlePointerMove: ((e: PointerEvent) => void) | null = null;
 
-  const handleResize = () => {
-    const w = container.clientWidth || 1;
-    const h = container.clientHeight || 1;
-    renderer.setSize(w, h, false);
-    (material.uniforms.uCanvas.value as THREE.Vector2).set(w, h);
-  };
+  try {
+    const scene = new THREE.Scene();
+    const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
 
-  handleResize();
+    geometry = new THREE.PlaneGeometry(2, 2);
+    const uColorsArray = Array.from({ length: MAX_COLORS }, () => new THREE.Vector3(0, 0, 0));
 
-  if ('ResizeObserver' in window) {
-    const ro = new ResizeObserver(handleResize);
-    ro.observe(container);
-    resizeObserverRef.value = ro;
-  } else {
-    (window as any).addEventListener('resize', handleResize);
-  }
+    material = new THREE.ShaderMaterial({
+      vertexShader: vert,
+      fragmentShader: frag,
+      uniforms: {
+        uCanvas: { value: new THREE.Vector2(1, 1) },
+        uTime: { value: 0 },
+        uSpeed: { value: props.speed },
+        uRot: { value: new THREE.Vector2(1, 0) },
+        uColorCount: { value: 0 },
+        uColors: { value: uColorsArray },
+        uTransparent: { value: props.transparent ? 1 : 0 },
+        uScale: { value: props.scale },
+        uFrequency: { value: props.frequency },
+        uWarpStrength: { value: props.warpStrength },
+        uPointer: { value: new THREE.Vector2(0, 0) },
+        uMouseInfluence: { value: props.mouseInfluence },
+        uParallax: { value: props.parallax },
+        uNoise: { value: props.noise }
+      },
+      premultipliedAlpha: true,
+      transparent: true
+    });
+    materialRef.value = material;
 
-  const loop = () => {
-    const dt = clock.getDelta();
-    const elapsed = clock.elapsedTime;
-    material.uniforms.uTime.value = elapsed;
+    const mesh = new THREE.Mesh(geometry, material);
+    scene.add(mesh);
 
-    const deg = (rotationRef.value % 360) + autoRotateRef.value * elapsed;
-    const rad = (deg * Math.PI) / 180;
-    const c = Math.cos(rad);
-    const s = Math.sin(rad);
-    (material.uniforms.uRot.value as THREE.Vector2).set(c, s);
-
-    const cur = pointerCurrentRef.value;
-    const tgt = pointerTargetRef.value;
-    const amt = Math.min(1, dt * pointerSmoothRef.value);
-    cur.lerp(tgt, amt);
-    (material.uniforms.uPointer.value as THREE.Vector2).copy(cur);
-    renderer.render(scene, camera);
-    rafRef.value = requestAnimationFrame(loop);
-  };
-  rafRef.value = requestAnimationFrame(loop);
-
-  const handlePointerMove = (e: PointerEvent) => {
-    const rect = container.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
-    const y = -(((e.clientY - rect.top) / rect.height) * 2 - 1);
-    pointerTargetRef.value.set(x, y);
-  };
-
-  container.addEventListener('pointermove', handlePointerMove);
-
-  cleanup = () => {
-    if (rafRef.value !== null) cancelAnimationFrame(rafRef.value);
-    if (resizeObserverRef.value) resizeObserverRef.value.disconnect();
-    else window.removeEventListener('resize', handleResize);
-    container.removeEventListener('pointermove', handlePointerMove);
-    geometry.dispose();
-    material.dispose();
-    renderer.dispose();
-    if (renderer.domElement && renderer.domElement.parentElement === container) {
-      container.removeChild(renderer.domElement);
+    try {
+      renderer = new THREE.WebGLRenderer({
+        antialias: false,
+        powerPreference: 'high-performance',
+        alpha: true
+      });
+    } catch {
+      console.warn('[ColorBends] WebGL unavailable, skipping effect.');
+      webglFailed.value = true;
+      return;
     }
-  };
+    rendererRef.value = renderer;
+    (renderer as any).outputColorSpace = (THREE as any).SRGBColorSpace;
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    renderer.setClearColor(0x000000, props.transparent ? 0 : 1);
+    renderer.domElement.style.width = '100%';
+    renderer.domElement.style.height = '100%';
+    renderer.domElement.style.display = 'block';
+    container.appendChild(renderer.domElement);
+
+    const clock = new THREE.Clock();
+
+    handleResize = () => {
+      if (!renderer || !material) return;
+      const w = container.clientWidth || 1;
+      const h = container.clientHeight || 1;
+      renderer.setSize(w, h, false);
+      (material.uniforms.uCanvas.value as THREE.Vector2).set(w, h);
+    };
+
+    handleResize();
+
+    if ('ResizeObserver' in window) {
+      const ro = new ResizeObserver(handleResize);
+      ro.observe(container);
+      resizeObserverRef.value = ro;
+    } else {
+      (window as any).addEventListener('resize', handleResize);
+    }
+
+    const loop = () => {
+      if (!renderer || !material) return;
+      const dt = clock.getDelta();
+      const elapsed = clock.elapsedTime;
+      material.uniforms.uTime.value = elapsed;
+
+      const deg = (rotationRef.value % 360) + autoRotateRef.value * elapsed;
+      const rad = (deg * Math.PI) / 180;
+      const c = Math.cos(rad);
+      const s = Math.sin(rad);
+      (material.uniforms.uRot.value as THREE.Vector2).set(c, s);
+
+      const cur = pointerCurrentRef.value;
+      const tgt = pointerTargetRef.value;
+      const amt = Math.min(1, dt * pointerSmoothRef.value);
+      cur.lerp(tgt, amt);
+      (material.uniforms.uPointer.value as THREE.Vector2).copy(cur);
+      renderer.render(scene, camera);
+      rafRef.value = requestAnimationFrame(loop);
+    };
+    rafRef.value = requestAnimationFrame(loop);
+
+    handlePointerMove = (e: PointerEvent) => {
+      const rect = container.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+      const y = -(((e.clientY - rect.top) / rect.height) * 2 - 1);
+      pointerTargetRef.value.set(x, y);
+    };
+
+    container.addEventListener('pointermove', handlePointerMove);
+
+    cleanup = () => {
+      if (rafRef.value !== null) cancelAnimationFrame(rafRef.value);
+      if (resizeObserverRef.value) resizeObserverRef.value.disconnect();
+      else if (handleResize) window.removeEventListener('resize', handleResize);
+      if (handlePointerMove) container.removeEventListener('pointermove', handlePointerMove);
+      if (geometry) geometry.dispose();
+      if (material) material.dispose();
+      if (renderer) {
+        renderer.dispose();
+        if (renderer.domElement && renderer.domElement.parentElement === container) {
+          container.removeChild(renderer.domElement);
+        }
+      }
+    };
+  } catch (err) {
+    console.warn('[ColorBends] WebGL initialization failed, using fallback.', err);
+    webglFailed.value = true;
+    if (geometry) geometry.dispose();
+    if (material) material.dispose();
+    if (renderer) {
+      renderer.dispose();
+      if (renderer.domElement && renderer.domElement.parentElement === container) {
+        container.removeChild(renderer.domElement);
+      }
+    }
+  }
 };
 
 onMounted(setup);
@@ -312,5 +340,18 @@ watch(
 </script>
 
 <template>
-  <div ref="containerRef" :class="['w-full h-full relative overflow-hidden', props.className]" :style="props.style" />
+  <div ref="containerRef" :class="['w-full h-full relative overflow-hidden', props.className]" :style="props.style">
+    <div v-if="webglFailed" class="colorbends-fallback" aria-hidden="true" />
+  </div>
 </template>
+
+<style scoped>
+.colorbends-fallback {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(107, 79, 163, 0.15), rgba(61, 45, 94, 0.1));
+  pointer-events: none;
+}
+</style>

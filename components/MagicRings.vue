@@ -117,6 +117,7 @@ const smoothMouseRef = ref<[number, number]>([0, 0]);
 const hoverAmountRef = ref(0);
 const isHoveredRef = ref(false);
 const burstRef = ref(0);
+const webglFailed = ref(false);
 
 const propsRef = computed(() => ({
   color: props.color,
@@ -159,21 +160,48 @@ const cleanupFns: (() => void)[] = [];
 onMounted(() => {
   const mount = mountRef.value;
   if (!mount) return;
-  if (!isWebGLAvailable()) return;
+  if (!isWebGLAvailable()) {
+    webglFailed.value = true;
+    return;
+  }
 
   try {
     renderer = new THREE.WebGLRenderer({ alpha: true });
   } catch {
+    webglFailed.value = true;
     return;
   }
 
-  if (!renderer || !renderer.capabilities?.isWebGL2) {
-    renderer?.dispose();
+  if (!renderer) {
+    webglFailed.value = true;
     return;
   }
 
-  renderer.setClearColor(0x000000, 0);
-  mount.appendChild(renderer.domElement);
+  let isWebGL2 = false;
+  try {
+    isWebGL2 = !!renderer.capabilities?.isWebGL2;
+  } catch {
+    isWebGL2 = false;
+  }
+
+  if (!isWebGL2) {
+    renderer.dispose();
+    renderer = null;
+    webglFailed.value = true;
+    return;
+  }
+
+  const activeRenderer: THREE.WebGLRenderer = renderer;
+
+  try {
+    activeRenderer.setClearColor(0x000000, 0);
+    mount.appendChild(activeRenderer.domElement);
+  } catch {
+    activeRenderer.dispose();
+    renderer = null;
+    webglFailed.value = true;
+    return;
+  }
 
   const scene = new THREE.Scene();
 
@@ -220,8 +248,8 @@ onMounted(() => {
     const h = mount.clientHeight;
     const dpr = Math.min(window.devicePixelRatio, 2);
 
-    renderer!.setSize(w, h);
-    renderer!.setPixelRatio(dpr);
+    activeRenderer.setSize(w, h);
+    activeRenderer.setPixelRatio(dpr);
 
     uniforms.uResolution.value.set(w * dpr, h * dpr);
   };
@@ -303,7 +331,7 @@ onMounted(() => {
     uniforms.uParallax.value = p.parallax;
     uniforms.uBurst.value = p.clickBurst ? burstRef.value : 0;
 
-    renderer!.render(scene, camera);
+    activeRenderer.render(scene, camera);
   };
 
   frameId = requestAnimationFrame(animate);
@@ -320,9 +348,11 @@ onMounted(() => {
     mount.removeEventListener('mouseleave', onMouseLeave);
     mount.removeEventListener('click', onClick);
 
-    mount.removeChild(renderer!.domElement);
+    if (activeRenderer.domElement.parentElement === mount) {
+      mount.removeChild(activeRenderer.domElement);
+    }
 
-    renderer?.dispose();
+    activeRenderer.dispose();
     material.dispose();
   });
 });
@@ -333,5 +363,18 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div ref="mountRef" class="w-full h-full" :style="props.blur > 0 ? { filter: `blur(${props.blur}px)` } : undefined" />
+  <div ref="mountRef" class="w-full h-full relative" :style="props.blur > 0 ? { filter: `blur(${props.blur}px)` } : undefined">
+    <div v-if="webglFailed" class="magicrings-fallback" aria-hidden="true" />
+  </div>
 </template>
+
+<style scoped>
+.magicrings-fallback {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, rgba(124, 255, 103, 0.08), rgba(66, 252, 255, 0.04) 60%, transparent 80%);
+  pointer-events: none;
+}
+</style>

@@ -1,12 +1,12 @@
 <script setup>
-import { Brain, BookOpen, Mic, Activity } from 'lucide-vue-next'
+import { Brain, BookOpen, Mic, Activity, Puzzle } from 'lucide-vue-next'
 import ColorBends from '~/components/ColorBends.vue'
 import Squares from '~/components/Squares.vue'
 
 useHead({
   title: 'Especialidades | Autitude - Desenvolvimento e Ação Humana',
   meta: [
-    { name: 'description', content: 'Neuropsicologia, Neuropsicopedagogia, Fonoaudiologia e Terapia Ocupacional em Pindamonhangaba-SP. Atendimento especializado para crianças, adolescentes e famílias, com foco no público neurodivergente.' }
+    { name: 'description', content: 'Neuropsicologia, Neuropsicopedagogia, Fonoaudiologia, Terapia Ocupacional e Terapia ABA Humanizada em Pindamonhangaba-SP. Atendimento especializado para crianças, adolescentes e famílias, com foco no público neurodivergente.' }
   ],
   script: [
     {
@@ -15,7 +15,7 @@ useHead({
         '@context': 'https://schema.org',
         '@type': 'WebPage',
         name: 'Especialidades - Autitude',
-        description: 'Neuropsicologia, Neuropsicopedagogia, Fonoaudiologia e Terapia Ocupacional em Pindamonhangaba-SP.',
+        description: 'Neuropsicologia, Neuropsicopedagogia, Fonoaudiologia, Terapia Ocupacional e Terapia ABA Humanizada em Pindamonhangaba-SP.',
         url: 'https://hautlys.github.io/Autitude/servicos',
         mainEntity: {
           '@type': 'MedicalBusiness',
@@ -24,7 +24,8 @@ useHead({
             'Neuropsicologia',
             'Neuropsicopedagogia',
             'Fonoaudiologia',
-            'Terapia Ocupacional'
+            'Terapia Ocupacional',
+            'Terapia ABA Humanizada'
           ]
         }
       })
@@ -55,7 +56,7 @@ const services = [
     items: [
       'Avaliação das dificuldades de aprendizagem',
       'Identificação de desafios pedagógicos',
-      'Planejamento e aplicação de plano pedagógico individual',
+      'Planejamento e aplicação de plano pedagógico individualizado',
       'Apoio ao desenvolvimento escolar'
     ]
   },
@@ -73,15 +74,26 @@ const services = [
   },
   {
     title: 'Terapia Ocupacional',
-    description: 'Promoção da autonomia, socialização e independência funcional, com certificação internacional em Integração Sensorial pela University of Southern California (USC, USA).',
+    description: 'Avaliação clínica, integração sensorial e promoção da autonomia pessoal e social, com certificação internacional em Integração Sensorial pela University of Southern California (USC, USA).',
     color: 'linear-gradient(135deg, var(--pastel-peach) 0%, var(--secondary-light) 100%)',
     icon: Activity,
     items: [
       'Certificação internacional em Integração Sensorial (USC, USA)',
+      'Avaliação clínica e funcional',
       'Desenvolvimento da autonomia',
-      'Socialização',
-      'Enfrentamento dos desafios do cotidiano',
-      'Promoção da independência funcional'
+      'Socialização e independência funcional'
+    ]
+  },
+  {
+    title: 'Terapia ABA Humanizada',
+    description: 'Aplicação da Análise do Comportamento Aplicada (ABA) de forma humanizada e centrada na pessoa, desenvolvendo habilidades e aprendizagens significativas no ritmo de cada paciente.',
+    color: 'linear-gradient(135deg, var(--pastel-lavender) 0%, var(--pastel-mint) 100%)',
+    icon: Puzzle,
+    items: [
+      'Plano terapêutico individualizado',
+      'Desenvolvimento de habilidades comunicativas, sociais e funcionais',
+      'Aprendizagem acadêmica e cotidiana',
+      'Envolvimento e orientação familiar'
     ]
   }
 ]
@@ -109,8 +121,8 @@ const processSteps = [
       <div class="container">
         <div class="section-header">
           <span class="section-tag">Nossas especialidades</span>
-          <h1>Cuidado integrado e interdisciplinar</h1>
-          <p>Uma equipe multidisciplinar trabalhando em conjunto pelo desenvolvimento de cada criança, adolescente e família.</p>
+          <h1>Cuidado integrado e transdisciplinar</h1>
+          <p>Profissionais alinhados às necessidades e trabalhando em conjunto pelo desenvolvimento de cada pessoa.</p>
         </div>
 
         <div class="services-showcase">

@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted, onBeforeUnmount, watch } from 'vue'
 import DotGrid from '~/components/DotGrid.vue'
 
 useHead({
@@ -16,16 +16,104 @@ const config = {
 const phoneNumber = '5512991968683'
 const pediatricLimit = 18
 
+const cities = [
+  'Aparecida', 'Arapeí', 'Areias', 'Bananal', 'Caçapava', 'Cachoeira Paulista', 'Canas',
+  'Caraguatatuba', 'Cruzeiro', 'Cunha', 'Guaratinguetá', 'Ilhabela', 'Jacareí',
+  'Lagoinha', 'Lavrinhas', 'Lorena', 'Monteiro Lobato', 'Natividade da Serra',
+  'Paraibuna', 'Pindamonhangaba', 'Piquete', 'Potim', 'Queluz', 'Redenção da Serra',
+  'Roseira', 'Santa Branca', 'Santo Antônio do Pinhal', 'São Bento do Sapucaí',
+  'São José dos Campos', 'São Luís do Paraitinga', 'São Sebastião', 'Silveiras',
+  'Taubaté', 'Tremembé', 'Ubatuba',
+  'Campinas', 'Guarulhos', 'Osasco', 'Ribeirão Preto', 'Santo André', 'Santos',
+  'São Bernardo do Campo', 'São Caetano do Sul', 'São José do Rio Preto', 'São Paulo',
+  'Sorocaba',
+  'Belo Horizonte', 'Rio de Janeiro', 'Niterói', 'Petrópolis', 'Volta Redonda',
+  'Curitiba', 'Florianópolis', 'Porto Alegre', 'Brasília', 'Salvador', 'Fortaleza',
+  'Recife', 'Manaus', 'Belém', 'Goiânia', 'Vitória', 'Cuiabá', 'Campo Grande',
+  'Maceió', 'Natal', 'João Pessoa', 'Aracaju', 'Teresina', 'São Luís',
+  'Porto Velho', 'Boa Vista', 'Macapá', 'Palmas', 'Rio Branco'
+]
+
 const form = ref({
   parentName: '',
   phone: '',
   email: '',
+  city: '',
   childName: '',
   childAge: 0,
   message: '',
   privacy: false
 })
 const isSubmitting = ref(false)
+
+const cityQuery = ref('')
+const cityOpen = ref(false)
+const cityHighlight = ref(0)
+const cityWrapperRef = ref(null)
+
+const filteredCities = computed(() => {
+  const q = cityQuery.value.trim().toLowerCase()
+  if (!q) return cities.slice(0, 8)
+  return cities
+    .filter(c => c.toLowerCase().includes(q))
+    .slice(0, 8)
+})
+
+const onCityInput = () => {
+  form.value.city = cityQuery.value
+  cityOpen.value = true
+  cityHighlight.value = 0
+}
+
+const onCityFocus = () => {
+  cityOpen.value = true
+}
+
+const selectCity = (city) => {
+  cityQuery.value = city
+  form.value.city = city
+  cityOpen.value = false
+}
+
+const onCityKeydown = (e) => {
+  if (!cityOpen.value) {
+    if (['ArrowDown', 'ArrowUp'].includes(e.key)) cityOpen.value = true
+    return
+  }
+  const max = filteredCities.value.length - 1
+  if (e.key === 'ArrowDown') {
+    e.preventDefault()
+    cityHighlight.value = cityHighlight.value < max ? cityHighlight.value + 1 : 0
+  } else if (e.key === 'ArrowUp') {
+    e.preventDefault()
+    cityHighlight.value = cityHighlight.value > 0 ? cityHighlight.value - 1 : max
+  } else if (e.key === 'Enter') {
+    if (filteredCities.value[cityHighlight.value]) {
+      e.preventDefault()
+      selectCity(filteredCities.value[cityHighlight.value])
+    }
+  } else if (e.key === 'Escape') {
+    cityOpen.value = false
+  }
+}
+
+const handleClickOutside = (e) => {
+  if (cityWrapperRef.value && !cityWrapperRef.value.contains(e.target)) {
+    cityOpen.value = false
+  }
+}
+
+onMounted(() => {
+  document.addEventListener('mousedown', handleClickOutside)
+})
+
+onBeforeUnmount(() => {
+  document.removeEventListener('mousedown', handleClickOutside)
+})
+
+watch(() => form.value.city, (v) => {
+  if (v !== cityQuery.value) cityQuery.value = v || ''
+})
 
 const whatsappLink = computed(() => {
   const text = encodeURIComponent('Olá! Gostaria de agendar uma avaliação na Autitude.')
@@ -65,14 +153,16 @@ const handleSubmit = async () => {
     `*Responsável:* ${form.value.parentName}\n` +
     `*Telefone:* ${form.value.phone}\n` +
     `${form.value.email ? `*E-mail:* ${form.value.email}\n` : ''}` +
-    `${form.value.childName ? `*Criança/Adolescente:* ${form.value.childName}\n` : ''}` +
+    `${form.value.city ? `*Cidade:* ${form.value.city}\n` : ''}` +
+    `${form.value.childName ? `*Paciente:* ${form.value.childName}\n` : ''}` +
     `${form.value.childAge ? `*Idade:* ${form.value.childAge}\n` : ''}` +
     `${form.value.message ? `\n*Observações:* ${form.value.message}` : ''}`
 
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
   window.open(whatsappUrl, '_blank')
 
-  form.value = { parentName: '', phone: '', email: '', childName: '', childAge: 0, message: '', privacy: false }
+  form.value = { parentName: '', phone: '', email: '', city: '', childName: '', childAge: 0, message: '', privacy: false }
+  cityQuery.value = ''
 }
 </script>
 
@@ -98,7 +188,7 @@ const handleSubmit = async () => {
         <div class="section-header">
           <span class="section-tag">Agendamento</span>
           <h1>Agende sua consulta</h1>
-          <p>Preencha o formulário e retornaremos em até 24 horas. Cuidamos de pessoas. Potencializamos possibilidades.</p>
+          <p>Preencha o formulário e entraremos em contato. Cuidamos de pessoas. Potencializamos possibilidades.</p>
         </div>
 
         <div class="schedule-showcase">
@@ -107,14 +197,14 @@ const handleSubmit = async () => {
               <h3>Sobre você</h3>
               <div class="form-grid">
                 <div class="form-group">
-                  <label class="form-label" for="parentName">Seu nome *</label>
+                  <label class="form-label" for="parentName">Nome do responsável(s) *</label>
                   <input
                     type="text"
                     id="parentName"
                     class="form-input"
                     v-model="form.parentName"
                     required
-                    placeholder="Seu nome completo"
+                    placeholder="Nome completo do responsável"
                   >
                 </div>
 
@@ -131,7 +221,7 @@ const handleSubmit = async () => {
                   >
                 </div>
               </div>
-              
+
               <div class="form-grid">
                 <div class="form-group">
                   <label class="form-label" for="email">E-mail</label>
@@ -144,20 +234,54 @@ const handleSubmit = async () => {
                   >
                 </div>
 
-                <div class="form-group">
-                  <label class="form-label" for="childName">Nome da criança ou adolescente</label>
-                  <input
-                    type="text"
-                    id="childName"
-                    class="form-input"
-                    v-model="form.childName"
-                    placeholder="Nome da criança ou adolescente"
-                  >
+                <div class="form-group" ref="cityWrapperRef">
+                  <label class="form-label" for="city">Cidade onde mora</label>
+                  <div class="autocomplete">
+                    <input
+                      type="text"
+                      id="city"
+                      class="form-input"
+                      v-model="cityQuery"
+                      @input="onCityInput"
+                      @focus="onCityFocus"
+                      @keydown="onCityKeydown"
+                      placeholder="Digite sua cidade"
+                      autocomplete="off"
+                    >
+                    <ul v-if="cityOpen && filteredCities.length" class="autocomplete-list" role="listbox">
+                      <li
+                        v-for="(city, i) in filteredCities"
+                        :key="city"
+                        class="autocomplete-item"
+                        :class="{ active: i === cityHighlight }"
+                        role="option"
+                        :aria-selected="i === cityHighlight"
+                        @mousedown.prevent="selectCity(city)"
+                        @mouseenter="cityHighlight = i"
+                      >
+                        {{ city }}
+                      </li>
+                    </ul>
+                  </div>
                 </div>
+              </div>
+            </div>
+
+            <div class="form-section">
+              <h3>Sobre o paciente</h3>
+              <div class="form-group">
+                <label class="form-label" for="childName">Nome do paciente</label>
+                <input
+                  type="text"
+                  id="childName"
+                  class="form-input"
+                  v-model="form.childName"
+                  placeholder="Nome do paciente"
+                >
               </div>
 
               <div class="form-group">
-                <label class="form-label">Idade da criança ou adolescente</label>
+                <label class="form-label">Idade do paciente</label>
                 <div class="age-selector">
                   <button type="button" class="age-btn age-btn-minus" @click="decrementAge" :disabled="!canDecrement">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
@@ -177,15 +301,15 @@ const handleSubmit = async () => {
               </div>
             </div>
 
-            <div class="form-section">
-              <h3>Contexto e expectativas</h3>
+            <div class="form-section is-last">
+              <h3>Fale um pouco sobre o paciente</h3>
               <div class="form-group">
                 <label class="form-label" for="message">Observações</label>
                 <textarea
                   id="message"
                   class="form-textarea"
                   v-model="form.message"
-                  placeholder="Conte-nos mais sobre sua demanda..."
+                  placeholder="Compartilhe o que considerar importante: rotina, demandas, expectativas..."
                   rows="4"
                 ></textarea>
               </div>
@@ -211,7 +335,7 @@ const handleSubmit = async () => {
               </div>
               <ol class="steps-list">
                 <li><span class="step-num">1</span> Preencha o formulário</li>
-                <li><span class="step-num">2</span> Entraremos em contato em até 24h</li>
+                <li><span class="step-num">2</span> Entraremos em contato</li>
                 <li><span class="step-num">3</span> Agendamos a avaliação</li>
                 <li><span class="step-num">4</span> Iniciamos o tratamento</li>
               </ol>
@@ -307,12 +431,23 @@ const handleSubmit = async () => {
 
 .form-section {
   margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--lilac) 14%, transparent);
+}
+
+.form-section.is-last {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0;
 }
 
 .form-section h3 {
-  font-size: 1rem;
-  margin-bottom: 1rem;
-  color: var(--text);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 1.1rem;
+  color: var(--lilac-deep);
 }
 
 .form-grid {
@@ -320,6 +455,10 @@ const handleSubmit = async () => {
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
   margin-bottom: 1rem;
+}
+
+.form-grid:last-child {
+  margin-bottom: 0;
 }
 
 .form-label {
@@ -438,6 +577,42 @@ const handleSubmit = async () => {
   background-clip: text;
   line-height: 1;
   letter-spacing: -2px;
+}
+
+.autocomplete {
+  position: relative;
+}
+
+.autocomplete-list {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  list-style: none;
+  margin: 0;
+  padding: 0.4rem;
+  max-height: 240px;
+  overflow-y: auto;
+  z-index: 20;
+}
+
+.autocomplete-item {
+  padding: 0.65rem 0.85rem;
+  border-radius: var(--radius-md);
+  font-size: 0.95rem;
+  color: var(--text);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.autocomplete-item.active,
+.autocomplete-item:hover {
+  background: var(--lilac-soft);
+  color: var(--lilac-deep);
 }
 
 .form-privacy {
