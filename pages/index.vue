@@ -378,7 +378,7 @@ const services = [
   height: min(80vh, 720px);
   z-index: 1;
   user-select: none;
-  opacity: 0.7;
+  opacity: 0.75;
 }
 
 .hero-rings,
@@ -398,8 +398,8 @@ const services = [
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 60%;
-  max-width: 420px;
+  width: 55%;
+  max-width: 380px;
   height: auto;
   z-index: 2;
   pointer-events: none;
@@ -887,25 +887,89 @@ const services = [
 
 @media (max-width: 900px) {
   .hero-rings {
-    width: min(70vw, 480px);
-    height: min(70vw, 480px);
+    width: min(65vw, 440px);
+    height: min(65vw, 440px);
   }
 
   .hero-rings-logo {
-    max-width: 320px;
+    width: 50%;
+    max-width: 280px;
   }
 }
 
 @media (max-width: 640px) {
   .hero {
-    padding-top: clamp(4rem, 12vw, 6rem);
+    min-height: auto;
+    padding-top: 5.5rem;
     padding-bottom: 2rem;
+    align-items: flex-start;
+  }
+
+  .hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 55vh;
+    min-height: 340px;
+    bottom: auto;
+  }
+
+  .hero-rings {
+    width: min(85vw, 360px);
+    height: min(85vw, 360px);
+    opacity: 0.65;
+    top: 50%;
+  }
+
+  .hero-rings-logo {
+    width: 50%;
+    max-width: 200px;
+    filter: drop-shadow(0 0 24px rgba(255, 255, 255, 0.4));
+  }
+
+  .hero-container {
+    padding: 0 1rem;
+    position: relative;
+    z-index: 3;
+  }
+
+  .hero-content {
+    padding-top: 1rem;
+  }
+
+  .hero-pill {
+    font-size: 0.75rem;
+    padding: 0.35rem 0.85rem 0.35rem 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .hero-pill-dot {
+    width: 6px;
+    height: 6px;
+  }
+
+  .hero-title {
+    font-size: clamp(1.75rem, 7vw, 2.25rem);
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+
+  .hero-subtitle {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+  }
+
+  .hero-tagline {
+    font-size: 0.875rem;
+    margin: 0.25rem 0 1.25rem;
   }
 
   .hero-actions {
-    justify-content: center;
     flex-direction: column;
     align-items: center;
+    gap: 0.625rem;
   }
 
   .hero-actions .btn {
@@ -915,6 +979,11 @@ const services = [
 
   .pillars-grid {
     grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .pillar-card {
+    padding: 1.5rem 1.25rem;
   }
 
   .service-cards-grid {
@@ -931,8 +1000,24 @@ const services = [
     display: none;
   }
 
+  .history-content {
+    padding: 1.5rem;
+  }
+
+  .history-lead {
+    font-size: 1.0625rem;
+  }
+
+  .history-quote {
+    padding: 1.5rem;
+  }
+
+  .history-quote blockquote {
+    font-size: 1rem;
+  }
+
   .cta-wrapper {
-    padding: 2.5rem 1.5rem;
+    padding: 2rem 1.25rem;
   }
 
   .cta-actions {
@@ -941,6 +1026,11 @@ const services = [
 
   .cta-actions .btn {
     width: 100%;
+  }
+
+  .cta-contact {
+    flex-direction: column;
+    gap: 0.5rem;
   }
 }
 </style>
