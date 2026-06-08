@@ -260,6 +260,8 @@ onMounted(() => {
   background: none;
   border: none;
   cursor: pointer;
+  position: relative;
+  z-index: 1002;
 }
 
 .menu-toggle span {
@@ -379,7 +381,7 @@ main {
 @media (max-width: 900px) {
   .menu-toggle {
     display: flex;
-    z-index: 1001;
+    z-index: 1002;
   }
   
   .nav-links {
@@ -389,7 +391,8 @@ main {
     width: 85vw;
     max-width: 320px;
     height: 100vh;
-    background: var(--white);
+    height: 100dvh;
+    background: var(--surface);
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
@@ -397,6 +400,8 @@ main {
     gap: 0.5rem;
     box-shadow: -10px 0 40px rgba(0, 0, 0, 0.15);
     transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1001;
+    overflow-y: auto;
   }
 
   .nav-links.nav-active {
@@ -417,6 +422,7 @@ main {
     left: 0;
     width: 100vw;
     height: 100vh;
+    height: 100dvh;
     background: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(4px);
     z-index: 999;

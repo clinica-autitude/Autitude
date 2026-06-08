@@ -38,7 +38,7 @@ const team = [
   {
     name: 'Dra. Juliana Mariani',
     role: 'Terapeuta Ocupacional | CREFITO 20083-TO',
-    bio: 'Especialista em Integração Sensorial com certificação internacional pela University of Southern California (USC, USA). Atua há mais de 15 anos com terapia ocupacional pediátrica, desenvolvimento infantil e cuidado de pessoas neurodivergentes e suas famílias.',
+    bio: 'Especialista em Integração Sensorial com certificação internacional pela University of Southern California (USC, USA). Atua há mais de 20 anos em neurodesenvolvimento.',
     tags: ['CREFITO 20083-TO', 'Integração Sensorial', 'Certificação USC', 'Terapia Pediátrica']
   }
 ]
@@ -46,8 +46,8 @@ const team = [
 const culture = [
   { title: 'Excelência', description: 'Prática baseada em evidências e em constante atualização.', icon: Award },
   { title: 'Humanização', description: 'Cada pessoa é única. Cuidamos com respeito e sensibilidade.', icon: Heart },
-  { title: 'Parceria', description: 'A família é parte essencial do processo de desenvolvimento.', icon: Users },
-  { title: 'Crescimento', description: 'Acompanhamos cada conquista com atenção e dedicação.', icon: Star }
+  { title: 'Parceria', description: 'A família é parte essencial do processo terapêutico.', icon: Users },
+  { title: 'Crescimento', description: 'Monitoramos e acompanhamos cada conquista com atenção e dedicação.', icon: Star }
 ]
 </script>
 
@@ -58,7 +58,7 @@ const culture = [
         <div class="section-header">
           <span class="section-tag">Nossa profissional</span>
           <h1>Cuidado conduzido por mãos especializadas</h1>
-          <p>Profissionais dedicados ao desenvolvimento integral de cada pessoa e de sua família.</p>
+          <p>Profissionais dedicados ao desenvolvimento integral de cada pessoa, ambiente e de sua família.</p>
         </div>
 
         <div class="team-showcase">

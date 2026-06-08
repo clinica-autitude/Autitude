@@ -65,7 +65,7 @@ const currentYear = new Date().getFullYear()
             <h2>6. Contato</h2>
             <p>
               Para questões sobre esta política de privacidade, entre em contato conosco 
-              através do e-mail contato@autitude.com.br ou pelo WhatsApp.
+              através do e-mail clinicaautitude@gmail.com ou pelo WhatsApp.
             </p>
           </article>
         </div>

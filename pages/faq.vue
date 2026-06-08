@@ -28,17 +28,17 @@ const faqs = [
   {
     category: 'general',
     question: 'O que é a Autitude?',
-    answer: 'A Autitude é um espaço especializado no atendimento de crianças, adolescentes e suas famílias, com foco no público neurodivergente. Nossa abordagem é humanizada, integrativa e baseada em evidências científicas, articulando diferentes especialidades em torno de cada pessoa.'
+    answer: 'A Autitude é um espaço especializado no atendimento de crianças, adolescentes, adultos e suas famílias, com foco no público neurodivergente. Nossa abordagem é transdisciplinar, humanizada e baseada em evidências científicas, articulando diferentes especialidades em torno de cada pessoa.'
   },
   {
     category: 'general',
     question: 'Quais especialidades vocês oferecem?',
-    answer: 'Trabalhamos com Neuropsicologia, Neuropsicopedagogia, Fonoaudiologia e Terapia Ocupacional — especialidades que se articulam em torno de cada pessoa e de sua família. A Terapia Ocupacional conta com certificação internacional em Integração Sensorial.'
+    answer: 'Trabalhamos com Neuropsicologia, Neuropsicopedagogia, Fonoaudiologia, Terapia Ocupacional e Terapia ABA Humanizada — especialidades que se articulam em torno de cada pessoa e de sua família. A Terapia Ocupacional conta com certificação internacional em Integração Sensorial.'
   },
   {
     category: 'general',
     question: 'A partir de qual idade vocês atendem?',
-    answer: 'Atendemos crianças, adolescentes e suas famílias. O cuidado pode começar mesmo nos primeiros anos de vida, favorecendo o desenvolvimento desde cedo.'
+    answer: 'Atendemos crianças, adolescentes, adultos e suas famílias. O cuidado pode começar mesmo nos primeiros anos de vida, favorecendo o desenvolvimento desde cedo.'
   },
   {
     category: 'general',

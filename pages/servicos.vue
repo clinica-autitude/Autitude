@@ -50,7 +50,7 @@ const services = [
   },
   {
     title: 'Neuropsicopedagogia',
-    description: 'Cuidado especializado das dificuldades de aprendizagem, articulando neurociência e pedagogia para potencializar o percurso escolar.',
+    description: 'Avaliação e plano pedagógico individualizado, com identificação de desafios e apoio ao desenvolvimento escolar.',
     color: 'linear-gradient(135deg, var(--pastel-pink) 0%, var(--secondary-light) 100%)',
     icon: BookOpen,
     items: [
@@ -81,7 +81,7 @@ const services = [
       'Certificação internacional em Integração Sensorial (USC, USA)',
       'Avaliação clínica e funcional',
       'Desenvolvimento da autonomia',
-      'Socialização e independência funcional'
+      'Socialização e independência'
     ]
   },
   {
@@ -102,7 +102,7 @@ const processSteps = [
   { title: 'Acolhimento', description: 'Você entra em contato pelo WhatsApp ou formulário de agendamento.' },
   { title: 'Avaliação', description: 'Realizamos uma escuta cuidadosa e avaliação especializada.' },
   { title: 'Plano', description: 'Construímos juntos um plano individualizado e baseado em evidências.' },
-  { title: 'Acompanhamento', description: 'Conduzimos o cuidado com a família e a rede de apoio.' }
+  { title: 'Acompanhamento', description: 'Desenvolvemos o plano terapêutico integrativo conectando os profissionais, a família e a rede de apoio.' }
 ]
 </script>
 
@@ -122,7 +122,7 @@ const processSteps = [
         <div class="section-header">
           <span class="section-tag">Nossas especialidades</span>
           <h1>Cuidado integrado e transdisciplinar</h1>
-          <p>Profissionais alinhados às necessidades e trabalhando em conjunto pelo desenvolvimento de cada pessoa.</p>
+          <p>Uma equipe integrada trabalhando em conjunto pelo desenvolvimento de cada criança, adolescente, adulto e família.</p>
         </div>
 
         <div class="services-showcase">

@@ -9,7 +9,7 @@ import ColorBends from '~/components/ColorBends.vue'
 useHead({
   title: 'Quem somos | Autitude - Desenvolvimento e Ação Humana',
   meta: [
-    { name: 'description', content: 'A Autitude é um espaço especializado no atendimento de crianças, adolescentes e famílias, com foco no público neurodivergente. Abordagem humanizada, integrativa e baseada em evidências científicas.' }
+    { name: 'description', content: 'A Autitude é um espaço especializado no cuidado integrado de crianças, adolescentes e famílias, com foco no público neurodivergente. Cuidado com sensibilidade e responsabilidade para um futuro de potencial pleno.' }
   ],
   script: [
     {
@@ -73,14 +73,6 @@ const specialties = [
 
 const differentiators = [
   {
-    label: 'Multidisciplinar',
-    title: 'Quatro especialidades, uma jornada',
-    text: 'Neuropsicologia, Neuropsicopedagogia, Fonoaudiologia e Terapia Ocupacional integradas em rede, com a família e a escola.',
-    icon: Users,
-    tone: 'lavender',
-    span: 'wide'
-  },
-  {
     label: 'Foco',
     title: 'Cuidado neurodivergente',
     text: 'Especializados em crianças, adolescentes e famílias neurodivergentes.',
@@ -89,7 +81,7 @@ const differentiators = [
     span: 'half'
   },
   {
-    label: 'Evidências',
+    label: 'Evidências Científicas',
     title: 'Ciência que sustenta',
     text: 'Prática baseada em evidências, com certificação internacional (USC, USA).',
     icon: ShieldCheck,
@@ -117,9 +109,8 @@ const differentiators = [
           <span class="grad-text">Potencializamos possibilidades.</span>
         </h1>
         <p class="hero__lead">
-          A <strong>Autitude</strong> é um espaço especializado no cuidado integrado de
-          <em>crianças, adolescentes e famílias</em>, com foco no público neurodivergente.
-          Atuamos com uma abordagem humanizada, integrativa e baseada em evidências.
+          <strong>Autitude</strong> —
+          Cuidado com sensibilidade e responsabilidade para um futuro de potencial pleno.
         </p>
 
         <ul class="hero__pillars" aria-label="Nossos pilares">
@@ -155,7 +146,7 @@ const differentiators = [
             <span class="tag-dot" /> Nossa abordagem
           </span>
           <h2 class="section-title">
-            Cuidado integrado, com <span class="grad-text">pessoas no centro</span>
+            Nosso foco é o <span class="grad-text">pleno desenvolvimento</span>
           </h2>
         </header>
 
@@ -172,7 +163,7 @@ const differentiators = [
             <div class="statement__chips">
               <span class="chip"><span class="chip-dot" />Humanizada</span>
               <span class="chip"><span class="chip-dot" />Integrativa</span>
-              <span class="chip"><span class="chip-dot" />Evidências</span>
+              <span class="chip"><span class="chip-dot" />Evidências Científicas</span>
             </div>
           </article>
 
@@ -254,7 +245,7 @@ const differentiators = [
         </span>
         <h2 class="cta__title">
           Cada família traz uma história.<br />
-          Estamos aqui para <span class="grad-text">escutar a sua</span>.
+          Isso importa para <span class="grad-text">nós</span>.
         </h2>
         <div class="cta__actions">
           <a

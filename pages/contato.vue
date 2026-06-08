@@ -6,7 +6,7 @@ import DotGrid from '~/components/DotGrid.vue'
 useHead({
   title: 'Contato | Autitude - Desenvolvimento e Ação Humana',
   meta: [
-    { name: 'description', content: 'Entre em contato com a Autitude. Estamos na Vila Rica, em Pindamonhangaba-SP. WhatsApp, e-mail ou formulário de contato.' }
+    { name: 'description', content: 'Entre em contato com a Autitude. Estamos na Vila Rica, em Pindamonhangaba-SP. WhatsApp, e-mail ou formulário de contato. Aqui uma atitude de cuidado muda o futuro.' }
   ],
   script: [
     {
@@ -67,8 +67,8 @@ const contactInfo = [
   },
   {
     title: 'E-mail',
-    content: 'contato@autitude.com.br',
-    detail: 'Respondemos em até 24h',
+    content: 'clinicaautitude@gmail.com',
+    detail: 'Respondemos em breve',
     icon: Mail,
     color: 'linear-gradient(135deg, var(--pastel-pink) 0%, var(--secondary-light) 100%)'
   },
@@ -124,7 +124,7 @@ const handleSubmit = () => {
         <div class="section-header">
           <span class="section-tag">Contato</span>
           <h1>Fale com a Autitude</h1>
-          <p>Estamos prontos para acolher você e sua família.</p>
+          <p>Aqui uma atitude de cuidado muda o futuro.</p>
         </div>
 
         <div class="contact-showcase">
@@ -153,7 +153,7 @@ const handleSubmit = () => {
           <div class="contact-form-wrapper">
             <div class="form-header">
               <h3>Envie uma mensagem</h3>
-              <p>Respondemos em até 24 horas.</p>
+              <p>Respondemos em breve.</p>
             </div>
             <form class="contact-form" @submit.prevent="handleSubmit">
               <div class="form-group">

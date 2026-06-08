@@ -162,10 +162,26 @@ body {
   transition: background-color 0.4s ease, color 0.4s ease;
 }
 
-/* Theme transitions for all elements */
-*,
-*::before,
-*::after {
+/* Theme transitions — only on theme-switchable elements, not all */
+html,
+body,
+.navbar,
+.footer,
+.card,
+.info-card,
+.contact-form-wrapper,
+.btn,
+.form-input,
+.form-select,
+.form-textarea,
+.hero-badge,
+.section-tag,
+.tag,
+.cta-section,
+.ambient-bg,
+input,
+textarea,
+select {
   transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -267,10 +283,10 @@ a:hover {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0.7rem 1.5rem;
+  padding: 0.65rem 1.4rem;
   border-radius: var(--radius-full);
   font-family: 'Nunito', sans-serif;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
   transition: all var(--transition-base);
@@ -332,13 +348,13 @@ a:hover {
 }
 
 .btn-sm {
-  padding: 0.5rem 1.1rem;
-  font-size: 0.85rem;
+  padding: 0.45rem 1rem;
+  font-size: 0.8125rem;
 }
 
 .btn-lg {
-  padding: 0.85rem 1.85rem;
-  font-size: 1rem;
+  padding: 0.75rem 1.65rem;
+  font-size: 0.95rem;
 }
 
 /* Container */

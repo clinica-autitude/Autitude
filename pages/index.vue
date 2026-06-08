@@ -26,7 +26,7 @@ useHead({
         logo: 'https://hautlys.github.io/Autitude/full-logo.png',
         image: 'https://hautlys.github.io/Autitude/full-logo.png',
         telephone: '+5512991968683',
-        email: 'contato@autitude.com.br',
+        email: 'clinicaautitude@gmail.com',
         address: {
           '@type': 'PostalAddress',
           streetAddress: 'Rua Major José dos Santos Moreira, 328',
@@ -173,40 +173,38 @@ const services = [
         <div class="gradient-blob blob-3"></div>
       </div>
       
-      <div class="container">
-        <div class="hero-wrapper">
-          <div class="hero-content">
-            <h1 class="hero-title">
-              Desenvolvimento com
-              <span class="title-highlight">acolhimento,</span>
-              ciência e humanidade.
-            </h1>
+      <div class="container hero-container">
+        <div class="hero-content">
+          <span class="hero-pill">
+            <span class="hero-pill-dot"></span>
+            Cuidado humanizado e baseado em evidências
+          </span>
 
-            <p class="hero-subtitle">
-              A Autitude é um espaço especializado no atendimento de crianças, adolescentes e suas famílias, com foco no público neurodivergente.
-              Atuamos com uma abordagem humanizada, integrativa e baseada em evidências científicas.
-            </p>
+          <h1 class="hero-title">
+            Desenvolvimento com
+            <span class="title-highlight">acolhimento,</span>
+            ciência e humanidade.
+          </h1>
 
-            <p class="hero-tagline">
-              💜 Cuidamos de pessoas. Potencializamos possibilidades.
-            </p>
+          <p class="hero-subtitle">
+            Espaço especializado no atendimento de crianças, adolescentes, adultos e suas famílias.
+            Com foco no público neurodivergente.
+          </p>
 
-            <div class="hero-actions">
-              <NuxtLink to="/agendar" class="btn btn-primary">
-                Agendar Consulta
-              </NuxtLink>
-              <NuxtLink to="/servicos" class="btn">
-                Conhecer Serviços
-              </NuxtLink>
-            </div>
+          <p class="hero-tagline">
+            💜 Cuidamos de pessoas. Potencializamos possibilidades.
+          </p>
+
+          <div class="hero-actions">
+            <NuxtLink to="/agendar" class="btn btn-primary btn-lg">
+              Agendar Consulta
+            </NuxtLink>
+            <NuxtLink to="/sobre" class="btn btn-lg">
+              Quem Somos
+            </NuxtLink>
           </div>
         </div>
       </div>
-
-      <span class="hero-badge" aria-label="Cuidado humanizado e baseado em evidências">
-        <span class="badge-line"></span>
-        Cuidado humanizado e baseado em evidências
-      </span>
     </section>
 
     <section id="quem-somos" class="about-preview section">
@@ -237,10 +235,10 @@ const services = [
           </div>
 
           <figure class="history-quote">
-            <span class="quote-mark" aria-hidden="true">“</span>
+            <span class="quote-mark" aria-hidden="true">"</span>
             <blockquote>
-              Neurodivergência não é um problema a corrigir, é uma forma de ser que merece suporte
-              qualificado, respeitoso e eficaz.
+              "Neurodivergência não é um problema a corrigir, é uma forma de ser que merece suporte
+              qualificado, respeitoso e eficaz."
             </blockquote>
           </figure>
         </div>
@@ -357,11 +355,10 @@ const services = [
 }
 
 .hero {
-  min-height: clamp(640px, 85vh, 880px);
+  min-height: clamp(600px, 85vh, 880px);
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding-top: 6.25rem;
+  align-items: center;
+  padding-top: 5rem;
   position: relative;
   overflow: hidden;
 }
@@ -377,11 +374,11 @@ const services = [
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: min(85vh, 760px);
-  height: min(85vh, 760px);
+  width: min(80vh, 720px);
+  height: min(80vh, 720px);
   z-index: 1;
   user-select: none;
-  opacity: 0.75;
+  opacity: 0.7;
 }
 
 .hero-rings,
@@ -401,19 +398,19 @@ const services = [
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 68%;
-  max-width: 480px;
+  width: 60%;
+  max-width: 420px;
   height: auto;
   z-index: 2;
   pointer-events: none;
-  filter: drop-shadow(0 0 32px rgba(255, 255, 255, 0.55));
+  filter: drop-shadow(0 0 40px rgba(255, 255, 255, 0.5));
 }
 
 .silk-bg {
   position: absolute;
   inset: 0;
   z-index: 0;
-  opacity: 0.4;
+  opacity: 0.35;
   pointer-events: none;
 }
 
@@ -421,63 +418,53 @@ const services = [
   position: absolute;
   border-radius: 50%;
   filter: blur(80px);
-  opacity: 0.5;
+  opacity: 0.45;
   z-index: 1;
   pointer-events: none;
 }
 
 .blob-1 {
-  width: 600px;
-  height: 600px;
+  width: 500px;
+  height: 500px;
   background: var(--lilac-light);
-  top: -200px;
-  right: -100px;
+  top: -180px;
+  right: -80px;
 }
 
 .blob-2 {
-  width: 400px;
-  height: 400px;
+  width: 350px;
+  height: 350px;
   background: var(--pink-light);
-  bottom: -100px;
-  left: -50px;
+  bottom: -80px;
+  left: -40px;
 }
 
 .blob-3 {
-  width: 300px;
-  height: 300px;
+  width: 280px;
+  height: 280px;
   background: var(--blue-light);
   top: 40%;
   left: 30%;
 }
 
-.hero .container {
-  display: flex;
-  flex-direction: column;
-  gap: 3rem;
-  max-width: 100%;
-  width: 100%;
-  margin: 0;
-  padding-left: clamp(1.25rem, 4vw, 3rem);
-  padding-right: clamp(1.25rem, 4vw, 3rem);
-}
-
-.hero-wrapper {
-  display: block;
+.hero-container {
   position: relative;
   z-index: 2;
   width: 100%;
-  max-width: 920px;
+  max-width: 800px;
   margin: 0 auto;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .hero-content {
   text-align: center;
-  margin: 0 auto;
-  max-width: 720px;
+  max-width: 680px;
 }
 
-/* Staggered entrance — reuses the global fadeInUp from main.css */
+/* Staggered entrance */
 .hero-content > * {
   animation: fadeInUp 0.7s var(--ease-smooth) both;
 }
@@ -486,43 +473,39 @@ const services = [
 .hero-content > :nth-child(2) { animation-delay: 80ms; }
 .hero-content > :nth-child(3) { animation-delay: 160ms; }
 .hero-content > :nth-child(4) { animation-delay: 240ms; }
+.hero-content > :nth-child(5) { animation-delay: 320ms; }
 
-.hero-badge {
-  position: absolute;
-  top: 50%;
-  right: clamp(1rem, 4vw, 2.5rem);
-  transform: translateY(-50%);
-  z-index: 3;
+.hero-pill {
   display: inline-flex;
   align-items: center;
-  gap: 0.9rem;
-  padding: 0.25rem 0.25rem 0.25rem 0;
-  font-size: 0.875rem;
+  gap: 0.5rem;
+  padding: 0.45rem 1rem 0.45rem 0.6rem;
+  font-size: 0.8125rem;
   font-weight: 600;
   color: var(--lilac-deep);
-  line-height: 1.45;
-  max-width: 230px;
-  text-align: left;
-  letter-spacing: 0.005em;
-  animation: fadeInUp 0.7s var(--ease-smooth) both;
-  animation-delay: 320ms;
+  background: color-mix(in srgb, var(--lilac-soft) 85%, transparent);
+  border: 1px solid color-mix(in srgb, var(--lilac-light) 50%, transparent);
+  border-radius: var(--radius-full);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  margin-bottom: 1.5rem;
 }
 
-.badge-line {
-  display: block;
-  width: 3px;
-  align-self: stretch;
-  min-height: 44px;
-  background: var(--gradient-primary);
-  border-radius: var(--radius-full);
-  flex-shrink: 0;
+.hero-pill-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--lilac);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--lilac) 18%, transparent);
+  animation: pulse 2.4s ease-in-out infinite;
 }
 
 .hero-title {
-  font-size: clamp(1.85rem, 3.6vw, 2.75rem);
-  line-height: 1.2;
-  margin-bottom: 1rem;
-  letter-spacing: -0.015em;
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  line-height: 1.1;
+  margin-bottom: 1.25rem;
+  letter-spacing: -0.025em;
+  font-weight: 800;
 }
 
 .title-highlight {
@@ -533,13 +516,21 @@ const services = [
 }
 
 .hero-subtitle {
-  font-size: 1rem;
+  font-size: clamp(1rem, 1.8vw, 1.15rem);
   color: var(--text-secondary);
-  margin-bottom: 1rem;
-  line-height: 1.7;
-  max-width: 60ch;
+  margin-bottom: 0.75rem;
+  line-height: 1.65;
+  max-width: 54ch;
   margin-left: auto;
   margin-right: auto;
+}
+
+.hero-tagline {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--primary);
+  margin: 0.5rem 0 1.75rem;
+  letter-spacing: 0.01em;
 }
 
 .hero-actions {
@@ -547,15 +538,6 @@ const services = [
   gap: 0.75rem;
   flex-wrap: wrap;
   justify-content: center;
-  margin-top: 1.5rem;
-}
-
-.hero-tagline {
-  font-size: 0.9375rem;
-  font-weight: 600;
-  color: var(--primary);
-  margin: 0.5rem 0 0.5rem;
-  letter-spacing: 0.01em;
 }
 
 @keyframes pulse {
@@ -890,13 +872,6 @@ const services = [
 }
 
 @media (max-width: 1024px) {
-  .hero-badge {
-    position: static;
-    transform: none;
-    margin: 1.5rem auto 0;
-    max-width: 320px;
-  }
-
   .pillars-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -927,22 +902,15 @@ const services = [
     padding-bottom: 2rem;
   }
 
-  .hero-wrapper {
-    text-align: center;
-  }
-
-  .hero-content {
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
   .hero-actions {
     justify-content: center;
+    flex-direction: column;
+    align-items: center;
   }
 
-  .hero-badge {
-    margin-top: 1.25rem;
+  .hero-actions .btn {
+    width: 100%;
+    max-width: 280px;
   }
 
   .pillars-grid {
