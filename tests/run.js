@@ -273,6 +273,80 @@ await test('Services has cards', async () => {
     if (!wa) throw new Error('WhatsApp link not found');
   });
 
+  console.log('\n📋 HERO COMPONENT TESTS\n');
+
+  await test('Hero has glass panels', async () => {
+    await page.goto(BASE_URL + '/', { waitUntil: 'networkidle0', timeout: TIMEOUT });
+    const panels = await page.$$('.hero-panel');
+    if (panels.length < 2) throw new Error(`Expected 2 hero panels, found ${panels.length}`);
+  });
+
+  await test('Hero left panel exists', async () => {
+    await expectVisible('.hero-panel--left', { timeout: 5000 });
+  });
+
+  await test('Hero right panel (accent) exists', async () => {
+    await expectVisible('.hero-panel--right.hero-panel--accent', { timeout: 5000 });
+  });
+
+  await test('Hero pill badge renders', async () => {
+    await expectVisible('.hero-pill', { timeout: 5000 });
+    await expectText('.hero-pill', 'Cuidado humanizado');
+  });
+
+  await test('Hero pill has pulse dot', async () => {
+    const dot = await page.$('.hero-pill-dot');
+    if (!dot) throw new Error('Hero pill dot not found');
+  });
+
+  await test('Hero title renders with highlight', async () => {
+    await expectVisible('.hero-title', { timeout: 5000 });
+    await expectText('.hero-title', 'Desenvolvimento com');
+    const highlight = await page.$('.hero-title-highlight');
+    if (!highlight) throw new Error('Hero title highlight not found');
+    const text = await highlight.evaluate(e => e.textContent?.trim());
+    if (text !== 'acolhimento,') throw new Error(`Expected "acolhimento," but got "${text}"`);
+  });
+
+  await test('Hero subtitle renders', async () => {
+    await expectVisible('.hero-subtitle', { timeout: 5000 });
+    await expectText('.hero-subtitle', 'neurodivergente');
+  });
+
+  await test('Hero tagline renders', async () => {
+    await expectVisible('.hero-tagline', { timeout: 5000 });
+    await expectText('.hero-tagline', 'Cuidamos de pessoas');
+  });
+
+  await test('Hero action buttons render', async () => {
+    const buttons = await page.$$('.hero-actions .btn');
+    if (buttons.length < 2) throw new Error(`Expected 2 hero action buttons, found ${buttons.length}`);
+    const primaryBtn = await page.$('.hero-actions .btn-primary');
+    if (!primaryBtn) throw new Error('Primary CTA button not found');
+    const text = await primaryBtn.evaluate(e => e.textContent?.trim());
+    if (!text.includes('Agendar')) throw new Error(`Expected "Agendar" in primary button, got "${text}"`);
+  });
+
+  await test('Hero glass panel has backdrop-filter', async () => {
+    const hasBlur = await page.evaluate(() => {
+      const panel = document.querySelector('.hero-panel');
+      if (!panel) return false;
+      const style = window.getComputedStyle(panel);
+      return style.backdropFilter.includes('blur') || style.webkitBackdropFilter?.includes('blur');
+    });
+    if (!hasBlur) throw new Error('Hero panel missing backdrop-filter blur');
+  });
+
+  await test('Hero layout uses 3-column grid', async () => {
+    const isGrid = await page.evaluate(() => {
+      const layout = document.querySelector('.hero-layout');
+      if (!layout) return false;
+      const style = window.getComputedStyle(layout);
+      return style.display === 'grid';
+    });
+    if (!isGrid) throw new Error('Hero layout is not using CSS grid');
+  });
+
   console.log('\n📋 UI COMPONENT TESTS\n');
 
   await test('All pages have navbar', async () => {

@@ -5,6 +5,10 @@ import {
 } from 'lucide-vue-next'
 import Silk from '~/components/Silk.vue'
 import MagicRings from '~/components/MagicRings.vue'
+import {
+  HeroPanel, HeroPill, HeroTitle, HeroTitleHighlight,
+  HeroSubtitle, HeroTagline, HeroActions
+} from '~/components/hero'
 
 const config = useRuntimeConfig()
 const { whatsappUrl } = useContact()
@@ -71,28 +75,24 @@ const pillars = [
     title: 'Acolher',
     description: 'Receber cada família com escuta, respeito e presença.',
     color: 'linear-gradient(135deg, #FFF1F4 0%, #FFE4EA 100%)',
-    solidColor: '#FFF1F4',
     icon: Heart
   },
   {
     title: 'Compreender',
     description: 'Investigar o perfil único de cada pessoa com base em evidências.',
     color: 'linear-gradient(135deg, #F0F6FE 0%, #DCEBFC 100%)',
-    solidColor: '#F0F6FE',
     icon: Brain
   },
   {
     title: 'Desenvolver',
     description: 'Potencializar habilidades com cuidado integral e individualizado.',
     color: 'linear-gradient(135deg, #F0FDF4 0%, #DCFCE7 100%)',
-    solidColor: '#F0FDF4',
     icon: Sparkles
   },
   {
     title: 'Incluir',
     description: 'Construir caminhos de participação e pertencimento em cada contexto.',
     color: 'linear-gradient(135deg, #FFFBEB 0%, #FEF3C7 100%)',
-    solidColor: '#FFFBEB',
     icon: HandHeart
   }
 ]
@@ -118,13 +118,13 @@ const services = [
   },
   {
     name: 'Terapia Ocupacional',
-    shortDesc: 'Avaliação Clínica, Integração Sensorial e Autonomia Pessoal e Social',
+    shortDesc: 'Avaliação Clínica, Integração Sensorial e Autonomia',
     color: 'linear-gradient(135deg, #FFF8D6 0%, #FEF3C7 100%)',
     icon: Activity
   },
   {
     name: 'Terapia ABA Humanizada',
-    shortDesc: 'Desenvolvimento de habilidades e Aprendizado',
+    shortDesc: 'Desenvolvimento de habilidades e aprendizado',
     color: 'linear-gradient(135deg, var(--pastel-lavender) 0%, var(--pastel-mint) 100%)',
     icon: Puzzle
   }
@@ -184,38 +184,30 @@ const services = [
       
       <div class="container hero-container">
         <div class="hero-layout">
-          <div class="hero-text-left">
-            <span class="hero-pill">
-              <span class="hero-pill-dot"></span>
-              Cuidado humanizado e baseado em evidências
-            </span>
-
-            <h1 class="hero-title">
+          <HeroPanel side="left">
+            <HeroPill text="Cuidado humanizado e baseado em evidências" />
+            <HeroTitle>
               Desenvolvimento com
-              <span class="title-highlight">acolhimento,</span>
+              <HeroTitleHighlight>acolhimento,</HeroTitleHighlight>
               ciência e humanidade.
-            </h1>
-          </div>
+            </HeroTitle>
+          </HeroPanel>
 
-          <div class="hero-text-right">
-            <p class="hero-subtitle">
+          <HeroPanel side="right" accent>
+            <HeroSubtitle>
               Espaço especializado no atendimento de crianças, adolescentes, adultos e suas famílias.
               Com foco no público neurodivergente.
-            </p>
+            </HeroSubtitle>
 
-            <p class="hero-tagline">
-              💜 Cuidamos de pessoas. Potencializamos possibilidades.
-            </p>
+            <HeroTagline>💜 Cuidamos de pessoas. Potencializamos possibilidades.</HeroTagline>
 
-            <div class="hero-actions">
-              <NuxtLink to="/agendar" class="btn btn-primary btn-lg">
-                Agendar Consulta
-              </NuxtLink>
-              <NuxtLink to="/sobre" class="btn btn-lg">
-                Quem Somos
-              </NuxtLink>
-            </div>
-          </div>
+            <HeroActions
+              :actions="[
+                { to: '/agendar', label: 'Agendar Consulta', variant: 'btn-primary' },
+                { to: '/sobre', label: 'Quem Somos' }
+              ]"
+            />
+          </HeroPanel>
         </div>
       </div>
     </section>
@@ -248,10 +240,10 @@ const services = [
           </div>
 
           <figure class="history-quote">
-            <span class="quote-mark" aria-hidden="true">"</span>
+            <span class="quote-mark" aria-hidden="true">&ldquo;</span>
             <blockquote>
-              "Neurodivergência não é um problema a corrigir, é uma forma de ser que merece suporte
-              qualificado, respeitoso e eficaz."
+              &ldquo;Neurodivergência não é um problema a corrigir, é uma forma de ser que merece suporte
+              qualificado, respeitoso e eficaz.&rdquo;
             </blockquote>
           </figure>
         </div>
@@ -300,7 +292,7 @@ const services = [
                 <h4>{{ service.name }}</h4>
                 <p>{{ service.shortDesc }}</p>
               </div>
-              <div class="card-arrow"></div>
+              <div class="card-arrow" aria-hidden="true"></div>
             </NuxtLink>
           </div>
         </div>
@@ -333,7 +325,7 @@ const services = [
 }
 
 .hero {
-  min-height: clamp(600px, 85vh, 880px);
+  min-height: clamp(550px, 80vh, 880px);
   display: flex;
   align-items: center;
   padding-top: 5rem;
@@ -352,8 +344,8 @@ const services = [
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: min(80vh, 720px);
-  height: min(80vh, 720px);
+  width: min(70vh, 640px);
+  height: min(70vh, 640px);
   z-index: 1;
   user-select: none;
   opacity: 0.75;
@@ -376,8 +368,8 @@ const services = [
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 55%;
-  max-width: 380px;
+  width: 50%;
+  max-width: 360px;
   height: auto;
   z-index: 2;
   pointer-events: none;
@@ -402,24 +394,24 @@ const services = [
 }
 
 .blob-1 {
-  width: 500px;
-  height: 500px;
+  width: min(500px, 60vw);
+  height: min(500px, 60vw);
   background: var(--lilac-light);
   top: -180px;
   right: -80px;
 }
 
 .blob-2 {
-  width: 350px;
-  height: 350px;
+  width: min(350px, 45vw);
+  height: min(350px, 45vw);
   background: var(--pink-light);
   bottom: -80px;
   left: -40px;
 }
 
 .blob-3 {
-  width: 280px;
-  height: 280px;
+  width: min(280px, 35vw);
+  height: min(280px, 35vw);
   background: var(--blue-light);
   top: 40%;
   left: 30%;
@@ -431,104 +423,16 @@ const services = [
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 clamp(1rem, 4vw, 1.5rem);
 }
 
 .hero-layout {
   display: grid;
-  grid-template-columns: 1fr min(80vh, 720px) 1fr;
+  grid-template-columns: 1fr min(65vh, 640px) 1fr;
   align-items: center;
-  gap: 2rem;
-  min-height: clamp(600px, 85vh, 880px);
-  padding-top: 5rem;
-}
-
-.hero-text-left {
-  text-align: right;
-  padding-right: 1rem;
-}
-
-.hero-text-right {
-  text-align: left;
-  padding-left: 1rem;
-}
-
-.hero-text-left > *,
-.hero-text-right > * {
-  animation: fadeInUp 0.7s var(--ease-smooth) both;
-}
-
-.hero-text-left > :nth-child(1) { animation-delay: 0ms; }
-.hero-text-left > :nth-child(2) { animation-delay: 80ms; }
-.hero-text-right > :nth-child(1) { animation-delay: 160ms; }
-.hero-text-right > :nth-child(2) { animation-delay: 240ms; }
-.hero-text-right > :nth-child(3) { animation-delay: 320ms; }
-
-.hero-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.45rem 1rem 0.45rem 0.6rem;
-  font-size: 0.8125rem;
-  font-weight: 600;
-  color: var(--lilac-deep);
-  background: color-mix(in srgb, var(--lilac-soft) 85%, transparent);
-  border: 1px solid color-mix(in srgb, var(--lilac-light) 50%, transparent);
-  border-radius: var(--radius-full);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  margin-bottom: 1.5rem;
-}
-
-.hero-pill-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--lilac);
-  box-shadow: 0 0 0 4px color-mix(in srgb, var(--lilac) 18%, transparent);
-  animation: pulse 2.4s ease-in-out infinite;
-}
-
-.hero-title {
-  font-size: clamp(2.2rem, 4vw, 3.2rem);
-  line-height: 1.1;
-  margin-bottom: 1.25rem;
-  letter-spacing: -0.025em;
-  font-weight: 800;
-}
-
-.title-highlight {
-  background: var(--gradient-primary);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.hero-subtitle {
-  font-size: clamp(1rem, 1.6vw, 1.15rem);
-  color: var(--text-secondary);
-  margin-bottom: 0.75rem;
-  line-height: 1.65;
-  max-width: 42ch;
-}
-
-.hero-tagline {
-  font-size: 0.9375rem;
-  font-weight: 600;
-  color: var(--primary);
-  margin: 0.5rem 0 1.75rem;
-  letter-spacing: 0.01em;
-}
-
-.hero-actions {
-  display: flex;
-  gap: 0.75rem;
-  flex-wrap: wrap;
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
+  gap: clamp(1rem, 3vw, 2rem);
+  min-height: clamp(550px, 80vh, 880px);
+  padding-top: 4rem;
 }
 
 .about-preview {
@@ -537,7 +441,7 @@ const services = [
 
 .section-header {
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: clamp(2rem, 5vw, 3rem);
 }
 
 .header-content {
@@ -553,39 +457,34 @@ const services = [
 
 .pillars-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  gap: clamp(0.75rem, 2vw, 1.5rem);
   max-width: 1100px;
   margin: 0 auto;
 }
 
 .pillar-card {
   background: var(--background);
-  padding: 2rem 1.5rem;
+  padding: clamp(1.25rem, 3vw, 2rem) clamp(1rem, 2.5vw, 1.5rem);
   border-radius: var(--radius-xl);
   text-align: center;
   position: relative;
   overflow: hidden;
-  transition: all 0.4s ease;
-  animation: fadeInUp 0.6s ease forwards;
+  transition: all 0.4s var(--ease-out-expo);
+  animation: fadeInUp 0.6s var(--ease-out-expo) forwards;
   animation-delay: var(--delay);
   opacity: 0;
 }
 
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
 .pillar-card:hover {
-  transform: translateY(-8px);
+  transform: translateY(-6px);
   box-shadow: var(--shadow-lg);
 }
 
 .pillar-icon-wrapper {
-  width: 72px;
-  height: 72px;
-  margin: 0 auto 1.25rem;
+  width: clamp(56px, 10vw, 72px);
+  height: clamp(56px, 10vw, 72px);
+  margin: 0 auto 1rem;
   border-radius: var(--radius-xl);
   display: flex;
   align-items: center;
@@ -598,7 +497,7 @@ const services = [
 
 .pillar-content h3 {
   margin-bottom: 0.5rem;
-  font-size: 1.125rem;
+  font-size: 1.0625rem;
 }
 
 .pillar-content p {
@@ -633,8 +532,8 @@ const services = [
 
 .service-cards-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  gap: clamp(0.75rem, 2vw, 1rem);
   max-width: 1100px;
   margin: 0 auto;
 }
@@ -682,7 +581,7 @@ const services = [
     color-mix(in srgb, var(--pastel-pink) 6%, var(--surface)));
   border: 1px solid var(--lilac-light);
   border-radius: var(--radius-xl);
-  padding: 2rem 1.75rem 1.75rem;
+  padding: clamp(1.25rem, 3vw, 2rem) clamp(1rem, 2.5vw, 1.75rem);
   margin: 0;
   box-shadow: var(--shadow-sm);
 }
@@ -692,15 +591,15 @@ const services = [
   top: -0.5rem;
   left: 1.25rem;
   font-family: 'Nunito', serif;
-  font-size: 4.5rem;
+  font-size: 4rem;
   line-height: 1;
   color: var(--lilac);
   font-weight: 800;
-  opacity: 0.5;
+  opacity: 0.4;
 }
 
 .history-quote blockquote {
-  font-size: 1.0625rem;
+  font-size: clamp(0.9375rem, 1.5vw, 1.0625rem);
   line-height: 1.55;
   color: var(--lilac-deep);
   font-weight: 600;
@@ -712,23 +611,25 @@ const services = [
 .service-card-mini {
   background: var(--surface);
   border-radius: var(--radius-xl);
-  padding: 1.5rem;
+  padding: clamp(1rem, 2.5vw, 1.5rem);
   display: flex;
   align-items: center;
-  gap: 1.25rem;
+  gap: 1rem;
   text-decoration: none;
-  transition: all 0.3s ease;
+  transition: all 0.35s var(--ease-out-expo);
+  border: 1.5px solid transparent;
 }
 
 .service-card-mini:hover {
-  transform: translateX(8px);
+  transform: translateX(6px);
   box-shadow: var(--shadow-md);
+  border-color: var(--border);
 }
 
 .card-mini-icon {
-  width: 56px;
-  height: 56px;
-  min-width: 56px;
+  width: 52px;
+  height: 52px;
+  min-width: 52px;
   border-radius: var(--radius-lg);
   display: flex;
   align-items: center;
@@ -744,41 +645,37 @@ const services = [
 }
 
 .card-mini-content h4 {
-  font-size: 1rem;
+  font-size: 0.9375rem;
   margin-bottom: 0.25rem;
   color: var(--text);
 }
 
 .card-mini-content p {
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   color: var(--text-secondary);
   margin: 0;
 }
 
 .card-arrow {
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   border-right: 2px solid var(--text-light);
   border-bottom: 2px solid var(--text-light);
   transform: rotate(-45deg);
-  opacity: 0.3;
+  opacity: 0.25;
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.service-card-mini:hover .card-arrow {
+  opacity: 0.5;
+  transform: rotate(-45deg) translate(-2px, 2px);
 }
 
 .section-cta {
   text-align: center;
 }
 
-/* CTA section styles are in CtaSection.vue component */
-
 @media (max-width: 1024px) {
-  .pillars-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .service-cards-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
   .history-block {
     grid-template-columns: 1fr;
   }
@@ -791,50 +688,28 @@ const services = [
     justify-items: center;
     gap: 1.5rem;
     min-height: auto;
-    padding-top: 6rem;
+    padding-top: 5rem;
     padding-bottom: 2rem;
   }
 
   .hero-rings {
-    width: min(65vw, 440px);
-    height: min(65vw, 440px);
+    width: min(55vw, 380px);
+    height: min(55vw, 380px);
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
   }
 
   .hero-rings-logo {
-    width: 50%;
-    max-width: 280px;
-  }
-
-  .hero-text-left {
-    text-align: center;
-    padding-right: 0;
-    order: 2;
-  }
-
-  .hero-text-right {
-    text-align: center;
-    padding-left: 0;
-    order: 3;
-  }
-
-  .hero-subtitle {
-    max-width: 54ch;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .hero-actions {
-    justify-content: center;
+    width: 45%;
+    max-width: 260px;
   }
 }
 
 @media (max-width: 640px) {
   .hero {
     min-height: auto;
-    padding-top: 5.5rem;
+    padding-top: 5rem;
     padding-bottom: 2rem;
     align-items: flex-start;
   }
@@ -844,95 +719,39 @@ const services = [
     top: 0;
     left: 0;
     right: 0;
-    height: 55vh;
-    min-height: 340px;
+    height: 50vh;
+    min-height: 320px;
     bottom: auto;
   }
 
   .hero-layout {
-    padding-top: 1rem;
-    gap: 1rem;
+    padding-top: 0.75rem;
+    gap: 0.75rem;
     min-height: auto;
   }
 
   .hero-rings {
-    width: min(85vw, 360px);
-    height: min(85vw, 360px);
-    opacity: 0.65;
+    width: min(80vw, 320px);
+    height: min(80vw, 320px);
+    opacity: 0.6;
   }
 
   .hero-rings-logo {
-    width: 50%;
-    max-width: 200px;
+    width: 45%;
+    max-width: 180px;
     filter: drop-shadow(0 0 24px rgba(255, 255, 255, 0.4));
   }
 
   .hero-container {
-    padding: 0 1rem;
+    padding: 0 clamp(0.75rem, 4vw, 1rem);
     position: relative;
     z-index: 3;
-  }
-
-  .hero-text-left {
-    padding-top: 1rem;
-  }
-
-  .hero-pill {
-    font-size: 0.75rem;
-    padding: 0.35rem 0.85rem 0.35rem 0.5rem;
-    margin-bottom: 1rem;
-  }
-
-  .hero-pill-dot {
-    width: 6px;
-    height: 6px;
-  }
-
-  .hero-title {
-    font-size: clamp(1.75rem, 7vw, 2.25rem);
-    line-height: 1.15;
-    margin-bottom: 1rem;
-  }
-
-  .hero-subtitle {
-    font-size: 0.9375rem;
-    line-height: 1.6;
-    margin-bottom: 0.5rem;
-  }
-
-  .hero-tagline {
-    font-size: 0.875rem;
-    margin: 0.25rem 0 1.25rem;
-  }
-
-  .hero-actions {
-    flex-direction: column;
-    align-items: center;
-    gap: 0.625rem;
-  }
-
-  .hero-actions .btn {
-    width: 100%;
-    max-width: 280px;
-  }
-
-  .pillars-grid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-
-  .pillar-card {
-    padding: 1.5rem 1.25rem;
-  }
-
-  .service-cards-grid {
-    grid-template-columns: 1fr;
   }
 
   .service-card-mini {
     flex-direction: column;
     text-align: center;
-    gap: 1rem;
+    gap: 0.75rem;
   }
 
   .card-arrow {
@@ -940,36 +759,19 @@ const services = [
   }
 
   .history-content {
-    padding: 1.5rem;
-  }
-
-  .history-lead {
-    font-size: 1.0625rem;
+    padding: 0;
   }
 
   .history-quote {
-    padding: 1.5rem;
+    padding: 1.25rem;
   }
 
   .history-quote blockquote {
-    font-size: 1rem;
+    font-size: 0.9375rem;
   }
 
-  .cta-wrapper {
-    padding: 2rem 1.25rem;
-  }
-
-  .cta-actions {
-    flex-direction: column;
-  }
-
-  .cta-actions .btn {
-    width: 100%;
-  }
-
-  .cta-contact {
-    flex-direction: column;
-    gap: 0.5rem;
+  .quote-mark {
+    font-size: 3rem;
   }
 }
 </style>

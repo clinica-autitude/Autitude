@@ -1,0 +1,7 @@
+export { default as HeroPanel } from './HeroPanel.vue'
+export { default as HeroPill } from './HeroPill.vue'
+export { default as HeroTitle } from './HeroTitle.vue'
+export { default as HeroTitleHighlight } from './HeroTitleHighlight.vue'
+export { default as HeroSubtitle } from './HeroSubtitle.vue'
+export { default as HeroTagline } from './HeroTagline.vue'
+export { default as HeroActions } from './HeroActions.vue'
