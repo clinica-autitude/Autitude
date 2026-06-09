@@ -1,16 +1,14 @@
 <script setup>
 import { ref, onMounted, onUnmounted, computed } from 'vue'
-import { Settings, X, Sun, Moon, Minus, Plus, Play, Square, Globe } from 'lucide-vue-next'
+import { Settings, X, Sun, Moon, Minus, Plus, Play, Square } from 'lucide-vue-next'
 
 const colorMode = useColorMode()
 
 const menuOpen = ref(false)
 const fontSize = ref(100)
 const contrastMode = ref('normal')
-const vlibrasEnabled = ref(false)
 const speaking = ref(false)
 const ttsStatus = ref('')
-const vlibrasStatus = ref('')
 const maxFontSize = 150
 const minFontSize = 75
 let ttsUtterance = null
@@ -57,54 +55,6 @@ const setContrast = (mode) => {
   }
   
   localStorage.setItem('a11y-contrast', mode)
-}
-
-const initVlibras = () => {
-  if (document.getElementById('vlibras-script')) {
-    const existingBtn = document.querySelector('[vw-access-button]')
-    if (existingBtn) {
-      existingBtn.style.display = 'block'
-      vlibrasEnabled.value = true
-      vlibrasStatus.value = 'VLibras ativado'
-      return
-    }
-  }
-
-  const script = document.createElement('script')
-  script.id = 'vlibras-script'
-  script.src = 'https://vlibras.gov.br/app/vlibras-plugin.js'
-  script.integrity = 'sha256-YAZXu50tmkB+owAK8Pzwkofgjbbj8IAK05nTchNJyVI='
-  script.crossOrigin = 'anonymous'
-  script.async = true
-  script.onload = () => {
-    if (window.VLibras) {
-      try {
-        new window.VLibras.Widget('https://vlibras.gov.br/app')
-        vlibrasEnabled.value = true
-        vlibrasStatus.value = 'VLibras ativado'
-      } catch (e) {
-        vlibrasStatus.value = 'VLibras indisponível'
-      }
-    }
-  }
-  script.onerror = () => {
-    vlibrasStatus.value = 'Erro ao carregar VLibras'
-  }
-  document.body.appendChild(script)
-}
-
-const toggleVlibras = () => {
-  if (!vlibrasEnabled.value) {
-    vlibrasStatus.value = 'Carregando VLibras...'
-    initVlibras()
-  } else {
-    const btn = document.querySelector('[vw-access-button]')
-    if (btn) {
-      btn.style.display = btn.style.display === 'none' ? 'block' : 'none'
-    }
-    vlibrasEnabled.value = btn?.style.display !== 'none'
-    vlibrasStatus.value = vlibrasEnabled.value ? 'VLibras ativado' : 'VLibras desativado'
-  }
 }
 
 const getReadableText = () => {
@@ -285,16 +235,6 @@ onUnmounted(() => {
                 Parar
               </button>
             </div>
-          </div>
-
-          <div class="a11y-section">
-            <h4>Libras (VLibras)</h4>
-            <p class="a11y-hint">Traduz o conteúdo para Língua Brasileira de Sinais</p>
-            <div v-if="vlibrasStatus" class="a11y-vlibras-status" role="status">{{ vlibrasStatus }}</div>
-            <button id="a11y-vlibras-toggle" class="a11y-btn a11y-btn-vlibras" :class="{ 'a11y-active': vlibrasEnabled }" @click="toggleVlibras">
-              <Globe :size="18" />
-              {{ vlibrasEnabled ? 'Desativar VLibras' : 'Ativar VLibras' }}
-            </button>
           </div>
 
           <div class="a11y-section">
@@ -492,18 +432,6 @@ onUnmounted(() => {
   font-weight: 700;
 }
 
-.a11y-btn-vlibras {
-  width: 100%;
-  background: var(--primary);
-  color: var(--white);
-  margin-top: 0.5rem;
-}
-
-.a11y-btn-vlibras:hover {
-  background: var(--primary-dark);
-  border-color: var(--primary-dark);
-}
-
 .a11y-font-controls,
 .a11y-contrast-controls {
   display: flex;
@@ -586,20 +514,6 @@ onUnmounted(() => {
 .a11y-btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
-}
-
-.a11y-vlibras-status {
-  font-size: 0.8125rem;
-  color: var(--success);
-  padding: 0.5rem 0.75rem;
-  background: var(--pastel-mint);
-  border-radius: 8px;
-  margin-bottom: 0.5rem;
-}
-
-[data-theme="dark"] .a11y-vlibras-status {
-  background: var(--accent-light);
-  color: var(--accent);
 }
 
 .a11y-dark-toggle {
@@ -759,11 +673,6 @@ onUnmounted(() => {
   color: #ffffff;
 }
 
-[data-theme="light"] .a11y-btn-vlibras {
-  background: var(--lilac);
-  color: #ffffff;
-}
-
 [data-theme="light"] .a11y-font-value {
   color: var(--lilac-dark);
 }
@@ -785,11 +694,6 @@ onUnmounted(() => {
 [data-theme="light"] .a11y-tts-status {
   background: var(--lilac-soft);
   color: var(--lilac-dark);
-}
-
-[data-theme="light"] .a11y-vlibras-status {
-  background: var(--blue-soft);
-  color: #4CAF50;
 }
 
 [data-theme="light"] .a11y-dark-toggle {

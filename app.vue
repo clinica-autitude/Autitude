@@ -54,6 +54,9 @@ onBeforeUnmount(() => {
     <NuxtLoadingIndicator />
     <a href="#main" class="skip-link">Pular para o conteúdo principal</a>
     <AccessibilityWidget />
+    <ClientOnly>
+      <VLibras position="left" avatar="random" :opacity="1.0" />
+    </ClientOnly>
     
     <div class="ambient-bg"></div>
 
