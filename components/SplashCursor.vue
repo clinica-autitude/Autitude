@@ -302,18 +302,31 @@ onMounted(() => {
     function correctDeltaX(delta) { const aspectRatio = canvas.width / canvas.height; if (aspectRatio < 1) delta *= aspectRatio; return delta }
     function correctDeltaY(delta) { const aspectRatio = canvas.width / canvas.height; if (aspectRatio > 1) delta /= aspectRatio; return delta }
 
-    window.addEventListener('mousedown', (e) => { isIdle = false; const pointer = pointers[0]; updatePointerDownData(pointer, -1, e.clientX, e.clientY); clickSplat(pointer) })
-    window.addEventListener('mousemove', (e) => { isIdle = false; const pointer = pointers[0]; updatePointerMoveData(pointer, e.clientX, e.clientY, pointer.color) })
-    window.addEventListener('touchstart', (e) => { isIdle = false; const pointer = pointers[0]; for (let i = 0; i < e.touches.length; i++) { updatePointerDownData(pointer, e.touches[i].identifier, e.touches[i].clientX, e.touches[i].clientY) } }, false)
-    window.addEventListener('touchmove', (e) => { isIdle = false; const pointer = pointers[0]; for (let i = 0; i < e.touches.length; i++) { updatePointerMoveData(pointer, e.touches[i].clientX, e.touches[i].clientY, pointer.color) } }, false)
-    window.addEventListener('touchend', () => { isIdle = false; pointers[0].down = false })
+    const onMouseDown = (e) => { isIdle = false; const pointer = pointers[0]; updatePointerDownData(pointer, -1, e.clientX, e.clientY); clickSplat(pointer) }
+    const onMouseMove = (e) => { isIdle = false; const pointer = pointers[0]; updatePointerMoveData(pointer, e.clientX, e.clientY, pointer.color) }
+    const onTouchStart = (e) => { isIdle = false; const pointer = pointers[0]; for (let i = 0; i < e.touches.length; i++) { updatePointerDownData(pointer, e.touches[i].identifier, e.touches[i].clientX, e.touches[i].clientY) } }
+    const onTouchMove = (e) => { isIdle = false; const pointer = pointers[0]; for (let i = 0; i < e.touches.length; i++) { updatePointerMoveData(pointer, e.touches[i].clientX, e.touches[i].clientY, pointer.color) } }
+    const onTouchEnd = () => { isIdle = false; pointers[0].down = false }
+
+    window.addEventListener('mousedown', onMouseDown)
+    window.addEventListener('mousemove', onMouseMove)
+    window.addEventListener('touchstart', onTouchStart, false)
+    window.addEventListener('touchmove', onTouchMove, false)
+    window.addEventListener('touchend', onTouchEnd)
 
     function clickSplat(pointer) { const color = generateColor(); color.r *= 10; color.g *= 10; color.b *= 10; const dx = 10 * (Math.random() - 0.5), dy = 30 * (Math.random() - 0.5); splat(pointer.texcoordX, pointer.texcoordY, dx, dy, color) }
 
     rafId = requestAnimationFrame(updateFrame)
 
-    cleanup = () => { if (rafId) { cancelAnimationFrame(rafId); rafId = null } }
-  } catch (err) { console.warn('SplashCursor: WebGL init failed:', err) }
+    cleanup = () => {
+      if (rafId) { cancelAnimationFrame(rafId); rafId = null }
+      window.removeEventListener('mousedown', onMouseDown)
+      window.removeEventListener('mousemove', onMouseMove)
+      window.removeEventListener('touchstart', onTouchStart)
+      window.removeEventListener('touchmove', onTouchMove)
+      window.removeEventListener('touchend', onTouchEnd)
+    }
+  } catch (err) { if (import.meta.dev) console.warn('SplashCursor: WebGL init failed:', err) }
 })
 
 onBeforeUnmount(() => { if (cleanup) { cleanup(); cleanup = null } })

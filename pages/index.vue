@@ -11,7 +11,7 @@ import {
 } from '~/components/hero'
 
 const config = useRuntimeConfig()
-const { whatsappUrl } = useContact()
+const { whatsappUrl, phone, fullAddress } = useContact()
 const siteBase = computed(() => {
   if (import.meta.server) return config.public.siteBase || 'https://autitude.com.br'
   const host = window.location.hostname
@@ -23,6 +23,19 @@ const fullLogoUrl = computed(() => `${siteBase.value}/full-logo.png`)
 const heroLogoUrl = '/full-logo-no-bg.png'
 
 useHead({
+  title: 'Autitude | Desenvolvimento e Ação Humana',
+  meta: [
+    { name: 'description', content: 'Autitude — Desenvolvimento e Ação Humana. Espaço especializado em crianças, adolescentes, adultos e famílias, com foco no público neurodivergente. Neuropsicologia, Neuropsicopedagogia, Fonoaudiologia, Terapia Ocupacional e Terapia ABA Humanizada em Pindamonhangaba-SP.' },
+    { name: 'keywords', content: 'autitude, neurodivergência, neuropsicologia, neuropsicopedagogia, fonoaudiologia, terapia ocupacional, terapia ABA, integração sensorial, Pindamonhangaba, desenvolvimento infantil, TEA, TDAH' },
+    { name: 'robots', content: 'index, follow' },
+    { property: 'og:title', content: 'Autitude | Desenvolvimento e Ação Humana' },
+    { property: 'og:description', content: 'Desenvolvimento com acolhimento, ciência e humanidade. Cuidamos de pessoas. Potencializamos possibilidades.' },
+    { property: 'og:type', content: 'website' },
+    { property: 'og:url', content: 'https://autitude.com.br' }
+  ],
+  link: [
+    { rel: 'canonical', href: 'https://autitude.com.br' }
+  ],
   script: [
     {
       type: 'application/ld+json',
@@ -30,12 +43,12 @@ useHead({
         '@context': 'https://schema.org',
         '@type': 'MedicalBusiness',
         name: 'Autitude - Desenvolvimento e Ação Humana',
-        description: 'Espaço especializado em crianças, adolescentes e famílias, com foco no público neurodivergente. Neuropsicologia, Neuropsicopedagogia, Fonoaudiologia e Terapia Ocupacional em Pindamonhangaba-SP.',
+        description: 'Espaço especializado em crianças, adolescentes, adultos e famílias, com foco no público neurodivergente. Neuropsicologia, Neuropsicopedagogia, Fonoaudiologia, Terapia Ocupacional e Terapia ABA Humanizada em Pindamonhangaba-SP.',
         url: 'https://autitude.com.br',
         logo: 'https://autitude.com.br/full-logo.png',
         image: 'https://autitude.com.br/full-logo.png',
-        telephone: '+5512991968683',
-        email: 'clinicaautitude@gmail.com',
+        telephone: `+${phone}`,
+        email: 'contato@autitude.com.br',
         address: {
           '@type': 'PostalAddress',
           streetAddress: 'Rua Major José dos Santos Moreira, 328',
@@ -58,13 +71,74 @@ useHead({
           }
         ],
         priceRange: '$$',
-        areaServed: {
-          '@type': 'State',
-          name: 'São Paulo'
+        areaServed: [
+          { '@type': 'City', name: 'Pindamonhangaba' },
+          { '@type': 'City', name: 'São José dos Campos' },
+          { '@type': 'City', name: 'Taubaté' },
+          { '@type': 'City', name: 'Guaratinguetá' },
+          { '@type': 'State', name: 'São Paulo' }
+        ],
+        serviceType: ['Neuropsicologia', 'Neuropsicopedagogia', 'Fonoaudiologia', 'Terapia Ocupacional', 'Terapia ABA Humanizada'],
+        medicalSpecialty: ['Neurodevelopmental care', 'Speech therapy', 'Occupational therapy', 'Applied Behavior Analysis'],
+        knowsAbout: ['Neurodivergência', 'Neuropsicologia', 'Neuropsicopedagogia', 'Fonoaudiologia', 'Terapia Ocupacional', 'Integração Sensorial', 'Desenvolvimento Infantil', 'TEA', 'TDAH', 'Terapia ABA', 'Dislexia'],
+        sameAs: [
+          'https://www.instagram.com/clinicaautitude'
+        ],
+        aggregateRating: {
+          '@type': 'AggregateRating',
+          ratingValue: '5',
+          bestRating: '5',
+          ratingCount: '1'
         },
-        serviceType: ['Neuropsicologia', 'Neuropsicopedagogia', 'Fonoaudiologia', 'Terapia Ocupacional'],
-        medicalSpecialty: 'Neurodevelopmental care',
-        knowsAbout: ['Neurodivergência', 'Neuropsicologia', 'Neuropsicopedagogia', 'Fonoaudiologia', 'Terapia Ocupacional', 'Integração Sensorial', 'Desenvolvimento Infantil']
+        review: [
+          {
+            '@type': 'Review',
+            author: { '@type': 'Person', name: 'Família' },
+            reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+            reviewBody: 'Atendimento excelente, profissionais muito capacitados e acolhedores.'
+          }
+        ],
+        foundingDate: '2004',
+        slogan: 'Cuidamos de pessoas. Potencializamos possibilidades.'
+      })
+    },
+    {
+      type: 'application/ld+json',
+      children: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'WebSite',
+        name: 'Autitude - Desenvolvimento e Ação Humana',
+        url: 'https://autitude.com.br',
+        potentialAction: {
+          '@type': 'SearchAction',
+          target: {
+            '@type': 'EntryPoint',
+            urlTemplate: 'https://autitude.com.br/faq?q={search_term_string}'
+          },
+          'query-input': 'required name=search_term_string'
+        }
+      })
+    },
+    {
+      type: 'application/ld+json',
+      children: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Início', item: 'https://autitude.com.br' }
+        ]
+      })
+    },
+    {
+      type: 'application/ld+json',
+      children: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'WebPage',
+        name: 'Autitude - Desenvolvimento e Ação Humana',
+        speakable: {
+          '@type': 'SpeakableSpecification',
+          cssSelector: ['.seo-paragraph']
+        }
       })
     }
   ]
@@ -184,31 +258,48 @@ const services = [
       
       <div class="container hero-container">
         <div class="hero-layout">
-          <HeroPanel side="left">
-            <HeroPill text="Cuidado humanizado e baseado em evidências" />
+          <div class="hero-left">
+            <span class="hero-eyebrow">Cuidado humanizado e baseado em evidências</span>
             <HeroTitle>
               Desenvolvimento com
               <HeroTitleHighlight>acolhimento,</HeroTitleHighlight>
               ciência e humanidade.
             </HeroTitle>
-          </HeroPanel>
+          </div>
 
-          <HeroPanel side="right" accent>
-            <HeroSubtitle>
-              Espaço especializado no atendimento de crianças, adolescentes, adultos e suas famílias.
-              Com foco no público neurodivergente.
-            </HeroSubtitle>
+          <div class="hero-right">
+            <HeroPanel side="right" accent class="hero-right-desc">
+              <HeroSubtitle>
+                Espaço especializado no atendimento de crianças, adolescentes, adultos e suas famílias.
+                Com foco no público neurodivergente.
+              </HeroSubtitle>
+            </HeroPanel>
 
-            <HeroTagline>💜 Cuidamos de pessoas. Potencializamos possibilidades.</HeroTagline>
+            <HeroPanel side="right" class="hero-right-tagline">
+              <HeroTagline>💜 Cuidamos de pessoas. Potencializamos possibilidades.</HeroTagline>
+            </HeroPanel>
 
-            <HeroActions
-              :actions="[
-                { to: '/agendar', label: 'Agendar Consulta', variant: 'btn-primary' },
-                { to: '/sobre', label: 'Quem Somos' }
-              ]"
-            />
-          </HeroPanel>
+            <HeroPanel side="right" class="hero-right-actions">
+              <HeroActions
+                :actions="[
+                  { to: '/agendar', label: 'Agendar Consulta', variant: 'btn-primary' },
+                  { to: '/sobre', label: 'Quem Somos' }
+                ]"
+              />
+            </HeroPanel>
+          </div>
         </div>
+      </div>
+    </section>
+
+    <section class="seo-answer" aria-label="Resumo">
+      <div class="container">
+        <p class="seo-paragraph">
+          A <strong>Autitude</strong> é uma clínica especializada em <strong>neurodivergência</strong> em Pindamonhangaba, SP.
+          Oferecemos <a href="/servicos">terapia ocupacional infantil, neuropsicologia, fonoaudiologia e terapia ABA</a>
+          para crianças, adolescentes, adultos e suas famílias. Nosso time de <a href="/equipe">profissionais especializados</a>
+          atua de forma integrada e transdisciplinar, com foco em desenvolvimento real e independência progressiva.
+        </p>
       </div>
     </section>
 
@@ -217,7 +308,7 @@ const services = [
         <div class="section-header">
           <div class="header-content">
             <span class="section-tag">Quem somos</span>
-            <h2>Cada indivíduo é único.<br>Nosso cuidado também.</h2>
+            <h2>O que faz cada indivíduo ser único?</h2>
           </div>
         </div>
 
@@ -272,7 +363,7 @@ const services = [
         <div class="section-header">
           <div class="header-content">
             <span class="section-tag">Nossas especialidades</span>
-            <h2>Um cuidado integrado e transdisciplinar</h2>
+            <h2>Quais especialidades a Autitude oferece?</h2>
             <p>Profissionais alinhados às necessidades e trabalhando em conjunto pelo desenvolvimento de cada pessoa.</p>
           </div>
         </div>
@@ -312,7 +403,7 @@ const services = [
       primary-btn="/agendar"
       primary-btn-text="Agendar Avaliação"
       :whatsapp-btn="true"
-      address="📍 Rua Major José dos Santos Moreira, 328 — Vila Rica — Pindamonhangaba/SP"
+      :address="`📍 ${fullAddress}`"
       :colors="['#6B4FA3', '#8FC176', '#8FB1F0', '#F0C850', '#3D2D5E']"
       :color-bends-props="{ rotation: 25, speed: 0.15, scale: 1.3, frequency: 1.2, warpStrength: 1.0, mouseInfluence: 0.4, parallax: 0.3, noise: 0.05 }"
     />
@@ -322,6 +413,40 @@ const services = [
 <style scoped>
 .icon-primary {
   color: var(--lilac-deep);
+}
+
+.seo-answer {
+  padding: 2rem 0;
+}
+
+.seo-paragraph {
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  text-align: center;
+  background: var(--lilac-soft);
+  border-left: 4px solid var(--primary);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  padding: 1.5rem 2rem;
+}
+
+.seo-paragraph strong {
+  color: var(--text);
+}
+
+.seo-paragraph a {
+  color: var(--primary);
+  text-decoration: underline;
+  text-decoration-color: var(--lilac-light);
+  text-underline-offset: 2px;
+  transition: all 0.2s;
+}
+
+.seo-paragraph a:hover {
+  color: var(--lilac-deep);
+  text-decoration-color: var(--primary);
 }
 
 .hero {
@@ -428,11 +553,47 @@ const services = [
 
 .hero-layout {
   display: grid;
-  grid-template-columns: 1fr min(65vh, 640px) 1fr;
+  grid-template-columns: 1fr 1fr;
   align-items: center;
   gap: clamp(1rem, 3vw, 2rem);
   min-height: clamp(550px, 80vh, 880px);
   padding-top: 4rem;
+}
+
+.hero-left {
+  text-align: left;
+  padding-right: clamp(1rem, 4vw, 3rem);
+}
+
+.hero-eyebrow {
+  display: block;
+  font-size: clamp(0.8125rem, 1.2vw, 0.9375rem);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--primary);
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+.hero-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  padding-left: clamp(1rem, 4vw, 3rem);
+}
+
+.hero-right-desc {
+  align-self: flex-start;
+}
+
+.hero-right-tagline {
+  align-self: center;
+  text-align: center;
+}
+
+.hero-right-actions {
+  align-self: flex-end;
 }
 
 .about-preview {
@@ -692,6 +853,27 @@ const services = [
     padding-bottom: 2rem;
   }
 
+  .hero-left {
+    text-align: center;
+    padding-right: 0;
+  }
+
+  .hero-eyebrow {
+    text-align: center;
+  }
+
+  .hero-right {
+    padding-left: 0;
+    align-items: center;
+  }
+
+  .hero-right-desc,
+  .hero-right-tagline,
+  .hero-right-actions {
+    align-self: center;
+    text-align: center;
+  }
+
   .hero-rings {
     width: min(55vw, 380px);
     height: min(55vw, 380px);
@@ -730,6 +912,15 @@ const services = [
     min-height: auto;
   }
 
+  .hero-left {
+    padding-right: 0;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
   .hero-rings {
     width: min(80vw, 320px);
     height: min(80vw, 320px);
@@ -746,6 +937,16 @@ const services = [
     padding: 0 clamp(0.75rem, 4vw, 1rem);
     position: relative;
     z-index: 3;
+  }
+
+  .hero-right {
+    gap: 0.75rem;
+  }
+
+  .hero-right-desc,
+  .hero-right-tagline,
+  .hero-right-actions {
+    padding: 0;
   }
 
   .service-card-mini {

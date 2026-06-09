@@ -1,1 +1,4 @@
+# Autitude Redirect Rules
+# SPA fallback for static hosting (Netlify, Cloudflare Pages)
+
 /*    /index.html   200

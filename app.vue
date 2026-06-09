@@ -1,19 +1,12 @@
 <script setup>
-import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 const currentYear = new Date().getFullYear()
 const config = useRuntimeConfig()
-const { phone, whatsappUrl, instagramUrl } = useContact()
+const { phone, whatsappUrl, instagramUrl, address, neighborhood, city, state } = useContact()
 const menuOpen = ref(false)
+const scrolled = ref(false)
+const showBackToTop = ref(false)
 
-const siteBase = computed(() => {
-  if (import.meta.server) return config.public.siteBase || 'https://autitude.com.br'
-  const host = window.location.hostname
-  if (host === 'autitude.com.br' || host === 'www.autitude.com.br') return 'https://autitude.com.br'
-  if (host === 'localhost' || host === '127.0.0.1') return ''
-  return config.public.siteBase || 'https://autitude.com.br'
-})
-
-const logoSrc = computed(() => '/small-logo.png')
+const logoSrc = '/small-logo.png'
 
 const toggleMenu = () => {
   menuOpen.value = !menuOpen.value
@@ -25,21 +18,34 @@ const closeMenu = () => {
   document.body.style.overflow = ''
 }
 
+const handleScroll = () => {
+  scrolled.value = window.scrollY > 20
+  showBackToTop.value = window.scrollY > 600
+}
+
+const scrollToTop = () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' })
+}
+
 let keydownHandler = null
+let scrollHandler = null
 
 onMounted(() => {
-  keydownHandler = (e) => {
-    if (e.key === 'Escape' && menuOpen.value) {
-      closeMenu()
-    }
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js').catch(() => {})
   }
+  keydownHandler = (e) => {
+    if (e.key === 'Escape' && menuOpen.value) closeMenu()
+  }
+  scrollHandler = () => handleScroll()
   document.addEventListener('keydown', keydownHandler)
+  window.addEventListener('scroll', scrollHandler, { passive: true })
+  handleScroll()
 })
 
 onBeforeUnmount(() => {
-  if (keydownHandler) {
-    document.removeEventListener('keydown', keydownHandler)
-  }
+  if (keydownHandler) document.removeEventListener('keydown', keydownHandler)
+  if (scrollHandler) window.removeEventListener('scroll', scrollHandler)
 })
 </script>
 
@@ -53,7 +59,7 @@ onBeforeUnmount(() => {
 
     <div class="menu-overlay" :class="{ active: menuOpen }" @click="closeMenu"></div>
 
-    <nav class="navbar">
+    <nav class="navbar" :class="{ scrolled }">
       <div class="nav-container">
         <NuxtLink to="/" class="logo" @click="closeMenu">
           <img :src="logoSrc" alt="Autitude" class="logo-img">
@@ -61,13 +67,15 @@ onBeforeUnmount(() => {
         </NuxtLink>
         
         <div class="nav-links" :class="{ 'nav-active': menuOpen }">
-          <NuxtLink to="/" class="nav-link" @click="closeMenu">Início</NuxtLink>
-          <NuxtLink to="/sobre" class="nav-link" @click="closeMenu">Sobre</NuxtLink>
-          <NuxtLink to="/servicos" class="nav-link" @click="closeMenu">Serviços</NuxtLink>
-          <NuxtLink to="/equipe" class="nav-link" @click="closeMenu">Equipe</NuxtLink>
-          <NuxtLink to="/contato" class="nav-link" @click="closeMenu">Contato</NuxtLink>
-          <NuxtLink to="/agendar" class="btn btn-primary btn-sm" @click="closeMenu">Agendar</NuxtLink>
-          <ThemeSwitcher />
+          <div class="nav-links-inner">
+            <NuxtLink to="/" class="nav-link" @click="closeMenu">Início</NuxtLink>
+            <NuxtLink to="/sobre" class="nav-link" @click="closeMenu">Sobre</NuxtLink>
+            <NuxtLink to="/servicos" class="nav-link" @click="closeMenu">Serviços</NuxtLink>
+            <NuxtLink to="/equipe" class="nav-link" @click="closeMenu">Equipe</NuxtLink>
+            <NuxtLink to="/contato" class="nav-link" @click="closeMenu">Contato</NuxtLink>
+            <NuxtLink to="/agendar" class="btn btn-primary btn-sm nav-cta" @click="closeMenu">Agendar</NuxtLink>
+            <ThemeSwitcher />
+          </div>
         </div>
         
         <button class="menu-toggle" :class="{ active: menuOpen }" @click="toggleMenu" aria-label="Menu" :aria-expanded="menuOpen">
@@ -86,7 +94,7 @@ onBeforeUnmount(() => {
       <div class="container">
         <div class="footer-grid">
           <div class="footer-brand">
-            <NuxtLink to="/" class="logo">
+            <NuxtLink to="/" class="logo" @click="closeMenu">
               <img :src="logoSrc" alt="Autitude" class="logo-img">
               <span class="logo-text">Autitude</span>
             </NuxtLink>
@@ -111,8 +119,8 @@ onBeforeUnmount(() => {
           
           <div class="footer-contact">
             <h4>Localização</h4>
-            <p>Rua Major José dos Santos Moreira, 328</p>
-            <p>Vila Rica — Pindamonhangaba, SP</p>
+            <p>{{ address }}</p>
+            <p>{{ neighborhood }} — {{ city }}, {{ state }}</p>
             <p>Seg a Sex: 8h às 18h</p>
             <div class="footer-map">
               <iframe
@@ -123,8 +131,8 @@ onBeforeUnmount(() => {
                 allowfullscreen=""
                 loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade"
-                title="Localização da Autitude — Rua Major José dos Santos Moreira, 328, Vila Rica, Pindamonhangaba-SP">
-              </iframe>
+                title="Localização da Autitude"
+              ></iframe>
             </div>
           </div>
         </div>
@@ -134,12 +142,26 @@ onBeforeUnmount(() => {
         </div>
       </div>
     </footer>
+
+    <Transition name="back-to-top">
+      <button
+        v-if="showBackToTop"
+        class="back-to-top"
+        @click="scrollToTop"
+        aria-label="Voltar ao topo"
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+      </button>
+    </Transition>
   </div>
 </template>
 
 <style scoped>
 .app {
   min-height: 100vh;
+  min-height: 100dvh;
 }
 
 .ambient-bg {
@@ -177,19 +199,24 @@ onBeforeUnmount(() => {
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1000;
-  padding: 1.25rem 0;
-  transition: all 0.4s var(--ease-smooth);
-  background: var(--background);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  z-index: var(--z-navbar);
+  padding: 0.875rem 0;
+  transition: all 0.35s var(--ease-smooth);
+  background: transparent;
+}
+
+.navbar.scrolled {
+  background: color-mix(in srgb, var(--background) 85%, transparent);
+  backdrop-filter: blur(16px) saturate(1.2);
+  -webkit-backdrop-filter: blur(16px) saturate(1.2);
   box-shadow: var(--shadow-xs);
+  padding: 0.625rem 0;
 }
 
 .nav-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 clamp(1rem, 4vw, 1.5rem);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -201,13 +228,14 @@ onBeforeUnmount(() => {
   gap: clamp(0.5rem, 2vw, 0.625rem);
   text-decoration: none;
   font-weight: 700;
-  font-size: clamp(1.25rem, 3vw, 1.5rem);
+  font-size: clamp(1.2rem, 2.5vw, 1.5rem);
   color: var(--text);
+  flex-shrink: 0;
 }
 
 .logo-img {
-  width: clamp(1.5rem, 4vw, 1.8rem);
-  height: clamp(1.5rem, 4vw, 1.8rem);
+  width: clamp(1.5rem, 3.5vw, 1.8rem);
+  height: clamp(1.5rem, 3.5vw, 1.8rem);
   border-radius: 50%;
   object-fit: cover;
 }
@@ -222,7 +250,12 @@ onBeforeUnmount(() => {
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+}
+
+.nav-links-inner {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.75rem, 2vw, 1.5rem);
 }
 
 .nav-link {
@@ -232,17 +265,19 @@ onBeforeUnmount(() => {
   text-decoration: none;
   transition: color 0.2s;
   position: relative;
+  padding: 0.25rem 0;
 }
 
 .nav-link::after {
   content: '';
   position: absolute;
-  bottom: -4px;
+  bottom: -2px;
   left: 0;
   width: 0;
   height: 2px;
   background: var(--primary);
-  transition: width 0.3s var(--ease-smooth);
+  border-radius: 1px;
+  transition: width 0.3s var(--ease-out-expo);
 }
 
 .nav-link:hover,
@@ -253,6 +288,10 @@ onBeforeUnmount(() => {
 .nav-link:hover::after,
 .nav-link.router-link-active::after {
   width: 100%;
+}
+
+.nav-cta {
+  margin-left: 0.25rem;
 }
 
 .btn-sm {
@@ -269,15 +308,17 @@ onBeforeUnmount(() => {
   border: none;
   cursor: pointer;
   position: relative;
-  z-index: 1002;
+  z-index: calc(var(--z-navbar) + 2);
+  -webkit-tap-highlight-color: transparent;
 }
 
 .menu-toggle span {
-  width: 24px;
+  width: 22px;
   height: 2px;
   background: var(--text);
   border-radius: 2px;
-  transition: all 0.3s var(--ease-smooth);
+  transition: all 0.3s var(--ease-out-expo);
+  transform-origin: center;
 }
 
 .menu-toggle.active span:nth-child(1) {
@@ -286,6 +327,7 @@ onBeforeUnmount(() => {
 
 .menu-toggle.active span:nth-child(2) {
   opacity: 0;
+  transform: scaleX(0);
 }
 
 .menu-toggle.active span:nth-child(3) {
@@ -294,20 +336,21 @@ onBeforeUnmount(() => {
 
 main {
   min-height: 100vh;
+  min-height: 100dvh;
 }
 
 .footer {
-  background: var(--background);
-  padding: 4rem 0 2rem;
-  margin-top: 4rem;
+  background: var(--surface-alt);
+  padding: clamp(2.5rem, 6vw, 4rem) 0 1.5rem;
+  margin-top: clamp(3rem, 6vw, 4rem);
   border-top: 1px solid var(--border);
 }
 
 .footer-grid {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr 1fr;
-  gap: 3rem;
-  margin-bottom: 3rem;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  margin-bottom: 2.5rem;
 }
 
 .footer-brand .logo {
@@ -326,17 +369,18 @@ main {
   color: var(--text-secondary);
   margin-bottom: 1.25rem;
   line-height: 1.6;
+  max-width: 32ch;
 }
 
 .footer-links h4,
 .footer-services h4,
 .footer-contact h4 {
-  font-size: 0.875rem;
-  font-weight: 600;
+  font-size: 0.8125rem;
+  font-weight: 700;
   color: var(--text);
   margin-bottom: 1rem;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
 }
 
 .footer-links a,
@@ -350,6 +394,11 @@ main {
   transition: color 0.2s;
 }
 
+.footer-links a:hover,
+.footer-services a:hover {
+  color: var(--primary);
+}
+
 .footer-map {
   margin-top: 0.75rem;
   border-radius: var(--radius-md);
@@ -357,19 +406,14 @@ main {
   box-shadow: var(--shadow-sm);
 }
 
-.footer-links a:hover,
-.footer-services a:hover {
-  color: var(--primary);
-}
-
 .footer-bottom {
   border-top: 1px solid var(--border);
-  padding-top: 1.5rem;
+  padding-top: 1.25rem;
   text-align: center;
 }
 
 .footer-bottom p {
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   color: var(--text-light);
 }
 
@@ -386,43 +430,96 @@ main {
   visibility: visible;
 }
 
+.back-to-top {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-full);
+  background: var(--gradient-primary);
+  color: var(--white);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-md);
+  z-index: var(--z-sticky);
+  transition: all 0.3s var(--ease-out-expo);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.back-to-top:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.back-to-top:active {
+  transform: translateY(0);
+}
+
+.back-to-top-enter-active,
+.back-to-top-leave-active {
+  transition: all 0.3s var(--ease-out-expo);
+}
+
+.back-to-top-enter-from,
+.back-to-top-leave-to {
+  opacity: 0;
+  transform: translateY(12px) scale(0.9);
+}
+
 @media (max-width: 900px) {
   .menu-toggle {
     display: flex;
-    z-index: 1002;
-    position: relative;
   }
   
   .nav-links {
     position: fixed;
     top: 0;
     right: -100%;
-    width: 85vw;
-    max-width: 320px;
+    width: min(85vw, 340px);
     height: 100vh;
     height: 100dvh;
     background: var(--surface);
     flex-direction: column;
     align-items: flex-start;
-    justify-content: center;
-    padding: 2rem;
-    padding-top: 5rem;
-    gap: 0.5rem;
-    box-shadow: -10px 0 40px rgba(0, 0, 0, 0.15);
-    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 1001;
+    justify-content: flex-start;
+    padding: 5rem 1.5rem 2rem;
+    gap: 0;
+    box-shadow: -8px 0 32px rgba(0, 0, 0, 0.12);
+    transition: right 0.4s var(--ease-out-expo);
+    z-index: calc(var(--z-navbar) + 1);
     overflow-y: auto;
+    overscroll-behavior: contain;
   }
 
   .nav-links.nav-active {
     right: 0;
   }
+
+  .nav-links-inner {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    width: 100%;
+  }
   
   .nav-link {
-    padding: 0.75rem 0;
-    font-size: 1.1rem;
-    width: 100%;
+    padding: 0.875rem 0;
+    font-size: 1.0625rem;
     border-bottom: 1px solid var(--border);
+  }
+
+  .nav-link::after {
+    display: none;
+  }
+
+  .nav-cta {
+    margin-left: 0;
+    margin-top: 0.75rem;
+    text-align: center;
   }
 
   .menu-overlay {
@@ -433,9 +530,10 @@ main {
     width: 100vw;
     height: 100vh;
     height: 100dvh;
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.35);
     backdrop-filter: blur(4px);
-    z-index: 999;
+    -webkit-backdrop-filter: blur(4px);
+    z-index: calc(var(--z-navbar) - 1);
     pointer-events: none;
   }
 
@@ -446,12 +544,17 @@ main {
   .footer-grid {
     grid-template-columns: 1fr 1fr;
     gap: 1.5rem;
-    text-align: left;
   }
   
   .footer-brand {
     grid-column: span 2;
     text-align: center;
+  }
+
+  .footer-brand p {
+    max-width: none;
+    margin-left: auto;
+    margin-right: auto;
   }
   
   .footer-links,
@@ -474,28 +577,28 @@ main {
   .footer-brand p {
     text-align: center;
   }
+
+  .back-to-top {
+    bottom: 1rem;
+    right: 1rem;
+    width: 40px;
+    height: 40px;
+  }
 }
 
-/* Accessibility widget global styles */
-[data-a11y-contrast="high"] #accessibility-controls {
-  z-index: 9999;
+/* Accessibility widget global styles - using :global() for cross-component targeting */
+:global([data-a11y-contrast="high"]) #accessibility-controls,
+:global([data-a11y-contrast="dark"]) #accessibility-controls {
+  z-index: var(--z-accessibility);
 }
 
-[data-a11y-contrast="high"] .a11y-btn-floating {
-  border: 3px solid #000000;
+:global([data-a11y-contrast="high"]) .a11y-btn-floating,
+:global([data-a11y-contrast="dark"]) .a11y-btn-floating {
+  border-width: 2px;
 }
 
-[data-a11y-contrast="dark"] #accessibility-controls {
-  z-index: 9999;
-}
-
-[data-a11y-contrast="dark"] .a11y-btn-floating {
-  border: 3px solid #ffffff;
-}
-
-/* Ensure all themes work with accessibility widget */
-[data-theme="light"] #accessibility-controls,
-[data-theme="sepia"] #accessibility-controls {
-  z-index: 9999;
+:global([data-theme="light"]) #accessibility-controls,
+:global([data-theme="sepia"]) #accessibility-controls {
+  z-index: var(--z-accessibility);
 }
 </style>

@@ -1,8 +1,48 @@
 <script setup>
+const { email } = useContact()
+const siteBase = 'https://autitude.com.br'
+
 useHead({
-  title: 'Política de Privacidade | Autitude - Desenvolvimento e Ação Humana',
+  title: 'Política de Privacidade — LGPD | Autitude - Desenvolvimento e Ação Humana',
   meta: [
-    { name: 'description', content: 'Política de Privacidade da Autitude - Desenvolvimento e Ação Humana.' }
+    { name: 'description', content: 'Política de Privacidade da Autitude - Desenvolvimento e Ação Humana. Coleta, uso e proteção de dados pessoais conforme a LGPD (Lei Geral de Proteção de Dados).' },
+    { name: 'keywords', content: 'política de privacidade, LGPD, proteção de dados, autitude, dados pessoais, consentimento' },
+    { name: 'robots', content: 'index, follow' },
+    { property: 'og:title', content: 'Política de Privacidade — LGPD | Autitude' },
+    { property: 'og:description', content: 'Política de Privacidade da Autitude. Coleta, uso e proteção de dados pessoais conforme a LGPD.' },
+    { property: 'og:type', content: 'website' },
+    { property: 'og:url', content: `${siteBase}/privacidade` }
+  ],
+  link: [
+    { rel: 'canonical', href: `${siteBase}/privacidade` }
+  ],
+  script: [
+    {
+      type: 'application/ld+json',
+      children: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'WebPage',
+        name: 'Política de Privacidade — Autitude',
+        description: 'Política de Privacidade da Autitude. Coleta, uso e proteção de dados pessoais conforme a LGPD.',
+        url: `${siteBase}/privacidade`,
+        isPartOf: {
+          '@type': 'WebSite',
+          name: 'Autitude - Desenvolvimento e Ação Humana',
+          url: siteBase
+        }
+      })
+    },
+    {
+      type: 'application/ld+json',
+      children: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Início', item: siteBase },
+          { '@type': 'ListItem', position: 2, name: 'Privacidade', item: `${siteBase}/privacidade` }
+        ]
+      })
+    }
   ]
 })
 
@@ -65,7 +105,7 @@ const currentYear = new Date().getFullYear()
             <h2>6. Contato</h2>
             <p>
               Para questões sobre esta política de privacidade, entre em contato conosco 
-              através do e-mail clinicaautitude@gmail.com ou pelo WhatsApp.
+              através do e-mail {{ email }} ou pelo WhatsApp.
             </p>
           </article>
         </div>

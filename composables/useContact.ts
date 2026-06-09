@@ -1,6 +1,7 @@
 export const useContact = () => {
   const phone = '5512991968683'
   const phoneDisplay = '(12) 99196-8683'
+  const email = 'contato@autitude.com.br'
   const whatsappUrl = `https://wa.me/${phone}`
   const telUrl = `tel:+${phone}`
   const instagramUrl = 'https://www.instagram.com/clinicaautitude'
@@ -14,6 +15,7 @@ export const useContact = () => {
   return {
     phone,
     phoneDisplay,
+    email,
     whatsappUrl,
     telUrl,
     instagramUrl,

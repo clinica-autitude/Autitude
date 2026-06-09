@@ -1,12 +1,24 @@
 <script setup>
-import { ref } from 'vue'
 import { MapPin, MessageCircle, Mail, Clock } from 'lucide-vue-next'
 import DotGrid from '~/components/DotGrid.vue'
 
+const { whatsappUrl, phoneDisplay, instagramHandle, address, neighborhood, city, state, email } = useContact()
+
+const siteBase = 'https://autitude.com.br'
+
 useHead({
-  title: 'Contato | Autitude - Desenvolvimento e Ação Humana',
+  title: 'Contato — Telefone, WhatsApp e Localização | Autitude - Desenvolvimento e Ação Humana',
   meta: [
-    { name: 'description', content: 'Entre em contato com a Autitude. Estamos na Vila Rica, em Pindamonhangaba-SP. WhatsApp, e-mail ou formulário de contato. Aqui uma atitude de cuidado muda o futuro.' }
+    { name: 'description', content: 'Entre em contato com a Autitude em Pindamonhangaba-SP. WhatsApp, telefone, e-mail e formulário. Rua Major José dos Santos Moreira, 328 — Vila Rica. Seg a Sex: 8h às 18h.' },
+    { name: 'keywords', content: 'contato autitude, telefone autitude, WhatsApp autitude, localização autitude, Pindamonhangaba clínica, Rua Major José dos Santos Moreira, agendamento avaliação neurodivergência' },
+    { name: 'robots', content: 'index, follow' },
+    { property: 'og:title', content: 'Contato — Telefone, WhatsApp e Localização | Autitude' },
+    { property: 'og:description', content: 'Entre em contato com a Autitude. WhatsApp, telefone, e-mail e formulário de agendamento.' },
+    { property: 'og:type', content: 'website' },
+    { property: 'og:url', content: `${siteBase}/contato` }
+  ],
+  link: [
+    { rel: 'canonical', href: `${siteBase}/contato` }
   ],
   script: [
     {
@@ -14,237 +26,129 @@ useHead({
       children: JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'ContactPage',
-        name: 'Contato - Autitude',
+        name: 'Contato — Autitude',
         description: 'Entre em contato com a Autitude. WhatsApp, e-mail ou formulário.',
-        url: 'https://autitude.com.br/contato',
+        url: `${siteBase}/contato`,
         mainEntity: {
           '@type': 'MedicalBusiness',
           name: 'Autitude - Desenvolvimento e Ação Humana',
-          contactPoint: {
-            '@type': 'ContactPoint',
-            telephone: '+5512991968683',
-            contactType: 'customer service',
-            availableLanguage: 'Portuguese',
-            areaServed: 'BR'
-          }
+          url: siteBase,
+          telephone: `+${useContact().phone}`,
+          email: useContact().email,
+          address: {
+            '@type': 'PostalAddress',
+            streetAddress: 'Rua Major José dos Santos Moreira, 328',
+            addressLocality: 'Pindamonhangaba',
+            addressRegion: 'SP',
+            addressCountry: 'BR',
+            postalCode: '12400-010'
+          },
+          geo: {
+            '@type': 'GeoCoordinates',
+            latitude: '-22.9309',
+            longitude: '-45.4607'
+          },
+          contactPoint: [
+            {
+              '@type': 'ContactPoint',
+              telephone: `+${useContact().phone}`,
+              contactType: 'customer service',
+              availableLanguage: 'Portuguese',
+              areaServed: 'BR'
+            },
+            {
+              '@type': 'ContactPoint',
+              email: useContact().email,
+              contactType: 'customer service',
+              availableLanguage: 'Portuguese'
+            }
+          ],
+          sameAs: [
+            'https://www.instagram.com/clinicaautitude'
+          ]
         }
+      })
+    },
+    {
+      type: 'application/ld+json',
+      children: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Início', item: siteBase },
+          { '@type': 'ListItem', position: 2, name: 'Contato', item: `${siteBase}/contato` }
+        ]
       })
     }
   ]
 })
 
-const { whatsappUrl, phoneDisplay, instagramHandle, address, neighborhood, city, state } = useContact()
-
 const config = {
   address: {
     street: address,
-    neighborhood,
-    city,
-    state
-  },
-  whatsappUrl,
-  phoneDisplay,
-  instagramHandle,
-  hours: {
-    weekdays: '8h às 18h'
+    neighborhood: neighborhood,
+    city: city,
+    state: state
   }
-}
-
-const contactInfo = [
-  {
-    title: 'Localização',
-    content: config.address.street,
-    detail: `${config.address.neighborhood} — ${config.address.city}, ${config.address.state}`,
-    icon: MapPin,
-    color: 'linear-gradient(135deg, var(--pastel-lavender) 0%, var(--primary-light) 100%)'
-  },
-  {
-    title: 'WhatsApp',
-    content: config.phoneDisplay,
-    link: `${config.whatsappUrl}?text=${encodeURIComponent('Olá! Gostaria de mais informações.')}`,
-    linkText: 'Chamar no WhatsApp',
-    btnClass: 'btn-whatsapp',
-    icon: MessageCircle,
-    color: 'linear-gradient(135deg, var(--pastel-mint) 0%, var(--accent-light) 100%)'
-  },
-  {
-    title: 'E-mail',
-    content: 'clinicaautitude@gmail.com',
-    detail: 'Respondemos em breve',
-    icon: Mail,
-    color: 'linear-gradient(135deg, var(--pastel-pink) 0%, var(--secondary-light) 100%)'
-  },
-  {
-    title: 'Horário',
-    content: 'Segunda a Sexta',
-    detail: config.hours.weekdays,
-    icon: Clock,
-    color: 'linear-gradient(135deg, var(--pastel-peach) 0%, var(--secondary-light) 100%)'
-  }
-]
-
-const form = ref({
-  name: '',
-  email: '',
-  phone: '',
-  message: ''
-})
-
-const handleSubmit = () => {
-  const message = `*CONTATO - AUTITUDE*\n\n` +
-    `*Nome:* ${form.value.name}\n` +
-    `*E-mail:* ${form.value.email}\n` +
-    `${form.value.phone ? `*Telefone:* ${form.value.phone}\n` : ''}` +
-    `\n*Mensagem:*\n${form.value.message}`
-
-  const whatsappUrl = `${config.whatsappUrl}?text=${encodeURIComponent(message)}`
-  window.open(whatsappUrl, '_blank')
-
-  form.value = { name: '', email: '', phone: '', message: '' }
 }
 </script>
 
 <template>
   <div class="contact">
     <section class="hero-section">
-      <div class="hero-bg-grid">
-        <ClientOnly>
-          <DotGrid
-            :dot-size="14"
-            :gap="28"
-            base-color="#6B4FA3"
-            active-color="#3D2D5E"
-            :proximity="120"
-            :speed-trigger="80"
-            :shock-radius="200"
-            :shock-strength="4"
-            :max-speed="5000"
-            :resistance="750"
-            :return-duration="1.5"
-          />
-        </ClientOnly>
-      </div>
+      <DotGrid />
       <div class="container">
-        <div class="section-header">
+        <div class="section-title">
           <span class="section-tag">Contato</span>
-          <h1>Fale com a Autitude</h1>
-          <p>Aqui uma atitude de cuidado muda o futuro.</p>
+          <h2>Como entrar em contato com a Autitude?</h2>
+          <p>Estamos aqui para cuidar de você. Entre em contato pelo canal que preferir.</p>
         </div>
 
-        <div class="contact-showcase">
-          <div class="contact-info-cards">
-            <div class="info-card" v-for="info in contactInfo" :key="info.title">
-              <div class="card-icon-wrapper" :style="{ background: info.color }">
-                <component :is="info.icon" :size="24" class="icon-primary card-icon-inner" />
-              </div>
-              <div class="card-text">
-                <h3>{{ info.title }}</h3>
-                <p class="primary-text">{{ info.content }}</p>
-                <p v-if="info.detail" class="secondary-text">{{ info.detail }}</p>
-                <a 
-                  v-if="info.link" 
-                  :href="info.link" 
-                  class="btn btn-sm"
-                  :class="info.btnClass"
-                  target="_blank"
-                >
-                  {{ info.linkText }}
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div class="contact-form-wrapper">
-            <div class="form-header">
-              <h3>Envie uma mensagem</h3>
-              <p>Respondemos em breve.</p>
-            </div>
-            <form class="contact-form" @submit.prevent="handleSubmit">
-              <div class="form-group">
-                <label class="form-label" for="name">Nome *</label>
-                <input
-                  type="text"
-                  id="name"
-                  class="form-input"
-                  v-model="form.name"
-                  required
-                  placeholder="Seu nome completo"
-                >
-              </div>
-
-              <div class="form-row">
-                <div class="form-group">
-                  <label class="form-label" for="email">E-mail *</label>
-                  <input
-                    type="email"
-                    id="email"
-                    class="form-input"
-                    v-model="form.email"
-                    required
-                    placeholder="seu@email.com"
-                  >
-                </div>
-
-                <div class="form-group">
-                  <label class="form-label" for="tel">Telefone</label>
-                  <input
-                    type="tel"
-                    id="tel"
-                    class="form-input"
-                    v-model="form.phone"
-                    placeholder="(12) 99999-9999"
-                  >
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label class="form-label" for="msg">Mensagem *</label>
-                <textarea
-                  id="msg"
-                  class="form-textarea"
-                  v-model="form.message"
-                  required
-                  placeholder="Como podemos ajudar?"
-                  rows="5"
-                ></textarea>
-              </div>
-
-              <button type="submit" class="btn btn-primary btn-lg btn-submit">
-                Enviar Mensagem
-              </button>
-            </form>
-          </div>
+        <div class="seo-answer">
+          <p class="seo-paragraph">
+            Para agendar uma avaliação na Autitude, entre em contato pelo
+            <strong><a :href="whatsappUrl" target="_blank" rel="noopener">WhatsApp</a></strong>
+            ou pelo formulário online. Nossa clínica fica na <strong>{{ address }} — {{ neighborhood }}, {{ city }}-{{ state }}</strong>.
+            Atendemos de <strong>segunda a sexta, das 8h às 18h</strong>. Confira nossas
+            <a href="/servicos">especialidades</a> ou acesse nosso <a href="/faq">FAQ</a> para mais informações.
+          </p>
         </div>
-      </div>
-    </section>
 
-    <section class="location-section section">
-      <div class="container">
-        <div class="location-card">
-          <div class="location-content">
-            <div class="location-icon">
-              <MapPin :size="32" class="icon-primary" />
+        <div class="contact-grid">
+          <a :href="whatsappUrl" class="contact-card whatsapp-card" target="_blank" rel="noopener">
+            <div class="card-icon">
+              <MessageCircle :size="28" />
             </div>
-            <div class="location-details">
-              <h3>Nosso endereço</h3>
-              <p class="address">Rua Major José dos Santos Moreira, 328</p>
-              <p class="city">Vila Rica — Pindamonhangaba, SP</p>
-              <div class="location-meta">
-                <span>Seg a Sex: 8h às 18h</span>
-              </div>
+            <h3>WhatsApp</h3>
+            <p class="contact-value">(12) 99196-8683</p>
+            <span class="contact-label">Resposta em até 24h</span>
+          </a>
+
+          <div class="contact-card">
+            <div class="card-icon">
+              <MapPin :size="28" />
             </div>
+            <h3>Localização</h3>
+            <p class="contact-value">{{ address }}</p>
+            <span class="contact-label">{{ neighborhood }} — {{ city }}, {{ state }}</span>
           </div>
-          <div class="location-map">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3674.523716039893!2d-45.46558491270433!3d-22.93093188518779!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ccf1835a97b90d%3A0x8c2cb7aa78bd7f92!2sAutitude%20Desenvolvimento%20e%20A%C3%A7%C3%A3o%20Humana!5e0!3m2!1sen!2sbr!4v1780604277186!5m2!1sen!2sbr"
-              width="100%"
-              height="100%"
-              style="border:0;"
-              allowfullscreen=""
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-              title="Localização da Autitude — Rua Major José dos Santos Moreira, 328, Vila Rica, Pindamonhangaba-SP"
-            ></iframe>
+
+          <div class="contact-card">
+            <div class="card-icon">
+              <Mail :size="28" />
+            </div>
+            <h3>E-mail</h3>
+            <p class="contact-value">contato@autitude.com.br</p>
+            <span class="contact-label">Respondemos em até 48h</span>
+          </div>
+
+          <div class="contact-card">
+            <div class="card-icon">
+              <Clock :size="28" />
+            </div>
+            <h3>Horário</h3>
+            <p class="contact-value">Seg a Sex: 8h às 18h</p>
+            <span class="contact-label">Atendimento com agendamento</span>
           </div>
         </div>
       </div>
@@ -253,41 +157,20 @@ const handleSubmit = () => {
 </template>
 
 <style scoped>
-.icon-primary {
-  color: var(--lilac-deep);
+.contact {
+  padding-top: 6rem;
 }
 
 .hero-section {
-  padding-top: var(--space-section-top);
-  padding-bottom: 4rem;
   position: relative;
-  overflow: hidden;
+  padding: 4rem 0;
 }
 
-.hero-bg-grid {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-}
-
-.hero-section .container {
+.section-title {
+  text-align: center;
+  margin-bottom: 3rem;
   position: relative;
   z-index: 1;
-}
-
-.section-header {
-  text-align: center;
-  max-width: 560px;
-  margin: 0 auto 3rem;
-}
-
-.section-header h1 {
-  margin-bottom: 0.75rem;
-}
-
-.section-header p {
-  font-size: 1.0625rem;
-  color: var(--text-secondary);
 }
 
 .section-tag {
@@ -302,208 +185,130 @@ const handleSubmit = () => {
   margin-bottom: 1rem;
 }
 
-.contact-showcase {
+.section-title h2 {
+  margin-bottom: 0.75rem;
+}
+
+.section-title p {
+  font-size: 1.0625rem;
+  color: var(--text-secondary);
+}
+
+.seo-answer {
+  max-width: 800px;
+  margin: 0 auto 3rem;
+  position: relative;
+  z-index: 1;
+}
+
+.seo-paragraph {
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  background: var(--lilac-soft);
+  border-left: 4px solid var(--primary);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  padding: 1.5rem 2rem;
+  text-align: left;
+}
+
+.seo-paragraph strong {
+  color: var(--text);
+}
+
+.seo-paragraph a {
+  color: var(--primary);
+  text-decoration: underline;
+  text-decoration-color: var(--lilac-light);
+  text-underline-offset: 2px;
+  transition: all 0.2s;
+}
+
+.seo-paragraph a:hover {
+  color: var(--lilac-deep);
+  text-decoration-color: var(--primary);
+}
+
+.contact-grid {
   display: grid;
-  grid-template-columns: 1fr 1.2fr;
-  gap: 2rem;
-  align-items: start;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 
-.contact-info-cards {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.info-card {
+.contact-card {
   background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: var(--radius-xl);
-  padding: 1.5rem;
-  display: flex;
-  gap: 1.25rem;
-  box-shadow: var(--shadow-xs);
-  transition: all 0.3s ease;
+  padding: 2rem;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.3s;
 }
 
-.info-card:hover {
+.contact-card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-md);
+  border-color: var(--primary);
 }
 
-.card-icon-wrapper {
+.whatsapp-card {
+  background: linear-gradient(135deg, color-mix(in srgb, #25D366 8%, var(--surface)), var(--surface));
+  border-color: color-mix(in srgb, #25D366 20%, var(--border));
+}
+
+.whatsapp-card:hover {
+  border-color: #25D366;
+}
+
+.card-icon {
   width: 56px;
   height: 56px;
-  min-width: 56px;
+  margin: 0 auto 1rem;
   border-radius: var(--radius-lg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.card-icon-inner {
-  opacity: 1;
-}
-
-.card-text h3 {
-  font-size: 1rem;
-  margin-bottom: 0.5rem;
-}
-
-.primary-text {
-  font-size: 0.9375rem;
-  color: var(--text);
-  margin-bottom: 0.25rem;
-}
-
-.secondary-text {
-  font-size: 0.8125rem;
-  color: var(--text-light);
-  margin-bottom: 0.75rem;
-}
-
-.info-card .btn {
-  margin-top: 0.5rem;
-}
-
-.contact-form-wrapper {
-  background: var(--surface);
-  padding: 2rem;
-  border-radius: var(--radius-xl);
-  box-shadow: var(--shadow-sm);
-}
-
-.form-header {
-  margin-bottom: 1.5rem;
-}
-
-.form-header h3 {
-  font-size: 1.25rem;
-  margin-bottom: 0.25rem;
-}
-
-.form-header p {
-  font-size: 0.875rem;
-  color: var(--text-light);
-}
-
-.form-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-}
-
-.form-label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: 600;
-  font-size: 0.875rem;
-}
-
-.btn-submit {
-  width: 100%;
-  margin-top: 0.5rem;
-}
-
-.location-section {
-  background: var(--surface-alt);
-}
-
-.location-card {
-  background: var(--background);
-  border-radius: var(--radius-2xl);
-  padding: 2rem;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  align-items: center;
-}
-
-.location-content {
-  display: flex;
-  gap: 1.5rem;
-}
-
-.location-icon {
-  width: 72px;
-  height: 72px;
-  min-width: 72px;
   background: var(--lilac-soft);
-  border-radius: var(--radius-xl);
   display: flex;
   align-items: center;
   justify-content: center;
+  color: var(--primary);
 }
 
-.location-details h3 {
-  font-size: 1.125rem;
-  margin-bottom: 0.75rem;
+.whatsapp-card .card-icon {
+  background: color-mix(in srgb, #25D366 15%, transparent);
+  color: #25D366;
 }
 
-.address {
+.contact-card h3 {
   font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.contact-value {
+  font-size: 0.9375rem;
   color: var(--text);
+  font-weight: 500;
   margin-bottom: 0.25rem;
 }
 
-.city {
-  font-size: 0.9375rem;
-  color: var(--text-secondary);
-  margin-bottom: 0.75rem;
-}
-
-.location-meta {
+.contact-label {
   font-size: 0.8125rem;
   color: var(--text-light);
-}
-
-.location-map {
-  height: 300px;
-  background: var(--surface);
-  border-radius: var(--radius-xl);
-  overflow: hidden;
-}
-
-.location-map iframe {
-  border-radius: var(--radius-xl);
-}
-
-@media (max-width: 900px) {
-  .contact-showcase {
-    grid-template-columns: 1fr;
-  }
-  
-  .contact-info-cards {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-  }
-  
-  .location-card {
-    grid-template-columns: 1fr;
-  }
-  
-  .location-map {
-    order: -1;
-  }
 }
 
 @media (max-width: 640px) {
-  .contact-info-cards {
+  .contact {
+    padding-top: 5rem;
+  }
+
+  .contact-grid {
     grid-template-columns: 1fr;
   }
-  
-  .form-row {
-    grid-template-columns: 1fr;
-    gap: 0;
-  }
-  
-  .location-content {
-    flex-direction: column;
-    text-align: center;
-  }
-  
-  .location-icon {
-    margin: 0 auto;
+
+  .contact-card {
+    padding: 1.5rem;
   }
 }
 </style>

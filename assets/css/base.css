@@ -11,20 +11,31 @@ html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  transition: background-color 0.4s ease, color 0.4s ease;
+  text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  hanging-punctuation: first last;
+  color-scheme: light;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
 }
 
 body {
-  font-family: 'DM Sans', 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  font-size: 16px;
+  font-family: 'DM Sans', 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  font-size: 1rem;
   line-height: 1.6;
   color: var(--text);
   background: var(--background);
   overflow-x: hidden;
-  transition: background-color 0.4s ease, color 0.4s ease;
+  min-height: 100vh;
+  min-height: 100dvh;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Theme transitions — only on theme-switchable elements, not all */
+/* Theme transitions */
 html,
 body,
 .navbar,
@@ -47,7 +58,6 @@ select {
   transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
 }
 
-
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Nunito', 'DM Sans', sans-serif;
@@ -55,45 +65,66 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.2;
   color: var(--text);
   letter-spacing: -0.01em;
+  text-wrap: balance;
 }
 
 h1 {
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  letter-spacing: -0.02em;
+  font-size: clamp(2rem, 5vw + 0.5rem, 3.75rem);
+  letter-spacing: -0.025em;
+  line-height: 1.1;
 }
 
 h2 {
-  font-size: clamp(1.75rem, 4vw, 2.5rem);
-  letter-spacing: -0.01em;
+  font-size: clamp(1.5rem, 3vw + 0.5rem, 2.5rem);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
 }
 
 h3 {
-  font-size: clamp(1.25rem, 3vw, 1.5rem);
+  font-size: clamp(1.2rem, 2vw + 0.25rem, 1.5rem);
 }
 
 h4, h5, h6 {
-  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-size: clamp(1rem, 1.5vw + 0.25rem, 1.25rem);
 }
 
 p {
   line-height: 1.7;
   color: var(--text-secondary);
+  text-wrap: pretty;
 }
 
 a {
   color: var(--lilac-deep);
   text-decoration: none;
   transition: color var(--transition-fast);
+  text-underline-offset: 0.15em;
 }
 
 a:hover {
   color: var(--lilac-dark);
 }
 
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+input, button, textarea, select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
 /* Focus states */
 *:focus-visible {
   outline: 2.5px solid var(--lilac);
   outline-offset: 2px;
+  border-radius: var(--radius-xs);
 }
 
 /* Selection */
@@ -104,17 +135,17 @@ a:hover {
 
 /* Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--background);
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
   background: var(--lilac-light);
-  border-radius: 4px;
+  border-radius: var(--radius-full);
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -123,10 +154,16 @@ a:hover {
 
 [data-theme="dark"] ::-webkit-scrollbar-track,
 [data-a11y-contrast="dark"] ::-webkit-scrollbar-track {
-  background: var(--surface);
+  background: transparent;
 }
 
 [data-theme="dark"] ::-webkit-scrollbar-thumb,
 [data-a11y-contrast="dark"] ::-webkit-scrollbar-thumb {
   background: var(--primary-light);
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--lilac-light) transparent;
 }

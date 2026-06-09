@@ -1,10 +1,21 @@
 <script setup>
 import { Award, Heart, Users, Star } from 'lucide-vue-next'
 
+const siteBase = 'https://autitude.com.br'
+
 useHead({
-  title: 'Equipe | Autitude - Desenvolvimento e Ação Humana',
+  title: 'Equipe — Profissionais Especializados em Neurodivergência | Autitude',
   meta: [
-    { name: 'description', content: 'Conheça a equipe da Autitude — profissionais dedicados ao cuidado de crianças, adolescentes e famílias, com foco no público neurodivergente.' }
+    { name: 'description', content: 'Conheça a equipe da Autitude em Pindamonhangaba-SP: neuropsicólogos, fonoaudiólogos, terapeutas ocupacionais e pedagogos especializados em neurodivergência.' },
+    { name: 'keywords', content: 'equipe autitude, profissionais neurodivergência, neuropsicólogo Pindamonhangaba, fonoaudiólogo, terapeuta ocupacional, Dra Juliana Mariani' },
+    { name: 'robots', content: 'index, follow' },
+    { property: 'og:title', content: 'Equipe — Profissionais Especializados | Autitude' },
+    { property: 'og:description', content: 'Conheça a equipe da Autitude — profissionais dedicados ao cuidado de crianças, adolescentes e famílias.' },
+    { property: 'og:type', content: 'website' },
+    { property: 'og:url', content: `${siteBase}/equipe` }
+  ],
+  link: [
+    { rel: 'canonical', href: `${siteBase}/equipe` }
   ],
   script: [
     {
@@ -12,9 +23,9 @@ useHead({
       children: JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'WebPage',
-        name: 'Equipe - Autitude',
+        name: 'Equipe — Autitude',
         description: 'Conheça a equipe da Autitude — profissionais dedicados ao cuidado de crianças, adolescentes e famílias.',
-        url: 'https://autitude.com.br/equipe',
+        url: `${siteBase}/equipe`,
         mainEntity: {
           '@type': 'MedicalBusiness',
           name: 'Autitude - Desenvolvimento e Ação Humana',
@@ -23,11 +34,26 @@ useHead({
               '@type': 'Person',
               name: 'Dra. Juliana Mariani',
               jobTitle: 'Terapeuta Ocupacional',
-              description: 'Especialista em Integração Sensorial com certificação internacional pela University of Southern California (USC, USA).',
-              identifier: 'CREFITO 20083-TO'
+              description: 'Especialista em Integração Sensorial com certificação internacional pela University of Southern California (USC, USA). Atua há mais de 20 anos em neurodesenvolvimento.',
+              identifier: 'CREFITO 20083-TO',
+              worksFor: {
+                '@type': 'MedicalBusiness',
+                name: 'Autitude - Desenvolvimento e Ação Humana'
+              }
             }
           ]
         }
+      })
+    },
+    {
+      type: 'application/ld+json',
+      children: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Início', item: siteBase },
+          { '@type': 'ListItem', position: 2, name: 'Equipe', item: `${siteBase}/equipe` }
+        ]
       })
     }
   ]
@@ -56,8 +82,18 @@ const culture = [
       <div class="container">
         <div class="section-header">
           <span class="section-tag">Nossa profissional</span>
-          <h1>Cuidado conduzido por mãos especializadas</h1>
+          <h1>Quem são os profissionais da Autitude?</h1>
           <p>Profissionais dedicados ao desenvolvimento integral de cada pessoa, ambiente e de sua família.</p>
+        </div>
+
+        <div class="seo-answer">
+          <p class="seo-paragraph">
+            A equipe da Autitude é liderada pela <strong>Dra. Juliana Mariani</strong>,
+            Terapeuta Ocupacional com <strong>certificação internacional em Integração Sensorial
+            pela University of Southern California (USC, USA)</strong>. Com mais de 20 anos de experiência,
+            ela lidera uma abordagem <a href="/servicos">transdisciplinar e integrada</a> no
+            <a href="/sobre">cuidado de crianças, adolescentes e famílias neurodivergentes</a> em Pindamonhangaba-SP.
+          </p>
         </div>
 
         <div class="team-showcase">
@@ -122,13 +158,13 @@ const culture = [
 
 .hero-section {
   padding-top: var(--space-section-top);
-  padding-bottom: 4rem;
+  padding-bottom: clamp(2.5rem, 6vw, 4rem);
 }
 
 .section-header {
   text-align: center;
   max-width: 560px;
-  margin: 0 auto 3rem;
+  margin: 0 auto clamp(2rem, 5vw, 3rem);
 }
 
 .section-header h1 {
@@ -138,6 +174,39 @@ const culture = [
 .section-header p {
   font-size: 1.0625rem;
   color: var(--text-secondary);
+}
+
+.seo-answer {
+  max-width: 800px;
+  margin: 0 auto clamp(2rem, 5vw, 3rem);
+}
+
+.seo-paragraph {
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  background: var(--lilac-soft);
+  border-left: 4px solid var(--primary);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  padding: 1.5rem 2rem;
+  text-align: left;
+}
+
+.seo-paragraph strong {
+  color: var(--text);
+}
+
+.seo-paragraph a {
+  color: var(--primary);
+  text-decoration: underline;
+  text-decoration-color: var(--lilac-light);
+  text-underline-offset: 2px;
+  transition: all 0.2s;
+}
+
+.seo-paragraph a:hover {
+  color: var(--lilac-deep);
+  text-decoration-color: var(--primary);
 }
 
 .section-tag {
@@ -160,10 +229,10 @@ const culture = [
 .team-main-card {
   display: grid;
   grid-template-columns: 1fr 1.5fr;
-  gap: 3rem;
+  gap: clamp(1.5rem, 4vw, 3rem);
   background: var(--surface);
   border-radius: var(--radius-2xl);
-  padding: 3rem;
+  padding: clamp(1.5rem, 4vw, 3rem);
   box-shadow: var(--shadow-md);
   max-width: 900px;
   width: 100%;
@@ -177,16 +246,16 @@ const culture = [
 }
 
 .visual-shape {
-  width: 180px;
-  height: 180px;
+  width: 160px;
+  height: 160px;
   background: linear-gradient(135deg, var(--lilac-soft) 0%, var(--lilac-light) 100%);
   border-radius: 50%;
 }
 
 .visual-accent {
   position: absolute;
-  width: 100px;
-  height: 100px;
+  width: 90px;
+  height: 90px;
   background: var(--gradient-primary);
   border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
   opacity: 0.3;
@@ -199,7 +268,7 @@ const culture = [
 }
 
 .member-details h2 {
-  font-size: 1.75rem;
+  font-size: clamp(1.4rem, 3vw, 1.75rem);
   margin-bottom: 0.5rem;
 }
 
@@ -248,18 +317,18 @@ const culture = [
 
 .values-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+  gap: clamp(0.75rem, 2vw, 1.5rem);
   max-width: 1000px;
   margin: 0 auto;
 }
 
 .value-card {
   background: var(--background);
-  padding: 2rem;
+  padding: clamp(1.25rem, 3vw, 2rem);
   border-radius: var(--radius-xl);
   text-align: center;
-  transition: all 0.3s ease;
+  transition: all 0.35s var(--ease-out-expo);
 }
 
 .value-card:hover {
@@ -268,8 +337,8 @@ const culture = [
 }
 
 .value-icon-wrapper {
-  width: 56px;
-  height: 56px;
+  width: 52px;
+  height: 52px;
   background: var(--lilac-soft);
   border-radius: var(--radius-lg);
   display: flex;
@@ -292,8 +361,6 @@ const culture = [
   color: var(--text-secondary);
 }
 
-/* CTA section styles are in CtaSection.vue component */
-
 @media (max-width: 900px) {
   .team-main-card {
     grid-template-columns: 1fr;
@@ -308,27 +375,21 @@ const culture = [
   .member-tags {
     justify-content: center;
   }
-  
-  .values-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
 }
 
 @media (max-width: 640px) {
   .team-main-card {
-    padding: 2rem;
+    padding: 1.5rem;
   }
-  
-  .values-grid {
-    grid-template-columns: 1fr;
+
+  .visual-shape {
+    width: 120px;
+    height: 120px;
   }
-  
-  .cta-actions {
-    flex-direction: column;
-  }
-  
-  .cta-actions .btn {
-    width: 100%;
+
+  .visual-accent {
+    width: 70px;
+    height: 70px;
   }
 }
 </style>

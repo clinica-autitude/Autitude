@@ -1,13 +1,4 @@
 <script setup>
-import { ref, computed } from 'vue'
-
-useHead({
-  title: 'FAQ | Autitude - Desenvolvimento e Ação Humana',
-  meta: [
-    { name: 'description', content: 'Perguntas frequentes sobre o atendimento da Autitude: neuropsicologia, neuropsicopedagogia, fonoaudiologia, terapia ocupacional e integração sensorial.' }
-  ]
-})
-
 const { whatsappUrl } = useContact()
 
 const activeCategory = ref('all')
@@ -124,6 +115,64 @@ const approach = [
 const toggleFaq = (index) => {
   openFaq.value = openFaq.value === index ? null : index
 }
+
+const siteBase = 'https://autitude.com.br'
+
+useHead({
+  title: 'FAQ — Perguntas Frequentes | Autitude - Desenvolvimento e Ação Humana',
+  meta: [
+    { name: 'description', content: 'Perguntas frequentes sobre a Autitude: neuropsicologia, neuropsicopedagogia, fonoaudiologia, terapia ocupacional, integração sensorial, agendamento, valores e localização em Pindamonhangaba-SP.' },
+    { name: 'keywords', content: 'FAQ, perguntas frequentes, autitude, neurodivergência, neuropsicologia, fonoaudiologia, terapia ocupacional, integração sensorial, agendamento, valores, Pindamonhangaba' },
+    { name: 'robots', content: 'index, follow' },
+    { property: 'og:title', content: 'FAQ — Perguntas Frequentes | Autitude' },
+    { property: 'og:description', content: 'Tire suas dúvidas sobre o atendimento da Autitude: especialidades, agendamento, valores e localização.' },
+    { property: 'og:type', content: 'website' },
+    { property: 'og:url', content: `${siteBase}/faq` }
+  ],
+  link: [
+    { rel: 'canonical', href: `${siteBase}/faq` }
+  ],
+  script: [
+    {
+      type: 'application/ld+json',
+      children: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        name: 'FAQ — Perguntas Frequentes | Autitude',
+        description: 'Perguntas frequentes sobre o atendimento da Autitude.',
+        url: `${siteBase}/faq`,
+        mainEntity: faqs.map(faq => ({
+          '@type': 'Question',
+          name: faq.question,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: faq.answer
+          }
+        })),
+        publisher: {
+          '@type': 'Organization',
+          name: 'Autitude - Desenvolvimento e Ação Humana',
+          url: siteBase,
+          logo: {
+            '@type': 'ImageObject',
+            url: `${siteBase}/full-logo.png`
+          }
+        }
+      })
+    },
+    {
+      type: 'application/ld+json',
+      children: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Início', item: siteBase },
+          { '@type': 'ListItem', position: 2, name: 'FAQ', item: `${siteBase}/faq` }
+        ]
+      })
+    }
+  ]
+})
 </script>
 
 <template>
@@ -132,8 +181,17 @@ const toggleFaq = (index) => {
       <div class="container">
         <div class="section-title">
           <span class="section-tag">Perguntas frequentes</span>
-          <h2>O que você precisa saber</h2>
+          <h2>O que você precisa saber sobre a Autitude?</h2>
           <p>Tire suas dúvidas sobre o cuidado que oferecemos na Autitude.</p>
+        </div>
+
+        <div class="seo-answer">
+          <p class="seo-paragraph">
+            A Autitude é uma clínica especializada em neurodivergência em Pindamonhangaba-SP,
+            oferecendo <strong>neuropsicologia, fonoaudiologia, terapia ocupacional e terapia ABA</strong>
+            para crianças, adolescentes, adultos e famílias. Atendemos com equipe multidisciplinar,
+            abordagem transdisciplinar e base em evidências científicas. Agende pelo WhatsApp ou formulário online.
+          </p>
         </div>
 
         <div class="faq-categories">
@@ -151,7 +209,7 @@ const toggleFaq = (index) => {
         <div class="faq-list">
           <div
             v-for="(faq, index) in filteredFaqs"
-            :key="index"
+            :key="`${activeCategory}-${index}`"
             class="faq-item"
             :class="{ open: openFaq === index }"
           >
@@ -170,84 +228,24 @@ const toggleFaq = (index) => {
                 <span></span>
               </div>
             </div>
-            <div class="faq-answer" v-show="openFaq === index">
-              <p>{{ faq.answer }}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="sensory-section section">
-      <div class="container">
-        <div class="section-title">
-          <span class="section-tag">Especialidade</span>
-          <h2>O que é Integração Sensorial?</h2>
-        </div>
-        
-        <div class="sensory-showcase">
-          <div class="sensory-text">
-            <p>
-              A <strong>Integração Sensorial</strong> é uma abordagem terapêutica desenvolvida pela Dra. Jean Ayres, 
-              fundamentada na ideia de que o processamento das informações sensoriais é essencial para o desenvolvimento 
-              e o comportamento humano.
-            </p>
-            <p>
-              Quando o cérebro processa as informações sensoriais de forma desorganizada, a criança ou o adolescente pode apresentar 
-              dificuldades em atividades cotidianas, comportamento desregulado e desafios na aprendizagem.
-            </p>
-            
-            <h3>Sistema sensorial</h3>
-            <p>
-              O sistema sensorial inclui 8 sentidos que trabalham juntos: tato, olfato, paladar, visão, audição, 
-              propriocepção (consciência do corpo), vestibular (equilíbrio e movimento) e interocepção.
-            </p>
-          </div>
-          
-          <div class="sensory-signs">
-            <h3>Sinais de regulação sensorial</h3>
-            <ul>
-              <li><strong>Hiporreativo:</strong> busca estímulos intensos, parece não perceber dor ou temperatura</li>
-              <li><strong>Hipersensível:</strong> reage excessivamente a ruídos, texturas e luzes</li>
-              <li><strong>Desorganizado:</strong> dificuldade de concentração e nas transições</li>
-              <li><strong>Motor:</strong> coordenação ruim e quedas frequentes</li>
-              <li><strong>Alimentar:</strong> seletividade alimentar extrema</li>
-              <li><strong>Sonoro:</strong> tapar os ouvidos ou buscar barulhos de forma intensa</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="sensory-approach">
-          <h3>Como conduzimos o cuidado</h3>
-          <div class="approach-grid">
-            <div class="approach-step" v-for="step in approach" :key="step.title">
-              <div class="step-icon">
-                <div class="step-icon-inner"></div>
+            <Transition name="accordion">
+              <div class="faq-answer" v-show="openFaq === index">
+                <p>{{ faq.answer }}</p>
               </div>
-              <h4>{{ step.title }}</h4>
-              <p>{{ step.description }}</p>
-            </div>
+            </Transition>
           </div>
         </div>
       </div>
     </section>
-
-    <CtaSection
-      title="Ainda tem dúvidas?"
-      tagline="💜 Cuidamos de pessoas. Potencializamos possibilidades."
-      primary-btn="/agendar"
-      primary-btn-text="Agendar Avaliação"
-      :whatsapp-btn="true"
-      :show-contact="false"
-      :colors="['#6B4FA3', '#8FC176', '#3D2D5E', '#5C9F45']"
-      :color-bends-props="{ rotation: 40, speed: 0.18, scale: 1.25, frequency: 1.5, warpStrength: 1.1, mouseInfluence: 0.5, parallax: 0.4, noise: 0.06 }"
-    />
   </div>
 </template>
 
 <style scoped>
+.faq {
+  padding-top: 6rem;
+}
+
 .hero-section {
-  padding-top: var(--space-section-top);
   padding-bottom: 4rem;
 }
 
@@ -256,74 +254,97 @@ const toggleFaq = (index) => {
   margin-bottom: 2.5rem;
 }
 
-.section-title h2 {
-  margin-bottom: 0.5rem;
-}
-
-.section-title p {
-  opacity: 0.8;
-}
-
 .section-tag {
   display: inline-block;
+  padding: 0.375rem 1rem;
   background: var(--lilac-soft);
-  color: var(--lilac-deep);
   border: 1px solid var(--lilac-light);
-  padding: 0.3rem 1rem;
   border-radius: var(--radius-full);
   font-size: 0.8125rem;
   font-weight: 600;
+  color: var(--lilac-deep);
   margin-bottom: 1rem;
+}
+
+.section-title h2 {
+  margin-bottom: 0.75rem;
+}
+
+.section-title p {
+  font-size: 1.0625rem;
+  color: var(--text-secondary);
+}
+
+.seo-answer {
+  max-width: 800px;
+  margin: 0 auto 2.5rem;
+}
+
+.seo-paragraph {
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  background: var(--lilac-soft);
+  border-left: 4px solid var(--primary);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  padding: 1.5rem 2rem;
+  text-align: left;
+}
+
+.seo-paragraph strong {
+  color: var(--text);
 }
 
 .faq-categories {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.75rem;
+  gap: 0.5rem;
   justify-content: center;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
 }
 
 .category-btn {
-  padding: 0.625rem 1.25rem;
-  background: var(--surface);
-  border: 2px solid var(--lilac-soft);
+  padding: 0.5rem 1.25rem;
+  border: 1px solid var(--border);
   border-radius: var(--radius-full);
+  background: var(--background);
+  color: var(--text-secondary);
+  font-weight: 500;
   font-size: 0.9375rem;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s;
 }
 
 .category-btn:hover {
-  border-color: var(--lilac-light);
+  border-color: var(--primary);
+  color: var(--primary);
 }
 
 .category-btn.active {
-  background: var(--lilac);
+  background: var(--primary);
   color: var(--white);
-  border-color: var(--lilac);
+  border-color: var(--primary);
 }
 
 .faq-list {
   max-width: 800px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
 }
 
 .faq-item {
   background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  margin-bottom: 0.75rem;
   overflow: hidden;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.faq-item:hover {
-  box-shadow: var(--shadow-sm);
+  transition: all 0.3s;
 }
 
 .faq-item.open {
-  box-shadow: var(--shadow-md);
+  border-color: var(--primary);
+  box-shadow: var(--shadow-sm);
 }
 
 .faq-question {
@@ -331,20 +352,15 @@ const toggleFaq = (index) => {
   align-items: center;
   gap: 1rem;
   padding: 1.25rem 1.5rem;
+  cursor: pointer;
+  user-select: none;
 }
 
 .faq-number {
-  width: 32px;
-  height: 32px;
-  background: var(--lilac-light);
-  color: var(--lilac-deep);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   font-size: 0.8125rem;
-  font-weight: 600;
-  flex-shrink: 0;
+  font-weight: 700;
+  color: var(--primary);
+  min-width: 1.75rem;
 }
 
 .faq-question h3 {
@@ -356,43 +372,39 @@ const toggleFaq = (index) => {
 .faq-toggle {
   width: 24px;
   height: 24px;
-  position: relative;
-  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.faq-toggle::before,
-.faq-toggle::after {
-  content: '';
-  position: absolute;
-  background: var(--text-light);
-  border-radius: 2px;
-  transition: transform 0.3s ease;
-}
-
-.faq-toggle::before {
+.faq-toggle span {
+  display: block;
   width: 12px;
   height: 2px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  background: var(--text-secondary);
+  position: relative;
+  transition: all 0.3s;
 }
 
-.faq-toggle::after {
+.faq-toggle span::after {
+  content: '';
+  position: absolute;
   width: 2px;
   height: 12px;
+  background: var(--text-secondary);
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  transition: all 0.3s;
 }
 
-.faq-item.open .faq-toggle::after {
+.faq-item.open .faq-toggle span::after {
   transform: translate(-50%, -50%) rotate(90deg);
   opacity: 0;
 }
 
 .faq-answer {
-  padding: 0 1.5rem 1.25rem;
-  padding-left: calc(1.5rem + 32px + 1rem);
+  padding: 0 1.5rem 1.25rem 1.5rem;
 }
 
 .faq-answer p {
@@ -401,141 +413,46 @@ const toggleFaq = (index) => {
   color: var(--text-secondary);
 }
 
-.sensory-section {
-  background: var(--surface-alt);
+.accordion-enter-active,
+.accordion-leave-active {
+  transition: all 0.3s;
+  overflow: hidden;
 }
 
-.sensory-showcase {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  margin-bottom: 3rem;
-  max-width: 900px;
-  margin-left: auto;
-  margin-right: auto;
+.accordion-enter-from,
+.accordion-leave-to {
+  opacity: 0;
+  max-height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
-.sensory-text p {
-  margin-bottom: 1rem;
-  line-height: 1.7;
-  color: var(--text-secondary);
-}
-
-.sensory-text h3 {
-  margin: 1.5rem 0 1rem;
-}
-
-.sensory-signs {
-  background: var(--background);
-  padding: 1.5rem;
-  border-radius: var(--radius-xl);
-}
-
-.sensory-signs h3 {
-  margin-bottom: 1rem;
-}
-
-.sensory-signs ul {
-  list-style: none;
-}
-
-.sensory-signs li {
-  padding: 0.5rem 0;
-  border-bottom: 1px solid var(--border);
-  font-size: 0.875rem;
-  line-height: 1.5;
-}
-
-.sensory-signs li:last-child {
-  border-bottom: none;
-}
-
-.sensory-signs li strong {
-  color: var(--lilac-deep);
-}
-
-.sensory-approach {
-  text-align: center;
-}
-
-.sensory-approach h3 {
-  margin-bottom: 2rem;
-}
-
-.approach-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-.approach-step {
-  background: var(--background);
-  padding: 1.5rem;
-  border-radius: var(--radius-lg);
-  text-align: center;
-  transition: all 0.3s ease;
-}
-
-.approach-step:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-md);
-}
-
-.step-icon {
-  width: 48px;
-  height: 48px;
-  background: var(--lilac-soft);
-  border-radius: var(--radius-lg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 1rem;
-}
-
-.step-icon-inner {
-  width: 20px;
-  height: 20px;
-  background: var(--lilac);
-  border-radius: 6px;
-  opacity: 0.5;
-}
-
-.approach-step h4 {
-  margin-bottom: 0.5rem;
-  font-size: 1rem;
-}
-
-.approach-step p {
-  font-size: 0.8125rem;
-  color: var(--text-secondary);
-}
-
-@media (max-width: 768px) {
-  .sensory-showcase {
-    grid-template-columns: 1fr;
-  }
-  
-  .approach-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+.accordion-enter-to,
+.accordion-leave-from {
+  opacity: 1;
+  max-height: 300px;
 }
 
 @media (max-width: 640px) {
+  .faq {
+    padding-top: 5rem;
+  }
+
+  .faq-question {
+    padding: 1rem 1.25rem;
+  }
+
+  .faq-question h3 {
+    font-size: 0.9375rem;
+  }
+
   .faq-categories {
-    justify-content: flex-start;
-    overflow-x: auto;
-    flex-wrap: nowrap;
-    padding-bottom: 0.5rem;
+    gap: 0.375rem;
   }
-  
+
   .category-btn {
-    flex-shrink: 0;
-  }
-  
-  .approach-grid {
-    grid-template-columns: 1fr;
+    padding: 0.4rem 1rem;
+    font-size: 0.875rem;
   }
 }
 </style>

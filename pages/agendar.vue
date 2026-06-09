@@ -1,15 +1,55 @@
 <script setup>
-import { ref, computed, onMounted, onBeforeUnmount, watch } from 'vue'
 import DotGrid from '~/components/DotGrid.vue'
 
+const siteBase = 'https://autitude.com.br'
+const { whatsappUrl, phone: phoneNumber } = useContact()
+
 useHead({
-  title: 'Agendar | Autitude - Desenvolvimento e Ação Humana',
+  title: 'Agendar Avaliação — Neurodivergência e Desenvolvimento | Autitude',
   meta: [
-    { name: 'description', content: 'Agende uma avaliação na Autitude. Cuidamos de pessoas e potencializamos possibilidades. Retornamos em até 24 horas.' }
+    { name: 'description', content: 'Agende uma avaliação na Autitude em Pindamonhangaba-SP. Neuropsicologia, fonoaudiologia, terapia ocupacional e mais. Retornamos em até 24 horas pelo WhatsApp.' },
+    { name: 'keywords', content: 'agendar avaliação, autitude agendamento, neuropsicologia Pindamonhangaba, fonoaudiologia avaliação, terapia ocupacional agendamento, neurodivergência avaliação' },
+    { name: 'robots', content: 'index, follow' },
+    { property: 'og:title', content: 'Agendar Avaliação | Autitude' },
+    { property: 'og:description', content: 'Agende uma avaliação na Autitude. Retornamos em até 24 horas.' },
+    { property: 'og:type', content: 'website' },
+    { property: 'og:url', content: `${siteBase}/agendar` }
+  ],
+  link: [
+    { rel: 'canonical', href: `${siteBase}/agendar` }
+  ],
+  script: [
+    {
+      type: 'application/ld+json',
+      children: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'WebPage',
+        name: 'Agendar Avaliação — Autitude',
+        description: 'Agende uma avaliação na Autitude. Retornamos em até 24 horas.',
+        url: `${siteBase}/agendar`,
+        mainEntity: {
+          '@type': 'MedicalBusiness',
+          name: 'Autitude - Desenvolvimento e Ação Humana',
+          url: siteBase,
+          telephone: '+5512991968683',
+          priceRange: '$$'
+        }
+      })
+    },
+    {
+      type: 'application/ld+json',
+      children: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Início', item: siteBase },
+          { '@type': 'ListItem', position: 2, name: 'Agendar', item: `${siteBase}/agendar` }
+        ]
+      })
+    }
   ]
 })
 
-const { whatsappUrl, phone: phoneNumber } = useContact()
 const pediatricLimit = 18
 
 const cities = [
@@ -246,20 +286,22 @@ const handleSubmit = async () => {
                       placeholder="Digite sua cidade"
                       autocomplete="off"
                     >
-                    <ul v-if="cityOpen && filteredCities.length" class="autocomplete-list" role="listbox">
-                      <li
-                        v-for="(city, i) in filteredCities"
-                        :key="city"
-                        class="autocomplete-item"
-                        :class="{ active: i === cityHighlight }"
-                        role="option"
-                        :aria-selected="i === cityHighlight"
-                        @mousedown.prevent="selectCity(city)"
-                        @mouseenter="cityHighlight = i"
-                      >
-                        {{ city }}
-                      </li>
-                    </ul>
+                    <Transition name="dropdown">
+                      <ul v-if="cityOpen && filteredCities.length" class="autocomplete-list" role="listbox">
+                        <li
+                          v-for="(city, i) in filteredCities"
+                          :key="city"
+                          class="autocomplete-item"
+                          :class="{ active: i === cityHighlight }"
+                          role="option"
+                          :aria-selected="i === cityHighlight"
+                          @mousedown.prevent="selectCity(city)"
+                          @mouseenter="cityHighlight = i"
+                        >
+                          {{ city }}
+                        </li>
+                      </ul>
+                    </Transition>
                   </div>
                 </div>
               </div>
@@ -320,8 +362,8 @@ const handleSubmit = async () => {
               </label>
             </div>
 
-            <button type="submit" class="btn btn-primary btn-lg btn-submit" :disabled="isSubmitting">
-              {{ isSubmitting ? 'Enviando...' : 'Enviar Solicitação' }}
+            <button type="submit" class="btn btn-primary btn-lg btn-submit">
+              Enviar Solicitação
             </button>
           </form>
 
@@ -345,7 +387,7 @@ const handleSubmit = async () => {
                 <h3>Prefere WhatsApp?</h3>
               </div>
               <p>Fale conosco diretamente para dúvidas rápidas.</p>
-              <a :href="whatsappLink" class="btn btn-whatsapp" target="_blank">
+              <a :href="whatsappLink" class="btn btn-whatsapp btn-submit" target="_blank">
                 Chamar no WhatsApp
               </a>
             </div>
@@ -370,7 +412,7 @@ const handleSubmit = async () => {
 <style scoped>
 .hero-section {
   padding-top: var(--space-section-top);
-  padding-bottom: 4rem;
+  padding-bottom: clamp(2.5rem, 6vw, 4rem);
   position: relative;
   overflow: hidden;
 }
@@ -389,7 +431,7 @@ const handleSubmit = async () => {
 .section-header {
   text-align: center;
   max-width: 560px;
-  margin: 0 auto 3rem;
+  margin: 0 auto clamp(2rem, 5vw, 3rem);
 }
 
 .section-header h1 {
@@ -416,13 +458,13 @@ const handleSubmit = async () => {
 .schedule-showcase {
   display: grid;
   grid-template-columns: 1.4fr 1fr;
-  gap: 2rem;
+  gap: clamp(1rem, 3vw, 2rem);
   align-items: start;
 }
 
 .schedule-form {
   background: var(--surface);
-  padding: 2rem;
+  padding: clamp(1.25rem, 3vw, 2rem);
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-sm);
 }
@@ -444,15 +486,15 @@ const handleSubmit = async () => {
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  margin-bottom: 1.1rem;
+  margin-bottom: 1rem;
   color: var(--lilac-deep);
 }
 
 .form-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-  margin-bottom: 1rem;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
 }
 
 .form-grid:last-child {
@@ -461,7 +503,7 @@ const handleSubmit = async () => {
 
 .form-label {
   display: block;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.375rem;
   font-weight: 600;
   font-size: 0.875rem;
 }
@@ -475,43 +517,28 @@ const handleSubmit = async () => {
   align-items: center;
   background: var(--background);
   border: 2px solid var(--border);
-  border-radius: 16px;
+  border-radius: var(--radius-lg);
   padding: 4px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: var(--shadow-xs);
+  transition: all 0.3s var(--ease-smooth);
 }
 
 .age-selector:focus-within {
   border-color: var(--lilac);
-  box-shadow: 0 0 0 4px rgba(216, 192, 236, 0.25), var(--shadow-md);
+  box-shadow: 0 0 0 3px rgba(107, 79, 163, 0.12);
 }
 
 .age-btn {
-  width: 52px;
-  height: 52px;
-  border-radius: 12px;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
   border: none;
   background: var(--surface);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
-  position: relative;
-  overflow: hidden;
-}
-
-.age-btn::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.8) 100%);
-  opacity: 0;
-  transition: opacity 0.2s;
-}
-
-.age-btn:hover:not(:disabled)::before {
-  opacity: 1;
+  transition: all 0.25s var(--ease-bounce);
+  -webkit-tap-highlight-color: transparent;
 }
 
 .age-btn:active:not(:disabled) {
@@ -521,12 +548,11 @@ const handleSubmit = async () => {
 .age-btn:disabled {
   opacity: 0.3;
   cursor: not-allowed;
-  background: var(--background);
 }
 
 .age-btn-minus {
   background: linear-gradient(145deg, var(--pink-light) 0%, var(--pink-soft) 100%);
-  box-shadow: 0 2px 6px rgba(92, 159, 69, 0.35);
+  box-shadow: 0 2px 6px rgba(92, 159, 69, 0.25);
 }
 
 .age-btn-minus svg {
@@ -534,13 +560,13 @@ const handleSubmit = async () => {
 }
 
 .age-btn-minus:hover:not(:disabled) {
-  box-shadow: 0 4px 12px rgba(92, 159, 69, 0.55);
-  transform: scale(1.08);
+  box-shadow: 0 4px 12px rgba(92, 159, 69, 0.4);
+  transform: scale(1.05);
 }
 
 .age-btn-plus {
   background: linear-gradient(145deg, var(--lilac-soft) 0%, var(--lilac-light) 100%);
-  box-shadow: 0 2px 6px rgba(107, 79, 163, 0.35);
+  box-shadow: 0 2px 6px rgba(107, 79, 163, 0.25);
 }
 
 .age-btn-plus svg {
@@ -549,8 +575,8 @@ const handleSubmit = async () => {
 
 .age-btn-plus:hover:not(:disabled) {
   background: linear-gradient(145deg, var(--lilac) 0%, var(--lilac-dark) 100%);
-  box-shadow: 0 4px 12px rgba(107, 79, 163, 0.55);
-  transform: scale(1.08);
+  box-shadow: 0 4px 12px rgba(107, 79, 163, 0.4);
+  transform: scale(1.05);
 }
 
 .age-btn-plus:hover:not(:disabled) svg {
@@ -562,12 +588,12 @@ const handleSubmit = async () => {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 1.5rem;
-  min-width: 100px;
+  padding: 0 1.25rem;
+  min-width: 80px;
 }
 
 .age-value {
-  font-size: 2.75rem;
+  font-size: 2.5rem;
   font-weight: 800;
   background: var(--gradient-primary);
   -webkit-background-clip: text;
@@ -592,16 +618,16 @@ const handleSubmit = async () => {
   box-shadow: var(--shadow-md);
   list-style: none;
   margin: 0;
-  padding: 0.4rem;
-  max-height: 240px;
+  padding: 0.375rem;
+  max-height: 220px;
   overflow-y: auto;
   z-index: 20;
 }
 
 .autocomplete-item {
-  padding: 0.65rem 0.85rem;
+  padding: 0.6rem 0.75rem;
   border-radius: var(--radius-md);
-  font-size: 0.95rem;
+  font-size: 0.9375rem;
   color: var(--text);
   cursor: pointer;
   transition: background 0.15s, color 0.15s;
@@ -613,14 +639,25 @@ const handleSubmit = async () => {
   color: var(--lilac-deep);
 }
 
+.dropdown-enter-active,
+.dropdown-leave-active {
+  transition: all 0.2s var(--ease-out-expo);
+}
+
+.dropdown-enter-from,
+.dropdown-leave-to {
+  opacity: 0;
+  transform: translateY(-4px);
+}
+
 .form-privacy {
-  margin: 1.5rem 0;
+  margin: 1.25rem 0;
 }
 
 .checkbox-label {
   display: flex;
   align-items: flex-start;
-  gap: 0.625rem;
+  gap: 0.5rem;
   font-size: 0.875rem;
   cursor: pointer;
 }
@@ -630,6 +667,7 @@ const handleSubmit = async () => {
   height: 18px;
   accent-color: var(--primary);
   margin-top: 2px;
+  flex-shrink: 0;
 }
 
 .checkbox-label a {
@@ -644,12 +682,12 @@ const handleSubmit = async () => {
 .schedule-info {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.75rem;
 }
 
 .info-block {
   background: var(--surface);
-  padding: 1.5rem;
+  padding: clamp(1rem, 2.5vw, 1.5rem);
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-xs);
 }
@@ -658,14 +696,15 @@ const handleSubmit = async () => {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
 }
 
 .block-icon {
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
   background: var(--lilac-soft);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-md);
 }
 
 .block-icon.whatsapp {
@@ -677,7 +716,7 @@ const handleSubmit = async () => {
 }
 
 .block-header h3 {
-  font-size: 1rem;
+  font-size: 0.9375rem;
   margin: 0;
 }
 
@@ -685,38 +724,35 @@ const handleSubmit = async () => {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.625rem;
 }
 
 .steps-list li {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  font-size: 0.9375rem;
+  gap: 0.625rem;
+  font-size: 0.875rem;
   color: var(--text-secondary);
 }
 
 .step-num {
-  width: 24px;
-  height: 24px;
+  width: 22px;
+  height: 22px;
+  min-width: 22px;
   background: var(--lilac);
   color: white;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.75rem;
-  font-weight: 600;
+  font-size: 0.6875rem;
+  font-weight: 700;
 }
 
 .contact-quick p {
   font-size: 0.875rem;
   color: var(--text-secondary);
-  margin-bottom: 1rem;
-}
-
-.contact-quick .btn {
-  width: 100%;
+  margin-bottom: 0.75rem;
 }
 
 .hours-block {
@@ -730,7 +766,7 @@ const handleSubmit = async () => {
 }
 
 .hours {
-  font-size: 1.5rem;
+  font-size: 1.375rem;
   font-weight: 700;
   color: var(--text);
 }
@@ -743,11 +779,17 @@ const handleSubmit = async () => {
   .form-grid {
     grid-template-columns: 1fr;
   }
+
+  .schedule-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+    gap: 0.75rem;
+  }
 }
 
-@media (max-width: 500px) {
-  .schedule-form {
-    padding: 1.5rem;
+@media (max-width: 640px) {
+  .schedule-info {
+    grid-template-columns: 1fr;
   }
 }
 </style>

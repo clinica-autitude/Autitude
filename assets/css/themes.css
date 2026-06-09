@@ -1480,11 +1480,11 @@
 
 /* Visual card accents - high contrast dark */
 [data-a11y-contrast="dark"] .visual-shape {
-  background: #00ff00;
+  background: #69F0AE;
 }
 
 [data-a11y-contrast="dark"] .card-accent {
-  background: #00ff00;
+  background: #69F0AE;
 }
 
 /* Nav bar button (agendar) override for accessibility themes */

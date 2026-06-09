@@ -2,10 +2,21 @@
 import { Brain, BookOpen, Mic, Activity, Puzzle } from 'lucide-vue-next'
 import Squares from '~/components/Squares.vue'
 
+const siteBase = 'https://autitude.com.br'
+
 useHead({
-  title: 'Especialidades | Autitude - Desenvolvimento e Ação Humana',
+  title: 'Especialidades — Neuropsicologia, Fonoaudiologia, Terapia Ocupacional | Autitude',
   meta: [
-    { name: 'description', content: 'Neuropsicologia, Neuropsicopedagogia, Fonoaudiologia, Terapia Ocupacional e Terapia ABA Humanizada em Pindamonhangaba-SP. Atendimento especializado para crianças, adolescentes e famílias, com foco no público neurodivergente.' }
+    { name: 'description', content: 'Neuropsicologia, Neuropsicopedagogia, Fonoaudiologia, Terapia Ocupacional e Terapia ABA Humanizada em Pindamonhangaba-SP. Atendimento especializado para crianças, adolescentes, adultos e famílias neurodivergentes.' },
+    { name: 'keywords', content: 'especialidades autitude, neuropsicologia, neuropsicopedagogia, fonoaudiologia, terapia ocupacional, terapia ABA, integração sensorial, Pindamonhangaba, neurodivergência' },
+    { name: 'robots', content: 'index, follow' },
+    { property: 'og:title', content: 'Especialidades — Neuropsicologia, Fonoaudiologia, Terapia Ocupacional | Autitude' },
+    { property: 'og:description', content: 'Neuropsicologia, Neuropsicopedagogia, Fonoaudiologia, Terapia Ocupacional e Terapia ABA Humanizada em Pindamonhangaba-SP.' },
+    { property: 'og:type', content: 'website' },
+    { property: 'og:url', content: `${siteBase}/servicos` }
+  ],
+  link: [
+    { rel: 'canonical', href: `${siteBase}/servicos` }
   ],
   script: [
     {
@@ -13,20 +24,51 @@ useHead({
       children: JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'WebPage',
-        name: 'Especialidades - Autitude',
-        description: 'Neuropsicologia, Neuropsicopedagogia, Fonoaudiologia, Terapia Ocupacional e Terapia ABA Humanizada em Pindamonhangaba-SP.',
-        url: 'https://autitude.com.br/servicos',
+        name: 'Especialidades — Autitude',
+        description: 'Neuropsicologia, Neuropsicopedagogia, Fonoaudiologia, Terapia Ocupacional e Terapia ABA Humanizada.',
+        url: `${siteBase}/servicos`,
         mainEntity: {
           '@type': 'MedicalBusiness',
           name: 'Autitude - Desenvolvimento e Ação Humana',
           provides: [
-            'Neuropsicologia',
-            'Neuropsicopedagogia',
-            'Fonoaudiologia',
-            'Terapia Ocupacional',
-            'Terapia ABA Humanizada'
+            {
+              '@type': 'MedicalTherapy',
+              name: 'Neuropsicologia',
+              description: 'Avaliação neuropsicológica completa, rastreamento de neurodivergências, desenvolvimento cognitivo e comportamental.'
+            },
+            {
+              '@type': 'MedicalTherapy',
+              name: 'Neuropsicopedagogia',
+              description: 'Avaliação de dificuldades de aprendizagem, plano pedagógico individualizado.'
+            },
+            {
+              '@type': 'MedicalTherapy',
+              name: 'Fonoaudiologia',
+              description: 'Desenvolvimento da linguagem, comunicação social, fala e motricidade orofacial.'
+            },
+            {
+              '@type': 'MedicalTherapy',
+              name: 'Terapia Ocupacional',
+              description: 'Avaliação e intervenção em Integração Sensorial, autonomia pessoal e social. Certificação internacional USC.'
+            },
+            {
+              '@type': 'MedicalTherapy',
+              name: 'Terapia ABA Humanizada',
+              description: 'Análise do comportamento aplicada, desenvolvimento de habilidades adaptativas.'
+            }
           ]
         }
+      })
+    },
+    {
+      type: 'application/ld+json',
+      children: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Início', item: siteBase },
+          { '@type': 'ListItem', position: 2, name: 'Serviços', item: `${siteBase}/servicos` }
+        ]
       })
     }
   ]
@@ -122,8 +164,20 @@ const processSteps = [
       <div class="container">
         <div class="section-header">
           <span class="section-tag">Nossas especialidades</span>
-          <h1>Cuidado integrado e transdisciplinar</h1>
+          <h1>Quais especialidades a Autitude oferece?</h1>
           <p>Uma equipe integrada trabalhando em conjunto pelo desenvolvimento de cada criança, adolescente, adulto e família.</p>
+        </div>
+
+        <div class="seo-answer">
+          <p class="seo-paragraph">
+            A Autitude oferece <strong>5 especialidades integradas</strong> para atendimento neurodivergente:
+            <strong>Neuropsicologia</strong> (avaliação e diagnóstico),
+            <strong>Neuropsicopedagogia</strong> (dificuldades de aprendizagem),
+            <strong>Fonoaudiologia</strong> (linguagem e comunicação),
+            <strong>Terapia Ocupacional</strong> (integração sensorial e autonomia) e
+            <strong>Terapia ABA Humanizada</strong> (comportamento e habilidades adaptativas).
+            Todas as especialidades trabalham de forma integrada em Pindamonhangaba-SP.
+          </p>
         </div>
 
         <div class="services-showcase">
@@ -155,7 +209,7 @@ const processSteps = [
         <div class="section-header">
           <div class="header-content">
             <span class="section-tag">Como funciona</span>
-            <h2>Nosso Processo</h2>
+            <h2>Como funciona o atendimento?</h2>
           </div>
         </div>
         
@@ -193,14 +247,30 @@ const processSteps = [
   color: var(--lilac-deep);
 }
 
+.seo-answer {
+  margin: 0 auto clamp(2rem, 5vw, 3rem);
+  max-width: 800px;
+}
+
+.seo-paragraph {
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  background: var(--lilac-soft);
+  border-left: 4px solid var(--primary);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  padding: 1.5rem 2rem;
+}
+
+.seo-paragraph strong {
+  color: var(--text);
+}
+
 .hero-section {
   padding-top: var(--space-section-top);
-  padding-bottom: 4rem;
+  padding-bottom: clamp(2.5rem, 6vw, 4rem);
   position: relative;
   overflow: hidden;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
 }
 
 .hero-bg-grid {
@@ -209,6 +279,7 @@ const processSteps = [
   z-index: 0;
   width: 100vw;
   height: 100vh;
+  height: 100dvh;
 }
 
 .hero-section .container {
@@ -221,7 +292,7 @@ const processSteps = [
 .section-header {
   text-align: center;
   max-width: 600px;
-  margin: 0 auto 3rem;
+  margin: 0 auto clamp(2rem, 5vw, 3rem);
 }
 
 .section-header h1 {
@@ -247,8 +318,8 @@ const processSteps = [
 
 .services-showcase {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 480px), 1fr));
+  gap: clamp(0.75rem, 2vw, 1.5rem);
   width: 100%;
 }
 
@@ -257,7 +328,7 @@ const processSteps = [
   border-radius: var(--radius-xl);
   overflow: hidden;
   box-shadow: var(--shadow-xs);
-  transition: all 0.3s ease;
+  transition: all 0.35s var(--ease-out-expo);
   position: relative;
 }
 
@@ -268,10 +339,10 @@ const processSteps = [
 
 .card-number {
   position: absolute;
-  top: 1.5rem;
-  right: 1.5rem;
-  width: 40px;
-  height: 40px;
+  top: 1.25rem;
+  right: 1.25rem;
+  width: 36px;
+  height: 36px;
   background: var(--lilac-light);
   border-radius: 50%;
   display: flex;
@@ -279,19 +350,19 @@ const processSteps = [
   justify-content: center;
   font-weight: 700;
   color: var(--lilac-deep);
-  font-size: 1rem;
+  font-size: 0.875rem;
 }
 
 .card-content {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  padding: 2rem;
+  gap: 1.25rem;
+  padding: clamp(1.25rem, 3vw, 2rem);
 }
 
 .service-icon-large {
-  width: 64px;
-  height: 64px;
+  width: 56px;
+  height: 56px;
   border-radius: var(--radius-lg);
   display: flex;
   align-items: center;
@@ -303,7 +374,7 @@ const processSteps = [
 }
 
 .service-text h3 {
-  font-size: 1.25rem;
+  font-size: clamp(1.1rem, 2vw, 1.25rem);
   margin-bottom: 0.75rem;
 }
 
@@ -350,8 +421,8 @@ const processSteps = [
 
 .process-timeline {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
+  gap: clamp(1rem, 3vw, 1.5rem);
   max-width: 900px;
   margin: 0 auto;
 }
@@ -361,12 +432,12 @@ const processSteps = [
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 1rem;
+  gap: 0.75rem;
 }
 
 .step-marker {
-  width: 56px;
-  height: 56px;
+  width: 52px;
+  height: 52px;
   background: var(--gradient-primary);
   color: white;
   border-radius: 50%;
@@ -374,7 +445,8 @@ const processSteps = [
   align-items: center;
   justify-content: center;
   font-weight: 700;
-  font-size: 1.25rem;
+  font-size: 1.125rem;
+  flex-shrink: 0;
 }
 
 .step-content h4 {
@@ -383,22 +455,13 @@ const processSteps = [
 }
 
 .step-content p {
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   color: var(--text-secondary);
-}
-
-@media (max-width: 900px) {
-  .services-showcase {
-    grid-template-columns: 1fr;
-  }
-  
-  .process-timeline {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  line-height: 1.5;
 }
 
 @media (max-width: 640px) {
-  .process-timeline {
+  .services-showcase {
     grid-template-columns: 1fr;
   }
 }

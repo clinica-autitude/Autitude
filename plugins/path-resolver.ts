@@ -12,14 +12,7 @@ export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.hook('app:created', () => {
     const siteBase = getSiteBase()
     useHead({
-      meta: [
-        { property: 'og:url', content: siteBase || 'https://autitude.com.br' },
-        { property: 'og:image', content: `${siteBase || 'https://autitude.com.br'}/full-logo.png` },
-        { name: 'twitter:image', content: `${siteBase || 'https://autitude.com.br'}/full-logo.png` }
-      ],
       link: [
-        { rel: 'icon', type: 'image/svg+xml', href: '/favicon-png.svg' },
-        { rel: 'apple-touch-icon', href: '/small-logo.png' },
         { rel: 'canonical', href: siteBase || 'https://autitude.com.br' }
       ]
     })
@@ -29,11 +22,16 @@ export default defineNuxtPlugin((nuxtApp) => {
     try {
       const stored = localStorage.getItem('nuxt-color-mode')
       if (stored) {
-        const mode = JSON.parse(stored).value
+        const parsed = JSON.parse(stored)
+        const mode = parsed?.value
         if (mode && mode !== 'light') {
           document.documentElement.setAttribute('data-theme', mode)
+        } else {
+          document.documentElement.removeAttribute('data-theme')
         }
       }
-    } catch (e) {}
+    } catch (e) {
+      if (import.meta.dev) console.warn('[path-resolver] Failed to parse color mode:', e)
+    }
   }
 })

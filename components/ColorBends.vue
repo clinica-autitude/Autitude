@@ -203,7 +203,6 @@ const setup = () => {
         alpha: true
       });
     } catch {
-      console.warn('[ColorBends] WebGL unavailable, skipping effect.');
       webglFailed.value = true;
       return;
     }
@@ -285,7 +284,6 @@ const setup = () => {
       }
     };
   } catch (err) {
-    console.warn('[ColorBends] WebGL initialization failed, using fallback.', err);
     webglFailed.value = true;
     if (geometry) geometry.dispose();
     if (material) material.dispose();

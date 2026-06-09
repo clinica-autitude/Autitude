@@ -91,7 +91,7 @@ const drawGrid = () => {
     Math.sqrt(w ** 2 + h ** 2) / 2
   );
   gradient.addColorStop(0, 'rgba(0, 0, 0, 0)');
-  gradient.addColorStop(1, '#0b0b0b');
+  gradient.addColorStop(1, '#1a1035');
 
   ctx.fillStyle = gradient;
   ctx.fillRect(0, 0, w, h);

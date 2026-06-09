@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import { computed } from 'vue'
 import ColorBends from '~/components/ColorBends.vue'
 
-const { whatsappUrl, phoneDisplay, fullAddress } = useContact()
+const { whatsappUrl, phoneDisplay, fullAddress, instagramUrl, telUrl } = useContact()
 
 interface CtaSectionProps {
   title?: string
@@ -74,7 +73,7 @@ const bendsProps = computed(() => ({ ...defaultBendsProps, ...props.colorBendsPr
             <a :href="telUrl" class="cta-contact-item">
               📱 {{ phoneDisplay }}
             </a>
-            <a href="https://www.instagram.com/clinicaautitude" target="_blank" rel="noopener noreferrer" class="cta-contact-item">
+            <a :href="instagramUrl" target="_blank" rel="noopener noreferrer" class="cta-contact-item">
               📷 @clinicaautitude
             </a>
             <a :href="whatsappUrl" target="_blank" rel="noopener noreferrer" class="cta-contact-item">
@@ -124,7 +123,7 @@ const bendsProps = computed(() => ({ ...defaultBendsProps, ...props.colorBendsPr
 .cta-content {
   position: relative;
   z-index: 1;
-  padding: 4rem;
+  padding: clamp(2rem, 5vw, 4rem);
   text-align: center;
   color: var(--cta-text, var(--lilac-deepest));
 }
@@ -148,7 +147,7 @@ const bendsProps = computed(() => ({ ...defaultBendsProps, ...props.colorBendsPr
 
 .cta-content p {
   font-size: 1.0625rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   max-width: 500px;
   margin-left: auto;
   margin-right: auto;
@@ -159,8 +158,8 @@ const bendsProps = computed(() => ({ ...defaultBendsProps, ...props.colorBendsPr
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 0.75rem 1.5rem;
-  margin: 1.5rem 0 0.5rem;
+  gap: 0.5rem 1.25rem;
+  margin: 1rem 0 0.5rem;
   font-size: 0.9375rem;
   color: var(--cta-text-secondary, var(--lilac-dark));
 }
@@ -179,32 +178,35 @@ const bendsProps = computed(() => ({ ...defaultBendsProps, ...props.colorBendsPr
 .cta-actions {
   display: flex;
   justify-content: center;
-  gap: 1rem;
+  gap: 0.75rem;
   flex-wrap: wrap;
 }
 
 .cta-address {
   margin-top: 1.25rem;
-  font-size: 0.9375rem;
+  font-size: 0.875rem;
   color: var(--cta-text-secondary, var(--lilac-dark));
 }
 
 @media (max-width: 640px) {
   .cta-content {
-    padding: 2rem 1.25rem;
+    padding: clamp(1.25rem, 4vw, 2rem);
   }
 
   .cta-actions {
     flex-direction: column;
+    align-items: center;
   }
 
   .cta-actions .btn {
     width: 100%;
+    max-width: 280px;
   }
 
   .cta-contact {
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.375rem;
+    align-items: center;
   }
 }
 </style>

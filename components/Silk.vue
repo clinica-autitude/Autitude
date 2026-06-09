@@ -133,7 +133,6 @@ const initSilk = () => {
       antialias: true
     });
   } catch {
-    console.warn('[Silk] WebGL unavailable, skipping background effect.');
     webglFailed.value = true;
     return;
   }
@@ -238,7 +237,6 @@ const initSilk = () => {
 
     resize();
   } catch (err) {
-    console.warn('[Silk] WebGL initialization failed, using fallback.', err);
     webglFailed.value = true;
     cleanup();
   }

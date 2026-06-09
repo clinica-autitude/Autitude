@@ -1,0 +1,55 @@
+{
+  "name": "Autitude - Desenvolvimento e Ação Humana",
+  "short_name": "Autitude",
+  "description": "Espaço especializado em crianças, adolescentes, adultos e famílias, com foco no público neurodivergente. Neuropsicologia, Fonoaudiologia, Terapia Ocupacional e Terapia ABA em Pindamonhangaba-SP.",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#EFE7F8",
+  "theme_color": "#6B4FA3",
+  "lang": "pt-BR",
+  "dir": "ltr",
+  "scope": "/",
+  "categories": ["health", "medical", "education"],
+  "icons": [
+    {
+      "src": "/favicon-png.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/small-logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/full-logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "Agendar Consulta",
+      "short_name": "Agendar",
+      "url": "/agendar",
+      "description": "Agende uma avaliação com nossa equipe"
+    },
+    {
+      "name": "Serviços",
+      "short_name": "Serviços",
+      "url": "/servicos",
+      "description": "Conheça nossas especialidades"
+    },
+    {
+      "name": "Contato",
+      "short_name": "Contato",
+      "url": "/contato",
+      "description": "Entre em contato conosco"
+    }
+  ]
+}

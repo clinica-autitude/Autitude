@@ -6,12 +6,23 @@ import {
 } from 'lucide-vue-next'
 import ColorBends from '~/components/ColorBends.vue'
 
-const { whatsappUrl } = useContact()
+const { whatsappUrl, address, neighborhood, city, state } = useContact()
+
+const siteBase = 'https://autitude.com.br'
 
 useHead({
-  title: 'Quem somos | Autitude - Desenvolvimento e Ação Humana',
+  title: 'Quem Somos — Nossa História e Valores | Autitude - Desenvolvimento e Ação Humana',
   meta: [
-    { name: 'description', content: 'A Autitude é um espaço especializado no cuidado integrado de crianças, adolescentes e famílias, com foco no público neurodivergente. Cuidado com sensibilidade e responsabilidade para um futuro de potencial pleno.' }
+    { name: 'description', content: 'A Autitude é um espaço especializado no cuidado integrado de crianças, adolescentes, adultos e famílias, com foco no público neurodivergente. Há mais de 20 anos com acolhimento, ciência e humanidade em Pindamonhangaba-SP.' },
+    { name: 'keywords', content: 'quem somos autitude, história autitude, valores autitude, clínica neurodivergência Pindamonhangaba, equipe especializada, acolhimento ciência humanidade' },
+    { name: 'robots', content: 'index, follow' },
+    { property: 'og:title', content: 'Quem Somos — Nossa História e Valores | Autitude' },
+    { property: 'og:description', content: 'A Autitude é um espaço especializado em crianças, adolescentes e famílias, com foco no público neurodivergente.' },
+    { property: 'og:type', content: 'website' },
+    { property: 'og:url', content: `${siteBase}/sobre` }
+  ],
+  link: [
+    { rel: 'canonical', href: `${siteBase}/sobre` }
   ],
   script: [
     {
@@ -19,14 +30,38 @@ useHead({
       children: JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'WebPage',
-        name: 'Quem somos - Autitude',
+        name: 'Quem Somos — Autitude',
         description: 'A Autitude é um espaço especializado em crianças, adolescentes e famílias, com foco no público neurodivergente.',
-        url: 'https://autitude.com.br/sobre',
+        url: `${siteBase}/sobre`,
         mainEntity: {
           '@type': 'MedicalBusiness',
           name: 'Autitude - Desenvolvimento e Ação Humana',
-          description: 'Espaço especializado em crianças, adolescentes e famílias, com foco no público neurodivergente.'
+          description: 'Espaço especializado em crianças, adolescentes, adultos e famílias, com foco no público neurodivergente. Há mais de 20 anos de atuação.',
+          url: siteBase,
+          address: {
+            '@type': 'PostalAddress',
+            streetAddress: 'Rua Major José dos Santos Moreira, 328',
+            addressLocality: 'Pindamonhangaba',
+            addressRegion: 'SP',
+            addressCountry: 'BR'
+          },
+          foundingDate: '2004',
+          numberOfEmployees: {
+            '@type': 'QuantitativeValue',
+            value: '5-10'
+          }
         }
+      })
+    },
+    {
+      type: 'application/ld+json',
+      children: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Início', item: siteBase },
+          { '@type': 'ListItem', position: 2, name: 'Sobre', item: `${siteBase}/sobre` }
+        ]
       })
     }
   ]
@@ -140,6 +175,17 @@ const differentiators = [
       </a>
     </section>
 
+    <section class="seo-answer">
+      <div class="container">
+        <p class="seo-paragraph">
+          A <strong>Autitude - Desenvolvimento e Ação Humana</strong> é uma clínica especializada em neurodivergência
+          localizada em Pindamonhangaba-SP, com mais de <strong>20 anos de atuação</strong>. Nossa equipe multidisciplinar
+          atende crianças, adolescentes, adultos e famílias, oferecendo <a href="/servicos">neuropsicologia, fonoaudiologia,
+          terapia ocupacional e terapia ABA</a> de forma integrada e baseada em evidências científicas.
+        </p>
+      </div>
+    </section>
+
     <!-- BENTO: tudo no centro -->
     <section id="abordagem" class="bento-section">
       <div class="container">
@@ -148,7 +194,7 @@ const differentiators = [
             <span class="tag-dot" /> Nossa abordagem
           </span>
           <h2 class="section-title">
-            Nosso foco é o <span class="grad-text">pleno desenvolvimento</span>
+            Como a Autitude trabalha o <span class="grad-text">pleno desenvolvimento</span>?
           </h2>
         </header>
 
@@ -214,8 +260,8 @@ const differentiators = [
               </div>
             </div>
             <p class="card__text">
-              Rua Major José dos Santos Moreira, 328<br />
-              Vila Rica — Pindamonhangaba / SP
+              {{ address }}<br />
+              {{ neighborhood }} — {{ city }} / {{ state }}
             </p>
             <div class="location__meta">
               <span class="chip chip--sm">
@@ -288,6 +334,42 @@ const differentiators = [
   --border-card: 1px solid color-mix(in srgb, var(--lilac) 10%, transparent);
   --shadow-card: 0 1px 2px color-mix(in srgb, var(--text) 4%, transparent);
   --shadow-hover: 0 24px 56px -24px color-mix(in srgb, var(--lilac) 50%, transparent);
+}
+
+/* ==========================
+   SEO Answer Section
+   ========================== */
+.seo-answer {
+  padding: clamp(2rem, 5vw, 4rem) 0;
+}
+
+.seo-paragraph {
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  background: var(--lilac-soft);
+  border-left: 4px solid var(--primary);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  padding: 1.5rem 2rem;
+}
+
+.seo-paragraph strong {
+  color: var(--text);
+}
+
+.seo-paragraph a {
+  color: var(--primary);
+  text-decoration: underline;
+  text-decoration-color: var(--lilac-light);
+  text-underline-offset: 2px;
+  transition: all 0.2s;
+}
+
+.seo-paragraph a:hover {
+  color: var(--lilac-deep);
+  text-decoration-color: var(--primary);
 }
 
 /* ==========================

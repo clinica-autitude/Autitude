@@ -190,7 +190,7 @@ const setup = () => {
       try { container.removeChild(canvas) } catch { /* ignore */ }
     }
   } catch (e) {
-    console.warn('Grainient: WebGL init failed:', e)
+    if (import.meta.dev) console.warn('Grainient: WebGL init failed:', e)
   }
 }
 

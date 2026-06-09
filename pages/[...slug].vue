@@ -1,8 +1,34 @@
 <script setup>
+const siteBase = 'https://autitude.com.br'
+
 useHead({
-  title: 'Página não encontrada | Autitude - Desenvolvimento e Ação Humana',
+  title: 'Página não encontrada (404) | Autitude - Desenvolvimento e Ação Humana',
   meta: [
-    { name: 'description', content: 'Página não encontrada. Volte para a página inicial da Autitude.' }
+    { name: 'description', content: 'Página não encontrada. Volte para a página inicial da Autitude ou entre em contato conosco.' },
+    { name: 'robots', content: 'noindex, nofollow' },
+    { property: 'og:title', content: 'Página não encontrada | Autitude' },
+    { property: 'og:description', content: 'Página não encontrada. Volte para a página inicial.' },
+    { property: 'og:type', content: 'website' }
+  ],
+  link: [
+    { rel: 'canonical', href: `${siteBase}/404` }
+  ],
+  script: [
+    {
+      type: 'application/ld+json',
+      children: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'WebPage',
+        name: 'Página não encontrada (404)',
+        description: 'A página que você procura não existe ou foi movida.',
+        url: `${siteBase}/404`,
+        isPartOf: {
+          '@type': 'WebSite',
+          name: 'Autitude - Desenvolvimento e Ação Humana',
+          url: siteBase
+        }
+      })
+    }
   ]
 })
 </script>
