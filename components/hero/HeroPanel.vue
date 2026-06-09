@@ -8,12 +8,16 @@ defineProps({
   accent: {
     type: Boolean,
     default: false
+  },
+  compact: {
+    type: Boolean,
+    default: false
   }
 })
 </script>
 
 <template>
-  <div :class="['hero-panel', `hero-panel--${side}`, { 'hero-panel--accent': accent }]">
+  <div :class="['hero-panel', `hero-panel--${side}`, { 'hero-panel--accent': accent }, { 'hero-panel--compact': compact }]">
     <slot />
   </div>
 </template>
@@ -30,6 +34,11 @@ defineProps({
     0 8px 32px rgba(42, 29, 69, 0.08),
     inset 0 1px 0 color-mix(in srgb, var(--white) 50%, transparent);
   animation: fadeInUp 0.7s var(--ease-smooth) both;
+}
+
+.hero-panel--compact {
+  padding: 1rem 1.5rem;
+  border-radius: var(--radius-xl);
 }
 
 .hero-panel--left {
@@ -62,12 +71,20 @@ defineProps({
     padding: 1.5rem 1.75rem;
     justify-self: center;
   }
+  
+  .hero-panel--compact {
+    padding: 1.25rem 1.5rem;
+  }
 }
 
 @media (max-width: 640px) {
   .hero-panel {
     padding: 1.25rem 1.25rem;
     border-radius: var(--radius-xl);
+  }
+  
+  .hero-panel--compact {
+    padding: 1rem 1.25rem;
   }
 }
 

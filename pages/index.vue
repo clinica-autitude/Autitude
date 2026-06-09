@@ -263,16 +263,16 @@ const services = [
           <div class="hero-right">
             <HeroPanel side="right" accent class="hero-right-desc">
               <HeroSubtitle>
-                Espaço especializado no atendimento de crianças, adolescentes, adultos e suas famílias.
+                Espaço especializado no atendimento de crianças, adolescentes, adultos e suas famílias.<br />
                 Com foco no público neurodivergente.
               </HeroSubtitle>
             </HeroPanel>
 
-            <HeroPanel side="right" class="hero-right-tagline">
+            <HeroPanel side="right" compact class="hero-right-tagline">
               <HeroTagline>💜 Cuidamos de pessoas. Potencializamos possibilidades.</HeroTagline>
             </HeroPanel>
 
-            <HeroPanel side="right" class="hero-right-actions">
+            <HeroPanel side="right" compact class="hero-right-actions">
               <HeroActions
                 :actions="[
                   { to: '/agendar', label: 'Agendar Consulta', variant: 'btn-primary' },
@@ -573,22 +573,27 @@ const services = [
 .hero-right {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: clamp(1.5rem, 4vw, 3rem);
+  justify-content: flex-start;
+  gap: clamp(0.75rem, 2vw, 1.25rem);
   padding-left: clamp(1rem, 4vw, 3rem);
+  padding-top: 2rem;
 }
 
 .hero-right-desc {
-  align-self: flex-start;
+  align-self: flex-end;
+  max-width: 85%;
 }
 
 .hero-right-tagline {
-  align-self: center;
-  text-align: center;
+  align-self: flex-end;
+  text-align: right;
+  max-width: 70%;
+  margin-right: 0;
 }
 
 .hero-right-actions {
   align-self: flex-end;
+  max-width: 60%;
 }
 
 .about-preview {
