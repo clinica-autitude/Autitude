@@ -29,3 +29,10 @@ Thumbs.db
 # Temp
 *.tmp
 *.bak
+
+# Dev scripts
+scripts/
+
+# Removed files
+diag.mjs
+shot.mjs

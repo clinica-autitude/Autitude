@@ -8,7 +8,7 @@ echo "=========================================="
 echo "🚀 Building production bundle..."
 echo "=========================================="
 
-npm run build || exit 1
+pnpm run generate || exit 1
 
 echo "✅ Build complete!"
 echo ""
@@ -69,7 +69,7 @@ echo "=========================================="
 echo "📦 Committing changes..."
 echo "=========================================="
 
-git add .
+git add pages/ components/ composables/ assets/ public/ nuxt.config.ts app.vue package.json plugins/
 
 echo "Commit message: Update $(date '+%Y-%m-%d %H:%M:%S')"
 git commit -m "Update: $(date '+%Y-%m-%d %H:%M:%S')"
@@ -79,7 +79,7 @@ echo "=========================================="
 echo "🚀 Pushing to remote..."
 echo "=========================================="
 
-git push -u origin master
+git push -u origin main
 
 echo ""
 echo "=========================================="

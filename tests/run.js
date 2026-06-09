@@ -257,11 +257,6 @@ await test('Services has cards', async () => {
     if (members.length < 1) throw new Error('Too few team members');
   });
 
-  await test('Team has members', async () => {
-    await page.goto(BASE_URL + '/equipe', { waitUntil: 'networkidle0' });
-    await expectCount('.team-main-card', 1);
-  });
-
   await test('Contact has form', async () => {
     await page.goto(BASE_URL + '/contato', { waitUntil: 'networkidle0' });
     await expectVisible('form');

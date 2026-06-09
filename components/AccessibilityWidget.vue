@@ -73,6 +73,8 @@ const initVlibras = () => {
   const script = document.createElement('script')
   script.id = 'vlibras-script'
   script.src = 'https://vlibras.gov.br/app/vlibras-plugin.js'
+  script.integrity = 'sha256-YAZXu50tmkB+owAK8Pzwkofgjbbj8IAK05nTchNJyVI='
+  script.crossOrigin = 'anonymous'
   script.async = true
   script.onload = () => {
     if (window.VLibras) {

@@ -1,0 +1,181 @@
+# llms-full.txt — Complete Site Content for AI Systems
+# Autitude - Desenvolvimento e Ação Humana
+# https://autitude.com.br
+
+This file contains the complete, structured content of the Autitude website for AI systems (ChatGPT, Claude, Perplexity, etc.) to index and reference.
+
+---
+
+## ABOUT THE CLINIC
+
+Autitude Desenvolvimento e Ação Humana is a multidisciplinary clinic specialized in neurodivergent care, located in Pindamonhangaba-SP, Brazil. Founded over 20 years ago, the clinic serves children, adolescents, adults and their families with a humanized, integrative and evidence-based approach.
+
+**Mission:** Cuidamos de pessoas. Potencializamos possibilidades. (We care for people. We empower possibilities.)
+
+**Brand Pillars:**
+1. Acolher (Welcome) — Receive each family with listening, respect and presence.
+2. Compreender (Understand) — Investigate each person's unique profile based on evidence.
+3. Desenvolver (Develop) — Empower abilities with integral and individualized care.
+4. Incluir (Include) — Build paths of participation and belonging in every context.
+
+---
+
+## SERVICES
+
+### 1. Neuropsicologia (Neuropsychology)
+- Complete neuropsychological assessment
+- Neurodivergence screening (ASD, ADHD, learning disabilities)
+- Cognitive, emotional and behavioral development
+- Family guidance and support
+- Individualized neuropsychological profiling
+
+### 2. Neuropsicopedagogia (Neuropsychopedagogy)
+- Learning difficulty assessment
+- Pedagogical challenge identification
+- Individualized pedagogical planning and application
+- School development support
+- Personalized teaching strategies
+
+### 3. Fonoaudiologia (Speech Therapy)
+- Oral and written language development
+- Social communication and pragmatic skills
+- Speech and orofacial motricity
+- Specialized care for neurodivergence
+- Intervention in speech and language disorders
+
+### 4. Terapia Ocupacional (Occupational Therapy)
+- Assessment and intervention in Sensory Integration
+- International certification in Sensory Integration (University of Southern California — USC, USA)
+- Autonomy development
+- Socialization and social skills
+- Coping with daily life challenges
+- Functional independence promotion
+
+### 5. Terapia ABA Humanizada (Humanized ABA Therapy)
+- Applied Behavior Analysis
+- Adaptive skill development
+- Reduction of challenging behaviors
+- Evidence-based teaching
+- Humanized and respectful approach
+
+---
+
+## KEY TREATMENTS & FOCUS AREAS
+
+- **Autism Spectrum (TEA/ASD):** Integrated care with ABA, sensory integration, speech therapy, occupational therapy. Both children and adults.
+- **ADHD (TDAH):** Neuropsychological assessment, regulation strategies, learning support.
+- **Learning Disabilities:** Dyslexia, dysgraphia, dyscalculia, auditory processing disorder. Assessment and intervention.
+- **Sensory Integration:** International USC certification. Assessment and treatment of sensory processing differences.
+- **Speech & Language:** Language development, social communication, orofacial motricity.
+- **Emotional Regulation:** Strategies for children and adolescents with meltdown management, self-regulation support.
+- **Social Skills:** Training in social interaction for neurodivergent individuals.
+- **Family Therapy:** Support for families of neurodivergent individuals.
+- **Inclusive Education:** School adaptation, curricular modifications, teacher guidance.
+- **Adult Neurodivergence:** Late autism diagnosis, adult occupational therapy, cognitive rehabilitation.
+
+---
+
+## FAQ — COMMON QUESTIONS
+
+**Q: What is Autitude?**
+A: Autitude is a specialized clinic for children, adolescents, adults and their families, focused on neurodivergent individuals. Our approach is transdisciplinary, humanized and evidence-based.
+
+**Q: What age do you serve?**
+A: We serve children, adolescents, adults and their families. Care can begin in the first years of life.
+
+**Q: How long is each session?**
+A: Sessions last 45-60 minutes depending on the type of intervention. Initial assessments are longer.
+
+**Q: Does the family participate?**
+A: Yes. Family is essential to care. We provide guidance and work in partnership.
+
+**Q: What is neurodivergence?**
+A: Neurodivergence recognizes variations in brain functioning, such as ASD, ADHD, dyslexia, among others. Each neurodivergent person has a unique profile.
+
+**Q: How do I know if my child needs evaluation?**
+A: If you notice challenges in communication, learning, behavior, emotional regulation or social interaction, a specialized assessment can help.
+
+**Q: What is Sensory Integration?**
+A: A therapeutic approach developed by Dr. Jean Ayres that works on how the brain processes sensory information, helping children organize better in relation to daily stimuli.
+
+**Q: How does scheduling work?**
+A: Contact us via WhatsApp or fill out the form. We respond within 24 hours.
+
+**Q: Do you accept insurance?**
+A: We work with some insurance plans and private options. Contact us to check your plan.
+
+**Q: Where are you located?**
+A: Rua Major José dos Santos Moreira, 328 — Vila Rica, Pindamonhangaba-SP. In-person by appointment, plus online guidance for other regions.
+
+---
+
+## BLOG TAGS (28 SEO Pages)
+
+### Tier 1 — Primary Services
+- /blog/terapia-ocupacional-infantil — Infant occupational therapy, sensory integration, autonomy
+- /blog/integracao-sensorial — Sensory integration, USC certification, sensory processing
+- /blog/neuropsicologia-infantil — Child neuropsychology, cognitive assessment, neurodivergence screening
+- /blog/neuropsicopedagogia — Neuropsychopedagogy, learning difficulties, pedagogical plans
+- /blog/fonoaudiologia-infantil — Child speech therapy, language development, communication
+- /blog/autismo-terapia — Autism therapy, ASD, integrated care, ABA
+- /blog/tdah-tratamento — ADHD treatment, attention, regulation, learning
+
+### Tier 2 — Related Therapies
+- /blog/terapia-aba — ABA therapy, applied behavior analysis, adaptive skills
+- /blog/dificuldades-aprendizagem — Learning difficulties, dyslexia, dysgraphia, dyscalculia
+- /blog/desenvolvimento-infantil — Child development, milestones, early stimulation
+- /blog/neurodivergencia — Neurodivergence overview, neurodiversity, types
+- /blog/deficiencia-aprendizagem — Learning disabilities, reading/writing/calculation disorders
+
+### Tier 3 — Clinical & Diagnostic
+- /blog/laudo-neuropsicologico — Neuropsychological report, diagnostic documentation
+- /blog/avaliacao-desenvolvimento — Developmental assessment, early evaluation
+- /blog/autismo-adulto — Adult autism, late diagnosis, self-knowledge
+- /blog/ansiedade-infantil — Childhood anxiety, TAG, school phobia
+
+### Tier 4 — Daily Life & Support
+- /blog/regulacao-emocional — Emotional regulation, meltdowns, self-regulation
+- /blog/habilidades-sociais — Social skills, social interaction training
+- /blog/alimentacao-neurodivergencia — Selective eating, sensory food sensitivity
+- /blog/exercicios-fisicos — Physical exercise, adapted sports, motor skills
+- /blog/sono-neurodivergencia — Sleep disorders, insomnia in ASD/ADHD
+- /blog/brincadeira-desenvolvimento — Play and development, play therapy
+
+### Tier 5 — Family & Social
+- /blog/terapia-familiar — Family therapy, neurodivergent family support
+- /blog/acolhimento-familia — Family support, support groups, caregiver well-being
+- /blog/inclusao-social — Social inclusion, participation, citizenship
+- /blog/comunicacao-alternativa — AAC, alternative communication, communication boards
+- /blog/escola-inclusiva — Inclusive schools, curricular adaptation
+- /blog/terapia-ocupacional-adulto — Adult occupational therapy, cognitive rehabilitation
+
+---
+
+## CONTACT
+
+- **Phone/WhatsApp:** +55 12 99196-8683
+- **Email:** contato@autitude.com.br
+- **Instagram:** @clinicaautitude
+- **Address:** Rua Major José dos Santos Moreira, 328 — Vila Rica, Pindamonhangaba-SP, Brazil
+- **Coordinates:** -22.9309, -45.4607
+- **Hours:** Monday to Friday, 8h-18h
+- **Website:** https://autitude.com.br
+- **Online guidance available for other regions.**
+
+---
+
+## TECHNOLOGY & SEO
+
+- Built with Nuxt 3 (Vue 3), static site generation
+- PWA with offline support
+- JSON-LD structured data on every page
+- Full Open Graph + Twitter Card meta
+- XML Sitemap with all 36 URLs
+- robots.txt allows all crawlers including AI (GPTBot, ClaudeBot, etc.)
+- Accessibility: skip links, ARIA labels, high-contrast modes
+- Color themes: light, dark, sepia
+
+---
+
+## LAST UPDATED
+2026

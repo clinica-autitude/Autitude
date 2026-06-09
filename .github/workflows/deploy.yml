@@ -25,13 +25,18 @@ jobs:
         with:
           node-version: '22'
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
       - name: Install dependencies
-        run: npm install
+        run: pnpm install
 
       - name: Build Nuxt
         env:
           SITE_BASE: https://autitude.com.br
-        run: npm run build
+        run: pnpm run generate
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
