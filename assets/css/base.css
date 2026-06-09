@@ -35,7 +35,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Theme transitions */
+/* Theme transitions — paint-only properties only (no layout triggers) */
 html,
 body,
 .navbar,
@@ -55,7 +55,52 @@ body,
 input,
 textarea,
 select {
-  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+/* Texture overlay utility — applies paper noise on top of any background */
+.texture-paper {
+  position: relative;
+}
+.texture-paper::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--texture-paper);
+  background-size: 256px 256px;
+  pointer-events: none;
+  z-index: 1;
+  mix-blend-mode: multiply;
+}
+
+/* Texture overlay utility — velvet/turbulence noise */
+.texture-velvet {
+  position: relative;
+}
+.texture-velvet::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--texture-velvet);
+  background-size: 256px 256px;
+  pointer-events: none;
+  z-index: 1;
+  mix-blend-mode: multiply;
+}
+
+/* Texture overlay utility — fine linen weave */
+.texture-linen {
+  position: relative;
+}
+.texture-linen::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--texture-linen);
+  background-size: 200px 200px;
+  pointer-events: none;
+  z-index: 1;
+  mix-blend-mode: multiply;
 }
 
 /* Typography */
