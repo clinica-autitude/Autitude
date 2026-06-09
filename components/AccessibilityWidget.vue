@@ -759,11 +759,6 @@ onUnmounted(() => {
   color: #FFFEF8;
 }
 
-[data-theme="sepia"] .a11y-btn-vlibras {
-  background: var(--lilac);
-  color: #FFFEF8;
-}
-
 [data-theme="sepia"] .a11y-font-value {
   color: var(--lilac-dark);
 }
@@ -785,11 +780,6 @@ onUnmounted(() => {
 [data-theme="sepia"] .a11y-tts-status {
   background: var(--lilac-light);
   color: var(--lilac-dark);
-}
-
-[data-theme="sepia"] .a11y-vlibras-status {
-  background: var(--blue-light);
-  color: #6BA882;
 }
 
 [data-theme="sepia"] .a11y-dark-toggle {
@@ -861,12 +851,6 @@ onUnmounted(() => {
   border-color: #000000;
 }
 
-[data-a11y-contrast="high"] .a11y-btn-vlibras {
-  background: #0000cc;
-  color: #ffffff;
-  border: 2px solid #000000;
-}
-
 [data-a11y-contrast="high"] .a11y-font-value {
   color: #0000cc;
 }
@@ -886,12 +870,6 @@ onUnmounted(() => {
 }
 
 [data-a11y-contrast="high"] .a11y-tts-status {
-  background: #ffff00;
-  color: #000000;
-  border: 2px solid #000000;
-}
-
-[data-a11y-contrast="high"] .a11y-vlibras-status {
   background: #ffff00;
   color: #000000;
   border: 2px solid #000000;
@@ -981,12 +959,6 @@ onUnmounted(() => {
   border-color: #ffffff;
 }
 
-[data-a11y-contrast="dark"] .a11y-btn-vlibras {
-  background: #ffffff;
-  color: #000000;
-  border: 2px solid #ffffff;
-}
-
 [data-a11y-contrast="dark"] .a11y-font-value {
   color: #ffffff;
 }
@@ -1006,12 +978,6 @@ onUnmounted(() => {
 }
 
 [data-a11y-contrast="dark"] .a11y-tts-status {
-  background: #ffff00;
-  color: #000000;
-  border: 2px solid #ffffff;
-}
-
-[data-a11y-contrast="dark"] .a11y-vlibras-status {
   background: #ffff00;
   color: #000000;
   border: 2px solid #ffffff;
