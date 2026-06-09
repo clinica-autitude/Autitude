@@ -547,24 +547,26 @@ const services = [
 .hero-layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  align-items: center;
+  align-items: end;
   gap: clamp(1rem, 3vw, 2rem);
   min-height: clamp(550px, 80vh, 880px);
   padding-top: 4rem;
+  padding-bottom: 4rem;
 }
 
 .hero-left {
   text-align: left;
   padding-right: clamp(1rem, 4vw, 3rem);
+  padding-bottom: 2rem;
 }
 
 .hero-eyebrow {
   display: block;
-  font-size: clamp(0.8125rem, 1.2vw, 0.9375rem);
+  font-size: clamp(0.75rem, 1vw, 0.875rem);
   font-weight: 700;
   letter-spacing: 0.04em;
   color: var(--primary);
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
   text-transform: uppercase;
 }
 
@@ -849,6 +851,7 @@ const services = [
   .hero-left {
     text-align: center;
     padding-right: 0;
+    padding-bottom: 1rem;
   }
 
   .hero-eyebrow {
@@ -903,15 +906,17 @@ const services = [
     padding-top: 0.75rem;
     gap: 0.75rem;
     min-height: auto;
+    padding-bottom: 1rem;
   }
 
   .hero-left {
     padding-right: 0;
+    padding-bottom: 0.5rem;
   }
 
   .hero-eyebrow {
-    font-size: 0.75rem;
-    margin-bottom: 0.75rem;
+    font-size: 0.7rem;
+    margin-bottom: 0.5rem;
   }
 
   .hero-rings {
