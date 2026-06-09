@@ -6,6 +6,8 @@ import {
 } from 'lucide-vue-next'
 import ColorBends from '~/components/ColorBends.vue'
 
+const { whatsappUrl } = useContact()
+
 useHead({
   title: 'Quem somos | Autitude - Desenvolvimento e Ação Humana',
   meta: [
@@ -19,7 +21,7 @@ useHead({
         '@type': 'WebPage',
         name: 'Quem somos - Autitude',
         description: 'A Autitude é um espaço especializado em crianças, adolescentes e famílias, com foco no público neurodivergente.',
-        url: 'https://hautlys.github.io/Autitude/sobre',
+        url: 'https://autitude.com.br/sobre',
         mainEntity: {
           '@type': 'MedicalBusiness',
           name: 'Autitude - Desenvolvimento e Ação Humana',
@@ -238,7 +240,9 @@ const differentiators = [
 
     <!-- CTA -->
     <section class="cta">
-      <ColorBends class="cta__bg" :colors="['#c8a8e9', '#f4a5b9', '#a8d8b9', '#FDE68A']" :speed="0.18" :bend-width="2.4" :noise="0.08" />
+      <ClientOnly>
+        <ColorBends class="cta__bg" :colors="['#c8a8e9', '#f4a5b9', '#a8d8b9', '#FDE68A']" :speed="0.18" :warpStrength="2.4" :noise="0.08" :rotation="25" :scale="1.3" :frequency="1.2" :mouseInfluence="0.4" :parallax="0.3" transparent />
+      </ClientOnly>
       <div class="container cta__inner">
         <span class="tag tag--glass">
           <span class="tag-dot" /> Vamos conversar
@@ -249,7 +253,7 @@ const differentiators = [
         </h2>
         <div class="cta__actions">
           <a
-            href="https://wa.me/5512991968683?text=Ol%C3%A1%21%20Gostaria%20de%20agendar%20uma%20conversa%20inicial%20na%20Autitude."
+            :href="`${whatsappUrl}?text=Ol%C3%A1%21%20Gostaria%20de%20agendar%20uma%20conversa%20inicial%20na%20Autitude.`"
             target="_blank"
             rel="noopener"
             class="btn btn--primary"

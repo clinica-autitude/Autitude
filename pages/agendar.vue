@@ -9,11 +9,7 @@ useHead({
   ]
 })
 
-const config = {
-  whatsappUrl: 'https://wa.me/5512991968683'
-}
-
-const phoneNumber = '5512991968683'
+const { whatsappUrl, phone: phoneNumber } = useContact()
 const pediatricLimit = 18
 
 const cities = [
@@ -117,7 +113,7 @@ watch(() => form.value.city, (v) => {
 
 const whatsappLink = computed(() => {
   const text = encodeURIComponent('Olá! Gostaria de agendar uma avaliação na Autitude.')
-  return `${config.whatsappUrl}?text=${text}`
+  return `${whatsappUrl}?text=${text}`
 })
 
 const formatPhone = (e) => {
@@ -170,19 +166,21 @@ const handleSubmit = async () => {
   <div class="schedule">
     <section class="hero-section">
       <div class="hero-bg-grid">
-        <DotGrid
-          :dot-size="14"
-          :gap="28"
-          base-color="#6B4FA3"
-          active-color="#3D2D5E"
-          :proximity="120"
-          :speed-trigger="80"
-          :shock-radius="200"
-          :shock-strength="4"
-          :max-speed="5000"
-          :resistance="750"
-          :return-duration="1.5"
-        />
+        <ClientOnly>
+          <DotGrid
+            :dot-size="14"
+            :gap="28"
+            base-color="#6B4FA3"
+            active-color="#3D2D5E"
+            :proximity="120"
+            :speed-trigger="80"
+            :shock-radius="200"
+            :shock-strength="4"
+            :max-speed="5000"
+            :resistance="750"
+            :return-duration="1.5"
+          />
+        </ClientOnly>
       </div>
       <div class="container">
         <div class="section-header">

@@ -236,8 +236,12 @@ const setup = () => {
       (window as any).addEventListener('resize', handleResize);
     }
 
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     const loop = () => {
       if (!renderer || !material) return;
+      rafRef.value = requestAnimationFrame(loop);
+      if (document.hidden || prefersReducedMotion) return;
       const dt = clock.getDelta();
       const elapsed = clock.elapsedTime;
       material.uniforms.uTime.value = elapsed;
@@ -254,7 +258,6 @@ const setup = () => {
       cur.lerp(tgt, amt);
       (material.uniforms.uPointer.value as THREE.Vector2).copy(cur);
       renderer.render(scene, camera);
-      rafRef.value = requestAnimationFrame(loop);
     };
     rafRef.value = requestAnimationFrame(loop);
 

@@ -98,6 +98,7 @@ declare global {
   const useAsyncData: typeof import('../../node_modules/.pnpm/nuxt@3.21.7_@parcel+watcher@2.5.6_@types+node@25.9.1_@vue+compiler-sfc@3.5.35_cac@6.7.1_a5959e0d07a4ba42d0e8d0815fe97614/node_modules/nuxt/dist/app/composables/asyncData').useAsyncData
   const useAttrs: typeof import('vue').useAttrs
   const useColorMode: typeof import('../../node_modules/.pnpm/@nuxtjs+color-mode@4.0.0_magicast@0.5.3/node_modules/@nuxtjs/color-mode/dist/runtime/composables').useColorMode
+  const useContact: typeof import('../../composables/useContact').useContact
   const useCookie: typeof import('../../node_modules/.pnpm/nuxt@3.21.7_@parcel+watcher@2.5.6_@types+node@25.9.1_@vue+compiler-sfc@3.5.35_cac@6.7.1_a5959e0d07a4ba42d0e8d0815fe97614/node_modules/nuxt/dist/app/composables/cookie').useCookie
   const useCssModule: typeof import('vue').useCssModule
   const useCssVars: typeof import('vue').useCssVars
@@ -295,6 +296,7 @@ declare module 'vue' {
     readonly useAsyncData: UnwrapRef<typeof import('../../node_modules/.pnpm/nuxt@3.21.7_@parcel+watcher@2.5.6_@types+node@25.9.1_@vue+compiler-sfc@3.5.35_cac@6.7.1_a5959e0d07a4ba42d0e8d0815fe97614/node_modules/nuxt/dist/app/composables/asyncData')['useAsyncData']>
     readonly useAttrs: UnwrapRef<typeof import('vue')['useAttrs']>
     readonly useColorMode: UnwrapRef<typeof import('../../node_modules/.pnpm/@nuxtjs+color-mode@4.0.0_magicast@0.5.3/node_modules/@nuxtjs/color-mode/dist/runtime/composables')['useColorMode']>
+    readonly useContact: UnwrapRef<typeof import('../../composables/useContact')['useContact']>
     readonly useCookie: UnwrapRef<typeof import('../../node_modules/.pnpm/nuxt@3.21.7_@parcel+watcher@2.5.6_@types+node@25.9.1_@vue+compiler-sfc@3.5.35_cac@6.7.1_a5959e0d07a4ba42d0e8d0815fe97614/node_modules/nuxt/dist/app/composables/cookie')['useCookie']>
     readonly useCssModule: UnwrapRef<typeof import('vue')['useCssModule']>
     readonly useCssVars: UnwrapRef<typeof import('vue')['useCssVars']>

@@ -1,6 +1,5 @@
 <script setup>
 import { Award, Heart, Users, Star } from 'lucide-vue-next'
-import ColorBends from '~/components/ColorBends.vue'
 
 useHead({
   title: 'Equipe | Autitude - Desenvolvimento e Ação Humana',
@@ -15,7 +14,7 @@ useHead({
         '@type': 'WebPage',
         name: 'Equipe - Autitude',
         description: 'Conheça a equipe da Autitude — profissionais dedicados ao cuidado de crianças, adolescentes e famílias.',
-        url: 'https://hautlys.github.io/Autitude/equipe',
+        url: 'https://autitude.com.br/equipe',
         mainEntity: {
           '@type': 'MedicalBusiness',
           name: 'Autitude - Desenvolvimento e Ação Humana',
@@ -101,38 +100,18 @@ const culture = [
       </div>
     </section>
 
-    <section class="cta-section section">
-      <div class="container">
-        <div class="cta-card">
-          <ColorBends
-            class="cta-bg-effect"
-            :colors="['#6B4FA3', '#8FB1F0', '#8FC176', '#3D2D5E']"
-            :rotation="15"
-            :speed="0.12"
-            :scale="1.4"
-            :frequency="1.0"
-            :warpStrength="0.8"
-            :mouseInfluence="0.3"
-            :parallax="0.2"
-            :noise="0.04"
-            transparent
-          />
-          <div class="cta-content">
-            <span class="cta-tag">Autitude — Desenvolvimento e Ação Humana</span>
-            <h2>Gostaria de nos conhecer?</h2>
-            <p>💜 Cuidamos de pessoas. Potencializamos possibilidades.</p>
-            <div class="cta-actions">
-              <NuxtLink to="/agendar" class="btn btn-primary btn-lg">
-                Agendar Visita
-              </NuxtLink>
-              <NuxtLink to="/contato" class="btn btn-secondary btn-lg">
-                Falar Conosco
-              </NuxtLink>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <CtaSection
+      title="Gostaria de nos conhecer?"
+      tagline="💜 Cuidamos de pessoas. Potencializamos possibilidades."
+      primary-btn="/agendar"
+      primary-btn-text="Agendar Visita"
+      secondary-btn="/contato"
+      secondary-btn-text="Falar Conosco"
+      :whatsapp-btn="false"
+      :show-contact="false"
+      :colors="['#6B4FA3', '#8FB1F0', '#8FC176', '#3D2D5E']"
+      :color-bends-props="{ rotation: 15, speed: 0.12, scale: 1.4, frequency: 1.0, warpStrength: 0.8, mouseInfluence: 0.3, parallax: 0.2, noise: 0.04 }"
+    />
   </div>
 </template>
 
@@ -313,56 +292,7 @@ const culture = [
   color: var(--text-secondary);
 }
 
-.cta-section {
-  background: var(--background);
-}
-
-.cta-card {
-  position: relative;
-  background: var(--surface);
-  border-radius: var(--radius-2xl);
-  overflow: hidden;
-}
-
-.cta-bg-effect {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-}
-
-.cta-content {
-  position: relative;
-  z-index: 1;
-  padding: 3rem;
-  text-align: center;
-}
-
-.cta-content h2 {
-  margin-bottom: 0.75rem;
-}
-
-.cta-content p {
-  font-size: 1.0625rem;
-  margin-bottom: 1.5rem;
-  color: var(--text-secondary);
-}
-
-.cta-tag {
-  display: inline-block;
-  padding: 0.375rem 1rem;
-  background: rgba(255,255,255,0.6);
-  border-radius: var(--radius-full);
-  font-size: 0.8125rem;
-  font-weight: 600;
-  color: var(--primary-dark);
-  margin-bottom: 1rem;
-}
-
-.cta-actions {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-}
+/* CTA section styles are in CtaSection.vue component */
 
 @media (max-width: 900px) {
   .team-main-card {

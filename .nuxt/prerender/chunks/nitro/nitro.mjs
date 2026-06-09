@@ -651,8 +651,8 @@ function _expandFromEnv(value) {
 
 const _inlineRuntimeConfig = {
   "app": {
-    "baseURL": "/Autitude/",
-    "buildId": "09048e18-10cb-49c8-97cb-1620ec36b207",
+    "baseURL": "/",
+    "buildId": "cbf1be29-88fc-46b2-ba11-47262aa76ece",
     "buildAssetsDir": "/_nuxt/",
     "cdnURL": ""
   },
@@ -704,8 +704,7 @@ const _inlineRuntimeConfig = {
     }
   },
   "public": {
-    "siteBase": "https://hautlys.github.io/Autitude",
-    "basePath": ""
+    "siteBase": "https://autitude.com.br"
   }
 };
 const envOptions = {
@@ -973,7 +972,7 @@ function defaultHandler(error, event, opts) {
   const statusMessage = error.statusMessage || "Server Error";
   const url = getRequestURL(event, { xForwardedHost: true, xForwardedProto: true });
   if (statusCode === 404) {
-    const baseURL = "/Autitude/";
+    const baseURL = "/";
     if (/^\/[^/]/.test(baseURL) && !url.pathname.startsWith(baseURL)) {
       const redirectTo = `${baseURL}${url.pathname.slice(1)}${url.search}`;
       return {

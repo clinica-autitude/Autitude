@@ -1,4 +1,4 @@
-import process from 'node:process';globalThis._importMeta_=globalThis._importMeta_||{url:"file:///_entry.js",env:process.env};import { hasInjectionContext, inject, defineComponent, shallowRef, h, resolveComponent, computed, unref, getCurrentInstance, ref, Suspense, Fragment, createApp, provide, shallowReactive, onErrorCaptured, onServerPrefetch, createVNode, resolveDynamicComponent, reactive, effectScope, defineAsyncComponent, mergeProps, getCurrentScope, toRef, withCtx, createTextVNode, isRef, isReadonly, useSSRContext, isShallow, isReactive, toRaw } from 'file:///home/ubuntu/Autitude/node_modules/.pnpm/vue@3.5.35/node_modules/vue/index.mjs';
+import process from 'node:process';globalThis._importMeta_=globalThis._importMeta_||{url:"file:///_entry.js",env:process.env};import { hasInjectionContext, inject, defineComponent, shallowRef, h, resolveComponent, computed, unref, getCurrentInstance, ref, Suspense, Fragment, createApp, provide, shallowReactive, onErrorCaptured, onServerPrefetch, createVNode, resolveDynamicComponent, reactive, effectScope, shallowReadonly, defineAsyncComponent, mergeProps, getCurrentScope, toRef, withCtx, createTextVNode, isRef, isReadonly, useSSRContext, isShallow, isReactive, toRaw } from 'file:///home/ubuntu/Autitude/node_modules/.pnpm/vue@3.5.35/node_modules/vue/index.mjs';
 import { $fetch } from 'file:///home/ubuntu/Autitude/node_modules/ofetch/dist/node.mjs';
 import { u as useHead$1, h as headSymbol, b as baseURL } from '../_/renderer.mjs';
 import { createHooks } from 'file:///home/ubuntu/Autitude/node_modules/.pnpm/hookable@5.5.3/node_modules/hookable/dist/index.mjs';
@@ -477,37 +477,37 @@ const _routes = [
   {
     name: "faq",
     path: "/faq",
-    component: () => import('./faq-DcpPBuWL.mjs')
+    component: () => import('./faq-C1p6GNpY.mjs')
   },
   {
     name: "index",
     path: "/",
-    component: () => import('./index-Py225SAP.mjs')
+    component: () => import('./index-BdaBJDgC.mjs')
   },
   {
     name: "sobre",
     path: "/sobre",
-    component: () => import('./sobre-NiJJeFtk.mjs')
+    component: () => import('./sobre-DVf6AXZW.mjs')
   },
   {
     name: "equipe",
     path: "/equipe",
-    component: () => import('./equipe-B_lI2VMZ.mjs')
+    component: () => import('./equipe-ClDHQ_80.mjs')
   },
   {
     name: "agendar",
     path: "/agendar",
-    component: () => import('./agendar-Dh4tUsZO.mjs')
+    component: () => import('./agendar-Cjdk-eLG.mjs')
   },
   {
     name: "contato",
     path: "/contato",
-    component: () => import('./contato-CBUVeqIi.mjs')
+    component: () => import('./contato-CapORylr.mjs')
   },
   {
     name: "servicos",
     path: "/servicos",
-    component: () => import('./servicos-BBivlpNj.mjs')
+    component: () => import('./servicos-CJXsawCh.mjs')
   },
   {
     name: "slug",
@@ -517,12 +517,12 @@ const _routes = [
   {
     name: "blog-slug",
     path: "/blog/:slug()",
-    component: () => import('./_slug_-B4C4GSuq.mjs')
+    component: () => import('./_slug_-WVj_7w1g.mjs')
   },
   {
     name: "privacidade",
     path: "/privacidade",
-    component: () => import('./privacidade-BEzLXZzW.mjs')
+    component: () => import('./privacidade-_g1zw2Pq.mjs')
   }
 ];
 const ROUTE_KEY_PARENTHESES_RE = /(:\w+)\([^)]+\)/g;
@@ -964,8 +964,11 @@ const plugin_server_8h7s0If21lrIdyJnjaRUzd_B4C24k7wcNk_9RPR9Cag = /* @__PURE__ *
 });
 const path_resolver_6HWvyyRQPSmQSq7k0yXPt62ncT9YNqaSSte_MTqItGo = /* @__PURE__ */ defineNuxtPlugin((nuxtApp) => {
   const config = /* @__PURE__ */ useRuntimeConfig();
-  const siteBase = config.public.siteBase || "https://hautlys.github.io/Autitude";
+  const getSiteBase = () => {
+    return config.public.siteBase || "https://autitude.com.br";
+  };
   nuxtApp.hook("app:created", () => {
+    const siteBase = getSiteBase();
     useHead({
       meta: [
         { property: "og:url", content: siteBase },
@@ -973,8 +976,8 @@ const path_resolver_6HWvyyRQPSmQSq7k0yXPt62ncT9YNqaSSte_MTqItGo = /* @__PURE__ *
         { name: "twitter:image", content: `${siteBase}/full-logo.png` }
       ],
       link: [
-        { rel: "icon", type: "image/svg+xml", href: `${siteBase}/favicon-png.svg` },
-        { rel: "apple-touch-icon", href: `${siteBase}/small-logo.png` },
+        { rel: "icon", type: "image/svg+xml", href: "/favicon-png.svg" },
+        { rel: "apple-touch-icon", href: "/small-logo.png" },
         { rel: "canonical", href: siteBase }
       ]
     });
@@ -1022,6 +1025,137 @@ const plugins = [
   path_resolver_6HWvyyRQPSmQSq7k0yXPt62ncT9YNqaSSte_MTqItGo,
   prerender_server_agOdZiRlnNbYl1D0dP2eI7P0CXpeD8TxMuKyX96gOp8
 ];
+function defaultEstimatedProgress(duration, elapsed) {
+  const completionPercentage = elapsed / duration * 100;
+  return 2 / Math.PI * 100 * Math.atan(completionPercentage / 50);
+}
+function createLoadingIndicator(opts = {}) {
+  const { duration = 2e3, throttle = 200, hideDelay = 500, resetDelay = 400 } = opts;
+  opts.estimatedProgress || defaultEstimatedProgress;
+  const nuxtApp = useNuxtApp();
+  const progress = shallowRef(0);
+  const isLoading = shallowRef(false);
+  const error = shallowRef(false);
+  const start = (opts2 = {}) => {
+    error.value = false;
+    set(0, opts2);
+  };
+  function set(at = 0, opts2 = {}) {
+    if (nuxtApp.isHydrating) {
+      return;
+    }
+    if (at >= 100) {
+      return finish({ force: opts2.force });
+    }
+    progress.value = at < 0 ? 0 : at;
+    opts2.force ? 0 : throttle;
+    {
+      isLoading.value = true;
+    }
+  }
+  function finish(opts2 = {}) {
+    progress.value = 100;
+    if (opts2.error) {
+      error.value = true;
+    }
+    if (opts2.force) {
+      progress.value = 0;
+      isLoading.value = false;
+    }
+  }
+  function clear() {
+  }
+  let _cleanup = () => {
+  };
+  return {
+    _cleanup,
+    progress: shallowReadonly(progress),
+    isLoading: shallowReadonly(isLoading),
+    error: shallowReadonly(error),
+    start,
+    set,
+    finish,
+    clear
+  };
+}
+function useLoadingIndicator(opts = {}) {
+  const nuxtApp = useNuxtApp();
+  const indicator = nuxtApp._loadingIndicator ||= createLoadingIndicator(opts);
+  return indicator;
+}
+const __nuxt_component_0$1 = defineComponent({
+  name: "NuxtLoadingIndicator",
+  props: {
+    throttle: {
+      type: Number,
+      default: 200
+    },
+    duration: {
+      type: Number,
+      default: 2e3
+    },
+    hideDelay: {
+      type: Number,
+      default: 500
+    },
+    resetDelay: {
+      type: Number,
+      default: 400
+    },
+    height: {
+      type: Number,
+      default: 3
+    },
+    color: {
+      type: [String, Boolean],
+      default: "repeating-linear-gradient(to right,#00dc82 0%,#34cdfe 50%,#0047e1 100%)"
+    },
+    errorColor: {
+      type: String,
+      default: "repeating-linear-gradient(to right,#f87171 0%,#ef4444 100%)"
+    },
+    estimatedProgress: {
+      type: Function,
+      required: false
+    }
+  },
+  setup(props, { slots, expose }) {
+    const { progress, isLoading, error, start, finish, clear } = useLoadingIndicator({
+      duration: props.duration,
+      throttle: props.throttle,
+      hideDelay: props.hideDelay,
+      resetDelay: props.resetDelay,
+      estimatedProgress: props.estimatedProgress
+    });
+    expose({
+      progress,
+      isLoading,
+      error,
+      start,
+      finish,
+      clear
+    });
+    return () => h("div", {
+      class: "nuxt-loading-indicator",
+      style: {
+        position: "fixed",
+        top: 0,
+        right: 0,
+        left: 0,
+        pointerEvents: "none",
+        width: "auto",
+        height: `${props.height}px`,
+        opacity: isLoading.value ? 1 : 0,
+        background: error.value ? props.errorColor : props.color || void 0,
+        backgroundSize: `${progress.value > 0 ? 100 / progress.value * 100 : 0}% auto`,
+        transform: `scaleX(${progress.value}%)`,
+        transformOrigin: "left",
+        transition: "transform 0.1s, height 0.4s, opacity 0.4s",
+        zIndex: 999999
+      }
+    }, slots);
+  }
+});
 const useColorMode = () => {
   return useState("color-mode").value;
 };
@@ -1105,7 +1239,7 @@ _sfc_main$4.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("components/AccessibilityWidget.vue");
   return _sfc_setup$4 ? _sfc_setup$4(props, ctx) : void 0;
 };
-const __nuxt_component_0$1 = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["__scopeId", "data-v-917175b8"]]);
+const __nuxt_component_1 = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["__scopeId", "data-v-917175b8"]]);
 const firstNonUndefined = (...args) => args.find((arg) => arg !== void 0);
 function sanitizeExternalHref(value) {
   let candidate = value.replace(/[\u0000-\u001f\s]+/g, "");
@@ -1431,7 +1565,7 @@ _sfc_main$3.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("components/ThemeSwitcher.vue");
   return _sfc_setup$3 ? _sfc_setup$3(props, ctx) : void 0;
 };
-const __nuxt_component_2 = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["__scopeId", "data-v-fef5388b"]]);
+const __nuxt_component_3 = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["__scopeId", "data-v-fef5388b"]]);
 const defineRouteProvider = (name = "RouteProvider") => defineComponent({
   name,
   props: {
@@ -1464,7 +1598,7 @@ const defineRouteProvider = (name = "RouteProvider") => defineComponent({
   }
 });
 const RouteProvider = defineRouteProvider();
-const __nuxt_component_3 = defineComponent({
+const __nuxt_component_4 = defineComponent({
   name: "NuxtPage",
   inheritAttrs: false,
   props: {
@@ -1515,33 +1649,59 @@ function normalizeSlot(slot, data) {
   const slotContent = slot(data);
   return slotContent.length === 1 ? h(slotContent[0]) : h(Fragment, void 0, slotContent);
 }
+const useContact = () => {
+  const phone = "5512991968683";
+  const phoneDisplay = "(12) 99196-8683";
+  const whatsappUrl = `https://wa.me/${phone}`;
+  const telUrl = `tel:+${phone}`;
+  const instagramUrl = "https://www.instagram.com/clinicaautitude";
+  const instagramHandle = "@clinicaautitude";
+  const address = "Rua Major José dos Santos Moreira, 328";
+  const neighborhood = "Vila Rica";
+  const city = "Pindamonhangaba";
+  const state = "SP";
+  const fullAddress = `${address} — ${neighborhood} — ${city}/${state}`;
+  return {
+    phone,
+    phoneDisplay,
+    whatsappUrl,
+    telUrl,
+    instagramUrl,
+    instagramHandle,
+    address,
+    neighborhood,
+    city,
+    state,
+    fullAddress
+  };
+};
 const _sfc_main$2 = {
   __name: "app",
   __ssrInlineRender: true,
   setup(__props) {
     const currentYear = (/* @__PURE__ */ new Date()).getFullYear();
     const config = /* @__PURE__ */ useRuntimeConfig();
-    config.public.siteBase || "https://hautlys.github.io/Autitude";
+    const { whatsappUrl, instagramUrl } = useContact();
     const menuOpen = ref(false);
-    const logoSrc = computed(() => {
-      return `${config.public.basePath || "/Autitude/"}/small-logo.png`;
+    computed(() => {
+      return config.public.siteBase || "https://autitude.com.br";
     });
-    const config_data = {
-      whatsappUrl: "https://wa.me/5512991968683",
-      instagramUrl: "https://www.instagram.com/clinicaautitude"
-    };
+    const logoSrc = computed(() => "/small-logo.png");
     const closeMenu = () => {
       menuOpen.value = false;
       (void 0).body.style.overflow = "";
     };
     return (_ctx, _push, _parent, _attrs) => {
-      const _component_AccessibilityWidget = __nuxt_component_0$1;
+      const _component_NuxtLoadingIndicator = __nuxt_component_0$1;
+      const _component_AccessibilityWidget = __nuxt_component_1;
       const _component_NuxtLink = __nuxt_component_0;
-      const _component_ThemeSwitcher = __nuxt_component_2;
-      const _component_NuxtPage = __nuxt_component_3;
-      _push(`<div${ssrRenderAttrs(mergeProps({ class: "app" }, _attrs))} data-v-12853595><a href="#main" class="skip-link" data-v-12853595>Pular para o conteúdo principal</a>`);
+      const _component_ThemeSwitcher = __nuxt_component_3;
+      const _component_NuxtPage = __nuxt_component_4;
+      _push(`<div${ssrRenderAttrs(mergeProps({ class: "app" }, _attrs))} data-v-f305461c>`);
+      _push(ssrRenderComponent(_component_NuxtLoadingIndicator, null, null, _parent));
+      _push(`<a href="#main" class="skip-link" data-v-f305461c>Pular para o conteúdo principal</a>`);
       _push(ssrRenderComponent(_component_AccessibilityWidget, null, null, _parent));
-      _push(`<div class="ambient-bg" data-v-12853595></div><div class="${ssrRenderClass([{ active: menuOpen.value }, "menu-overlay"])}" data-v-12853595></div><nav class="navbar" data-v-12853595><div class="nav-container" data-v-12853595>`);
+      _push(`<div class="ambient-bg" data-v-f305461c></div><div class="${ssrRenderClass([{ active: menuOpen.value }, "menu-overlay"])}" data-v-f305461c></div><nav class="navbar" data-v-f305461c><div class="nav-container" data-v-f305461c>`);
       _push(ssrRenderComponent(_component_NuxtLink, {
         to: "/",
         class: "logo",
@@ -1549,7 +1709,7 @@ const _sfc_main$2 = {
       }, {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
-            _push2(`<img${ssrRenderAttr("src", logoSrc.value)} alt="Autitude" class="logo-img" data-v-12853595${_scopeId}><span class="logo-text" data-v-12853595${_scopeId}>Autitude</span>`);
+            _push2(`<img${ssrRenderAttr("src", logoSrc.value)} alt="Autitude" class="logo-img" data-v-f305461c${_scopeId}><span class="logo-text" data-v-f305461c${_scopeId}>Autitude</span>`);
           } else {
             return [
               createVNode("img", {
@@ -1563,7 +1723,7 @@ const _sfc_main$2 = {
         }),
         _: 1
       }, _parent));
-      _push(`<div class="${ssrRenderClass([{ "nav-active": menuOpen.value }, "nav-links"])}" data-v-12853595>`);
+      _push(`<div class="${ssrRenderClass([{ "nav-active": menuOpen.value }, "nav-links"])}" data-v-f305461c>`);
       _push(ssrRenderComponent(_component_NuxtLink, {
         to: "/",
         class: "nav-link",
@@ -1661,16 +1821,16 @@ const _sfc_main$2 = {
         _: 1
       }, _parent));
       _push(ssrRenderComponent(_component_ThemeSwitcher, null, null, _parent));
-      _push(`</div><button class="${ssrRenderClass([{ active: menuOpen.value }, "menu-toggle"])}" aria-label="Menu"${ssrRenderAttr("aria-expanded", menuOpen.value)} data-v-12853595><span data-v-12853595></span><span data-v-12853595></span><span data-v-12853595></span></button></div></nav><main id="main" data-v-12853595>`);
+      _push(`</div><button class="${ssrRenderClass([{ active: menuOpen.value }, "menu-toggle"])}" aria-label="Menu"${ssrRenderAttr("aria-expanded", menuOpen.value)} data-v-f305461c><span data-v-f305461c></span><span data-v-f305461c></span><span data-v-f305461c></span></button></div></nav><main id="main" data-v-f305461c>`);
       _push(ssrRenderComponent(_component_NuxtPage, null, null, _parent));
-      _push(`</main><footer class="footer" data-v-12853595><div class="container" data-v-12853595><div class="footer-grid" data-v-12853595><div class="footer-brand" data-v-12853595>`);
+      _push(`</main><footer class="footer" data-v-f305461c><div class="container" data-v-f305461c><div class="footer-grid" data-v-f305461c><div class="footer-brand" data-v-f305461c>`);
       _push(ssrRenderComponent(_component_NuxtLink, {
         to: "/",
         class: "logo"
       }, {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
-            _push2(`<img${ssrRenderAttr("src", logoSrc.value)} alt="Autitude" class="logo-img" data-v-12853595${_scopeId}><span class="logo-text" data-v-12853595${_scopeId}>Autitude</span>`);
+            _push2(`<img${ssrRenderAttr("src", logoSrc.value)} alt="Autitude" class="logo-img" data-v-f305461c${_scopeId}><span class="logo-text" data-v-f305461c${_scopeId}>Autitude</span>`);
           } else {
             return [
               createVNode("img", {
@@ -1684,7 +1844,7 @@ const _sfc_main$2 = {
         }),
         _: 1
       }, _parent));
-      _push(`<p data-v-12853595>Desenvolvimento com acolhimento, ciência e humanidade. Cuidamos de pessoas. Potencializamos possibilidades.</p></div><div class="footer-links" data-v-12853595><h4 data-v-12853595>Navegação</h4>`);
+      _push(`<p data-v-f305461c>Desenvolvimento com acolhimento, ciência e humanidade. Cuidamos de pessoas. Potencializamos possibilidades.</p></div><div class="footer-links" data-v-f305461c><h4 data-v-f305461c>Navegação</h4>`);
       _push(ssrRenderComponent(_component_NuxtLink, { to: "/" }, {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
@@ -1733,7 +1893,7 @@ const _sfc_main$2 = {
         }),
         _: 1
       }, _parent));
-      _push(`</div><div class="footer-services" data-v-12853595><h4 data-v-12853595>Atendimento</h4>`);
+      _push(`</div><div class="footer-services" data-v-f305461c><h4 data-v-f305461c>Atendimento</h4>`);
       _push(ssrRenderComponent(_component_NuxtLink, { to: "/agendar" }, {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
@@ -1758,7 +1918,7 @@ const _sfc_main$2 = {
         }),
         _: 1
       }, _parent));
-      _push(`<a${ssrRenderAttr("href", config_data.whatsappUrl)} data-v-12853595>WhatsApp</a><a${ssrRenderAttr("href", config_data.instagramUrl)} target="_blank" rel="noopener" data-v-12853595>Instagram</a></div><div class="footer-contact" data-v-12853595><h4 data-v-12853595>Localização</h4><p data-v-12853595>Rua Major José dos Santos Moreira, 328</p><p data-v-12853595>Vila Rica — Pindamonhangaba, SP</p><p data-v-12853595>Seg a Sex: 8h às 18h</p><div class="footer-map" data-v-12853595><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3674.523716039893!2d-45.46558491270433!3d-22.93093188518779!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ccf1835a97b90d%3A0x8c2cb7aa78bd7f92!2sAutitude%20Desenvolvimento%20e%20A%C3%A7%C3%A3o%20Humana!5e0!3m2!1sen!2sbr!4v1780604277186!5m2!1sen!2sbr" width="100%" height="180" style="${ssrRenderStyle({ "border": "0", "border-radius": "8px" })}" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Localização da Autitude — Rua Major José dos Santos Moreira, 328, Vila Rica, Pindamonhangaba-SP" data-v-12853595></iframe></div></div></div><div class="footer-bottom" data-v-12853595><p data-v-12853595>© ${ssrInterpolate(unref(currentYear))} Autitude. Todos os direitos reservados.</p></div></div></footer></div>`);
+      _push(`<a${ssrRenderAttr("href", unref(whatsappUrl))} data-v-f305461c>WhatsApp</a><a${ssrRenderAttr("href", unref(instagramUrl))} target="_blank" rel="noopener" data-v-f305461c>Instagram</a></div><div class="footer-contact" data-v-f305461c><h4 data-v-f305461c>Localização</h4><p data-v-f305461c>Rua Major José dos Santos Moreira, 328</p><p data-v-f305461c>Vila Rica — Pindamonhangaba, SP</p><p data-v-f305461c>Seg a Sex: 8h às 18h</p><div class="footer-map" data-v-f305461c><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3674.523716039893!2d-45.46558491270433!3d-22.93093188518779!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ccf1835a97b90d%3A0x8c2cb7aa78bd7f92!2sAutitude%20Desenvolvimento%20e%20A%C3%A7%C3%A3o%20Humana!5e0!3m2!1sen!2sbr!4v1780604277186!5m2!1sen!2sbr" width="100%" height="180" style="${ssrRenderStyle({ "border": "0", "border-radius": "8px" })}" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Localização da Autitude — Rua Major José dos Santos Moreira, 328, Vila Rica, Pindamonhangaba-SP" data-v-f305461c></iframe></div></div></div><div class="footer-bottom" data-v-f305461c><p data-v-f305461c>© ${ssrInterpolate(unref(currentYear))} Autitude. Todos os direitos reservados.</p></div></div></footer></div>`);
     };
   }
 };
@@ -1768,7 +1928,7 @@ _sfc_main$2.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("app.vue");
   return _sfc_setup$2 ? _sfc_setup$2(props, ctx) : void 0;
 };
-const AppComponent = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-12853595"]]);
+const AppComponent = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-f305461c"]]);
 const _sfc_main$1 = {
   __name: "nuxt-error-page",
   __ssrInlineRender: true,
@@ -1876,5 +2036,5 @@ let entry;
 }
 const entry_default = ((ssrContext) => entry(ssrContext));
 
-export { _export_sfc as _, __nuxt_component_0 as a, useRuntimeConfig as b, useRoute as c, entry_default as default, useHead as u };
+export { _export_sfc as _, __nuxt_component_0 as a, useRuntimeConfig as b, useContact as c, useRoute as d, entry_default as default, useHead as u };
 //# sourceMappingURL=server.mjs.map

@@ -286,8 +286,11 @@ onMounted(() => {
   mount.addEventListener('mouseleave', onMouseLeave);
   mount.addEventListener('click', onClick);
 
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   const animate = (t: number) => {
     frameId = requestAnimationFrame(animate);
+    if (document.hidden || prefersReducedMotion) return;
 
     const p = propsRef.value;
 

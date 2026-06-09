@@ -6,8 +6,7 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     public: {
-      siteBase: process.env.SITE_BASE || 'https://hautlys.github.io/Autitude',
-      basePath: process.env.NUXT_PUBLIC_BASE_PATH || ''
+      siteBase: process.env.SITE_BASE || 'https://autitude.com.br'
     }
   },
 
@@ -29,7 +28,7 @@ export default defineNuxtConfig({
   },
 
   app: {
-    baseURL: process.env.NUXT_PUBLIC_BASE_PATH || '/Autitude/',
+    baseURL: '/',
     head: {
       htmlAttrs: { lang: 'pt-BR' },
       title: 'Autitude | Desenvolvimento e Ação Humana',
@@ -47,15 +46,15 @@ export default defineNuxtConfig({
         { property: 'og:description', content: 'Desenvolvimento com acolhimento, ciência e humanidade. Cuidamos de pessoas. Potencializamos possibilidades.' },
         { property: 'og:type', content: 'website' },
         { property: 'og:locale', content: 'pt_BR' },
-        { property: 'og:url', content: 'https://hautlys.github.io/Autitude' },
-        { property: 'og:image', content: 'https://hautlys.github.io/Autitude/full-logo.png' },
+        { property: 'og:url', content: 'https://autitude.com.br' },
+        { property: 'og:image', content: 'https://autitude.com.br/full-logo.png' },
         { property: 'og:image:width', content: '1200' },
         { property: 'og:image:height', content: '630' },
         { property: 'og:site_name', content: 'Autitude - Desenvolvimento e Ação Humana' },
         { name: 'twitter:card', content: 'summary_large_image' },
         { name: 'twitter:title', content: 'Autitude | Desenvolvimento e Ação Humana' },
         { name: 'twitter:description', content: 'Desenvolvimento com acolhimento, ciência e humanidade. Cuidamos de pessoas. Potencializamos possibilidades.' },
-        { name: 'twitter:image', content: 'https://hautlys.github.io/Autitude/full-logo.png' },
+        { name: 'twitter:image', content: 'https://autitude.com.br/full-logo.png' },
         { name: 'twitter:creator', content: '@clinicaautitude' },
         { name: 'twitter:site', content: '@clinicaautitude' },
         { name: 'ICBM', content: '-22.9309, -45.4607' },
@@ -65,13 +64,13 @@ export default defineNuxtConfig({
         { name: 'alternateName', content: 'Autitude Desenvolvimento e Ação Humana' }
       ],
       link: [
-        { rel: 'canonical', href: 'https://hautlys.github.io/Autitude' },
+        { rel: 'canonical', href: 'https://autitude.com.br' },
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
         { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
         { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Nunito:wght@400;600;700&display=swap' },
-        { rel: 'alternate', href: 'https://hautlys.github.io/Autitude', hreflang: 'pt-BR' },
-        { rel: 'index', href: 'https://hautlys.github.io/Autitude/sitemap.xml' },
-        { rel: 'help', href: 'https://hautlys.github.io/Autitude/llms.txt', title: 'LLMS Information' }
+        { rel: 'alternate', href: 'https://autitude.com.br', hreflang: 'pt-BR' },
+        { rel: 'index', href: 'https://autitude.com.br/sitemap.xml' },
+        { rel: 'help', href: 'https://autitude.com.br/llms.txt', title: 'LLMS Information' }
       ]
     }
   },

@@ -1,7 +1,7 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://hautlys.github.io/Autitude/sitemap.xml
+Sitemap: https://autitude.com.br/sitemap.xml
 
 User-agent: Googlebot
 Allow: /

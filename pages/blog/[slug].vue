@@ -62,7 +62,7 @@ useHead({
     { property: 'og:type', content: 'website' }
   ],
   link: [
-    { rel: 'canonical', href: 'https://hautlys.github.io/Autitude' }
+    { rel: 'canonical', href: 'https://autitude.com.br' }
   ]
 })
 

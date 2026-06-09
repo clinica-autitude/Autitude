@@ -1,6 +1,5 @@
 <script setup>
 import { ref, computed } from 'vue'
-import ColorBends from '~/components/ColorBends.vue'
 
 useHead({
   title: 'FAQ | Autitude - Desenvolvimento e Ação Humana',
@@ -9,9 +8,7 @@ useHead({
   ]
 })
 
-const config = {
-  whatsappUrl: 'https://wa.me/5512991968683'
-}
+const { whatsappUrl } = useContact()
 
 const activeCategory = ref('all')
 const openFaq = ref(null)
@@ -152,14 +149,21 @@ const toggleFaq = (index) => {
         </div>
 
         <div class="faq-list">
-          <div 
-            v-for="(faq, index) in filteredFaqs" 
+          <div
+            v-for="(faq, index) in filteredFaqs"
             :key="index"
             class="faq-item"
             :class="{ open: openFaq === index }"
-            @click="toggleFaq(index)"
           >
-            <div class="faq-question">
+            <div
+              class="faq-question"
+              role="button"
+              tabindex="0"
+              :aria-expanded="openFaq === index"
+              @click="toggleFaq(index)"
+              @keydown.enter.prevent="toggleFaq(index)"
+              @keydown.space.prevent="toggleFaq(index)"
+            >
               <span class="faq-number">{{ index + 1 }}</span>
               <h3>{{ faq.question }}</h3>
               <div class="faq-toggle">
@@ -228,36 +232,16 @@ const toggleFaq = (index) => {
       </div>
     </section>
 
-    <section class="cta-section section">
-      <div class="container">
-        <div class="cta-card">
-          <ColorBends
-            class="cta-bg-effect"
-            :colors="['#6B4FA3', '#8FC176', '#3D2D5E', '#5C9F45']"
-            :rotation="40"
-            :speed="0.18"
-            :scale="1.25"
-            :frequency="1.5"
-            :warpStrength="1.1"
-            :mouseInfluence="0.5"
-            :parallax="0.4"
-            :noise="0.06"
-            transparent
-          />
-          <div class="cta-content">
-            <span class="cta-tag">Autitude — Desenvolvimento e Ação Humana</span>
-            <h2>Ainda tem dúvidas?</h2>
-            <p>💜 Cuidamos de pessoas. Potencializamos possibilidades.</p>
-            <div class="cta-buttons">
-              <NuxtLink to="/agendar" class="btn btn-primary btn-lg">Agendar Avaliação</NuxtLink>
-              <a :href="config.whatsappUrl" class="btn btn-whatsapp btn-lg" target="_blank" rel="noopener">
-                Falar no WhatsApp
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <CtaSection
+      title="Ainda tem dúvidas?"
+      tagline="💜 Cuidamos de pessoas. Potencializamos possibilidades."
+      primary-btn="/agendar"
+      primary-btn-text="Agendar Avaliação"
+      :whatsapp-btn="true"
+      :show-contact="false"
+      :colors="['#6B4FA3', '#8FC176', '#3D2D5E', '#5C9F45']"
+      :color-bends-props="{ rotation: 40, speed: 0.18, scale: 1.25, frequency: 1.5, warpStrength: 1.1, mouseInfluence: 0.5, parallax: 0.4, noise: 0.06 }"
+    />
   </div>
 </template>
 
@@ -528,56 +512,6 @@ const toggleFaq = (index) => {
   color: var(--text-secondary);
 }
 
-.cta-section {
-  background: var(--background);
-}
-
-.cta-card {
-  position: relative;
-  background: var(--surface);
-  border-radius: var(--radius-2xl);
-  overflow: hidden;
-}
-
-.cta-bg-effect {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-}
-
-.cta-content {
-  position: relative;
-  z-index: 1;
-  padding: 3rem;
-  text-align: center;
-}
-
-.cta-content h2 {
-  margin-bottom: 0.75rem;
-}
-
-.cta-content p {
-  margin-bottom: 1.5rem;
-  color: var(--text-secondary);
-}
-
-.cta-tag {
-  display: inline-block;
-  padding: 0.375rem 1rem;
-  background: rgba(255,255,255,0.6);
-  border-radius: var(--radius-full);
-  font-size: 0.8125rem;
-  font-weight: 600;
-  color: var(--primary-dark);
-  margin-bottom: 1rem;
-}
-
-.cta-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-}
-
 @media (max-width: 768px) {
   .sensory-showcase {
     grid-template-columns: 1fr;
@@ -602,14 +536,6 @@ const toggleFaq = (index) => {
   
   .approach-grid {
     grid-template-columns: 1fr;
-  }
-  
-  .cta-buttons {
-    flex-direction: column;
-  }
-  
-  .cta-buttons .btn {
-    width: 100%;
   }
 }
 </style>

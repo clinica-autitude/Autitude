@@ -1,21 +1,19 @@
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 const currentYear = new Date().getFullYear()
 const config = useRuntimeConfig()
-const siteBase = config.public.siteBase || 'https://hautlys.github.io/Autitude'
+const { phone, whatsappUrl, instagramUrl } = useContact()
 const menuOpen = ref(false)
 
-const isDev = import.meta.dev
-const logoSrc = computed(() => {
-  if (isDev) return '/small-logo.png'
-  return `${config.public.basePath || '/Autitude/'}/small-logo.png`
+const siteBase = computed(() => {
+  if (import.meta.server) return config.public.siteBase || 'https://autitude.com.br'
+  const host = window.location.hostname
+  if (host === 'autitude.com.br' || host === 'www.autitude.com.br') return 'https://autitude.com.br'
+  if (host === 'localhost' || host === '127.0.0.1') return ''
+  return config.public.siteBase || 'https://autitude.com.br'
 })
 
-const config_data = {
-  phone: '5512991968683',
-  whatsappUrl: 'https://wa.me/5512991968683',
-  instagramUrl: 'https://www.instagram.com/clinicaautitude'
-}
+const logoSrc = computed(() => '/small-logo.png')
 
 const toggleMenu = () => {
   menuOpen.value = !menuOpen.value
@@ -27,17 +25,27 @@ const closeMenu = () => {
   document.body.style.overflow = ''
 }
 
+let keydownHandler = null
+
 onMounted(() => {
-  document.addEventListener('keydown', (e) => {
+  keydownHandler = (e) => {
     if (e.key === 'Escape' && menuOpen.value) {
       closeMenu()
     }
-  })
+  }
+  document.addEventListener('keydown', keydownHandler)
+})
+
+onBeforeUnmount(() => {
+  if (keydownHandler) {
+    document.removeEventListener('keydown', keydownHandler)
+  }
 })
 </script>
 
 <template>
   <div class="app">
+    <NuxtLoadingIndicator />
     <a href="#main" class="skip-link">Pular para o conteúdo principal</a>
     <AccessibilityWidget />
     
@@ -97,8 +105,8 @@ onMounted(() => {
             <h4>Atendimento</h4>
             <NuxtLink to="/agendar">Agendamento</NuxtLink>
             <NuxtLink to="/contato">Contato</NuxtLink>
-            <a :href="config_data.whatsappUrl">WhatsApp</a>
-            <a :href="config_data.instagramUrl" target="_blank" rel="noopener">Instagram</a>
+            <a :href="whatsappUrl">WhatsApp</a>
+            <a :href="instagramUrl" target="_blank" rel="noopener">Instagram</a>
           </div>
           
           <div class="footer-contact">
@@ -382,6 +390,7 @@ main {
   .menu-toggle {
     display: flex;
     z-index: 1002;
+    position: relative;
   }
   
   .nav-links {
@@ -397,6 +406,7 @@ main {
     align-items: flex-start;
     justify-content: center;
     padding: 2rem;
+    padding-top: 5rem;
     gap: 0.5rem;
     box-shadow: -10px 0 40px rgba(0, 0, 0, 0.15);
     transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -426,6 +436,11 @@ main {
     background: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(4px);
     z-index: 999;
+    pointer-events: none;
+  }
+
+  .menu-overlay.active {
+    pointer-events: auto;
   }
   
   .footer-grid {

@@ -1,6 +1,5 @@
 <script setup>
 import { Brain, BookOpen, Mic, Activity, Puzzle } from 'lucide-vue-next'
-import ColorBends from '~/components/ColorBends.vue'
 import Squares from '~/components/Squares.vue'
 
 useHead({
@@ -16,7 +15,7 @@ useHead({
         '@type': 'WebPage',
         name: 'Especialidades - Autitude',
         description: 'Neuropsicologia, Neuropsicopedagogia, Fonoaudiologia, Terapia Ocupacional e Terapia ABA Humanizada em Pindamonhangaba-SP.',
-        url: 'https://hautlys.github.io/Autitude/servicos',
+        url: 'https://autitude.com.br/servicos',
         mainEntity: {
           '@type': 'MedicalBusiness',
           name: 'Autitude - Desenvolvimento e Ação Humana',
@@ -33,7 +32,7 @@ useHead({
   ]
 })
 
-const whatsappUrl = 'https://wa.me/5512991968683'
+const { whatsappUrl } = useContact()
 
 const services = [
   {
@@ -110,13 +109,15 @@ const processSteps = [
   <div class="services">
     <section class="hero-section">
       <div class="hero-bg-grid">
-        <Squares
-          direction="diagonal"
-          :speed="1"
-          :square-size="40"
-          border-color="#6B4FA3"
-          hover-fill-color="#3D2D5E"
-        />
+        <ClientOnly>
+          <Squares
+            direction="diagonal"
+            :speed="1"
+            :square-size="40"
+            border-color="#6B4FA3"
+            hover-fill-color="#3D2D5E"
+          />
+        </ClientOnly>
       </div>
       <div class="container">
         <div class="section-header">
@@ -174,38 +175,16 @@ const processSteps = [
       </div>
     </section>
 
-    <section class="cta-section section">
-      <div class="container">
-        <div class="cta-card">
-          <ColorBends
-            class="cta-bg-effect"
-            :colors="['#6B4FA3', '#8FC176', '#8FB1F0', '#3D2D5E', '#5C9F45']"
-            :rotation="28"
-            :speed="0.16"
-            :scale="1.3"
-            :frequency="1.35"
-            :warpStrength="1.05"
-            :mouseInfluence="0.45"
-            :parallax="0.35"
-            :noise="0.055"
-            transparent
-          />
-          <div class="cta-content">
-            <span class="cta-tag">Autitude — Desenvolvimento e Ação Humana</span>
-            <h2>Agende uma avaliação</h2>
-            <p>💜 Cuidamos de pessoas. Potencializamos possibilidades.</p>
-            <div class="cta-actions">
-              <NuxtLink to="/agendar" class="btn btn-primary btn-lg">
-                Agendar Agora
-              </NuxtLink>
-              <a :href="whatsappUrl" class="btn btn-whatsapp btn-lg" target="_blank" rel="noopener">
-                Falar no WhatsApp
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <CtaSection
+      title="Agende uma avaliação"
+      tagline="💜 Cuidamos de pessoas. Potencializamos possibilidades."
+      primary-btn="/agendar"
+      primary-btn-text="Agendar Agora"
+      :whatsapp-btn="true"
+      :show-contact="false"
+      :colors="['#6B4FA3', '#8FC176', '#8FB1F0', '#3D2D5E', '#5C9F45']"
+      :color-bends-props="{ rotation: 28, speed: 0.16, scale: 1.3, frequency: 1.35, warpStrength: 1.05, mouseInfluence: 0.45, parallax: 0.35, noise: 0.055 }"
+    />
   </div>
 </template>
 
@@ -408,56 +387,6 @@ const processSteps = [
   color: var(--text-secondary);
 }
 
-.cta-section {
-  background: var(--background);
-}
-
-.cta-card {
-  position: relative;
-  background: var(--surface);
-  border-radius: var(--radius-2xl);
-  overflow: hidden;
-}
-
-.cta-bg-effect {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-}
-
-.cta-content {
-  position: relative;
-  z-index: 1;
-  padding: 3rem;
-  text-align: center;
-}
-
-.cta-tag {
-  display: inline-block;
-  padding: 0.375rem 1rem;
-  background: rgba(255,255,255,0.6);
-  border-radius: var(--radius-full);
-  font-size: 0.8125rem;
-  font-weight: 600;
-  color: var(--primary-dark);
-  margin-bottom: 1rem;
-}
-
-.cta-content h2 {
-  margin-bottom: 0.75rem;
-}
-
-.cta-content p {
-  margin-bottom: 1.5rem;
-  color: var(--text-secondary);
-}
-
-.cta-actions {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-}
-
 @media (max-width: 900px) {
   .services-showcase {
     grid-template-columns: 1fr;
@@ -471,14 +400,6 @@ const processSteps = [
 @media (max-width: 640px) {
   .process-timeline {
     grid-template-columns: 1fr;
-  }
-  
-  .cta-actions {
-    flex-direction: column;
-  }
-  
-  .cta-actions .btn {
-    width: 100%;
   }
 }
 </style>

@@ -2,8 +2,7 @@
 
 set -e
 
-export NUXT_PUBLIC_BASE_PATH=""
-export SITE_BASE="https://hautlys.github.io/Autitude"
+export SITE_BASE="https://autitude.com.br"
 
 echo "=========================================="
 echo "🚀 Building production bundle..."
@@ -38,23 +37,19 @@ else
   ERRORS=$((ERRORS + 1))
 fi
 
-if [ -f "$DIST_DIR/_nuxt/index.B4vtl8fB.css" ]; then
-    echo "  ✅ index.css"
-  fi
+if [ $JS_COUNT -gt 0 ]; then
+  echo "  ✅ JS bundles: $JS_COUNT"
+else
+  echo "  ❌ No JS bundles found"
+  ERRORS=$((ERRORS + 1))
+fi
 
-  if [ $JS_COUNT -gt 0 ]; then
-    echo "  ✅ JS bundles: $JS_COUNT"
-  else
-    echo "  ❌ No JS bundles found"
-    ERRORS=$((ERRORS + 1))
-  fi
-
-  if [ $CSS_COUNT -gt 0 ]; then
-    echo "  ✅ CSS bundles: $CSS_COUNT"
-  else
-    echo "  ❌ No CSS bundles found"
-    ERRORS=$((ERRORS + 1))
-  fi
+if [ $CSS_COUNT -gt 0 ]; then
+  echo "  ✅ CSS bundles: $CSS_COUNT"
+else
+  echo "  ❌ No CSS bundles found"
+  ERRORS=$((ERRORS + 1))
+fi
 
 TOTAL_FILES=$(find $DIST_DIR -type f | wc -l)
 echo ""
@@ -91,5 +86,5 @@ echo "=========================================="
 echo "✅ Deployment complete!"
 echo "=========================================="
 echo ""
-echo "🔗 Live site: https://HautlyS.github.io/Autitude"
+echo "🔗 Live site: https://autitude.com.br"
 echo ""

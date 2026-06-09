@@ -41,23 +41,30 @@ const resizeCanvas = () => {
   const canvas = canvasRef.value;
   if (!canvas) return;
 
-  canvas.width = canvas.offsetWidth;
-  canvas.height = canvas.offsetHeight;
-  numSquaresX.value = Math.ceil(canvas.width / props.squareSize) + 1;
-  numSquaresY.value = Math.ceil(canvas.height / props.squareSize) + 1;
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  const rect = canvas.getBoundingClientRect();
+  canvas.width = rect.width * dpr;
+  canvas.height = rect.height * dpr;
+  if (ctx) ctx.scale(dpr, dpr);
+  numSquaresX.value = Math.ceil(rect.width / props.squareSize) + 1;
+  numSquaresY.value = Math.ceil(rect.height / props.squareSize) + 1;
 };
 
 const drawGrid = () => {
   const canvas = canvasRef.value;
   if (!ctx || !canvas) return;
 
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  const rect = canvas.getBoundingClientRect();
+  const w = rect.width;
+  const h = rect.height;
+
+  ctx.clearRect(0, 0, w, h);
 
   const startX = Math.floor(gridOffset.value.x / props.squareSize) * props.squareSize;
   const startY = Math.floor(gridOffset.value.y / props.squareSize) * props.squareSize;
 
-  for (let x = startX; x < canvas.width + props.squareSize; x += props.squareSize) {
-    for (let y = startY; y < canvas.height + props.squareSize; y += props.squareSize) {
+  for (let x = startX; x < w + props.squareSize; x += props.squareSize) {
+    for (let y = startY; y < h + props.squareSize; y += props.squareSize) {
       const squareX = x - (gridOffset.value.x % props.squareSize);
       const squareY = y - (gridOffset.value.y % props.squareSize);
 
@@ -76,19 +83,21 @@ const drawGrid = () => {
   }
 
   const gradient = ctx.createRadialGradient(
-    canvas.width / 2,
-    canvas.height / 2,
+    w / 2,
+    h / 2,
     0,
-    canvas.width / 2,
-    canvas.height / 2,
-    Math.sqrt(canvas.width ** 2 + canvas.height ** 2) / 2
+    w / 2,
+    h / 2,
+    Math.sqrt(w ** 2 + h ** 2) / 2
   );
   gradient.addColorStop(0, 'rgba(0, 0, 0, 0)');
   gradient.addColorStop(1, '#0b0b0b');
 
   ctx.fillStyle = gradient;
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.fillRect(0, 0, w, h);
 };
+
+const prefersReducedMotion = ref(false);
 
 const updateAnimation = () => {
   const effectiveSpeed = Math.max(props.speed, 0.1);
@@ -114,7 +123,7 @@ const updateAnimation = () => {
       break;
   }
 
-  drawGrid();
+  if (!document.hidden && !prefersReducedMotion.value) drawGrid();
   requestRef.value = requestAnimationFrame(updateAnimation);
 };
 
@@ -149,6 +158,7 @@ const initializeCanvas = () => {
   const canvas = canvasRef.value;
   if (!canvas) return;
 
+  prefersReducedMotion.value = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   ctx = canvas.getContext('2d');
   resizeCanvas();
 

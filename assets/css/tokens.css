@@ -1,0 +1,137 @@
+/* Autitude Clinic - Design System */
+/* Paleta oficial Clínica Autitude */
+/* Roxo Institucional (primária), Lilás Suave, Verde Acolhimento, Verde Claro Pastel, Azul Lavanda, Amarelo Dourado Suave. */
+/* Neutros: Branco Neve, Cinza Claro, Texto Principal. */
+/* Camada semântica: --primary, --secondary, --accent, --highlight + pastéis são aliases. */
+
+:root {
+  /* ===== BASE: 4 cores principais + 2 apoio (valores canônicos) ===== */
+  /* Roxo Institucional (cor predominante) - mais vibrante */
+  --lilac: #6B4FA3;
+  --lilac-light: #DCCEEF;
+  --lilac-dark: #3D2D5E;
+  --lilac-soft: #EFE7F8;
+  --lilac-deep: #2A1D45;
+  --lilac-deepest: #150A28;
+
+  /* Verde Acolhimento (substitui rosa - agora cor de destaque positiva) - mais saturado */
+  --pink: #8FC176;
+  --pink-light: #C5E0B0;
+  --pink-dark: #5C9F45;
+  --pink-soft: #E5F0DA;
+  --pink-deep: #3F6B2F;
+
+  /* Azul Lavanda (cor de apoio) - mais saturado */
+  --blue: #8FB1F0;
+  --blue-light: #BFD4F5;
+  --blue-dark: #4A78C7;
+  --blue-soft: #DEE9F7;
+  --blue-deep: #2C4F88;
+
+  /* Amarelo Dourado Suave (cor de apoio / detalhes do logo) - mais dourado */
+  --yellow: #F0C850;
+  --yellow-light: #F4D880;
+  --yellow-dark: #C9982A;
+  --yellow-soft: #F8E8B0;
+  --yellow-deep: #8C6615;
+
+  /* ===== SEMANTIC LAYER: aliases ===== */
+  --primary: var(--lilac);
+  --primary-light: var(--lilac-light);
+  --primary-dark: var(--lilac-dark);
+  --primary-deep: var(--lilac-deep);
+
+  --secondary: var(--pink);
+  --secondary-light: var(--pink-light);
+  --secondary-dark: var(--pink-dark);
+  --secondary-deep: var(--pink-deep);
+
+  --accent: var(--blue);
+  --accent-light: var(--blue-light);
+  --accent-dark: var(--blue-dark);
+  --accent-deep: var(--blue-deep);
+
+  --highlight: var(--yellow);
+  --highlight-light: var(--yellow-light);
+  --highlight-dark: var(--yellow-dark);
+  --highlight-deep: var(--yellow-deep);
+
+  /* Pastéis (aliases temáticos baseados na paleta oficial) */
+  --pastel-lavender: var(--lilac-light);
+  --pastel-pink: var(--pink-soft);
+  --pastel-mint: var(--pink-light);
+  --pastel-peach: var(--yellow-soft);
+
+  /* WhatsApp brand colors (mantidos) */
+  --whatsapp: #25D366;
+  --whatsapp-dark: #1EBE5A;
+
+  /* Semantic utility colors */
+  --success: #2E7D32;
+  --info: var(--accent-dark);
+  --warning: var(--highlight-dark);
+
+  /* Neutrals - Brand oficial (Branco Neve, Cinza Claro, Texto Principal) */
+  --text: #3A3A48;
+  --text-dark: #1F1F2C;
+  --text-darkest: #150A28;
+  --text-secondary: #5A5A6A;
+  --text-light: #757380;
+  --white: #FFFFFF;
+  --background: #EFE7F8;
+  --surface: #FFFFFF;
+  --surface-elevated: #FFFFFF;
+  --surface-alt: #DCCEEF;
+  --border: rgba(107, 79, 163, 0.30);
+  --border-strong: rgba(107, 79, 163, 0.55);
+  --overlay-bg: rgba(42, 42, 42, 0.60);
+  --input-bg: #FFFFFF;
+
+  /* Shadows - Roxo Profundo com presença visual forte */
+  --shadow-xs: 0 2px 8px rgba(58, 42, 95, 0.10);
+  --shadow-sm: 0 6px 20px rgba(58, 42, 95, 0.16);
+  --shadow-md: 0 12px 40px rgba(58, 42, 95, 0.22);
+  --shadow-lg: 0 20px 60px rgba(58, 42, 95, 0.30);
+  --shadow-xl: 0 32px 80px rgba(58, 42, 95, 0.40);
+
+  /* Gradients oficiais Autitude */
+  --gradient-hero: linear-gradient(135deg, var(--background) 0%, var(--lilac-soft) 50%, var(--pink-soft) 100%);
+  --gradient-card: linear-gradient(180deg, #FFFFFF 0%, #FAF7FC 100%);
+  --gradient-primary: linear-gradient(135deg, var(--lilac) 0%, var(--lilac-dark) 100%);
+  --gradient-secondary: linear-gradient(135deg, var(--pink) 0%, var(--pink-dark) 100%);
+  --gradient-accent: linear-gradient(135deg, var(--blue) 0%, var(--blue-dark) 100%);
+  --gradient-warm: linear-gradient(135deg, var(--yellow) 0%, var(--yellow-dark) 100%);
+  --gradient-baby: linear-gradient(135deg, var(--lilac) 0%, var(--pink) 50%, var(--blue) 100%);
+  --gradient-sunset: linear-gradient(135deg, var(--yellow) 0%, var(--pink) 100%);
+  --gradient-meadow: linear-gradient(135deg, var(--pink) 0%, var(--blue) 100%);
+
+  /* Transitions */
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --transition-fast: 150ms var(--ease-smooth);
+  --transition-base: 250ms var(--ease-smooth);
+  --transition-slow: 400ms var(--ease-smooth);
+
+  /* Border radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-2xl: 32px;
+  --radius-full: 9999px;
+
+  /* Spacing scale */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+  --space-section-top: 8.75rem;
+}

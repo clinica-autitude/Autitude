@@ -16,7 +16,7 @@ useHead({
         '@type': 'ContactPage',
         name: 'Contato - Autitude',
         description: 'Entre em contato com a Autitude. WhatsApp, e-mail ou formulário.',
-        url: 'https://hautlys.github.io/Autitude/contato',
+        url: 'https://autitude.com.br/contato',
         mainEntity: {
           '@type': 'MedicalBusiness',
           name: 'Autitude - Desenvolvimento e Ação Humana',
@@ -33,16 +33,18 @@ useHead({
   ]
 })
 
+const { whatsappUrl, phoneDisplay, instagramHandle, address, neighborhood, city, state } = useContact()
+
 const config = {
   address: {
-    street: 'Rua Major José dos Santos Moreira, 328',
-    neighborhood: 'Vila Rica',
-    city: 'Pindamonhangaba',
-    state: 'SP'
+    street: address,
+    neighborhood,
+    city,
+    state
   },
-  whatsappUrl: 'https://wa.me/5512991968683',
-  phoneDisplay: '(12) 99196-8683',
-  instagramHandle: '@clinicaautitude',
+  whatsappUrl,
+  phoneDisplay,
+  instagramHandle,
   hours: {
     weekdays: '8h às 18h'
   }
@@ -106,19 +108,21 @@ const handleSubmit = () => {
   <div class="contact">
     <section class="hero-section">
       <div class="hero-bg-grid">
-        <DotGrid
-          :dot-size="14"
-          :gap="28"
-          base-color="#6B4FA3"
-          active-color="#3D2D5E"
-          :proximity="120"
-          :speed-trigger="80"
-          :shock-radius="200"
-          :shock-strength="4"
-          :max-speed="5000"
-          :resistance="750"
-          :return-duration="1.5"
-        />
+        <ClientOnly>
+          <DotGrid
+            :dot-size="14"
+            :gap="28"
+            base-color="#6B4FA3"
+            active-color="#3D2D5E"
+            :proximity="120"
+            :speed-trigger="80"
+            :shock-radius="200"
+            :shock-strength="4"
+            :max-speed="5000"
+            :resistance="750"
+            :return-duration="1.5"
+          />
+        </ClientOnly>
       </div>
       <div class="container">
         <div class="section-header">

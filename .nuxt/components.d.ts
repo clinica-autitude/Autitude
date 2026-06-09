@@ -16,6 +16,7 @@ type LazyComponent<T> = DefineComponent<HydrationStrategies, {}, {}, {}, {}, {},
 
 export const AccessibilityWidget: typeof import("../components/AccessibilityWidget.vue")['default']
 export const ColorBends: typeof import("../components/ColorBends.vue")['default']
+export const CtaSection: typeof import("../components/CtaSection.vue")['default']
 export const DotGrid: typeof import("../components/DotGrid.vue")['default']
 export const Grainient: typeof import("../components/Grainient.vue")['default']
 export const MagicRings: typeof import("../components/MagicRings.vue")['default']
@@ -49,6 +50,7 @@ export const Body: typeof import("../node_modules/.pnpm/nuxt@3.21.7_@parcel+watc
 export const NuxtIsland: typeof import("../node_modules/.pnpm/nuxt@3.21.7_@parcel+watcher@2.5.6_@types+node@25.9.1_@vue+compiler-sfc@3.5.35_cac@6.7.1_a5959e0d07a4ba42d0e8d0815fe97614/node_modules/nuxt/dist/app/components/nuxt-island")['default']
 export const LazyAccessibilityWidget: LazyComponent<typeof import("../components/AccessibilityWidget.vue")['default']>
 export const LazyColorBends: LazyComponent<typeof import("../components/ColorBends.vue")['default']>
+export const LazyCtaSection: LazyComponent<typeof import("../components/CtaSection.vue")['default']>
 export const LazyDotGrid: LazyComponent<typeof import("../components/DotGrid.vue")['default']>
 export const LazyGrainient: LazyComponent<typeof import("../components/Grainient.vue")['default']>
 export const LazyMagicRings: LazyComponent<typeof import("../components/MagicRings.vue")['default']>

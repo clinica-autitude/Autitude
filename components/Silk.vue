@@ -217,8 +217,10 @@ const initSilk = () => {
     gl.canvas.style.zIndex = '0';
 
     let lastTime = 0;
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const update = (t: number) => {
       animateId = requestAnimationFrame(update);
+      if (document.hidden || prefersReducedMotion) return;
       const deltaTime = (t - lastTime) / 1000;
       lastTime = t;
 
@@ -268,10 +270,7 @@ onUnmounted(() => {
   cleanup();
 });
 
-watch(
-  () => [props.speed, props.scale, props.color, props.noiseIntensity, props.rotation],
-  () => {}
-);
+// Props are read directly from props in the animation loop
 </script>
 
 <style scoped>
