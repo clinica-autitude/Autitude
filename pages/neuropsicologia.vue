@@ -1,6 +1,6 @@
 <script setup>
 import { Brain, Search, Heart, Users } from 'lucide-vue-next'
-import Squares from '~/components/Squares.vue'
+import DotGrid from '~/components/DotGrid.vue'
 
 const { whatsappUrl } = useContact()
 
@@ -171,12 +171,18 @@ const faqs = [
     <section class="hero-section">
       <div class="hero-bg-grid">
         <ClientOnly>
-          <Squares
-            direction="diagonal"
-            :speed="1"
-            :square-size="40"
-            border-color="#6B4FA3"
-            hover-fill-color="#3D2D5E"
+          <DotGrid
+            :dot-size="6"
+            :gap="36"
+            base-color="#6B4FA3"
+            active-color="#3D2D5E"
+            :proximity="120"
+            :speed-trigger="100"
+            :shock-radius="200"
+            :shock-strength="4"
+            :max-speed="5000"
+            :resistance="750"
+            :return-duration="1.5"
           />
         </ClientOnly>
       </div>

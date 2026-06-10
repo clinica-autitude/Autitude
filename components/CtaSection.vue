@@ -130,24 +130,24 @@ const bendsProps = computed(() => ({ ...defaultBendsProps, ...props.colorBendsPr
 
 .cta-tag {
   display: inline-block;
-  padding: 0.375rem 1rem;
+  padding: clamp(0.25rem, 0.5vw, 0.375rem) clamp(0.75rem, 1.5vw, 1rem);
   background: var(--cta-tag-bg, var(--lilac-light));
   border: 1px solid var(--cta-card-border, var(--lilac-light));
   border-radius: var(--radius-full);
-  font-size: 0.8125rem;
+  font-size: clamp(0.75rem, 1vw, 0.8125rem);
   font-weight: 600;
   color: var(--cta-tag-text, var(--lilac-deepest));
-  margin-bottom: 1rem;
+  margin-bottom: clamp(0.75rem, 1.5vw, 1rem);
 }
 
 .cta-content h2 {
-  margin-bottom: 0.75rem;
+  margin-bottom: clamp(0.5rem, 1vw, 0.75rem);
   color: var(--cta-text, var(--lilac-deepest));
 }
 
 .cta-content p {
-  font-size: 1.0625rem;
-  margin-bottom: 1.5rem;
+  font-size: clamp(0.9375rem, 1.3vw, 1.0625rem);
+  margin-bottom: clamp(1rem, 2vw, 1.5rem);
   max-width: 500px;
   margin-left: auto;
   margin-right: auto;
@@ -158,9 +158,9 @@ const bendsProps = computed(() => ({ ...defaultBendsProps, ...props.colorBendsPr
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 0.5rem 1.25rem;
-  margin: 1rem 0 0.5rem;
-  font-size: 0.9375rem;
+  gap: clamp(0.375rem, 0.8vw, 0.5rem) clamp(1rem, 2vw, 1.25rem);
+  margin: clamp(0.75rem, 1.5vw, 1rem) 0 clamp(0.375rem, 0.8vw, 0.5rem);
+  font-size: clamp(0.875rem, 1.2vw, 0.9375rem);
   color: var(--cta-text-secondary, var(--lilac-dark));
 }
 
@@ -168,7 +168,7 @@ const bendsProps = computed(() => ({ ...defaultBendsProps, ...props.colorBendsPr
   color: var(--cta-text-secondary, var(--lilac-dark));
   text-decoration: none;
   font-weight: 500;
-  transition: color 0.2s;
+  transition: color 0.2s ease;
 }
 
 .cta-contact-item:hover {
@@ -178,21 +178,17 @@ const bendsProps = computed(() => ({ ...defaultBendsProps, ...props.colorBendsPr
 .cta-actions {
   display: flex;
   justify-content: center;
-  gap: 0.75rem;
+  gap: clamp(0.5rem, 1vw, 0.75rem);
   flex-wrap: wrap;
 }
 
 .cta-address {
-  margin-top: 1.25rem;
-  font-size: 0.875rem;
+  margin-top: clamp(1rem, 2vw, 1.25rem);
+  font-size: clamp(0.8125rem, 1.1vw, 0.875rem);
   color: var(--cta-text-secondary, var(--lilac-dark));
 }
 
-@media (max-width: 640px) {
-  .cta-content {
-    padding: clamp(1.25rem, 4vw, 2rem);
-  }
-
+@media (max-width: 768px) {
   .cta-actions {
     flex-direction: column;
     align-items: center;
@@ -200,12 +196,22 @@ const bendsProps = computed(() => ({ ...defaultBendsProps, ...props.colorBendsPr
 
   .cta-actions .btn {
     width: 100%;
+    max-width: 320px;
+  }
+}
+
+@media (max-width: 640px) {
+  .cta-content {
+    padding: clamp(1.25rem, 4vw, 2rem);
+  }
+
+  .cta-actions .btn {
     max-width: 280px;
   }
 
   .cta-contact {
     flex-direction: column;
-    gap: 0.375rem;
+    gap: clamp(0.25rem, 0.5vw, 0.375rem);
     align-items: center;
   }
 }

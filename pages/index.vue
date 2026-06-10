@@ -268,8 +268,8 @@ const services = [
       
       <div class="container hero-container">
         <div class="hero-layout">
-          <div class="hero-left">
-            <span class="hero-eyebrow">Cuidado humanizado e baseado em evidências</span>
+          <div class="hero-left float-slow" style="--float-duration: 7s">
+            <span class="hero-eyebrow float-subtle">Cuidado humanizado e baseado em evidências</span>
             <HeroTitle>
               Autitude — Desenvolvimento com
               <HeroTitleHighlight>acolhimento,</HeroTitleHighlight>
@@ -550,20 +550,20 @@ const services = [
 }
 
 .seo-answer {
-  padding: 2rem 0;
+  padding: clamp(1.5rem, 3vw, 2rem) 0;
 }
 
 .seo-paragraph {
   max-width: 800px;
   margin: 0 auto;
-  font-size: 1.0625rem;
+  font-size: clamp(0.9375rem, 1.3vw, 1.0625rem);
   line-height: 1.8;
   color: var(--text-secondary);
   text-align: center;
   background: var(--lilac-soft);
   border-left: 4px solid var(--primary);
   border-radius: 0 var(--radius-md) var(--radius-md) 0;
-  padding: 1.5rem 2rem;
+  padding: clamp(1rem, 2vw, 1.5rem) clamp(1.25rem, 3vw, 2rem);
 }
 
 .seo-paragraph strong {
@@ -575,7 +575,7 @@ const services = [
   text-decoration: underline;
   text-decoration-color: var(--lilac-light);
   text-underline-offset: 2px;
-  transition: all 0.2s;
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
 }
 
 .seo-paragraph a:hover {
@@ -584,10 +584,10 @@ const services = [
 }
 
 .hero {
-  min-height: clamp(500px, 85dvh, 900px);
+  min-height: 100dvh;
   display: flex;
   align-items: center;
-  padding-top: 5rem;
+  padding-top: clamp(3rem, 5vw, 5rem);
   position: relative;
   overflow: hidden;
   container-type: inline-size;
@@ -609,6 +609,7 @@ const services = [
   z-index: 1;
   user-select: none;
   opacity: 0.75;
+  will-change: transform;
 }
 
 .hero-rings,
@@ -634,6 +635,7 @@ const services = [
   z-index: 2;
   pointer-events: none;
   filter: drop-shadow(0 0 40px rgba(255, 255, 255, 0.5));
+  will-change: transform;
 }
 
 .silk-bg {
@@ -651,6 +653,7 @@ const services = [
   opacity: 0.45;
   z-index: 1;
   pointer-events: none;
+  will-change: transform;
 }
 
 .blob-1 {
@@ -691,15 +694,15 @@ const services = [
   grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
   align-items: center;
   gap: var(--hero-gap, clamp(1.5rem, 3vw, 2.5rem));
-  min-height: clamp(500px, 85dvh, 900px);
-  padding-top: 4rem;
-  padding-bottom: 4rem;
+  min-height: 100dvh;
+  padding-top: clamp(2rem, 4vw, 4rem);
+  padding-bottom: clamp(2rem, 4vw, 4rem);
 }
 
 .hero-left {
   text-align: left;
   padding-right: clamp(1rem, 4vw, 3rem);
-  padding-bottom: 2rem;
+  padding-bottom: clamp(1rem, 2vw, 2rem);
 }
 
 .hero-eyebrow {
@@ -718,7 +721,7 @@ const services = [
   justify-content: flex-start;
   gap: clamp(1rem, 2vw, 1.5rem);
   padding-left: clamp(1rem, 4vw, 3rem);
-  padding-top: 2rem;
+  padding-top: clamp(1rem, 2vw, 2rem);
 }
 
 .hero-right-desc {
@@ -764,9 +767,9 @@ const services = [
 }
 
 .section-header p {
-  font-size: 1.0625rem;
+  font-size: clamp(0.9375rem, 1.3vw, 1.0625rem);
   color: var(--text-secondary);
-  margin-bottom: 0.75rem;
+  margin-bottom: clamp(0.5rem, 1vw, 0.75rem);
 }
 
 .pillars-grid {
@@ -784,7 +787,8 @@ const services = [
   text-align: center;
   position: relative;
   overflow: hidden;
-  transition: all 0.4s var(--ease-out-expo);
+  transition: transform 0.4s var(--ease-out-expo), box-shadow 0.4s var(--ease-out-expo);
+  will-change: transform;
   animation: fadeInUp 0.6s var(--ease-out-expo) forwards;
   animation-delay: var(--delay);
   opacity: 0;
@@ -798,7 +802,7 @@ const services = [
 .pillar-icon-wrapper {
   width: clamp(56px, 10vw, 72px);
   height: clamp(56px, 10vw, 72px);
-  margin: 0 auto 1rem;
+  margin: 0 auto clamp(0.75rem, 1.5vw, 1rem);
   border-radius: var(--radius-xl);
   display: flex;
   align-items: center;
@@ -810,30 +814,30 @@ const services = [
 }
 
 .pillar-content h3 {
-  margin-bottom: 0.5rem;
-  font-size: 1.0625rem;
+  margin-bottom: clamp(0.375rem, 0.7vw, 0.5rem);
+  font-size: clamp(0.9375rem, 1.3vw, 1.0625rem);
 }
 
 .pillar-content p {
-  font-size: 0.875rem;
+  font-size: clamp(0.8125rem, 1.1vw, 0.875rem);
   line-height: 1.6;
   color: var(--text-secondary);
 }
 
 .section-tag {
   display: inline-block;
-  padding: 0.375rem 1rem;
+  padding: clamp(0.25rem, 0.5vw, 0.375rem) clamp(0.75rem, 1.5vw, 1rem);
   background: var(--lilac-soft);
   border: 1px solid var(--lilac-light);
   border-radius: var(--radius-full);
-  font-size: 0.8125rem;
+  font-size: clamp(0.75rem, 1vw, 0.8125rem);
   font-weight: 600;
   color: var(--lilac-deep);
-  margin-bottom: 1rem;
+  margin-bottom: clamp(0.75rem, 1.5vw, 1rem);
 }
 
 .section-header h2 {
-  margin-bottom: 0.75rem;
+  margin-bottom: clamp(0.5rem, 1vw, 0.75rem);
 }
 
 .services-preview {
@@ -841,7 +845,7 @@ const services = [
 }
 
 .services-showcase {
-  margin-bottom: 2.5rem;
+  margin-bottom: clamp(1.5rem, 4vw, 2.5rem);
 }
 
 .service-cards-grid {
@@ -857,29 +861,29 @@ const services = [
   grid-template-columns: 1.4fr 1fr;
   gap: clamp(1.5rem, 4vw, 3rem);
   max-width: 1100px;
-  margin: 0 auto 3rem;
+  margin: 0 auto clamp(2rem, 5vw, 3rem);
   align-items: start;
 }
 
 .history-eyebrow {
   display: inline-block;
-  padding: 0.3rem 0.8rem;
+  padding: clamp(0.2rem, 0.4vw, 0.3rem) clamp(0.6rem, 1.2vw, 0.8rem);
   background: var(--lilac-soft);
   border: 1px solid var(--lilac-light);
   border-radius: var(--radius-full);
-  font-size: 0.75rem;
+  font-size: clamp(0.6875rem, 0.9vw, 0.75rem);
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--lilac-deep);
-  margin-bottom: 1rem;
+  margin-bottom: clamp(0.75rem, 1.5vw, 1rem);
 }
 
 .history-content p {
   font-size: 1rem;
   line-height: 1.7;
   color: var(--text-secondary);
-  margin-bottom: 1rem;
+  margin-bottom: clamp(0.75rem, 1.5vw, 1rem);
 }
 
 .history-lead {
@@ -905,7 +909,7 @@ const services = [
   top: -0.5rem;
   left: 1.25rem;
   font-family: 'Nunito', serif;
-  font-size: 4rem;
+  font-size: clamp(3rem, 5vw, 4rem);
   line-height: 1;
   color: var(--lilac);
   font-weight: 800;
@@ -928,9 +932,10 @@ const services = [
   padding: clamp(1rem, 2.5vw, 1.5rem);
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: clamp(0.75rem, 2vw, 1rem);
   text-decoration: none;
-  transition: all 0.35s var(--ease-out-expo);
+  transition: transform 0.35s var(--ease-out-expo), box-shadow 0.35s var(--ease-out-expo), border-color 0.35s var(--ease-out-expo);
+  will-change: transform;
   border: 1.5px solid transparent;
 }
 
@@ -959,25 +964,25 @@ const services = [
 }
 
 .card-mini-content h4 {
-  font-size: 0.9375rem;
-  margin-bottom: 0.25rem;
+  font-size: clamp(0.875rem, 1.2vw, 0.9375rem);
+  margin-bottom: clamp(0.125rem, 0.3vw, 0.25rem);
   color: var(--text);
 }
 
 .card-mini-content p {
-  font-size: 0.8125rem;
+  font-size: clamp(0.75rem, 1vw, 0.8125rem);
   color: var(--text-secondary);
   margin: 0;
 }
 
 .card-arrow {
-  width: 20px;
-  height: 20px;
+  width: clamp(16px, 2vw, 20px);
+  height: clamp(16px, 2vw, 20px);
   border-right: 2px solid var(--text-light);
   border-bottom: 2px solid var(--text-light);
   transform: rotate(-45deg);
   opacity: 0.25;
-  transition: opacity 0.3s, transform 0.3s;
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .service-card-mini:hover .card-arrow {
@@ -1000,64 +1005,16 @@ const services = [
     grid-template-columns: 1fr;
     grid-template-rows: auto auto;
     justify-items: center;
-    gap: 1.5rem;
+    gap: clamp(1rem, 2vw, 1.5rem);
     min-height: auto;
-    padding-top: 5rem;
-    padding-bottom: 2rem;
+    padding-top: clamp(3rem, 5vw, 5rem);
+    padding-bottom: clamp(1rem, 2vw, 2rem);
   }
 
-  .hero-left {
-    text-align: center;
-    padding-right: 0;
-    padding-bottom: 1rem;
-  }
-
-  .hero-eyebrow {
-    text-align: center;
-  }
-
-  .hero-right {
-    padding-left: 0;
-    align-items: center;
-  }
-
-  .hero-right-desc {
-    align-self: center;
-    text-align: center;
-    margin-left: 0;
-  }
-
-  .hero-right-tagline {
-    align-self: center;
-    text-align: center;
-    margin-left: clamp(0.5rem, 2vw, 1.5rem);
-  }
-
-  .hero-right-actions {
-    align-self: center;
-    text-align: center;
-    margin-left: clamp(1rem, 3vw, 2rem);
-  }
-
-  .hero-rings {
-    width: min(55vw, 380px);
-    height: min(55vw, 380px);
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-
-  .hero-rings-logo {
-    width: 45%;
-    max-width: 260px;
-  }
-}
-
-@media (max-width: 640px) {
-  .hero {
+  .hero-layout {
     min-height: auto;
-    padding-top: 5rem;
-    padding-bottom: 2rem;
+    padding-top: clamp(3rem, 5vw, 5rem);
+    padding-bottom: clamp(1rem, 2vw, 2rem);
     align-items: flex-start;
   }
 
@@ -1072,20 +1029,20 @@ const services = [
   }
 
   .hero-layout {
-    padding-top: 0.75rem;
-    gap: 0.75rem;
+    padding-top: clamp(0.5rem, 1vw, 0.75rem);
+    gap: clamp(0.5rem, 1vw, 0.75rem);
     min-height: auto;
-    padding-bottom: 1rem;
+    padding-bottom: clamp(0.75rem, 1.5vw, 1rem);
   }
 
   .hero-left {
     padding-right: 0;
-    padding-bottom: 0.5rem;
+    padding-bottom: clamp(0.375rem, 0.7vw, 0.5rem);
   }
 
   .hero-eyebrow {
-    font-size: 0.7rem;
-    margin-bottom: 0.5rem;
+    font-size: clamp(0.625rem, 0.9vw, 0.7rem);
+    margin-bottom: clamp(0.375rem, 0.7vw, 0.5rem);
   }
 
   .hero-rings {
@@ -1107,7 +1064,7 @@ const services = [
   }
 
   .hero-right {
-    gap: 0.75rem;
+    gap: clamp(0.5rem, 1vw, 0.75rem);
   }
 
   .hero-right-desc,
@@ -1120,7 +1077,7 @@ const services = [
   .service-card-mini {
     flex-direction: column;
     text-align: center;
-    gap: 0.75rem;
+    gap: clamp(0.5rem, 1vw, 0.75rem);
   }
 
   .card-arrow {
@@ -1132,15 +1089,15 @@ const services = [
   }
 
   .history-quote {
-    padding: 1.25rem;
+    padding: clamp(1rem, 2vw, 1.25rem);
   }
 
   .history-quote blockquote {
-    font-size: 0.9375rem;
+    font-size: clamp(0.875rem, 1.2vw, 0.9375rem);
   }
 
   .quote-mark {
-    font-size: 3rem;
+    font-size: clamp(2.5rem, 4vw, 3rem);
   }
 }
 </style>
