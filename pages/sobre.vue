@@ -193,7 +193,7 @@ const differentiators = [
       </a>
     </section>
 
-    <section class="seo-answer">
+    <section class="seo-answer seo-text">
       <div class="container">
         <p class="seo-paragraph texture-hd" style="--texture-hd: var(--texture-hd-paper)">
           A <strong>Autitude - Desenvolvimento e Ação Humana</strong> é uma clínica especializada em neurodivergência
@@ -426,7 +426,7 @@ const differentiators = [
 .seo-paragraph {
   max-width: 800px;
   margin: 0 auto;
-  font-size: 1.0625rem;
+  font-size: clamp(0.9375rem, 1.5vw + 0.25rem, 1.125rem);
   line-height: 1.8;
   color: var(--text-secondary);
   background: var(--lilac-soft);
@@ -444,7 +444,7 @@ const differentiators = [
   text-decoration: underline;
   text-decoration-color: var(--lilac-light);
   text-underline-offset: 2px;
-  transition: all 0.2s;
+  transition: color 0.2s, text-decoration-color 0.2s;
 }
 
 .seo-paragraph a:hover {
@@ -493,7 +493,7 @@ const differentiators = [
   gap: 0.5rem;
   padding: 0.45rem 0.9rem;
   border-radius: var(--radius-pill);
-  font-size: 0.8125rem;
+  font-size: clamp(0.75rem, 1.3vw, 0.875rem);
   font-weight: 600;
   color: var(--primary-dark);
   background: color-mix(in srgb, var(--lilac) 10%, transparent);
@@ -517,9 +517,9 @@ const differentiators = [
   padding: 0.9rem 1.5rem;
   border-radius: var(--radius-pill);
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: clamp(0.875rem, 1.3vw, 1rem);
   text-decoration: none;
-  transition: all 0.3s var(--ease);
+  transition: background-color 0.3s var(--ease), border-color 0.3s var(--ease), color 0.3s var(--ease), transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
   border: 1px solid transparent;
   cursor: pointer;
   white-space: nowrap;
@@ -911,7 +911,7 @@ const differentiators = [
   background: color-mix(in srgb, var(--lilac) 10%, transparent);
   border: 1px solid color-mix(in srgb, var(--lilac) 22%, transparent);
   text-decoration: none;
-  transition: all 0.3s var(--ease);
+  transition: background-color 0.3s var(--ease), border-color 0.3s var(--ease), color 0.3s var(--ease), transform 0.3s var(--ease);
 }
 .location__link:hover {
   background: var(--lilac);

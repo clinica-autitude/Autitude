@@ -198,12 +198,12 @@ useHead({
     <section class="hero-section">
       <div class="container">
         <div class="section-title">
-          <span class="section-tag">Perguntas frequentes</span>
+          <span class="section-tag texture-hd">Perguntas frequentes</span>
           <h2>O que você precisa saber sobre a Autitude?</h2>
           <p>Tire suas dúvidas sobre o cuidado que oferecemos na Autitude.</p>
         </div>
 
-        <div class="seo-answer">
+        <div class="seo-answer seo-text">
           <p class="seo-paragraph texture-hd" style="--texture-hd: var(--texture-hd-paper)">
             A Autitude é uma clínica especializada em neurodivergência em Pindamonhangaba-SP,
             oferecendo <strong>neuropsicologia, fonoaudiologia, terapia ocupacional e terapia ABA</strong>
@@ -228,7 +228,7 @@ useHead({
           <div
             v-for="(faq, index) in filteredFaqs"
             :key="`${activeCategory}-${index}`"
-            class="faq-item texture-hd"
+            class="faq-item texture-hd-paper"
             :class="{ open: openFaq === index }"
           >
             <div
@@ -292,7 +292,7 @@ useHead({
   background: var(--lilac-soft);
   border: 1px solid var(--lilac-light);
   border-radius: var(--radius-full);
-  font-size: 0.8125rem;
+  font-size: clamp(0.75rem, 1.5vw, 0.875rem);
   font-weight: 600;
   color: var(--lilac-deep);
   margin-bottom: 1rem;
@@ -303,7 +303,7 @@ useHead({
 }
 
 .section-title p {
-  font-size: 1.0625rem;
+  font-size: clamp(0.9375rem, 1.5vw + 0.25rem, 1.125rem);
   color: var(--text-secondary);
 }
 
@@ -313,7 +313,7 @@ useHead({
 }
 
 .seo-paragraph {
-  font-size: 1.0625rem;
+  font-size: clamp(0.9375rem, 1.5vw + 0.25rem, 1.125rem);
   line-height: 1.8;
   color: var(--text-secondary);
   background: var(--lilac-soft);
@@ -344,7 +344,7 @@ useHead({
   font-weight: 500;
   font-size: 0.9375rem;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: background-color 0.2s, border-color 0.2s, color 0.2s;
 }
 
 .category-btn:hover {
@@ -371,7 +371,7 @@ useHead({
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   overflow: hidden;
-  transition: all 0.3s;
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 .faq-item.open {
@@ -397,7 +397,7 @@ useHead({
 
 .faq-question h3 {
   flex: 1;
-  font-size: 1rem;
+  font-size: clamp(0.9375rem, 1.5vw, 1.0625rem);
   font-weight: 600;
 }
 
@@ -415,7 +415,7 @@ useHead({
   height: 2px;
   background: var(--text-secondary);
   position: relative;
-  transition: all 0.3s;
+  transition: background-color 0.3s;
 }
 
 .faq-toggle span::after {
@@ -427,7 +427,7 @@ useHead({
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  transition: all 0.3s;
+  transition: transform 0.3s, opacity 0.3s;
 }
 
 .faq-item.open .faq-toggle span::after {
@@ -440,14 +440,14 @@ useHead({
 }
 
 .faq-answer p {
-  font-size: 0.9375rem;
+  font-size: clamp(0.875rem, 1.3vw, 1rem);
   line-height: 1.7;
   color: var(--text-secondary);
 }
 
 .accordion-enter-active,
 .accordion-leave-active {
-  transition: all 0.3s;
+  transition: opacity 0.3s, max-height 0.3s;
   overflow: hidden;
 }
 
@@ -475,7 +475,7 @@ useHead({
   }
 
   .faq-question h3 {
-    font-size: 0.9375rem;
+    font-size: clamp(0.875rem, 4vw, 0.9375rem);
   }
 
   .faq-categories {

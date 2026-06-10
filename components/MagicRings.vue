@@ -366,12 +366,18 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div ref="mountRef" class="w-full h-full relative" :style="props.blur > 0 ? { filter: `blur(${props.blur}px)` } : undefined">
+  <div ref="mountRef" class="magicrings-mount" :style="props.blur > 0 ? { filter: `blur(${props.blur}px)` } : undefined">
     <div v-if="webglFailed" class="magicrings-fallback" aria-hidden="true" />
   </div>
 </template>
 
 <style scoped>
+.magicrings-mount {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
 .magicrings-fallback {
   position: absolute;
   inset: 0;

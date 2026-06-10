@@ -282,13 +282,13 @@ const handleSubmit = async () => {
       </div>
       <div class="container">
         <div class="section-header">
-          <span class="section-tag">Agendamento</span>
+          <span class="section-tag texture-hd">Agendamento</span>
           <h1>Agende sua consulta</h1>
           <p>Preencha o formulário e entraremos em contato. Cuidamos de pessoas. Potencializamos possibilidades.</p>
         </div>
 
-        <div class="seo-answer">
-          <p class="seo-paragraph">
+        <div class="seo-answer seo-text">
+          <p class="seo-paragraph texture-hd">
             Agende sua <strong>avaliação na Autitude</strong> em <strong>Pindamonhangaba-SP</strong> preenchendo o formulário abaixo. Retornamos em até <strong>24 horas pelo WhatsApp (12) 99196-8683</strong> para entender suas necessidades e marcar a consulta inicial. Atendemos crianças, adolescentes, adultos e famílias com foco em <strong>neurodivergência</strong>, de segunda a sexta, das 8h às 18h.
           </p>
         </div>
@@ -525,7 +525,7 @@ const handleSubmit = async () => {
   background: var(--lilac-soft);
   border: 1px solid var(--lilac-light);
   border-radius: var(--radius-full);
-  font-size: 0.8125rem;
+  font-size: clamp(0.75rem, 1.5vw, 0.875rem);
   font-weight: 600;
   color: var(--lilac-deep);
   margin-bottom: 1rem;
@@ -558,7 +558,7 @@ const handleSubmit = async () => {
 }
 
 .form-section h3 {
-  font-size: 0.8125rem;
+  font-size: clamp(1rem, 1.8vw, 1.25rem);
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -581,7 +581,7 @@ const handleSubmit = async () => {
   display: block;
   margin-bottom: 0.375rem;
   font-weight: 600;
-  font-size: 0.875rem;
+  font-size: clamp(0.8125rem, 1.2vw, 0.9375rem);
 }
 
 .form-group {
@@ -595,7 +595,7 @@ const handleSubmit = async () => {
   border: 2px solid var(--border);
   border-radius: var(--radius-lg);
   padding: 4px;
-  transition: all 0.3s var(--ease-smooth);
+  transition: opacity 0.3s var(--ease-smooth), transform 0.3s var(--ease-smooth);
 }
 
 .age-selector:focus-within {
@@ -613,7 +613,7 @@ const handleSubmit = async () => {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.25s var(--ease-bounce);
+  transition: background-color 0.25s var(--ease-bounce), border-color 0.25s var(--ease-bounce), color 0.25s var(--ease-bounce), transform 0.25s var(--ease-bounce);
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -717,7 +717,7 @@ const handleSubmit = async () => {
 
 .dropdown-enter-active,
 .dropdown-leave-active {
-  transition: all 0.2s var(--ease-out-expo);
+  transition: background-color 0.2s var(--ease-out-expo), border-color 0.2s var(--ease-out-expo), color 0.2s var(--ease-out-expo), transform 0.2s var(--ease-out-expo);
 }
 
 .dropdown-enter-from,

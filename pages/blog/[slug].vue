@@ -486,7 +486,7 @@ onMounted(() => {
         </p>
       </header>
 
-      <section class="seo-answer" aria-label="Resumo">
+      <section class="seo-answer seo-text" aria-label="Resumo">
         <p class="seo-paragraph">{{ content.description }}</p>
       </section>
 
@@ -680,7 +680,7 @@ onMounted(() => {
   text-decoration: none;
   color: var(--text);
   font-size: 0.875rem;
-  transition: all 0.2s;
+  transition: border-color 0.2s, color 0.2s, transform 0.2s;
 }
 
 .related-link:hover {

@@ -102,12 +102,12 @@ const culture = [
     <section class="hero-section">
       <div class="container">
         <div class="section-header">
-          <span class="section-tag">Nossa profissional</span>
+          <span class="section-tag texture-hd">Nossa profissional</span>
           <h1>Quem são os profissionais da Autitude?</h1>
           <p>Profissionais dedicados ao desenvolvimento integral de cada pessoa, ambiente e de sua família.</p>
         </div>
 
-        <div class="seo-answer">
+        <div class="seo-answer seo-text">
           <p class="seo-paragraph texture-hd" style="--texture-hd: var(--texture-hd-paper)">
             A equipe da Autitude é liderada pela <strong>Dra. Juliana Mariani</strong>,
             Terapeuta Ocupacional com <strong>certificação internacional em Integração Sensorial
@@ -140,7 +140,7 @@ const culture = [
       <div class="container">
         <div class="section-header">
           <div class="header-content">
-            <span class="section-tag">Nossos Valores</span>
+            <span class="section-tag texture-hd">Nossos Valores</span>
             <h2>O que nos move</h2>
           </div>
         </div>
@@ -205,7 +205,7 @@ const culture = [
 }
 
 .section-header p {
-  font-size: 1.0625rem;
+  font-size: clamp(0.9375rem, 1.5vw + 0.25rem, 1.125rem);
   color: var(--text-secondary);
 }
 
@@ -215,7 +215,7 @@ const culture = [
 }
 
 .seo-paragraph {
-  font-size: 1.0625rem;
+  font-size: clamp(0.9375rem, 1.5vw + 0.25rem, 1.125rem);
   line-height: 1.8;
   color: var(--text-secondary);
   background: var(--lilac-soft);
@@ -234,7 +234,7 @@ const culture = [
   text-decoration: underline;
   text-decoration-color: var(--lilac-light);
   text-underline-offset: 2px;
-  transition: all 0.2s;
+  transition: color 0.2s, text-decoration-color 0.2s;
 }
 
 .seo-paragraph a:hover {
@@ -248,7 +248,7 @@ const culture = [
   background: var(--lilac-soft);
   border: 1px solid var(--lilac-light);
   border-radius: var(--radius-full);
-  font-size: 0.8125rem;
+  font-size: clamp(0.75rem, 1.5vw, 0.875rem);
   font-weight: 600;
   color: var(--lilac-deep);
   margin-bottom: 1rem;
@@ -306,14 +306,14 @@ const culture = [
 }
 
 .member-role {
-  font-size: 1rem;
+  font-size: clamp(0.9375rem, 1.5vw, 1.0625rem);
   color: var(--lilac-deep);
   font-weight: 600;
   margin-bottom: 1rem;
 }
 
 .member-bio {
-  font-size: 1rem;
+  font-size: clamp(0.9375rem, 1.5vw, 1.0625rem);
   line-height: 1.7;
   color: var(--text-secondary);
   margin-bottom: 1.5rem;
@@ -330,7 +330,7 @@ const culture = [
   background: var(--lilac-soft);
   border: 1px solid var(--lilac-light);
   border-radius: var(--radius-full);
-  font-size: 0.75rem;
+  font-size: clamp(0.6875rem, 1.2vw, 0.8125rem);
   font-weight: 600;
   color: var(--lilac-deep);
 }
@@ -361,7 +361,7 @@ const culture = [
   padding: clamp(1.25rem, 3vw, 2rem);
   border-radius: var(--radius-xl);
   text-align: center;
-  transition: all 0.35s var(--ease-out-expo);
+  transition: transform 0.35s var(--ease-out-expo), box-shadow 0.35s var(--ease-out-expo);
 }
 
 .value-card:hover {
@@ -385,12 +385,12 @@ const culture = [
 }
 
 .value-card h3 {
-  font-size: 1rem;
+  font-size: clamp(0.9375rem, 1.5vw, 1.0625rem);
   margin-bottom: 0.5rem;
 }
 
 .value-card p {
-  font-size: 0.875rem;
+  font-size: clamp(0.8125rem, 1.2vw, 0.9375rem);
   color: var(--text-secondary);
 }
 

@@ -117,12 +117,12 @@ const config = {
       <DotGrid />
       <div class="container">
         <div class="section-title">
-          <span class="section-tag">Contato</span>
+          <span class="section-tag texture-hd">Contato</span>
           <h2>Como entrar em contato com a Autitude?</h2>
           <p>Estamos aqui para cuidar de você. Entre em contato pelo canal que preferir.</p>
         </div>
 
-        <div class="seo-answer">
+        <div class="seo-answer seo-text">
           <p class="seo-paragraph texture-hd" style="--texture-hd: var(--texture-hd-paper)">
             Para agendar uma avaliação na Autitude, entre em contato pelo
             <strong><a :href="whatsappUrl" target="_blank" rel="noopener">WhatsApp</a></strong>
@@ -133,7 +133,7 @@ const config = {
         </div>
 
         <div class="contact-grid">
-          <a :href="whatsappUrl" class="contact-card whatsapp-card texture-hd" target="_blank" rel="noopener">
+          <a :href="whatsappUrl" class="contact-card whatsapp-card texture-hd-paper" target="_blank" rel="noopener">
             <div class="card-icon">
               <MessageCircle :size="28" />
             </div>
@@ -142,7 +142,7 @@ const config = {
             <span class="contact-label">Resposta em até 24h</span>
           </a>
 
-          <div class="contact-card texture-hd">
+          <div class="contact-card texture-hd-paper">
             <div class="card-icon">
               <MapPin :size="28" />
             </div>
@@ -151,7 +151,7 @@ const config = {
             <span class="contact-label">{{ neighborhood }} — {{ city }}, {{ state }}</span>
           </div>
 
-          <div class="contact-card texture-hd">
+          <div class="contact-card texture-hd-paper">
             <div class="card-icon">
               <Mail :size="28" />
             </div>
@@ -160,7 +160,7 @@ const config = {
             <span class="contact-label">Respondemos em até 48h</span>
           </div>
 
-          <div class="contact-card texture-hd">
+          <div class="contact-card texture-hd-paper">
             <div class="card-icon">
               <Clock :size="28" />
             </div>
@@ -209,7 +209,7 @@ const config = {
   background: var(--lilac-soft);
   border: 1px solid var(--lilac-light);
   border-radius: var(--radius-full);
-  font-size: 0.8125rem;
+  font-size: clamp(0.75rem, 1.5vw, 0.875rem);
   font-weight: 600;
   color: var(--lilac-deep);
   margin-bottom: 1rem;
@@ -220,7 +220,7 @@ const config = {
 }
 
 .section-title p {
-  font-size: 1.0625rem;
+  font-size: clamp(0.9375rem, 1.5vw + 0.25rem, 1.125rem);
   color: var(--text-secondary);
 }
 
@@ -232,7 +232,7 @@ const config = {
 }
 
 .seo-paragraph {
-  font-size: 1.0625rem;
+  font-size: clamp(0.9375rem, 1.5vw + 0.25rem, 1.125rem);
   line-height: 1.8;
   color: var(--text-secondary);
   background: var(--lilac-soft);
@@ -251,7 +251,7 @@ const config = {
   text-decoration: underline;
   text-decoration-color: var(--lilac-light);
   text-underline-offset: 2px;
-  transition: all 0.2s;
+  transition: color 0.2s, text-decoration-color 0.2s;
 }
 
 .seo-paragraph a:hover {
@@ -276,7 +276,7 @@ const config = {
   padding: 2rem;
   text-align: center;
   text-decoration: none;
-  transition: all 0.3s;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .contact-card:hover {
@@ -312,19 +312,19 @@ const config = {
 }
 
 .contact-card h3 {
-  font-size: 1rem;
+  font-size: clamp(0.9375rem, 1.5vw, 1.0625rem);
   margin-bottom: 0.5rem;
 }
 
 .contact-value {
-  font-size: 0.9375rem;
+  font-size: clamp(0.875rem, 1.3vw, 1rem);
   color: var(--text);
   font-weight: 500;
   margin-bottom: 0.25rem;
 }
 
 .contact-label {
-  font-size: 0.8125rem;
+  font-size: clamp(0.75rem, 1.3vw, 0.875rem);
   color: var(--text-light);
 }
 

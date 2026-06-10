@@ -184,11 +184,11 @@ const faqs = [
         </ClientOnly>
       </div>
       <div class="container">
-        <span class="section-tag">Terapia Ocupacional</span>
+        <span class="section-tag texture-hd">Terapia Ocupacional</span>
         <h1>Terapia Ocupacional em Pindamonhangaba: Integração Sensorial e Autonomia</h1>
 
-        <div class="seo-answer">
-          <p class="seo-paragraph">
+        <div class="seo-answer seo-text">
+          <p class="seo-paragraph texture-hd">
             A <strong>Terapia Ocupacional</strong> da Autitude em Pindamonhangaba-SP conta com
             <strong>certificação internacional em Integração Sensorial pela University of Southern California (USC, USA)</strong>
             — um dos mais altos padrões de excelência na área. A terapia ocupacional atua na avaliação clínica e funcional,
@@ -217,8 +217,8 @@ const faqs = [
             </p>
 
             <div class="benefits-list">
-              <div class="benefit-item" v-for="benefit in benefits" :key="benefit.title">
-                <div class="benefit-icon-wrap">
+              <div class="benefit-item texture-hd-paper" v-for="benefit in benefits" :key="benefit.title">
+                <div class="benefit-icon-wrap texture-hd">
                   <component :is="benefit.icon" :size="24" class="icon-primary" />
                 </div>
                 <div>
@@ -236,7 +236,7 @@ const faqs = [
             <div
               v-for="(faq, index) in faqs"
               :key="index"
-              class="faq-item"
+              class="faq-item texture-hd-paper"
               :class="{ open: openFaq === index }"
             >
               <div
@@ -325,7 +325,7 @@ const faqs = [
   background: var(--lilac-soft);
   border: 1px solid var(--lilac-light);
   border-radius: var(--radius-full);
-  font-size: 0.8125rem;
+  font-size: clamp(0.75rem, 1.5vw, 0.875rem);
   font-weight: 600;
   color: var(--lilac-deep);
   margin-bottom: 1rem;
@@ -342,7 +342,7 @@ h1 {
 }
 
 .seo-paragraph {
-  font-size: 1.0625rem;
+  font-size: clamp(0.9375rem, 1.5vw + 0.25rem, 1.125rem);
   line-height: 1.8;
   color: var(--text-secondary);
   background: var(--lilac-soft);
@@ -365,7 +365,7 @@ h1 {
 }
 
 .overview-text {
-  font-size: 1.0625rem;
+  font-size: clamp(0.9375rem, 1.5vw + 0.25rem, 1.125rem);
   line-height: 1.8;
   color: var(--text-secondary);
   margin-bottom: 1rem;
@@ -376,7 +376,7 @@ h1 {
   text-decoration: underline;
   text-decoration-color: var(--lilac-light);
   text-underline-offset: 2px;
-  transition: all 0.2s;
+  transition: color 0.2s, text-decoration-color 0.2s;
 }
 
 .overview-text a:hover {
@@ -398,7 +398,7 @@ h1 {
   border-radius: var(--radius-xl);
   padding: clamp(1.25rem, 3vw, 1.75rem);
   box-shadow: var(--shadow-xs);
-  transition: all 0.35s var(--ease-out-expo);
+  transition: transform 0.35s var(--ease-out-expo), box-shadow 0.35s var(--ease-out-expo);
 }
 
 .benefit-item:hover {
@@ -418,12 +418,12 @@ h1 {
 }
 
 .benefit-item h3 {
-  font-size: 1rem;
+  font-size: clamp(0.9375rem, 1.5vw, 1.0625rem);
   margin-bottom: 0.375rem;
 }
 
 .benefit-item p {
-  font-size: 0.875rem;
+  font-size: clamp(0.8125rem, 1.2vw, 0.9375rem);
   line-height: 1.6;
   color: var(--text-secondary);
 }
@@ -448,7 +448,7 @@ h1 {
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   overflow: hidden;
-  transition: all 0.3s;
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 .faq-item.open {
@@ -467,7 +467,7 @@ h1 {
 
 .faq-question h3 {
   flex: 1;
-  font-size: 1rem;
+  font-size: clamp(0.9375rem, 1.5vw, 1.0625rem);
   font-weight: 600;
 }
 
@@ -485,7 +485,7 @@ h1 {
   height: 2px;
   background: var(--text-secondary);
   position: relative;
-  transition: all 0.3s;
+  transition: background-color 0.3s;
 }
 
 .faq-toggle span::after {
@@ -497,7 +497,7 @@ h1 {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  transition: all 0.3s;
+  transition: transform 0.3s, opacity 0.3s;
 }
 
 .faq-item.open .faq-toggle span::after {
@@ -510,14 +510,14 @@ h1 {
 }
 
 .faq-answer p {
-  font-size: 0.9375rem;
+  font-size: clamp(0.875rem, 1.3vw, 1rem);
   line-height: 1.7;
   color: var(--text-secondary);
 }
 
 .accordion-enter-active,
 .accordion-leave-active {
-  transition: all 0.3s;
+  transition: opacity 0.3s, max-height 0.3s;
   overflow: hidden;
 }
 
@@ -541,7 +541,7 @@ h1 {
   }
 
   .faq-question h3 {
-    font-size: 0.9375rem;
+    font-size: clamp(0.875rem, 4vw, 0.9375rem);
   }
 
   .benefits-list {

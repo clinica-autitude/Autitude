@@ -202,7 +202,7 @@ const processSteps = [
           <p>Uma equipe integrada trabalhando em conjunto pelo desenvolvimento de cada criança, adolescente, adulto e família.</p>
         </div>
 
-        <div class="seo-answer">
+        <div class="seo-answer seo-text">
           <p class="seo-paragraph texture-hd" style="--texture-hd: var(--texture-hd-paper)">
             A Autitude oferece <strong>5 especialidades integradas</strong> para atendimento neurodivergente:
             <strong>Neuropsicologia</strong> (avaliação e diagnóstico),
@@ -302,7 +302,7 @@ const processSteps = [
 }
 
 .seo-paragraph {
-  font-size: 1.0625rem;
+  font-size: clamp(0.9375rem, 1.5vw + 0.25rem, 1.125rem);
   line-height: 1.8;
   color: var(--text-secondary);
   background: var(--lilac-soft);
@@ -349,7 +349,7 @@ const processSteps = [
 }
 
 .section-header p {
-  font-size: 1.0625rem;
+  font-size: clamp(0.9375rem, 1.5vw + 0.25rem, 1.125rem);
   color: var(--text-secondary);
 }
 
@@ -359,7 +359,7 @@ const processSteps = [
   background: var(--lilac-soft);
   border: 1px solid var(--lilac-light);
   border-radius: var(--radius-full);
-  font-size: 0.8125rem;
+  font-size: clamp(0.75rem, 1.5vw, 0.875rem);
   font-weight: 600;
   color: var(--lilac-deep);
   margin-bottom: 1rem;
@@ -377,7 +377,7 @@ const processSteps = [
   border-radius: var(--radius-xl);
   overflow: hidden;
   box-shadow: var(--shadow-xs);
-  transition: all 0.35s var(--ease-out-expo);
+  transition: transform 0.35s var(--ease-out-expo), box-shadow 0.35s var(--ease-out-expo);
   position: relative;
 }
 
@@ -399,7 +399,7 @@ const processSteps = [
   justify-content: center;
   font-weight: 700;
   color: var(--lilac-deep);
-  font-size: 0.875rem;
+  font-size: clamp(0.75rem, 1.5vw, 0.9375rem);
 }
 
 .card-content {
@@ -428,7 +428,7 @@ const processSteps = [
 }
 
 .service-text > p {
-  font-size: 0.9375rem;
+  font-size: clamp(0.875rem, 1.3vw, 1rem);
   color: var(--text-secondary);
   margin-bottom: 1rem;
   line-height: 1.6;
@@ -442,7 +442,7 @@ const processSteps = [
 }
 
 .service-list li {
-  font-size: 0.875rem;
+  font-size: clamp(0.8125rem, 1.2vw, 0.9375rem);
   color: var(--text-secondary);
   padding-left: 1rem;
   position: relative;
@@ -494,17 +494,17 @@ const processSteps = [
   align-items: center;
   justify-content: center;
   font-weight: 700;
-  font-size: 1.125rem;
+  font-size: clamp(1rem, 1.8vw, 1.25rem);
   flex-shrink: 0;
 }
 
 .step-content h4 {
-  font-size: 1rem;
+  font-size: clamp(0.9375rem, 1.5vw, 1.0625rem);
   margin-bottom: 0.25rem;
 }
 
 .step-content p {
-  font-size: 0.8125rem;
+  font-size: clamp(0.75rem, 1.3vw, 0.875rem);
   color: var(--text-secondary);
   line-height: 1.5;
 }

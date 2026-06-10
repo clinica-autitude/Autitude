@@ -1,24 +1,92 @@
 <script setup>
-defineProps({
-  side: {
-    type: String,
-    default: 'left',
-    validator: (v) => ['left', 'right'].includes(v)
-  },
-  accent: {
-    type: Boolean,
-    default: false
-  },
-  compact: {
-    type: Boolean,
-    default: false
+import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
+import { gsap } from 'gsap'
+
+const props = withDefaults(defineProps<HeroPanelProps>(), {
+  side: 'left',
+  accent: false,
+  compact: false,
+  growing: false,
+  targetWidth: undefined,
+  disabled: false
+})
+
+const panelRef = ref(null)
+const hasInteracted = ref(false)
+
+const panelStyles = computed(() => {
+  const styles = {}
+  if (props.growing && props.targetWidth) {
+    styles.width = `${props.targetWidth}px`
   }
+  return styles
+})
+
+const growPanel = () => {
+  if (!panelRef.value || props.disabled) return
+
+  gsap.killTweensOf(panelRef.value)
+
+  emit('grow-start')
+
+  gsap.to(panelRef.value, {
+    width: props.targetWidth || 'fit-content',
+    duration: 0.4,
+    ease: 'power2.out',
+    onComplete: () => emit('grow-end')
+  })
+}
+
+const resetPanel = () => {
+  if (!panelRef.value || props.disabled) return
+
+  gsap.killTweensOf(panelRef.value)
+
+  gsap.to(panelRef.value, {
+    width: '0px',
+    duration: 0.3,
+    ease: 'power2.inOut',
+    onComplete: () => {
+      emit('grow-end')
+      panelRef.value!.style.width = ''
+    }
+  })
+}
+
+const hover = () => {
+  emit('hover')
+}
+
+const leave = () => {
+  emit('leave')
+}
+
+const handleInteraction = () => {
+  if (!hasInteracted.value) {
+    hasInteracted.value = true
+    growPanel()
+  } else {
+    resetPanel()
+  }
+}
+
+const disableInteraction = computed(() => props.disabled || props.growing)
+
+const showHoverEffect = computed(() => !props.disabled && !props.growing)
+
+defineExpose({
+  grow: growPanel,
+  reset: resetPanel,
+  growPanel,
+  resetPanel,
+  panelRef
 })
 </script>
 
 <template>
-  <div :class="['hero-panel', `hero-panel--${side}`, { 'hero-panel--accent': accent }, { 'hero-panel--compact': compact }]">
+  <div ref="panelRef" :class="['hero-panel', `hero-panel--${side}`, { 'hero-panel--accent': accent }, { 'hero-panel--compact': compact }, { 'hero-panel--growing': growing }]" :style="{ ...panelStyles }" @mouseenter="() => !disableInteraction && hover()" @mouseleave="() => !disableInteraction && leave()">
     <slot />
+    <div v-if="showHoverEffect" class="hover-effect" />
   </div>
 </template>
 

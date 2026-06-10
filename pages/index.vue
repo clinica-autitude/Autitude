@@ -1,4 +1,5 @@
 <script setup>
+import { ref, computed, onMounted, nextTick, defineAsyncComponent } from 'vue'
 import {
   Brain, Heart, Sparkles, HandHeart,
   BookOpen, Mic, Activity, Puzzle
@@ -7,13 +8,30 @@ import Silk from '~/components/Silk.vue'
 import MagicRings from '~/components/MagicRings.vue'
 import {
   HeroPanel, HeroPill, HeroTitle, HeroTitleHighlight,
-  HeroSubtitle, HeroTagline, HeroActions
+  HeroSubtitle, HeroTagline, HeroActions, HeroTypewriter
 } from '~/components/hero'
 
 const { siteBase } = useSiteBase()
 const { whatsappUrl, phone, fullAddress } = useContact()
 const fullLogoUrl = computed(() => `${siteBase.value}/full-logo.png`)
 const heroLogoUrl = '/full-logo-no-bg.png'
+
+const descPanelRef = ref(null)
+const typewriterDone = ref(false)
+const panelWidth = ref(0)
+
+// Wait for DOM update to measure panel width
+const measurePanelWidth = () => {
+  nextTick(() => {
+    if (descPanelRef.value) {
+      panelWidth.value = descPanelRef.value.offsetWidth
+    }
+  })
+}
+
+onMounted(() => {
+  measurePanelWidth()
+})
 
 useHead({
   title: 'Autitude | Desenvolvimento e Ação Humana',
@@ -279,17 +297,30 @@ const services = [
 
           <div class="hero-right">
             <HeroPanel side="right" accent class="hero-right-desc" :style="{ '--stagger': 0 }">
-              <HeroSubtitle>
-                Espaço especializado no atendimento de crianças, adolescentes, adultos e suas famílias.<br />
-                Com foco no público neurodivergente.
-              </HeroSubtitle>
+              <HeroTypewriter
+                ref="descPanelRef"
+                text="Espaço especializado no atendimento de crianças, adolescentes, adultos e suas famílias."
+                speed="0.04"
+                delay="1.5"
+                cursor="true"
+                @complete="() => {
+                  typewriterDone.value = true
+                  setTimeout(() => {
+                    descPanelRef.value?.growPanel()
+                  }, 300)
+                }"
+              />
             </HeroPanel>
 
-            <HeroPanel side="right" compact class="hero-right-tagline" :style="{ '--stagger': 1 }">
+            <HeroPanel side="right" compact class="hero-right-focus" :style="{ '--stagger': 1 }">
+              <HeroTagline>Nosso foco é o público neurodivergente.</HeroTagline>
+            </HeroPanel>
+
+            <HeroPanel side="right" compact class="hero-right-tagline" :style="{ '--stagger': 2 }">
               <HeroTagline>💜 Cuidamos de pessoas. Potencializamos possibilidades.</HeroTagline>
             </HeroPanel>
 
-            <HeroPanel side="right" compact class="hero-right-actions" :style="{ '--stagger': 2 }">
+            <HeroPanel side="right" compact class="hero-right-actions" :style="{ '--stagger': 3 }">
               <HeroActions
                 :actions="[
                   { to: '/agendar', label: 'Agendar Consulta', variant: 'btn-primary' },

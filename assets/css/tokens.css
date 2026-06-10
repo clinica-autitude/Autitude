@@ -99,15 +99,15 @@
   --gradient-glass: linear-gradient(135deg, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.05) 100%);
 
   /* Glass tokens — modernized for lower opacity, more refined feel */
-  --glass-bg: color-mix(in srgb, var(--surface) 35%, transparent);
-  --glass-bg-hover: color-mix(in srgb, var(--surface) 45%, transparent);
-  --glass-bg-strong: color-mix(in srgb, var(--surface) 55%, transparent);
-  --glass-blur: blur(20px) saturate(1.5);
-  --glass-blur-light: blur(12px) saturate(1.2);
-  --glass-border: color-mix(in srgb, var(--border) 40%, transparent);
-  --glass-border-strong: color-mix(in srgb, var(--border) 60%, transparent);
-  --glass-shadow: 0 8px 32px rgba(107, 79, 163, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
-  --glass-shadow-elevated: 0 16px 48px rgba(107, 79, 163, 0.12), 0 4px 16px rgba(0, 0, 0, 0.06);
+  --glass-bg: linear-gradient(135deg, color-mix(in srgb, var(--surface) 40%, transparent) 0%, color-mix(in srgb, var(--lilac-soft) 20%, transparent) 100%);
+  --glass-bg-hover: linear-gradient(135deg, color-mix(in srgb, var(--surface) 50%, transparent) 0%, color-mix(in srgb, var(--lilac-soft) 28%, transparent) 100%);
+  --glass-bg-strong: linear-gradient(135deg, color-mix(in srgb, var(--surface) 60%, transparent) 0%, color-mix(in srgb, var(--lilac-soft) 35%, transparent) 100%);
+  --glass-blur: blur(24px) saturate(1.6);
+  --glass-blur-light: blur(14px) saturate(1.3);
+  --glass-border: color-mix(in srgb, var(--border) 30%, transparent);
+  --glass-border-strong: color-mix(in srgb, var(--border) 50%, transparent);
+  --glass-shadow: 0 8px 32px rgba(107, 79, 163, 0.08), 0 2px 12px rgba(0, 0, 0, 0.06);
+  --glass-shadow-elevated: 0 20px 60px rgba(107, 79, 163, 0.12), 0 4px 20px rgba(0, 0, 0, 0.08);
 
   /* Transitions */
   --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);

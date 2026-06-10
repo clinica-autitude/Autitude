@@ -25,7 +25,8 @@ defineProps({
 .hero-actions {
   display: flex;
   gap: 0.75rem;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  align-items: center;
 }
 
 @media (max-width: 900px) {
@@ -36,14 +37,12 @@ defineProps({
 
 @media (max-width: 640px) {
   .hero-actions {
-    flex-direction: column;
-    align-items: center;
-    gap: 0.625rem;
+    gap: 0.5rem;
   }
 
   .hero-actions .btn {
-    width: 100%;
-    max-width: 280px;
+    font-size: 0.875rem;
+    padding: 0.65rem 1.25rem;
   }
 }
 </style>
