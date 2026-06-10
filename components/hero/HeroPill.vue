@@ -19,15 +19,16 @@ defineProps({
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.45rem 1rem 0.45rem 0.6rem;
+  padding: clamp(0.375rem, 1vw, 0.5rem) clamp(0.75rem, 2vw, 1.125rem);
   font-size: 0.8125rem;
   font-weight: 600;
   color: var(--lilac-deep);
-  background: color-mix(in srgb, var(--lilac-soft) 85%, transparent);
-  border: 1px solid color-mix(in srgb, var(--lilac-light) 50%, transparent);
+  background: color-mix(in srgb, var(--lilac-soft) 40%, transparent);
+  border: 1px solid var(--glass-border);
   border-radius: var(--radius-full);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: var(--glass-blur-light);
+  -webkit-backdrop-filter: var(--glass-blur-light);
+  box-shadow: var(--glass-shadow);
   margin-bottom: 1.5rem;
 }
 
@@ -48,7 +49,6 @@ defineProps({
 @media (max-width: 640px) {
   .hero-pill {
     font-size: 0.75rem;
-    padding: 0.35rem 0.85rem 0.35rem 0.5rem;
     margin-bottom: 1rem;
   }
 

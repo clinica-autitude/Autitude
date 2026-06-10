@@ -21,6 +21,20 @@ useHead({
     { name: 'description', content: 'Autitude — Desenvolvimento e Ação Humana. Espaço especializado em crianças, adolescentes, adultos e famílias, com foco no público neurodivergente. Neuropsicologia, Neuropsicopedagogia, Fonoaudiologia, Terapia Ocupacional e Terapia ABA Humanizada em Pindamonhangaba-SP.' },
     { name: 'keywords', content: 'autitude, neurodivergência, neuropsicologia, neuropsicopedagogia, fonoaudiologia, terapia ocupacional, terapia ABA, integração sensorial, Pindamonhangaba, desenvolvimento infantil, TEA, TDAH' },
     { name: 'robots', content: 'index, follow' },
+    { property: 'og:locale', content: 'pt_BR' },
+    { name: 'author', content: 'Autitude - Desenvolvimento e Ação Humana' },
+    { property: 'og:image', content: 'https://autitude.com.br/full-logo.png' },
+    { property: 'og:image:width', content: '1200' },
+    { property: 'og:image:height', content: '630' },
+    { property: 'og:site_name', content: 'Autitude - Desenvolvimento e Ação Humana' },
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: 'Autitude | Desenvolvimento e Ação Humana' },
+    { name: 'twitter:description', content: 'Desenvolvimento com acolhimento, ciência e humanidade. Cuidamos de pessoas. Potencializamos possibilidades.' },
+    { name: 'twitter:image', content: 'https://autitude.com.br/full-logo.png' },
+    { name: 'twitter:creator', content: '@clinicaautitude' },
+    { name: 'twitter:site', content: '@clinicaautitude' },
+    { name: 'date-published', content: '2024-01-01' },
+    { name: 'date-modified', content: '2026-06-09' },
     { property: 'og:title', content: 'Autitude | Desenvolvimento e Ação Humana' },
     { property: 'og:description', content: 'Desenvolvimento com acolhimento, ciência e humanidade. Cuidamos de pessoas. Potencializamos possibilidades.' },
     { property: 'og:type', content: 'website' },
@@ -34,21 +48,22 @@ useHead({
       type: 'application/ld+json',
       children: JSON.stringify({
         '@context': 'https://schema.org',
+        '@id': 'https://autitude.com.br/#clinic',
         '@type': 'MedicalBusiness',
-        name: 'Autitude - Desenvolvimento e Ação Humana',
+        name: 'Autitude — Desenvolvimento e Ação Humana',
         description: 'Espaço especializado em crianças, adolescentes, adultos e famílias, com foco no público neurodivergente. Neuropsicologia, Neuropsicopedagogia, Fonoaudiologia, Terapia Ocupacional e Terapia ABA Humanizada em Pindamonhangaba-SP.',
         url: 'https://autitude.com.br',
         logo: 'https://autitude.com.br/full-logo.png',
-        image: 'https://autitude.com.br/full-logo.png',
-        telephone: `+${phone}`,
+        image: 'https://autitude.com.br/logo.png',
+        telephone: '+55-12-99196-8683',
         email: 'contato@autitude.com.br',
         address: {
           '@type': 'PostalAddress',
-          streetAddress: 'Rua Major José dos Santos Moreira, 328',
+          streetAddress: 'Rua Major José dos Santos Moreira, 328 — Vila Rica',
           addressLocality: 'Pindamonhangaba',
           addressRegion: 'SP',
           addressCountry: 'BR',
-          postalCode: '12400-010'
+          postalCode: '12410-050'
         },
         geo: {
           '@type': 'GeoCoordinates',
@@ -72,7 +87,8 @@ useHead({
           { '@type': 'State', name: 'São Paulo' }
         ],
         serviceType: ['Neuropsicologia', 'Neuropsicopedagogia', 'Fonoaudiologia', 'Terapia Ocupacional', 'Terapia ABA Humanizada'],
-        medicalSpecialty: ['Neurodevelopmental care', 'Speech therapy', 'Occupational therapy', 'Applied Behavior Analysis'],
+        medicalSpecialty: ['Neuropsychiatry', 'Pediatrics', 'Physiotherapy'],
+        amenityFeature: ['Sala Multissensorial de Integração Sensorial'],
         knowsAbout: ['Neurodivergência', 'Neuropsicologia', 'Neuropsicopedagogia', 'Fonoaudiologia', 'Terapia Ocupacional', 'Integração Sensorial', 'Desenvolvimento Infantil', 'TEA', 'TDAH', 'Terapia ABA', 'Dislexia'],
         sameAs: [
           'https://www.instagram.com/clinicaautitude'
@@ -130,7 +146,7 @@ useHead({
         name: 'Autitude - Desenvolvimento e Ação Humana',
         speakable: {
           '@type': 'SpeakableSpecification',
-          cssSelector: ['.seo-paragraph']
+          cssSelector: ['.seo-paragraph', '.seo-faq-hidden']
         }
       })
     }
@@ -212,7 +228,7 @@ const services = [
             :rotation="0"
           />
         </ClientOnly>
-        <div class="hero-rings" aria-hidden="true">
+        <div class="hero-rings float float-slow" aria-hidden="true" style="--float-delay: 0s">
           <ClientOnly>
             <MagicRings
               color="#EE00FF"
@@ -242,7 +258,8 @@ const services = [
         <img
           :src="heroLogoUrl"
           alt=""
-          class="hero-rings-logo"
+          class="hero-rings-logo float-reverse"
+          style="--float-duration: 7s; --float-delay: 1.5s;"
         />
         <div class="gradient-blob blob-1"></div>
         <div class="gradient-blob blob-2"></div>
@@ -254,25 +271,25 @@ const services = [
           <div class="hero-left">
             <span class="hero-eyebrow">Cuidado humanizado e baseado em evidências</span>
             <HeroTitle>
-              Desenvolvimento com
+              Autitude — Desenvolvimento com
               <HeroTitleHighlight>acolhimento,</HeroTitleHighlight>
               ciência e humanidade.
             </HeroTitle>
           </div>
 
           <div class="hero-right">
-            <HeroPanel side="right" accent class="hero-right-desc">
+            <HeroPanel side="right" accent class="hero-right-desc" :style="{ '--stagger': 0 }">
               <HeroSubtitle>
                 Espaço especializado no atendimento de crianças, adolescentes, adultos e suas famílias.<br />
                 Com foco no público neurodivergente.
               </HeroSubtitle>
             </HeroPanel>
 
-            <HeroPanel side="right" compact class="hero-right-tagline">
+            <HeroPanel side="right" compact class="hero-right-tagline" :style="{ '--stagger': 1 }">
               <HeroTagline>💜 Cuidamos de pessoas. Potencializamos possibilidades.</HeroTagline>
             </HeroPanel>
 
-            <HeroPanel side="right" compact class="hero-right-actions">
+            <HeroPanel side="right" compact class="hero-right-actions" :style="{ '--stagger': 2 }">
               <HeroActions
                 :actions="[
                   { to: '/agendar', label: 'Agendar Consulta', variant: 'btn-primary' },
@@ -287,7 +304,7 @@ const services = [
 
     <section class="seo-answer" aria-label="Resumo">
       <div class="container">
-        <p class="seo-paragraph">
+        <p class="seo-paragraph texture-hd" style="--texture-hd: var(--texture-hd-paper)">
           A <strong>Autitude</strong> é uma clínica especializada em <strong>neurodivergência</strong> em Pindamonhangaba, SP.
           Oferecemos <a href="/servicos">terapia ocupacional infantil, neuropsicologia, fonoaudiologia e terapia ABA</a>
           para crianças, adolescentes, adultos e suas famílias. Nosso time de <a href="/equipe">profissionais especializados</a>
@@ -296,7 +313,7 @@ const services = [
       </div>
     </section>
 
-    <section id="quem-somos" class="about-preview section">
+    <section id="quem-somos" class="about-preview section texture-hd-velvet">
       <div class="container">
         <div class="section-header">
           <div class="header-content">
@@ -323,7 +340,7 @@ const services = [
             </p>
           </div>
 
-          <figure class="history-quote">
+          <figure class="history-quote texture-hd-paper">
             <span class="quote-mark" aria-hidden="true">&ldquo;</span>
             <blockquote>
               &ldquo;Neurodivergência não é um problema a corrigir, é uma forma de ser que merece suporte
@@ -334,7 +351,7 @@ const services = [
 
         <div class="pillars-grid">
           <div
-            class="pillar-card"
+            class="pillar-card texture-hd"
             v-for="(pillar, index) in pillars"
             :key="`card-${pillar.title}`"
             :style="{ '--delay': index * 0.1 + 's' }"
@@ -351,7 +368,7 @@ const services = [
       </div>
     </section>
 
-    <section class="services-preview section">
+    <section class="services-preview section texture-hd" style="--texture-hd: var(--texture-hd-velvet)">
       <div class="container">
         <div class="section-header">
           <div class="header-content">
@@ -400,6 +417,130 @@ const services = [
       :colors="['#6B4FA3', '#8FC176', '#8FB1F0', '#F0C850', '#3D2D5E']"
       :color-bends-props="{ rotation: 25, speed: 0.15, scale: 1.3, frequency: 1.2, warpStrength: 1.0, mouseInfluence: 0.4, parallax: 0.3, noise: 0.05 }"
     />
+
+    <!-- Hidden SEO FAQ content for crawlers — questions/answers for featured snippets and AI citations -->
+    <section class="seo-faq-hidden" aria-label="Perguntas Frequentes"
+      style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;"
+      itemscope itemtype="https://schema.org/FAQPage">
+      
+      <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h2 itemprop="name">O que é a Autitude e onde ela está localizada?</h2>
+        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <div itemprop="text">
+            <p>A <strong>Autitude — Desenvolvimento e Ação Humana</strong> é uma clínica especializada em <strong>neurodivergência</strong> localizada em <strong>Pindamonhangaba, SP</strong>, na Rua Major José dos Santos Moreira, 328 — Vila Rica. Atendemos crianças, adolescentes, adultos e famílias com foco em neuropsicologia, neuropsicopedagogia, fonoaudiologia, terapia ocupacional com integração sensorial e terapia ABA humanizada.</p>
+          </div>
+        </div>
+      </div>
+
+      <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h3 itemprop="name">O que é diagnóstico tardio de autismo e como identificá-lo na idade escolar?</h3>
+        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <div itemprop="text">
+            <p>O <strong>diagnóstico tardio de autismo</strong> ocorre quando crianças em idade escolar (6 a 12 anos) recebem o diagnóstico de Transtorno do Espectro Autista após os primeiros anos de vida. Muitas vezes os sinais são confundidos com outros transtornos ou atribuídos à personalidade da criança. Saiba mais em nosso artigo sobre <a href="/blog/diagnostico-autismo-idade-escolar">diagnóstico de autismo na idade escolar</a>.</p>
+          </div>
+        </div>
+      </div>
+
+      <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h3 itemprop="name">Quais as diferenças entre autismo e TDAH na infância?</h3>
+        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <div itemprop="text">
+            <p>Embora <strong>autismo (TEA)</strong> e <strong>TDAH</strong> compartilhem sintomas como desatenção e impulsividade, são condições distintas. No TEA há prejuízos na comunicação social e comportamentos repetitivos, enquanto no TDAH o núcleo é a desregulação da atenção e hiperatividade. Veja nossa comparação detalhada em <a href="/blog/diferenca-autismo-tdah-infancia">diferença entre autismo e TDAH na infância</a>.</p>
+          </div>
+        </div>
+      </div>
+
+      <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h3 itemprop="name">Como funciona o processo de avaliação neuropsicológica?</h3>
+        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <div itemprop="text">
+            <p>A <strong>avaliação neuropsicológica</strong> é um processo abrangente que inclui entrevistas, aplicação de testes padronizados e observação comportamental para investigar funções cognitivas como memória, atenção, linguagem e funções executivas. O processo completo pode levar de 4 a 8 sessões. Entenda cada etapa em <a href="/blog/avaliacao-neuropsicologica-processo">como é o processo de avaliação neuropsicológica</a>.</p>
+          </div>
+        </div>
+      </div>
+
+      <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h3 itemprop="name">Como diferenciar birra de crise sensorial em crianças?</h3>
+        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <div itemprop="text">
+            <p>A <strong>birra</strong> é um comportamento intencional para obter algo, enquanto a <strong>crise sensorial</strong> é uma reação involuntária a estímulos avassaladores no ambiente. Crianças neurodivergentes, especialmente no espectro autista, podem ter crises sensoriais que não devem ser confundidas com birras. Aprenda a diferenciar em <a href="/blog/birra-ou-crise-sensorial">birra ou crise sensorial</a>.</p>
+          </div>
+        </div>
+      </div>
+
+      <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h3 itemprop="name">O que é comportamento opositor (TOD) no contexto escolar?</h3>
+        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <div itemprop="text">
+            <p>O <strong>Transtorno Opositor-Desafiante (TOD)</strong> se caracteriza por um padrão persistente de irritabilidade, discussão e desafio a figuras de autoridade. Na escola, esses comportamentos podem ser confundidos com má conduta, mas frequentemente indicam necessidades não atendidas. Veja estratégias em <a href="/blog/comportamento-opositor-tod-escola">comportamento opositor TOD na escola</a>.</p>
+          </div>
+        </div>
+      </div>
+
+      <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h3 itemprop="name">Como a terapia ABA humanizada trabalha as estereotipias?</h3>
+        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <div itemprop="text">
+            <p>A <strong>terapia ABA humanizada</strong> aborda as estereotipias (movimentos ou sons repetitivos) não como comportamentos a serem eliminados, mas como formas de comunicação e regulação que podem ser compreendidas e redirecionadas. A abordagem respeita a funcionalidade do estímulo para a pessoa. Leia mais em <a href="/blog/aba-humanizada-estereotipias">ABA humanizada e estereotipias</a>.</p>
+          </div>
+        </div>
+      </div>
+
+      <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h3 itemprop="name">Quais são os marcos do desenvolvimento da fala infantil?</h3>
+        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <div itemprop="text">
+            <p>Os <strong>marcos da fala infantil</strong> incluem: balbucio aos 6 meses, primeiras palavras aos 12 meses, combinação de 2 palavras aos 24 meses e frases completas aos 36 meses. Atrasos nesses marcos podem indicar a necessidade de intervenção fonoaudiológica. Confira a tabela completa em <a href="/blog/marcos-fala-infantil">marcos da fala infantil</a>.</p>
+          </div>
+        </div>
+      </div>
+
+      <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h3 itemprop="name">O que é seletividade alimentar no autismo?</h3>
+        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <div itemprop="text">
+            <p>A <strong>seletividade alimentar</strong> é comum em crianças no espectro autista, relacionada à hipersensibilidade sensorial a texturas, cores, cheiros e temperaturas dos alimentos. Não se trata de "frescura", mas de uma resposta neurológica a estímulos aversivos. Saiba como intervir em <a href="/blog/seletividade-alimentar-autismo">seletividade alimentar no autismo</a>.</p>
+          </div>
+        </div>
+      </div>
+
+      <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h3 itemprop="name">Como a integração sensorial ajuda crianças não-verbais a se comunicarem?</h3>
+        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <div itemprop="text">
+            <p>A <strong>integração sensorial</strong> organiza as sensações do corpo e do ambiente, criando as bases neurológicas para a comunicação intencional. Para crianças não-verbais, a regulação sensorial precede qualquer intervenção de comunicação aumentativa ou alternativa. Veja como em <a href="/blog/integracao-sensorial-comunicacao-criancas-nao-verbais">integração sensorial e comunicação em crianças não-verbais</a>.</p>
+          </div>
+        </div>
+      </div>
+
+      <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h3 itemprop="name">O plano de saúde cobre terapia ABA e fonoaudiologia?</h3>
+        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <div itemprop="text">
+            <p>Sim, os <strong>planos de saúde</strong> são obrigados por lei a cobrir terapias como <strong>ABA</strong> e <strong>fonoaudiologia</strong> para pacientes com diagnóstico de TEA e outros transtornos do neurodesenvolvimento, conforme a Lei dos Planos de Saúde (Lei 9.656/98) e a Lei Berenice Piana (Lei 12.764/12). Descubra seus direitos em <a href="/blog/cobertura-plano-saude-aba-fono">cobertura do plano de saúde para ABA e fonoaudiologia</a>.</p>
+          </div>
+        </div>
+      </div>
+
+      <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h3 itemprop="name">Como conseguir liminar para tratamento de autismo?</h3>
+        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <div itemprop="text">
+            <p>A <strong>liminar para tratamento de autismo</strong> é um recurso judicial que obriga planos de saúde ou o poder público a custearem terapias quando há recusa de cobertura ou falta de atendimento. O direito ao tratamento multidisciplinar é garantido pelo Estatuto da Pessoa com Deficiência (Lei 13.146/15). Veja o passo a passo em <a href="/blog/liminar-tratamento-autismo">liminar para tratamento de autismo</a>.</p>
+          </div>
+        </div>
+      </div>
+
+      <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h3 itemprop="name">O que são relatórios de evolução no vínculo terapêutico?</h3>
+        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <div itemprop="text">
+            <p>Os <strong>relatórios de evolução</strong> são documentos técnicos elaborados pelos terapeutas que registram o progresso do paciente, as intervenções realizadas e os próximos passos do tratamento. Esses relatórios são essenciais para o vínculo terapêutico, a comunicação entre profissionais e a solicitação de cobertura pelos planos de saúde. Saiba mais em <a href="/blog/vinculo-terapeutico-relatorios-evolucao">vínculo terapêutico e relatórios de evolução</a>.</p>
+          </div>
+        </div>
+      </div>
+
+    </section>
   </div>
 </template>
 
@@ -443,12 +584,13 @@ const services = [
 }
 
 .hero {
-  min-height: clamp(550px, 80vh, 880px);
+  min-height: clamp(500px, 85dvh, 900px);
   display: flex;
   align-items: center;
   padding-top: 5rem;
   position: relative;
   overflow: hidden;
+  container-type: inline-size;
 }
 
 .hero-bg {
@@ -546,10 +688,10 @@ const services = [
 
 .hero-layout {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: end;
-  gap: clamp(1rem, 3vw, 2rem);
-  min-height: clamp(550px, 80vh, 880px);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  align-items: center;
+  gap: var(--hero-gap, clamp(1.5rem, 3vw, 2.5rem));
+  min-height: clamp(500px, 85dvh, 900px);
   padding-top: 4rem;
   padding-bottom: 4rem;
 }
@@ -562,11 +704,11 @@ const services = [
 
 .hero-eyebrow {
   display: block;
-  font-size: clamp(0.75rem, 1vw, 0.875rem);
+  font-size: clamp(0.75rem, 1.2vw, 0.875rem);
   font-weight: 700;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.08em;
   color: var(--primary);
-  margin-bottom: 0.75rem;
+  margin-bottom: clamp(0.75rem, 1.5vw, 1.25rem);
   text-transform: uppercase;
 }
 
@@ -574,26 +716,37 @@ const services = [
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  gap: clamp(0.75rem, 2vw, 1.25rem);
+  gap: clamp(1rem, 2vw, 1.5rem);
   padding-left: clamp(1rem, 4vw, 3rem);
   padding-top: 2rem;
 }
 
 .hero-right-desc {
   align-self: flex-end;
-  max-width: 85%;
+  margin-left: 0;
 }
 
 .hero-right-tagline {
   align-self: flex-end;
   text-align: right;
-  max-width: 70%;
-  margin-right: 0;
+  margin-left: clamp(1rem, 3vw, 2.5rem);
 }
 
 .hero-right-actions {
   align-self: flex-end;
-  max-width: 60%;
+  margin-left: clamp(2rem, 5vw, 4rem);
+}
+
+/* Staggered reveal animation for hero panels */
+.hero-right > * {
+  animation: panelFadeIn 0.6s var(--ease-out-expo) forwards;
+  animation-delay: calc(var(--stagger, 0) * 0.15s);
+  opacity: 0;
+}
+
+@keyframes panelFadeIn {
+  from { opacity: 0; transform: translateY(24px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 .about-preview {
@@ -868,11 +1021,22 @@ const services = [
     align-items: center;
   }
 
-  .hero-right-desc,
-  .hero-right-tagline,
+  .hero-right-desc {
+    align-self: center;
+    text-align: center;
+    margin-left: 0;
+  }
+
+  .hero-right-tagline {
+    align-self: center;
+    text-align: center;
+    margin-left: clamp(0.5rem, 2vw, 1.5rem);
+  }
+
   .hero-right-actions {
     align-self: center;
     text-align: center;
+    margin-left: clamp(1rem, 3vw, 2rem);
   }
 
   .hero-rings {
@@ -949,6 +1113,7 @@ const services = [
   .hero-right-desc,
   .hero-right-tagline,
   .hero-right-actions {
+    margin-left: 0;
     padding: 0;
   }
 

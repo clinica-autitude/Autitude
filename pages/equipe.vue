@@ -9,6 +9,20 @@ useHead({
     { name: 'description', content: 'Conheça a equipe da Autitude em Pindamonhangaba-SP: neuropsicólogos, fonoaudiólogos, terapeutas ocupacionais e pedagogos especializados em neurodivergência.' },
     { name: 'keywords', content: 'equipe autitude, profissionais neurodivergência, neuropsicólogo Pindamonhangaba, fonoaudiólogo, terapeuta ocupacional, Dra Juliana Mariani' },
     { name: 'robots', content: 'index, follow' },
+    { property: 'og:locale', content: 'pt_BR' },
+    { name: 'author', content: 'Autitude - Desenvolvimento e Ação Humana' },
+    { property: 'og:image', content: 'https://autitude.com.br/full-logo.png' },
+    { property: 'og:image:width', content: '1200' },
+    { property: 'og:image:height', content: '630' },
+    { property: 'og:site_name', content: 'Autitude - Desenvolvimento e Ação Humana' },
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: 'Autitude | Desenvolvimento e Ação Humana' },
+    { name: 'twitter:description', content: 'Desenvolvimento com acolhimento, ciência e humanidade. Cuidamos de pessoas. Potencializamos possibilidades.' },
+    { name: 'twitter:image', content: 'https://autitude.com.br/full-logo.png' },
+    { name: 'twitter:creator', content: '@clinicaautitude' },
+    { name: 'twitter:site', content: '@clinicaautitude' },
+    { name: 'date-published', content: '2024-01-01' },
+    { name: 'date-modified', content: '2026-06-09' },
     { property: 'og:title', content: 'Equipe — Profissionais Especializados | Autitude' },
     { property: 'og:description', content: 'Conheça a equipe da Autitude — profissionais dedicados ao cuidado de crianças, adolescentes e famílias.' },
     { property: 'og:type', content: 'website' },
@@ -18,33 +32,40 @@ useHead({
     { rel: 'canonical', href: `${siteBase}/equipe` }
   ],
   script: [
-    {
-      type: 'application/ld+json',
-      children: JSON.stringify({
-        '@context': 'https://schema.org',
-        '@type': 'WebPage',
-        name: 'Equipe — Autitude',
-        description: 'Conheça a equipe da Autitude — profissionais dedicados ao cuidado de crianças, adolescentes e famílias.',
-        url: `${siteBase}/equipe`,
-        mainEntity: {
-          '@type': 'MedicalBusiness',
-          name: 'Autitude - Desenvolvimento e Ação Humana',
-          employee: [
-            {
-              '@type': 'Person',
-              name: 'Dra. Juliana Mariani',
-              jobTitle: 'Terapeuta Ocupacional',
-              description: 'Especialista em Integração Sensorial com certificação internacional pela University of Southern California (USC, USA). Atua há mais de 20 anos em neurodesenvolvimento.',
-              identifier: 'CREFITO 20083-TO',
-              worksFor: {
-                '@type': 'MedicalBusiness',
-                name: 'Autitude - Desenvolvimento e Ação Humana'
+{
+        type: 'application/ld+json',
+        children: JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'WebPage',
+          name: 'Equipe — Autitude',
+          description: 'Conheça a equipe da Autitude — profissionais dedicados ao cuidado de crianças, adolescentes e famílias.',
+          url: `${siteBase}/equipe`,
+          datePublished: '2024-01-01',
+          speakable: {
+            '@type': 'SpeakableSpecification',
+            cssSelector: ['.seo-paragraph', '.seo-faq-hidden']
+          },
+          mainEntity: {
+            '@type': 'MedicalBusiness',
+            name: 'Autitude - Desenvolvimento e Ação Humana',
+            employee: [
+              {
+                '@type': 'Person',
+                name: 'Dra. Juliana Mariani',
+                jobTitle: 'Terapeuta Ocupacional',
+                description: 'Especialista em Integração Sensorial com certificação internacional pela University of Southern California (USC, USA). Atua há mais de 20 anos em neurodesenvolvimento.',
+                identifier: 'CREFITO 20083-TO',
+                datePublished: '2026-06-09',
+                dateModified: '2026-06-09',
+                worksFor: {
+                  '@type': 'MedicalBusiness',
+                  name: 'Autitude - Desenvolvimento e Ação Humana'
+                }
               }
-            }
-          ]
-        }
-      })
-    },
+            ]
+          }
+        })
+      },
     {
       type: 'application/ld+json',
       children: JSON.stringify({
@@ -87,7 +108,7 @@ const culture = [
         </div>
 
         <div class="seo-answer">
-          <p class="seo-paragraph">
+          <p class="seo-paragraph texture-hd" style="--texture-hd: var(--texture-hd-paper)">
             A equipe da Autitude é liderada pela <strong>Dra. Juliana Mariani</strong>,
             Terapeuta Ocupacional com <strong>certificação internacional em Integração Sensorial
             pela University of Southern California (USC, USA)</strong>. Com mais de 20 anos de experiência,
@@ -97,7 +118,7 @@ const culture = [
         </div>
 
         <div class="team-showcase">
-          <div class="team-main-card" v-for="member in team" :key="member.name">
+          <div class="team-main-card texture-hd" v-for="member in team" :key="member.name">
             <div class="member-visual">
               <div class="visual-shape"></div>
               <div class="visual-accent"></div>
@@ -115,7 +136,7 @@ const culture = [
       </div>
     </section>
 
-    <section class="values-section section">
+    <section class="values-section section texture-hd-velvet">
       <div class="container">
         <div class="section-header">
           <div class="header-content">
@@ -125,7 +146,7 @@ const culture = [
         </div>
         
         <div class="values-grid">
-          <div class="value-card" v-for="value in culture" :key="value.title">
+          <div class="value-card texture-hd" v-for="value in culture" :key="value.title">
             <div class="value-icon-wrapper">
               <component :is="value.icon" :size="24" class="icon-primary value-icon-inner" />
             </div>
@@ -149,6 +170,18 @@ const culture = [
       :color-bends-props="{ rotation: 15, speed: 0.12, scale: 1.4, frequency: 1.0, warpStrength: 0.8, mouseInfluence: 0.3, parallax: 0.2, noise: 0.04 }"
     />
   </div>
+    <!-- Hidden SEO content for crawlers -->
+    <section class="seo-faq-hidden" aria-label="Perguntas Frequentes"
+      style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;">
+      <h2>Quem são os profissionais da Autitude?</h2>
+      <p>A equipe da Autitude é liderada pela <strong>Dra. Juliana Mariani</strong>, Terapeuta Ocupacional com <strong>certificação internacional em Integração Sensorial pela University of Southern California (USC, USA)</strong> — CREFITO 20083-TO. Com mais de 20 anos de experiência em neurodesenvolvimento, ela coordena uma equipe multidisciplinar que inclui neuropsicólogos, neuropsicopedagogos, fonoaudiólogos e terapeutas ABA em Pindamonhangaba-SP.</p>
+      <h2>O que é certificação internacional em Integração Sensorial USC?</h2>
+      <p>A certificação pela University of Southern California (USC) é a mais reconhecida formação internacional em Integração Sensorial, baseada no trabalho da Dra. Jean Ayres. A integração sensorial organiza as sensações do corpo e do ambiente para promover respostas adaptativas. Veja como isso se conecta com <a href="/blog/integracao-sensorial-comunicacao-criancas-nao-verbais">comunicação em crianças não-verbais</a>.</p>
+      <h2>O que é seletividade alimentar no autismo?</h2>
+      <p>A seletividade alimentar é comum em crianças no espectro autista, relacionada à hipersensibilidade sensorial. Não se trata de comportamento voluntário, mas de resposta neurológica a estímulos aversivos. Saiba como intervir em <a href="/blog/seletividade-alimentar-autismo">seletividade alimentar no autismo</a>.</p>
+      <h2>Quais são os marcos da fala infantil?</h2>
+      <p>Os marcos da fala incluem: balbucio aos 6 meses, primeiras palavras aos 12 meses, combinação de 2 palavras aos 24 meses e frases completas aos 36 meses. Atrasos podem indicar necessidade de intervenção fonoaudiológica. Confira a tabela completa em <a href="/blog/marcos-fala-infantil">marcos da fala infantil</a>.</p>
+    </section>
 </template>
 
 <style scoped>

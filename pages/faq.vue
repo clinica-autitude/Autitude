@@ -86,12 +86,12 @@ const faqs = [
   {
     category: 'schedule',
     question: 'Quanto custa a avaliação?',
-    answer: 'A avaliação inicial tem investimento que pode variar conforme a especialidade e a extensão. Após a avaliação, apresentamos um plano de cuidado personalizado, com sessões e formas de pagamento adequadas a cada família.'
+    answer: 'A avaliação inicial tem investimento que pode variar conforme a especialidade e a extensão (consulte nossos valores pelo WhatsApp). Após a avaliação, apresentamos um plano de cuidado personalizado, com sessões e pacotes com desconto. Aceitamos PIX, cartão de crédito e boleto bancário.'
   },
   {
     category: 'schedule',
     question: 'Vocês atendem por plano de saúde?',
-    answer: 'Trabalhamos com alguns planos de saúde e também com opções particulares, incluindo pacotes. Entre em contato para verificarmos o seu plano.'
+    answer: 'Atualmente atendemos de forma particular. Fornecemos nota fiscal para que você possa solicitar reembolso junto ao seu plano de saúde (consulte sua operadora sobre a política de reembolso). Também oferecemos pacotes de sessões com valores especiais. Entre em contato pelo WhatsApp para mais informações.'
   },
   {
     category: 'schedule',
@@ -124,6 +124,20 @@ useHead({
     { name: 'description', content: 'Perguntas frequentes sobre a Autitude: neuropsicologia, neuropsicopedagogia, fonoaudiologia, terapia ocupacional, integração sensorial, agendamento, valores e localização em Pindamonhangaba-SP.' },
     { name: 'keywords', content: 'FAQ, perguntas frequentes, autitude, neurodivergência, neuropsicologia, fonoaudiologia, terapia ocupacional, integração sensorial, agendamento, valores, Pindamonhangaba' },
     { name: 'robots', content: 'index, follow' },
+    { property: 'og:locale', content: 'pt_BR' },
+    { name: 'author', content: 'Autitude - Desenvolvimento e Ação Humana' },
+    { property: 'og:image', content: 'https://autitude.com.br/full-logo.png' },
+    { property: 'og:image:width', content: '1200' },
+    { property: 'og:image:height', content: '630' },
+    { property: 'og:site_name', content: 'Autitude - Desenvolvimento e Ação Humana' },
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: 'Autitude | Desenvolvimento e Ação Humana' },
+    { name: 'twitter:description', content: 'Desenvolvimento com acolhimento, ciência e humanidade. Cuidamos de pessoas. Potencializamos possibilidades.' },
+    { name: 'twitter:image', content: 'https://autitude.com.br/full-logo.png' },
+    { name: 'twitter:creator', content: '@clinicaautitude' },
+    { name: 'twitter:site', content: '@clinicaautitude' },
+    { name: 'date-published', content: '2024-01-01' },
+    { name: 'date-modified', content: '2026-06-09' },
     { property: 'og:title', content: 'FAQ — Perguntas Frequentes | Autitude' },
     { property: 'og:description', content: 'Tire suas dúvidas sobre o atendimento da Autitude: especialidades, agendamento, valores e localização.' },
     { property: 'og:type', content: 'website' },
@@ -141,6 +155,10 @@ useHead({
         name: 'FAQ — Perguntas Frequentes | Autitude',
         description: 'Perguntas frequentes sobre o atendimento da Autitude.',
         url: `${siteBase}/faq`,
+        speakable: {
+          '@type': 'SpeakableSpecification',
+          cssSelector: ['.seo-paragraph', '.seo-faq-hidden']
+        },
         mainEntity: faqs.map(faq => ({
           '@type': 'Question',
           name: faq.question,
@@ -186,7 +204,7 @@ useHead({
         </div>
 
         <div class="seo-answer">
-          <p class="seo-paragraph">
+          <p class="seo-paragraph texture-hd" style="--texture-hd: var(--texture-hd-paper)">
             A Autitude é uma clínica especializada em neurodivergência em Pindamonhangaba-SP,
             oferecendo <strong>neuropsicologia, fonoaudiologia, terapia ocupacional e terapia ABA</strong>
             para crianças, adolescentes, adultos e famílias. Atendemos com equipe multidisciplinar,
@@ -198,7 +216,7 @@ useHead({
           <button 
             v-for="category in categories" 
             :key="category.id"
-            class="category-btn"
+            class="category-btn texture-hd"
             :class="{ active: activeCategory === category.id }"
             @click="activeCategory = category.id"
           >
@@ -210,7 +228,7 @@ useHead({
           <div
             v-for="(faq, index) in filteredFaqs"
             :key="`${activeCategory}-${index}`"
-            class="faq-item"
+            class="faq-item texture-hd"
             :class="{ open: openFaq === index }"
           >
             <div
@@ -238,6 +256,20 @@ useHead({
       </div>
     </section>
   </div>
+    <!-- Hidden supplementary SEO content for crawlers — extends visible FAQ -->
+    <section class="seo-faq-hidden" aria-label="Informações Complementares"
+      style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;">
+      <h2>O que é diagnóstico tardio de autismo?</h2>
+      <p>O <strong>diagnóstico tardio de autismo</strong> ocorre quando crianças em idade escolar (6 a 12 anos) recebem o diagnóstico de TEA. Muitas vezes os sinais são confundidos com TDAH, ansiedade ou questões comportamentais. Saiba identificar em <a href="/blog/diagnostico-autismo-idade-escolar">diagnóstico de autismo na idade escolar</a>.</p>
+      <h2>Qual a diferença entre autismo e TDAH na infância?</h2>
+      <p>TEA e TDAH compartilham sintomas como desatenção, mas no TEA há prejuízos na comunicação social e comportamentos repetitivos. Veja a comparação em <a href="/blog/diferenca-autismo-tdah-infancia">diferença entre autismo e TDAH na infância</a>.</p>
+      <h2>Como diferenciar birra de crise sensorial?</h2>
+      <p>A birra é intencional; a crise sensorial é involuntária. Crianças neurodivergentes podem ter crises sensoriais que exigem abordagem específica. Leia mais em <a href="/blog/birra-ou-crise-sensorial">birra ou crise sensorial</a>.</p>
+      <h2>O que é comportamento opositor (TOD)?</h2>
+      <p>O TOD se caracteriza por padrão persistente de irritabilidade e desafio a figuras de autoridade. Veja estratégias em <a href="/blog/comportamento-opositor-tod-escola">comportamento opositor TOD na escola</a>.</p>
+      <h2>Como conseguir liminar para tratamento de autismo?</h2>
+      <p>A liminar judicial obriga o plano de saúde a custear terapias quando há recusa. Veja o passo a passo em <a href="/blog/liminar-tratamento-autismo">liminar para tratamento de autismo</a>.</p>
+    </section>
 </template>
 
 <style scoped>

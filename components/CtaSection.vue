@@ -49,7 +49,7 @@ const bendsProps = computed(() => ({ ...defaultBendsProps, ...props.colorBendsPr
 <template>
   <section class="cta-section section">
     <div class="container">
-      <div class="cta-wrapper">
+      <div class="cta-wrapper texture-hd">
         <ClientOnly>
           <ColorBends
             class="cta-bg-effect"

@@ -24,20 +24,21 @@ defineProps({
 
 <style scoped>
 .hero-panel {
-  backdrop-filter: blur(16px) saturate(1.4);
-  -webkit-backdrop-filter: blur(16px) saturate(1.4);
-  background: color-mix(in srgb, var(--surface) 55%, transparent);
-  border: 1px solid color-mix(in srgb, var(--border) 40%, transparent);
-  border-radius: var(--radius-2xl);
-  padding: 2rem 2.25rem;
+  container-type: inline-size;
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--hero-panel-radius);
+  padding: var(--hero-panel-padding);
   box-shadow:
-    0 8px 32px rgba(42, 29, 69, 0.08),
+    var(--glass-shadow),
     inset 0 1px 0 color-mix(in srgb, var(--white) 50%, transparent);
-  animation: fadeInUp 0.7s var(--ease-smooth) both;
+  animation: panelFadeIn 0.8s var(--ease-out-expo) both;
 }
 
 .hero-panel--compact {
-  padding: 1rem 1.5rem;
+  padding: clamp(0.75rem, 1.5vw, 1rem) clamp(1rem, 2vw, 1.5rem);
   border-radius: var(--radius-xl);
 }
 
@@ -55,51 +56,40 @@ defineProps({
   border-color: color-mix(in srgb, var(--lilac-light) 50%, transparent);
   box-shadow:
     0 0 40px rgba(107, 79, 163, 0.08),
-    0 8px 32px rgba(42, 29, 69, 0.08),
+    var(--glass-shadow),
     inset 0 1px 0 color-mix(in srgb, var(--white) 50%, transparent);
 }
 
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+@keyframes panelFadeIn {
+  from { opacity: 0; transform: translateY(24px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 @media (max-width: 900px) {
   .hero-panel {
     text-align: center;
     width: 100%;
-    padding: 1.5rem 1.75rem;
+    padding: clamp(1.25rem, 3vw, 1.75rem);
     justify-self: center;
   }
-  
+
   .hero-panel--compact {
-    padding: 1.25rem 1.5rem;
+    padding: clamp(1rem, 2vw, 1.25rem) clamp(1rem, 2vw, 1.5rem);
   }
 }
 
 @media (max-width: 640px) {
   .hero-panel {
-    padding: 1.25rem 1.25rem;
     border-radius: var(--radius-xl);
   }
-  
-  .hero-panel--compact {
-    padding: 1rem 1.25rem;
-  }
 }
 
-@media (prefers-color-scheme: dark) {
-  .hero-panel {
-    background: color-mix(in srgb, var(--surface) 40%, transparent);
-    border-color: color-mix(in srgb, var(--border) 25%, transparent);
-  }
-}
-
+/* Dark theme */
 [data-theme="dark"] .hero-panel {
-  background: color-mix(in srgb, var(--surface) 40%, transparent);
-  border-color: color-mix(in srgb, var(--border) 25%, transparent);
+  background: color-mix(in srgb, var(--surface) 30%, transparent);
+  border-color: var(--glass-border);
   box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.2),
+    var(--glass-shadow-elevated),
     inset 0 1px 0 color-mix(in srgb, var(--white) 10%, transparent);
 }
 
@@ -107,12 +97,13 @@ defineProps({
   border-color: color-mix(in srgb, var(--lilac-light) 30%, transparent);
   box-shadow:
     0 0 40px rgba(107, 79, 163, 0.12),
-    0 8px 32px rgba(0, 0, 0, 0.2),
+    var(--glass-shadow-elevated),
     inset 0 1px 0 color-mix(in srgb, var(--white) 10%, transparent);
 }
 
+/* Sepia theme */
 [data-theme="sepia"] .hero-panel {
-  background: color-mix(in srgb, var(--surface) 50%, transparent);
+  background: color-mix(in srgb, var(--surface) 45%, transparent);
   border-color: color-mix(in srgb, var(--lilac-light) 35%, transparent);
 }
 
@@ -120,10 +111,11 @@ defineProps({
   border-color: color-mix(in srgb, var(--lilac-light) 45%, transparent);
   box-shadow:
     0 0 40px rgba(107, 79, 163, 0.06),
-    0 8px 32px rgba(42, 29, 69, 0.06),
+    var(--glass-shadow),
     inset 0 1px 0 color-mix(in srgb, var(--white) 40%, transparent);
 }
 
+/* Accessibility: high contrast and dark contrast — solid backgrounds, no glass */
 [data-a11y-contrast="high"] .hero-panel,
 [data-a11y-contrast="dark"] .hero-panel {
   backdrop-filter: none;
@@ -136,5 +128,13 @@ defineProps({
 [data-a11y-contrast="high"] .hero-panel--accent,
 [data-a11y-contrast="dark"] .hero-panel--accent {
   border-color: var(--primary);
+}
+
+/* System dark mode */
+@media (prefers-color-scheme: dark) {
+  .hero-panel {
+    background: color-mix(in srgb, var(--surface) 30%, transparent);
+    border-color: var(--glass-border);
+  }
 }
 </style>

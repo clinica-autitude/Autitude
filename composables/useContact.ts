@@ -1,6 +1,6 @@
 export const useContact = () => {
   const phone = '5512991968683'
-  const phoneDisplay = '(12) 99196-8683'
+  const phoneDisplay = '+55-12-99196-8683'
   const email = 'contato@autitude.com.br'
   const whatsappUrl = `https://wa.me/${phone}`
   const telUrl = `tel:+${phone}`
@@ -10,7 +10,10 @@ export const useContact = () => {
   const neighborhood = 'Vila Rica'
   const city = 'Pindamonhangaba'
   const state = 'SP'
+  const postalCode = '12410-050'
   const fullAddress = `${address} — ${neighborhood} — ${city}/${state}`
+  const latitude = '-22.9309'
+  const longitude = '-45.4607'
 
   return {
     phone,
@@ -24,6 +27,9 @@ export const useContact = () => {
     neighborhood,
     city,
     state,
-    fullAddress
+    postalCode,
+    fullAddress,
+    latitude,
+    longitude
   }
 }

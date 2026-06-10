@@ -84,6 +84,11 @@ export default defineNuxtConfig({
     '/agendar': { prerender: true },
     '/faq': { prerender: true },
     '/privacidade': { prerender: true },
+    '/neuropsicologia': { prerender: true },
+    '/neuropsicopedagogia': { prerender: true },
+    '/fonoaudiologia': { prerender: true },
+    '/terapia-ocupacional': { prerender: true },
+    '/terapia-aba': { prerender: true },
     '/blog/**': { prerender: true }
   },
 
@@ -98,6 +103,11 @@ export default defineNuxtConfig({
         '/agendar',
         '/faq',
         '/privacidade',
+        '/neuropsicologia',
+        '/neuropsicopedagogia',
+        '/fonoaudiologia',
+        '/terapia-ocupacional',
+        '/terapia-aba',
         '/blog',
         '/blog/terapia-ocupacional-infantil',
         '/blog/integracao-sensorial',
@@ -126,7 +136,19 @@ export default defineNuxtConfig({
         '/blog/deficiencia-aprendizagem',
         '/blog/ansiedade-infantil',
         '/blog/sono-neurodivergencia',
-        '/blog/brincadeira-desenvolvimento'
+        '/blog/brincadeira-desenvolvimento',
+        '/blog/diagnostico-autismo-idade-escolar',
+        '/blog/diferenca-autismo-tdah-infancia',
+        '/blog/avaliacao-neuropsicologica-processo',
+        '/blog/birra-ou-crise-sensorial',
+        '/blog/comportamento-opositor-tod-escola',
+        '/blog/aba-humanizada-estereotipias',
+        '/blog/marcos-fala-infantil',
+        '/blog/seletividade-alimentar-autismo',
+        '/blog/integracao-sensorial-comunicacao-criancas-nao-verbais',
+        '/blog/cobertura-plano-saude-aba-fono',
+        '/blog/liminar-tratamento-autismo',
+        '/blog/vinculo-terapeutico-relatorios-evolucao'
       ]
     }
   },

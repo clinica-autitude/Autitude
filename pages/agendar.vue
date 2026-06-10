@@ -10,6 +10,20 @@ useHead({
     { name: 'description', content: 'Agende uma avaliação na Autitude em Pindamonhangaba-SP. Neuropsicologia, fonoaudiologia, terapia ocupacional e mais. Retornamos em até 24 horas pelo WhatsApp.' },
     { name: 'keywords', content: 'agendar avaliação, autitude agendamento, neuropsicologia Pindamonhangaba, fonoaudiologia avaliação, terapia ocupacional agendamento, neurodivergência avaliação' },
     { name: 'robots', content: 'index, follow' },
+    { property: 'og:locale', content: 'pt_BR' },
+    { name: 'author', content: 'Autitude - Desenvolvimento e Ação Humana' },
+    { property: 'og:image', content: 'https://autitude.com.br/full-logo.png' },
+    { property: 'og:image:width', content: '1200' },
+    { property: 'og:image:height', content: '630' },
+    { property: 'og:site_name', content: 'Autitude - Desenvolvimento e Ação Humana' },
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: 'Autitude | Desenvolvimento e Ação Humana' },
+    { name: 'twitter:description', content: 'Desenvolvimento com acolhimento, ciência e humanidade. Cuidamos de pessoas. Potencializamos possibilidades.' },
+    { name: 'twitter:image', content: 'https://autitude.com.br/full-logo.png' },
+    { name: 'twitter:creator', content: '@clinicaautitude' },
+    { name: 'twitter:site', content: '@clinicaautitude' },
+    { name: 'date-published', content: '2024-01-01' },
+    { name: 'date-modified', content: '2026-06-09' },
     { property: 'og:title', content: 'Agendar Avaliação | Autitude' },
     { property: 'og:description', content: 'Agende uma avaliação na Autitude. Retornamos em até 24 horas.' },
     { property: 'og:type', content: 'website' },
@@ -27,6 +41,10 @@ useHead({
         name: 'Agendar Avaliação — Autitude',
         description: 'Agende uma avaliação na Autitude. Retornamos em até 24 horas.',
         url: `${siteBase}/agendar`,
+        speakable: {
+          '@type': 'SpeakableSpecification',
+          cssSelector: ['.seo-paragraph', '.seo-faq-hidden']
+        },
         mainEntity: {
           '@type': 'MedicalBusiness',
           name: 'Autitude - Desenvolvimento e Ação Humana',
@@ -46,7 +64,47 @@ useHead({
           { '@type': 'ListItem', position: 2, name: 'Agendar', item: `${siteBase}/agendar` }
         ]
       })
-    }
+    },
+    {
+      type: 'application/ld+json',
+      children: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'HowTo',
+        name: 'Como agendar uma avaliação na Autitude',
+        description: 'Passo a passo para agendar sua avaliação na Autitude em Pindamonhangaba-SP.',
+        step: [
+          {
+            '@type': 'HowToStep',
+            position: 1,
+            name: 'Preencha o formulário',
+            text: 'Preencha seus dados no formulário de agendamento: nome do responsável, telefone, e-mail, cidade e informações sobre o paciente.'
+          },
+          {
+            '@type': 'HowToStep',
+            position: 2,
+            name: 'Aguarde nosso contato',
+            text: 'Retornamos em até 24 horas pelo WhatsApp para entender suas necessidades e esclarecer dúvidas sobre as especialidades.'
+          },
+          {
+            '@type': 'HowToStep',
+            position: 3,
+            name: 'Agende a avaliação',
+            text: 'Combinamos o melhor horário para a avaliação inicial, de segunda a sexta, das 8h às 18h.'
+          },
+          {
+            '@type': 'HowToStep',
+            position: 4,
+            name: 'Realize a avaliação',
+            text: 'Compareça à clínica na Rua Major José dos Santos Moreira, 328 — Vila Rica, Pindamonhangaba-SP para a avaliação com nossa equipe multidisciplinar.'
+          }
+        ],
+        totalTime: 'P1D',
+        tool: {
+          '@type': 'Thing',
+          name: 'WhatsApp'
+        }
+      })
+    },
   ]
 })
 
@@ -229,8 +287,14 @@ const handleSubmit = async () => {
           <p>Preencha o formulário e entraremos em contato. Cuidamos de pessoas. Potencializamos possibilidades.</p>
         </div>
 
+        <div class="seo-answer">
+          <p class="seo-paragraph">
+            Agende sua <strong>avaliação na Autitude</strong> em <strong>Pindamonhangaba-SP</strong> preenchendo o formulário abaixo. Retornamos em até <strong>24 horas pelo WhatsApp (12) 99196-8683</strong> para entender suas necessidades e marcar a consulta inicial. Atendemos crianças, adolescentes, adultos e famílias com foco em <strong>neurodivergência</strong>, de segunda a sexta, das 8h às 18h.
+          </p>
+        </div>
+
         <div class="schedule-showcase">
-          <form class="schedule-form" @submit.prevent="handleSubmit">
+          <form class="schedule-form texture-hd" @submit.prevent="handleSubmit">
             <div class="form-section">
               <h3>Sobre você</h3>
               <div class="form-grid">
@@ -368,7 +432,7 @@ const handleSubmit = async () => {
           </form>
 
           <div class="schedule-info">
-            <div class="info-block how-it-works">
+            <div class="info-block how-it-works texture-hd-velvet">
               <div class="block-header">
                 <div class="block-icon"></div>
                 <h3>Como funciona?</h3>
@@ -381,7 +445,7 @@ const handleSubmit = async () => {
               </ol>
             </div>
 
-            <div class="info-block contact-quick">
+            <div class="info-block contact-quick texture-hd-velvet">
               <div class="block-header">
                 <div class="block-icon whatsapp"></div>
                 <h3>Prefere WhatsApp?</h3>
@@ -392,7 +456,7 @@ const handleSubmit = async () => {
               </a>
             </div>
 
-            <div class="info-block hours-block">
+            <div class="info-block hours-block texture-hd" style="--texture-hd: var(--texture-hd-paper)">
               <div class="block-header">
                 <div class="block-icon time"></div>
                 <h3>Horário de Atendimento</h3>
@@ -407,6 +471,18 @@ const handleSubmit = async () => {
       </div>
     </section>
   </div>
+    <!-- Hidden SEO content for crawlers -->
+    <section class="seo-faq-hidden" aria-label="Perguntas Frequentes"
+      style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;">
+      <h2>Como agendar uma avaliação na Autitude?</h2>
+      <p>Para <strong>agendar uma avaliação</strong> na <strong>Autitude em Pindamonhangaba-SP</strong>, preencha o formulário online ou entre em contato pelo <strong>WhatsApp (12) 99196-8683</strong>. Retornamos em até 24 horas para entender as necessidades e marcar a avaliação inicial. Atendemos crianças, adolescentes, adultos e famílias com foco em neurodivergência, de segunda a sexta, das 8h às 18h.</p>
+      <h2>O que esperar da primeira consulta?</h2>
+      <p>A primeira consulta envolve uma escuta cuidadosa da história, queixas e objetivos. Dependendo da especialidade, podem ser realizadas triagens iniciais. O processo de avaliação neuropsicológica, por exemplo, leva de 4 a 8 sessões. Saiba mais em <a href="/blog/avaliacao-neuropsicologica-processo">avaliação neuropsicológica</a>.</p>
+      <h2>Preciso de encaminhamento médico?</h2>
+      <p>Não é necessário encaminhamento médico para agendar uma avaliação na Autitude. Você pode entrar em contato diretamente. Caso já tenha diagnóstico ou relatórios anteriores, traga-os para a consulta inicial.</p>
+      <h2>A Autitude aceita convênio ou plano de saúde?</h2>
+      <p>Atendemos de forma particular com nota fiscal para reembolso. Para informações sobre cobertura de ABA e fonoaudiologia por plano de saúde, veja <a href="/blog/cobertura-plano-saude-aba-fono">cobertura do plano de saúde</a>. Para orientação sobre liminar judicial, veja <a href="/blog/liminar-tratamento-autismo">liminar para tratamento de autismo</a>.</p>
+    </section>
 </template>
 
 <style scoped>

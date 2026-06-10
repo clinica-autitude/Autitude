@@ -12,6 +12,20 @@ useHead({
     { name: 'description', content: 'Entre em contato com a Autitude em Pindamonhangaba-SP. WhatsApp, telefone, e-mail e formulário. Rua Major José dos Santos Moreira, 328 — Vila Rica. Seg a Sex: 8h às 18h.' },
     { name: 'keywords', content: 'contato autitude, telefone autitude, WhatsApp autitude, localização autitude, Pindamonhangaba clínica, Rua Major José dos Santos Moreira, agendamento avaliação neurodivergência' },
     { name: 'robots', content: 'index, follow' },
+    { property: 'og:locale', content: 'pt_BR' },
+    { name: 'author', content: 'Autitude - Desenvolvimento e Ação Humana' },
+    { property: 'og:image', content: 'https://autitude.com.br/full-logo.png' },
+    { property: 'og:image:width', content: '1200' },
+    { property: 'og:image:height', content: '630' },
+    { property: 'og:site_name', content: 'Autitude - Desenvolvimento e Ação Humana' },
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: 'Autitude | Desenvolvimento e Ação Humana' },
+    { name: 'twitter:description', content: 'Desenvolvimento com acolhimento, ciência e humanidade. Cuidamos de pessoas. Potencializamos possibilidades.' },
+    { name: 'twitter:image', content: 'https://autitude.com.br/full-logo.png' },
+    { name: 'twitter:creator', content: '@clinicaautitude' },
+    { name: 'twitter:site', content: '@clinicaautitude' },
+    { name: 'date-published', content: '2024-01-01' },
+    { name: 'date-modified', content: '2026-06-09' },
     { property: 'og:title', content: 'Contato — Telefone, WhatsApp e Localização | Autitude' },
     { property: 'og:description', content: 'Entre em contato com a Autitude. WhatsApp, telefone, e-mail e formulário de agendamento.' },
     { property: 'og:type', content: 'website' },
@@ -29,6 +43,10 @@ useHead({
         name: 'Contato — Autitude',
         description: 'Entre em contato com a Autitude. WhatsApp, e-mail ou formulário.',
         url: `${siteBase}/contato`,
+        speakable: {
+          '@type': 'SpeakableSpecification',
+          cssSelector: ['.seo-paragraph', '.seo-faq-hidden']
+        },
         mainEntity: {
           '@type': 'MedicalBusiness',
           name: 'Autitude - Desenvolvimento e Ação Humana',
@@ -105,7 +123,7 @@ const config = {
         </div>
 
         <div class="seo-answer">
-          <p class="seo-paragraph">
+          <p class="seo-paragraph texture-hd" style="--texture-hd: var(--texture-hd-paper)">
             Para agendar uma avaliação na Autitude, entre em contato pelo
             <strong><a :href="whatsappUrl" target="_blank" rel="noopener">WhatsApp</a></strong>
             ou pelo formulário online. Nossa clínica fica na <strong>{{ address }} — {{ neighborhood }}, {{ city }}-{{ state }}</strong>.
@@ -115,7 +133,7 @@ const config = {
         </div>
 
         <div class="contact-grid">
-          <a :href="whatsappUrl" class="contact-card whatsapp-card" target="_blank" rel="noopener">
+          <a :href="whatsappUrl" class="contact-card whatsapp-card texture-hd" target="_blank" rel="noopener">
             <div class="card-icon">
               <MessageCircle :size="28" />
             </div>
@@ -124,7 +142,7 @@ const config = {
             <span class="contact-label">Resposta em até 24h</span>
           </a>
 
-          <div class="contact-card">
+          <div class="contact-card texture-hd">
             <div class="card-icon">
               <MapPin :size="28" />
             </div>
@@ -133,7 +151,7 @@ const config = {
             <span class="contact-label">{{ neighborhood }} — {{ city }}, {{ state }}</span>
           </div>
 
-          <div class="contact-card">
+          <div class="contact-card texture-hd">
             <div class="card-icon">
               <Mail :size="28" />
             </div>
@@ -142,7 +160,7 @@ const config = {
             <span class="contact-label">Respondemos em até 48h</span>
           </div>
 
-          <div class="contact-card">
+          <div class="contact-card texture-hd">
             <div class="card-icon">
               <Clock :size="28" />
             </div>
@@ -154,6 +172,18 @@ const config = {
       </div>
     </section>
   </div>
+    <!-- Hidden SEO content for crawlers -->
+    <section class="seo-faq-hidden" aria-label="Perguntas Frequentes"
+      style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;">
+      <h2>Como entrar em contato com a Autitude em Pindamonhangaba?</h2>
+      <p>A <strong>Autitude</strong> está localizada na <strong>Rua Major José dos Santos Moreira, 328 — Vila Rica, Pindamonhangaba-SP</strong>. O horário de funcionamento é de <strong>segunda a sexta, das 8h às 18h</strong>. O contato pode ser feito pelo <strong>WhatsApp (12) 99196-8683</strong>, e-mail contato@autitude.com.br ou pelo formulário de agendamento no site. Atendemos crianças, adolescentes, adultos e famílias com foco em neurodivergência.</p>
+      <h2>O plano de saúde cobre as terapias da Autitude?</h2>
+      <p>Atualmente atendemos de forma particular, mas fornecemos nota fiscal para reembolso junto ao plano de saúde. Por lei, planos são obrigados a cobrir ABA e fonoaudiologia para TEA. Saiba mais em <a href="/blog/cobertura-plano-saude-aba-fono">cobertura do plano de saúde para ABA e fonoaudiologia</a>.</p>
+      <h2>Como conseguir liminar para tratamento de autismo?</h2>
+      <p>A liminar é um recurso judicial que obriga o plano de saúde a custear terapias quando há recusa. O direito é garantido pelo Estatuto da Pessoa com Deficiência. Veja o passo a passo em <a href="/blog/liminar-tratamento-autismo">liminar para tratamento de autismo</a>.</p>
+      <h2>O que avaliar no processo de avaliação neuropsicológica?</h2>
+      <p>A avaliação neuropsicológica investiga funções cognitivas como memória, atenção e funções executivas, auxiliando no diagnóstico de TEA, TDAH e outras condições. Entenda cada etapa em <a href="/blog/avaliacao-neuropsicologica-processo">processo de avaliação neuropsicológica</a>.</p>
+    </section>
 </template>
 
 <style scoped>

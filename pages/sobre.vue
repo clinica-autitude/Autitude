@@ -16,6 +16,20 @@ useHead({
     { name: 'description', content: 'A Autitude é um espaço especializado no cuidado integrado de crianças, adolescentes, adultos e famílias, com foco no público neurodivergente. Há mais de 20 anos com acolhimento, ciência e humanidade em Pindamonhangaba-SP.' },
     { name: 'keywords', content: 'quem somos autitude, história autitude, valores autitude, clínica neurodivergência Pindamonhangaba, equipe especializada, acolhimento ciência humanidade' },
     { name: 'robots', content: 'index, follow' },
+    { property: 'og:locale', content: 'pt_BR' },
+    { name: 'author', content: 'Autitude - Desenvolvimento e Ação Humana' },
+    { property: 'og:image', content: 'https://autitude.com.br/full-logo.png' },
+    { property: 'og:image:width', content: '1200' },
+    { property: 'og:image:height', content: '630' },
+    { property: 'og:site_name', content: 'Autitude - Desenvolvimento e Ação Humana' },
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: 'Autitude | Desenvolvimento e Ação Humana' },
+    { name: 'twitter:description', content: 'Desenvolvimento com acolhimento, ciência e humanidade. Cuidamos de pessoas. Potencializamos possibilidades.' },
+    { name: 'twitter:image', content: 'https://autitude.com.br/full-logo.png' },
+    { name: 'twitter:creator', content: '@clinicaautitude' },
+    { name: 'twitter:site', content: '@clinicaautitude' },
+    { name: 'date-published', content: '2024-01-01' },
+    { name: 'date-modified', content: '2026-06-09' },
     { property: 'og:title', content: 'Quem Somos — Nossa História e Valores | Autitude' },
     { property: 'og:description', content: 'A Autitude é um espaço especializado em crianças, adolescentes e famílias, com foco no público neurodivergente.' },
     { property: 'og:type', content: 'website' },
@@ -33,6 +47,10 @@ useHead({
         name: 'Quem Somos — Autitude',
         description: 'A Autitude é um espaço especializado em crianças, adolescentes e famílias, com foco no público neurodivergente.',
         url: `${siteBase}/sobre`,
+        speakable: {
+          '@type': 'SpeakableSpecification',
+          cssSelector: ['.seo-paragraph', '.seo-faq-hidden']
+        },
         mainEntity: {
           '@type': 'MedicalBusiness',
           name: 'Autitude - Desenvolvimento e Ação Humana',
@@ -177,7 +195,7 @@ const differentiators = [
 
     <section class="seo-answer">
       <div class="container">
-        <p class="seo-paragraph">
+        <p class="seo-paragraph texture-hd" style="--texture-hd: var(--texture-hd-paper)">
           A <strong>Autitude - Desenvolvimento e Ação Humana</strong> é uma clínica especializada em neurodivergência
           localizada em Pindamonhangaba-SP, com mais de <strong>20 anos de atuação</strong>. Nossa equipe multidisciplinar
           atende crianças, adolescentes, adultos e famílias, oferecendo <a href="/servicos">neuropsicologia, fonoaudiologia,
@@ -200,7 +218,7 @@ const differentiators = [
 
         <div class="bento">
           <!-- Manifesto / statement -->
-          <article class="bento__card bento__card--statement">
+          <article class="bento__card bento__card--statement texture-hd-velvet">
             <div class="statement__bg" />
             <Quote :size="32" :stroke-width="2" class="statement__icon" />
             <p class="statement__text">
@@ -219,7 +237,7 @@ const differentiators = [
           <article
             v-for="(s, i) in specialties"
             :key="s.name"
-            class="bento__card bento__card--specialty"
+            class="bento__card bento__card--specialty texture-hd-velvet"
             :class="{ 'bento__card--specialty-full': s.span === 'full' }"
             :data-tone="s.tone"
           >
@@ -235,7 +253,7 @@ const differentiators = [
           <article
             v-for="d in differentiators"
             :key="d.label"
-            class="bento__card bento__card--feature"
+            class="bento__card bento__card--feature texture-hd-velvet"
             :class="`bento__card--${d.span}`"
             :data-tone="d.tone"
           >
@@ -248,7 +266,7 @@ const differentiators = [
           </article>
 
           <!-- Localização -->
-          <article class="bento__card bento__card--location" data-tone="lavender">
+          <article class="bento__card bento__card--location texture-hd-velvet" data-tone="lavender">
             <div class="location__bg" />
             <div class="location__head">
               <div class="card__icon" data-tone="lavender">
@@ -314,6 +332,68 @@ const differentiators = [
       </div>
     </section>
   </article>
+    <!-- Hidden SEO content for crawlers — featured snippets and AI citations -->
+    <section class="seo-faq-hidden" aria-label="Perguntas Frequentes"
+      style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;">
+      <h2>O que é a Autitude — Desenvolvimento e Ação Humana?</h2>
+      <p>A <strong>Autitude</strong> é uma clínica multidisciplinar especializada em <strong>neurodivergência</strong> localizada em <strong>Pindamonhangaba-SP</strong>. Fundada há mais de 20 anos, oferecemos <strong>neuropsicologia, neuropsicopedagogia, fonoaudiologia, terapia ocupacional com integração sensorial e terapia ABA humanizada</strong>. Nosso atendimento é integrado, transdisciplinar e centrado na pessoa e na família.</p>
+      <h2>Qual a diferença entre birra e crise sensorial?</h2>
+      <p>A birra é um comportamento intencional para obter algo, enquanto a crise sensorial é uma resposta involuntária a estímulos avassaladores. Crianças neurodivergentes podem ter crises sensoriais que exigem abordagem específica. Leia mais em <a href="/blog/birra-ou-crise-sensorial">birra ou crise sensorial</a>.</p>
+      <h2>O que é comportamento opositor (TOD) na escola?</h2>
+      <p>O Transtorno Opositor-Desafiante (TOD) se caracteriza por um padrão persistente de irritabilidade e desafio a figuras de autoridade. Frequentemente confundido com má conduta, o TOD requer avaliação e intervenção especializadas. Veja mais em <a href="/blog/comportamento-opositor-tod-escola">comportamento opositor TOD na escola</a>.</p>
+      <h2>O plano de saúde cobre terapia ABA e fonoaudiologia?</h2>
+      <p>Sim, os planos de saúde são obrigados por lei a cobrir terapias como ABA e fonoaudiologia para pacientes com TEA, conforme a Lei 9.656/98 e a Lei Berenice Piana (12.764/12). Saiba mais em <a href="/blog/cobertura-plano-saude-aba-fono">cobertura do plano de saúde para ABA e fonoaudiologia</a>.</p>
+      <h2>Como conseguir liminar para tratamento de autismo?</h2>
+      <p>A liminar para tratamento de autismo é um recurso judicial que obriga planos de saúde ou o poder público a custearem terapias quando há recusa de cobertura. Veja o passo a passo em <a href="/blog/liminar-tratamento-autismo">liminar para tratamento de autismo</a>.</p>
+      <h2>O que são relatórios de evolução no vínculo terapêutico?</h2>
+      <p>Os relatórios de evolução são documentos técnicos que registram o progresso do paciente, as intervenções realizadas e os próximos passos. São essenciais para o vínculo terapêutico e para solicitação de cobertura pelos planos. Saiba mais em <a href="/blog/vinculo-terapeutico-relatorios-evolucao">relatórios de evolução e vínculo terapêutico</a>.</p>
+    </section>
+    <!-- Hidden structured data for AI citation — services comparison table -->
+    <div style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;" role="table" aria-label="Comparação de especialidades">
+      <h2>Comparação entre as especialidades da Autitude</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Especialidade</th>
+            <th>Foco Principal</th>
+            <th>Para Quem</th>
+            <th>Diferencial</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Neuropsicologia</td>
+            <td>Avaliação cognitiva e diagnóstico de TEA/TDAH</td>
+            <td>Crianças, adolescentes e adultos</td>
+            <td>Rastreamento de neurodivergências com instrumentos padronizados</td>
+          </tr>
+          <tr>
+            <td>Neuropsicopedagogia</td>
+            <td>Dificuldades de aprendizagem e plano pedagógico</td>
+            <td>Crianças e adolescentes em idade escolar</td>
+            <td>Integra neurociência, psicologia e pedagogia</td>
+          </tr>
+          <tr>
+            <td>Fonoaudiologia</td>
+            <td>Linguagem, comunicação social e fala</td>
+            <td>Crianças, adolescentes e adultos</td>
+            <td>Atendimento especializado em neurodivergência</td>
+          </tr>
+          <tr>
+            <td>Terapia Ocupacional</td>
+            <td>Integração sensorial e autonomia</td>
+            <td>Crianças e adolescentes</td>
+            <td>Certificação internacional USC (USA) em Integração Sensorial</td>
+          </tr>
+          <tr>
+            <td>Terapia ABA Humanizada</td>
+            <td>Desenvolvimento de habilidades adaptativas</td>
+            <td>Crianças e adolescentes</td>
+            <td>Abordagem humanizada e centrada na pessoa</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 </template>
 
 <style scoped>

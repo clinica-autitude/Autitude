@@ -103,6 +103,63 @@ select {
   mix-blend-mode: multiply;
 }
 
+/* ===== High-Density Texture Utilities ===== */
+.texture-hd {
+  position: relative;
+}
+.texture-hd::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--texture-hd, var(--texture-hd-velvet));
+  background-size: 256px 256px;
+  pointer-events: none;
+  z-index: 1;
+  mix-blend-mode: multiply;
+}
+
+.texture-hd-paper {
+  position: relative;
+}
+.texture-hd-paper::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--texture-hd-paper);
+  background-size: 256px 256px;
+  pointer-events: none;
+  z-index: 1;
+  mix-blend-mode: multiply;
+}
+
+.texture-hd-velvet {
+  position: relative;
+}
+.texture-hd-velvet::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--texture-hd-velvet);
+  background-size: 256px 256px;
+  pointer-events: none;
+  z-index: 1;
+  mix-blend-mode: multiply;
+}
+
+.texture-hd-linen {
+  position: relative;
+}
+.texture-hd-linen::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--texture-hd-linen);
+  background-size: 200px 200px;
+  pointer-events: none;
+  z-index: 1;
+  mix-blend-mode: multiply;
+}
+
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Nunito', 'DM Sans', sans-serif;
@@ -212,3 +269,35 @@ button {
   scrollbar-width: thin;
   scrollbar-color: var(--lilac-light) transparent;
 }
+
+/* ===== Floating Animation Utilities ===== */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes float-reverse {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(10px); }
+}
+
+@keyframes float-subtle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.float {
+  animation: float var(--float-duration, 4s) var(--float-ease, ease-in-out) var(--float-delay, 0s) infinite;
+}
+
+.float-reverse {
+  animation: float-reverse var(--float-duration, 5s) var(--float-ease, ease-in-out) var(--float-delay, 0s) infinite;
+}
+
+.float-subtle {
+  animation: float-subtle var(--float-duration, 3s) var(--float-ease, ease-in-out) var(--float-delay, 0s) infinite;
+}
+
+.float-slow { --float-duration: 6s; }
+.float-medium { --float-duration: 4.5s; }
+.float-fast { --float-duration: 3s; }

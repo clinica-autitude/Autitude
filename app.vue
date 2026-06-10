@@ -2,6 +2,13 @@
 const currentYear = new Date().getFullYear()
 const config = useRuntimeConfig()
 const { phone, whatsappUrl, instagramUrl, address, neighborhood, city, state } = useContact()
+const { bgStyle } = useTexture({
+  type: 'turbulence',
+  baseFrequency: 2.5,
+  numOctaves: 3,
+  opacity: 0.025,
+  blendMode: 'multiply'
+})
 const menuOpen = ref(false)
 const scrolled = ref(false)
 const showBackToTop = ref(false)
@@ -62,38 +69,40 @@ onBeforeUnmount(() => {
 
     <div class="menu-overlay" :class="{ active: menuOpen }" @click="closeMenu"></div>
 
-    <nav class="navbar" :class="{ scrolled }">
-      <div class="nav-container">
-        <NuxtLink to="/" class="logo" @click="closeMenu">
-          <img :src="logoSrc" alt="Autitude" class="logo-img">
-          <span class="logo-text">Autitude</span>
-        </NuxtLink>
-        
-        <div class="nav-links" :class="{ 'nav-active': menuOpen }">
-          <div class="nav-links-inner">
-            <NuxtLink to="/" class="nav-link" @click="closeMenu">Início</NuxtLink>
-            <NuxtLink to="/sobre" class="nav-link" @click="closeMenu">Sobre</NuxtLink>
-            <NuxtLink to="/servicos" class="nav-link" @click="closeMenu">Serviços</NuxtLink>
-            <NuxtLink to="/equipe" class="nav-link" @click="closeMenu">Equipe</NuxtLink>
-            <NuxtLink to="/contato" class="nav-link" @click="closeMenu">Contato</NuxtLink>
-            <NuxtLink to="/agendar" class="btn btn-primary btn-sm nav-cta" @click="closeMenu">Agendar</NuxtLink>
-            <ThemeSwitcher />
+    <div class="app-wrapper" :style="bgStyle">
+      <nav class="navbar" :class="{ scrolled }">
+        <div class="nav-container">
+          <NuxtLink to="/" class="logo" @click="closeMenu">
+            <img :src="logoSrc" alt="Autitude" class="logo-img">
+            <span class="logo-text">Autitude</span>
+          </NuxtLink>
+          
+          <div class="nav-links" :class="{ 'nav-active': menuOpen }">
+            <div class="nav-links-inner">
+              <NuxtLink to="/" class="nav-link" @click="closeMenu">Início</NuxtLink>
+              <NuxtLink to="/sobre" class="nav-link" @click="closeMenu">Sobre</NuxtLink>
+              <NuxtLink to="/servicos" class="nav-link" @click="closeMenu">Serviços</NuxtLink>
+              <NuxtLink to="/equipe" class="nav-link" @click="closeMenu">Equipe</NuxtLink>
+              <NuxtLink to="/blog" class="nav-link" @click="closeMenu">Blog</NuxtLink>
+              <NuxtLink to="/contato" class="nav-link" @click="closeMenu">Contato</NuxtLink>
+              <NuxtLink to="/agendar" class="btn btn-primary btn-sm nav-cta" @click="closeMenu">Agendar</NuxtLink>
+              <ThemeSwitcher />
+            </div>
           </div>
+          
+          <button class="menu-toggle" :class="{ active: menuOpen }" @click="toggleMenu" aria-label="Menu" :aria-expanded="menuOpen">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
         </div>
-        
-        <button class="menu-toggle" :class="{ active: menuOpen }" @click="toggleMenu" aria-label="Menu" :aria-expanded="menuOpen">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-      </div>
-    </nav>
+      </nav>
 
-    <main id="main">
-      <NuxtPage />
-    </main>
+      <main id="main">
+        <NuxtPage />
+      </main>
 
-    <footer class="footer">
+      <footer class="footer">
       <div class="container">
         <div class="footer-grid">
           <div class="footer-brand">
@@ -110,6 +119,7 @@ onBeforeUnmount(() => {
             <NuxtLink to="/sobre">Sobre Nós</NuxtLink>
             <NuxtLink to="/servicos">Serviços</NuxtLink>
             <NuxtLink to="/equipe">Equipe</NuxtLink>
+            <NuxtLink to="/blog">Blog</NuxtLink>
           </div>
           
           <div class="footer-services">
@@ -145,6 +155,7 @@ onBeforeUnmount(() => {
         </div>
       </div>
     </footer>
+    </div>
 
     <Transition name="back-to-top">
       <button
@@ -163,6 +174,13 @@ onBeforeUnmount(() => {
 
 <style scoped>
 .app {
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+.app-wrapper {
+  position: relative;
+  background: var(--background);
   min-height: 100vh;
   min-height: 100dvh;
 }

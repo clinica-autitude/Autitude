@@ -6,16 +6,15 @@
 
 <style scoped>
 .hero-tagline {
-  font-size: 0.9375rem;
+  font-size: clamp(0.875rem, 1.5vw, 1rem);
   font-weight: 600;
   color: var(--primary);
   margin: 0.5rem 0 1.75rem;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.02em;
 }
 
 @media (max-width: 640px) {
   .hero-tagline {
-    font-size: 0.875rem;
     margin: 0.25rem 0 1.25rem;
   }
 }

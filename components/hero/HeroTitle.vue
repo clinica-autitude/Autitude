@@ -6,10 +6,10 @@
 
 <style scoped>
 .hero-title {
-  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-size: clamp(2rem, 4vw + 0.5rem, 3.25rem);
   line-height: 1.1;
   margin-bottom: 1.25rem;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.02em;
   font-weight: 800;
 }
 

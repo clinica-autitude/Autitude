@@ -10,6 +10,20 @@ useHead({
     { name: 'description', content: 'Neuropsicologia, Neuropsicopedagogia, Fonoaudiologia, Terapia Ocupacional e Terapia ABA Humanizada em Pindamonhangaba-SP. Atendimento especializado para crianças, adolescentes, adultos e famílias neurodivergentes.' },
     { name: 'keywords', content: 'especialidades autitude, neuropsicologia, neuropsicopedagogia, fonoaudiologia, terapia ocupacional, terapia ABA, integração sensorial, Pindamonhangaba, neurodivergência' },
     { name: 'robots', content: 'index, follow' },
+    { property: 'og:locale', content: 'pt_BR' },
+    { name: 'author', content: 'Autitude - Desenvolvimento e Ação Humana' },
+    { property: 'og:image', content: 'https://autitude.com.br/full-logo.png' },
+    { property: 'og:image:width', content: '1200' },
+    { property: 'og:image:height', content: '630' },
+    { property: 'og:site_name', content: 'Autitude - Desenvolvimento e Ação Humana' },
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: 'Autitude | Desenvolvimento e Ação Humana' },
+    { name: 'twitter:description', content: 'Desenvolvimento com acolhimento, ciência e humanidade. Cuidamos de pessoas. Potencializamos possibilidades.' },
+    { name: 'twitter:image', content: 'https://autitude.com.br/full-logo.png' },
+    { name: 'twitter:creator', content: '@clinicaautitude' },
+    { name: 'twitter:site', content: '@clinicaautitude' },
+    { name: 'date-published', content: '2024-01-01' },
+    { name: 'date-modified', content: '2026-06-09' },
     { property: 'og:title', content: 'Especialidades — Neuropsicologia, Fonoaudiologia, Terapia Ocupacional | Autitude' },
     { property: 'og:description', content: 'Neuropsicologia, Neuropsicopedagogia, Fonoaudiologia, Terapia Ocupacional e Terapia ABA Humanizada em Pindamonhangaba-SP.' },
     { property: 'og:type', content: 'website' },
@@ -23,10 +37,16 @@ useHead({
       type: 'application/ld+json',
       children: JSON.stringify({
         '@context': 'https://schema.org',
-        '@type': 'WebPage',
+        '@type': 'MedicalWebPage',
         name: 'Especialidades — Autitude',
         description: 'Neuropsicologia, Neuropsicopedagogia, Fonoaudiologia, Terapia Ocupacional e Terapia ABA Humanizada.',
         url: `${siteBase}/servicos`,
+        datePublished: '2024-01-01',
+        dateModified: '2026-06-09',
+        speakable: {
+          '@type': 'SpeakableSpecification',
+          cssSelector: ['.seo-paragraph', '.seo-faq-hidden']
+        },
         mainEntity: {
           '@type': 'MedicalBusiness',
           name: 'Autitude - Desenvolvimento e Ação Humana',
@@ -139,6 +159,14 @@ const services = [
   }
 ]
 
+const serviceRoutes = {
+  'Neuropsicologia': '/neuropsicologia',
+  'Neuropsicopedagogia': '/neuropsicopedagogia',
+  'Fonoaudiologia': '/fonoaudiologia',
+  'Terapia Ocupacional': '/terapia-ocupacional',
+  'Terapia ABA Humanizada': '/terapia-aba'
+}
+
 const processSteps = [
   { title: 'Acolhimento', description: 'Você entra em contato pelo WhatsApp ou formulário de agendamento.' },
   { title: 'Avaliação', description: 'Realizamos uma escuta cuidadosa e avaliação especializada.' },
@@ -169,7 +197,7 @@ const processSteps = [
         </div>
 
         <div class="seo-answer">
-          <p class="seo-paragraph">
+          <p class="seo-paragraph texture-hd" style="--texture-hd: var(--texture-hd-paper)">
             A Autitude oferece <strong>5 especialidades integradas</strong> para atendimento neurodivergente:
             <strong>Neuropsicologia</strong> (avaliação e diagnóstico),
             <strong>Neuropsicopedagogia</strong> (dificuldades de aprendizagem),
@@ -181,9 +209,10 @@ const processSteps = [
         </div>
 
         <div class="services-showcase">
-          <div 
-            class="service-card-main" 
-            v-for="(service, index) in services" 
+          <NuxtLink
+            :to="serviceRoutes[service.title]"
+            class="service-card-main texture-hd"
+            v-for="(service, index) in services"
             :key="service.title"
           >
             <div class="card-number">{{ index + 1 }}</div>
@@ -199,12 +228,12 @@ const processSteps = [
                 </ul>
               </div>
             </div>
-          </div>
+          </NuxtLink>
         </div>
       </div>
     </section>
 
-    <section class="process-section section">
+    <section class="process-section section texture-hd-velvet">
       <div class="container">
         <div class="section-header">
           <div class="header-content">
@@ -240,6 +269,20 @@ const processSteps = [
       :color-bends-props="{ rotation: 28, speed: 0.16, scale: 1.3, frequency: 1.35, warpStrength: 1.05, mouseInfluence: 0.45, parallax: 0.35, noise: 0.055 }"
     />
   </div>
+    <!-- Hidden SEO content for crawlers -->
+    <section class="seo-faq-hidden" aria-label="Perguntas Frequentes"
+      style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;">
+      <h2>Quais especialidades a Autitude oferece em Pindamonhangaba?</h2>
+      <p>A Autitude oferece <strong>5 especialidades integradas</strong> em <strong>Pindamonhangaba-SP</strong>: <strong>Neuropsicologia</strong> (avaliação cognitiva e rastreamento de TEA/TDAH), <strong>Neuropsicopedagogia</strong> (dificuldades de aprendizagem e plano pedagógico), <strong>Fonoaudiologia</strong> (linguagem e comunicação), <strong>Terapia Ocupacional</strong> (integração sensorial com certificação internacional USC) e <strong>Terapia ABA Humanizada</strong> (desenvolvimento de habilidades adaptativas).</p>
+      <h2>Como funciona a avaliação neuropsicológica?</h2>
+      <p>A avaliação neuropsicológica é um processo abrangente que inclui entrevistas, testes padronizados e observação comportamental, levando de 4 a 8 sessões para investigar memória, atenção, linguagem e funções executivas. Veja o processo completo em <a href="/blog/avaliacao-neuropsicologica-processo">avaliação neuropsicológica</a>.</p>
+      <h2>Quais as diferenças entre autismo e TDAH na infância?</h2>
+      <p>Embora compartilhem sintomas como desatenção, o TEA envolve prejuízos na comunicação social e comportamentos repetitivos, enquanto o TDAH tem como núcleo a desregulação da atenção e hiperatividade. Leia a comparação em <a href="/blog/diferenca-autismo-tdah-infancia">diferença entre autismo e TDAH na infância</a>.</p>
+      <h2>O que é diagnóstico tardio de autismo?</h2>
+      <p>O diagnóstico tardio ocorre quando crianças em idade escolar (6 a 12 anos) recebem o diagnóstico de TEA após os primeiros anos de vida, muitas vezes com sinais confundidos com outros transtornos. Saiba mais em <a href="/blog/diagnostico-autismo-idade-escolar">diagnóstico de autismo na idade escolar</a>.</p>
+      <h2>Como a terapia ABA humanizada trabalha estereotipias?</h2>
+      <p>A ABA humanizada aborda estereotipias como formas de comunicação e regulação, não como comportamentos a serem eliminados. A abordagem respeita a funcionalidade do estímulo. Leia mais em <a href="/blog/aba-humanizada-estereotipias">ABA humanizada e estereotipias</a>.</p>
+    </section>
 </template>
 
 <style scoped>
@@ -458,6 +501,12 @@ const processSteps = [
   font-size: 0.8125rem;
   color: var(--text-secondary);
   line-height: 1.5;
+}
+
+.service-card-main {
+  text-decoration: none;
+  color: inherit;
+  display: block;
 }
 
 @media (max-width: 640px) {

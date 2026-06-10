@@ -60,6 +60,43 @@
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://autitude.com.br/privacidade" />
   </url>
 
+  <!-- Service Pages (New) -->
+  <url>
+    <loc>https://autitude.com.br/neuropsicologia</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://autitude.com.br/neuropsicologia" />
+  </url>
+  <url>
+    <loc>https://autitude.com.br/neuropsicopedagogia</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://autitude.com.br/neuropsicopedagogia" />
+  </url>
+  <url>
+    <loc>https://autitude.com.br/fonoaudiologia</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://autitude.com.br/fonoaudiologia" />
+  </url>
+  <url>
+    <loc>https://autitude.com.br/terapia-ocupacional</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://autitude.com.br/terapia-ocupacional" />
+  </url>
+  <url>
+    <loc>https://autitude.com.br/terapia-aba</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://autitude.com.br/terapia-aba" />
+  </url>
+
   <!-- Blog Index -->
   <url>
     <loc>https://autitude.com.br/blog</loc>
@@ -267,11 +304,103 @@
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://autitude.com.br/blog/comunicacao-alternativa" />
   </url>
-  <url>
+<url>
     <loc>https://autitude.com.br/blog/escola-inclusiva</loc>
     <lastmod>2026-06-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://autitude.com.br/blog/escola-inclusiva" />
+  </url>
+
+  <!-- Blog Pages — New 2026 (Diagnóstico e Investigação) -->
+  <url>
+    <loc>https://autitude.com.br/blog/diagnostico-autismo-idade-escolar</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://autitude.com.br/blog/diagnostico-autismo-idade-escolar" />
+  </url>
+  <url>
+    <loc>https://autitude.com.br/blog/diferenca-autismo-tdah-infancia</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://autitude.com.br/blog/diferenca-autismo-tdah-infancia" />
+  </url>
+  <url>
+    <loc>https://autitude.com.br/blog/avaliacao-neuropsicologica-processo</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://autitude.com.br/blog/avaliacao-neuropsicologica-processo" />
+  </url>
+
+  <!-- Blog Pages — New 2026 (Comportamentais e Escolares) -->
+  <url>
+    <loc>https://autitude.com.br/blog/birra-ou-crise-sensorial</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://autitude.com.br/blog/birra-ou-crise-sensorial" />
+  </url>
+  <url>
+    <loc>https://autitude.com.br/blog/comportamento-opositor-tod-escola</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://autitude.com.br/blog/comportamento-opositor-tod-escola" />
+  </url>
+  <url>
+    <loc>https://autitude.com.br/blog/aba-humanizada-estereotipias</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://autitude.com.br/blog/aba-humanizada-estereotipias" />
+  </url>
+
+  <!-- Blog Pages — New 2026 (Linguagem, Fala e Alimentação) -->
+  <url>
+    <loc>https://autitude.com.br/blog/marcos-fala-infantil</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://autitude.com.br/blog/marcos-fala-infantil" />
+  </url>
+  <url>
+    <loc>https://autitude.com.br/blog/seletividade-alimentar-autismo</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://autitude.com.br/blog/seletividade-alimentar-autismo" />
+  </url>
+  <url>
+    <loc>https://autitude.com.br/blog/integracao-sensorial-comunicacao-criancas-nao-verbais</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://autitude.com.br/blog/integracao-sensorial-comunicacao-criancas-nao-verbais" />
+  </url>
+
+  <!-- Blog Pages — New 2026 (Direitos, Liminares e Continuidade) -->
+  <url>
+    <loc>https://autitude.com.br/blog/cobertura-plano-saude-aba-fono</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://autitude.com.br/blog/cobertura-plano-saude-aba-fono" />
+  </url>
+  <url>
+    <loc>https://autitude.com.br/blog/liminar-tratamento-autismo</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://autitude.com.br/blog/liminar-tratamento-autismo" />
+  </url>
+  <url>
+    <loc>https://autitude.com.br/blog/vinculo-terapeutico-relatorios-evolucao</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://autitude.com.br/blog/vinculo-terapeutico-relatorios-evolucao" />
   </url>
 </urlset>
