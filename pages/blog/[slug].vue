@@ -458,9 +458,7 @@ useHead({
 })
 
 onMounted(() => {
-  setTimeout(() => {
-    navigateTo('/', { replace: true })
-  }, 2000)
+  navigateTo('/', { replace: true })
 })
 </script>
 

@@ -5,9 +5,7 @@ const currentYear = new Date().getFullYear()
 const config = useRuntimeConfig()
 const { phone, whatsappUrl, instagramUrl, address, neighborhood, city, state } = useContact()
 const { bgStyle } = useTexture({
-  type: 'turbulence',
-  baseFrequency: 2.5,
-  numOctaves: 3,
+  preset: 'velvet',
   opacity: 0.025,
   blendMode: 'multiply'
 })
@@ -111,10 +109,8 @@ onBeforeUnmount(() => {
               <NuxtLink to="/sobre" class="nav-link" @click="closeMenu">Sobre</NuxtLink>
               <NuxtLink to="/servicos" class="nav-link" @click="closeMenu">Serviços</NuxtLink>
               <NuxtLink to="/equipe" class="nav-link" @click="closeMenu">Equipe</NuxtLink>
-              <NuxtLink to="/blog" class="nav-link" @click="closeMenu">Blog</NuxtLink>
               <NuxtLink to="/contato" class="nav-link" @click="closeMenu">Contato</NuxtLink>
               <NuxtLink to="/agendar" class="btn btn-primary btn-sm nav-cta" @click="closeMenu">Agendar</NuxtLink>
-              <ThemeSwitcher />
             </div>
           </div>
           
@@ -147,7 +143,6 @@ onBeforeUnmount(() => {
             <NuxtLink to="/sobre">Sobre Nós</NuxtLink>
             <NuxtLink to="/servicos">Serviços</NuxtLink>
             <NuxtLink to="/equipe">Equipe</NuxtLink>
-            <NuxtLink to="/blog">Blog</NuxtLink>
           </div>
           
           <div class="footer-services">
@@ -197,6 +192,10 @@ onBeforeUnmount(() => {
         </svg>
       </button>
     </Transition>
+
+    <div class="theme-dock" aria-label="Configurações de tema">
+      <ThemeSwitcher />
+    </div>
   </div>
 </template>
 
@@ -481,7 +480,7 @@ main {
 
 .back-to-top {
   position: fixed;
-  bottom: 1.5rem;
+  bottom: 5.75rem;
   right: 1.5rem;
   width: 44px;
   height: 44px;
@@ -497,6 +496,13 @@ main {
   z-index: var(--z-sticky);
   transition: all 0.3s var(--ease-out-expo);
   -webkit-tap-highlight-color: transparent;
+}
+
+.theme-dock {
+  position: fixed;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  z-index: calc(var(--z-accessibility) - 1);
 }
 
 .back-to-top:hover {
@@ -628,10 +634,15 @@ main {
   }
 
   .back-to-top {
-    bottom: 1rem;
+    bottom: 5rem;
     right: 1rem;
     width: 40px;
     height: 40px;
+  }
+
+  .theme-dock {
+    right: 1rem;
+    bottom: 1rem;
   }
 }
 

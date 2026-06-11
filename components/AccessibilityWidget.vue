@@ -257,7 +257,7 @@ onUnmounted(() => {
 #accessibility-controls {
   position: fixed;
   bottom: 1.5rem;
-  right: 1.5rem;
+  left: 1.5rem;
   z-index: 9999;
   font-family: 'DM Sans', sans-serif;
 }
@@ -599,6 +599,11 @@ onUnmounted(() => {
 }
 
 @media (max-width: 480px) {
+  #accessibility-controls {
+    left: 1rem;
+    bottom: 1rem;
+  }
+
   .a11y-menu {
     width: 95%;
     max-height: 90vh;

@@ -2,7 +2,12 @@
 import DotGrid from '~/components/DotGrid.vue'
 
 const siteBase = 'https://autitude.com.br'
-const { whatsappUrl, phone: phoneNumber } = useContact()
+const {
+  whatsappUrl,
+  phone: phoneNumber,
+  phoneDisplay,
+  fullAddress
+} = useContact()
 
 useHead({
   title: 'Agendar Avaliação — Neurodivergência e Desenvolvimento | Autitude',
@@ -49,7 +54,7 @@ useHead({
           '@type': 'MedicalBusiness',
           name: 'Autitude - Desenvolvimento e Ação Humana',
           url: siteBase,
-          telephone: '+5512991968683',
+          telephone: `+${phoneNumber}`,
           priceRange: '$$'
         }
       })
@@ -95,7 +100,7 @@ useHead({
             '@type': 'HowToStep',
             position: 4,
             name: 'Realize a avaliação',
-            text: 'Compareça à clínica na Rua Major José dos Santos Moreira, 328 — Vila Rica, Pindamonhangaba-SP para a avaliação com nossa equipe multidisciplinar.'
+            text: `Compareça à clínica na ${fullAddress} para a avaliação com nossa equipe multidisciplinar.`
           }
         ],
         totalTime: 'P1D',
@@ -289,7 +294,7 @@ const handleSubmit = async () => {
 
         <div class="seo-answer seo-text">
           <p class="seo-paragraph texture-hd">
-            Agende sua <strong>avaliação na Autitude</strong> em <strong>Pindamonhangaba-SP</strong> preenchendo o formulário abaixo. Retornamos em até <strong>24 horas pelo WhatsApp (12) 99196-8683</strong> para entender suas necessidades e marcar a consulta inicial. Atendemos crianças, adolescentes, adultos e famílias com foco em <strong>neurodivergência</strong>, de segunda a sexta, das 8h às 18h.
+            Agende sua <strong>avaliação na Autitude</strong> em <strong>Pindamonhangaba-SP</strong> preenchendo o formulário abaixo. Retornamos em até <strong>24 horas pelo WhatsApp {{ phoneDisplay }}</strong> para entender suas necessidades e marcar a consulta inicial. Atendemos crianças, adolescentes, adultos e famílias com foco em <strong>neurodivergência</strong>, de segunda a sexta, das 8h às 18h.
           </p>
         </div>
 
@@ -475,7 +480,7 @@ const handleSubmit = async () => {
     <section class="seo-faq-hidden" aria-label="Perguntas Frequentes"
       style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;">
       <h2>Como agendar uma avaliação na Autitude?</h2>
-      <p>Para <strong>agendar uma avaliação</strong> na <strong>Autitude em Pindamonhangaba-SP</strong>, preencha o formulário online ou entre em contato pelo <strong>WhatsApp (12) 99196-8683</strong>. Retornamos em até 24 horas para entender as necessidades e marcar a avaliação inicial. Atendemos crianças, adolescentes, adultos e famílias com foco em neurodivergência, de segunda a sexta, das 8h às 18h.</p>
+      <p>Para <strong>agendar uma avaliação</strong> na <strong>Autitude em Pindamonhangaba-SP</strong>, preencha o formulário online ou entre em contato pelo <strong>WhatsApp {{ phoneDisplay }}</strong>. Retornamos em até 24 horas para entender as necessidades e marcar a avaliação inicial. Atendemos crianças, adolescentes, adultos e famílias com foco em neurodivergência, de segunda a sexta, das 8h às 18h.</p>
       <h2>O que esperar da primeira consulta?</h2>
       <p>A primeira consulta envolve uma escuta cuidadosa da história, queixas e objetivos. Dependendo da especialidade, podem ser realizadas triagens iniciais. O processo de avaliação neuropsicológica, por exemplo, leva de 4 a 8 sessões. Saiba mais em <a href="/blog/avaliacao-neuropsicologica-processo">avaliação neuropsicológica</a>.</p>
       <h2>Preciso de encaminhamento médico?</h2>

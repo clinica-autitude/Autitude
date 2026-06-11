@@ -1,6 +1,7 @@
-<script setup>
-import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
+<script setup lang="ts">
+import { ref, computed } from 'vue'
 import { gsap } from 'gsap'
+import type { HeroPanelProps } from './types'
 
 const props = withDefaults(defineProps<HeroPanelProps>(), {
   side: 'left',
@@ -11,11 +12,13 @@ const props = withDefaults(defineProps<HeroPanelProps>(), {
   disabled: false
 })
 
-const panelRef = ref(null)
+const emit = defineEmits(['grow-start', 'grow-end', 'hover', 'leave'])
+
+const panelRef = ref<HTMLElement | null>(null)
 const hasInteracted = ref(false)
 
 const panelStyles = computed(() => {
-  const styles = {}
+  const styles: Record<string, string> = {}
   if (props.growing && props.targetWidth) {
     styles.width = `${props.targetWidth}px`
   }
@@ -84,7 +87,7 @@ defineExpose({
 </script>
 
 <template>
-  <div ref="panelRef" :class="['hero-panel', `hero-panel--${side}`, { 'hero-panel--accent': accent }, { 'hero-panel--compact': compact }, { 'hero-panel--growing': growing }]" :style="{ ...panelStyles }" @mouseenter="() => !disableInteraction && hover()" @mouseleave="() => !disableInteraction && leave()">
+  <div ref="panelRef" :class="['hero-panel', `hero-panel--${props.side}`, { 'hero-panel--accent': props.accent }, { 'hero-panel--compact': props.compact }, { 'hero-panel--growing': props.growing }]" :style="{ ...panelStyles }" @mouseenter="() => !disableInteraction && hover()" @mouseleave="() => !disableInteraction && leave()">
     <slot />
     <div v-if="showHoverEffect" class="hover-effect" />
   </div>
@@ -92,6 +95,8 @@ defineExpose({
 
 <style scoped>
 .hero-panel {
+  position: relative;
+  overflow: hidden;
   container-type: inline-size;
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
@@ -103,6 +108,33 @@ defineExpose({
     var(--glass-shadow),
     inset 0 1px 0 color-mix(in srgb, var(--white) 50%, transparent);
   animation: panelFadeIn 0.8s var(--ease-out-expo) both;
+}
+
+.hero-panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--white) 35%, transparent), transparent 45%);
+  opacity: 0.55;
+}
+
+.hero-panel > :not(.hover-effect) {
+  position: relative;
+  z-index: 1;
+}
+
+.hover-effect {
+  position: absolute;
+  inset: -40%;
+  pointer-events: none;
+  background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), color-mix(in srgb, var(--lilac-light) 35%, transparent), transparent 42%);
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.hero-panel:hover .hover-effect {
+  opacity: 1;
 }
 
 .hero-panel--compact {

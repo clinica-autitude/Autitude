@@ -1,6 +1,9 @@
 import { ref, computed } from 'vue'
 
+type TexturePreset = 'velvet' | 'paper' | 'linen'
+
 export interface TextureOptions {
+  preset?: TexturePreset
   baseFrequency?: number
   numOctaves?: number
   opacity?: number
@@ -18,13 +21,14 @@ const defaultOptions: TextureOptions = {
   blendMode: 'multiply'
 }
 
-const presets: Record<string, TextureOptions> = {
+const presets: Record<TexturePreset, TextureOptions> = {
   velvet: {
     type: 'turbulence',
-    baseFrequency: 2.5,
-    numOctaves: 3,
-    opacity: 0.035,
-    size: 256
+    baseFrequency: 0.82,
+    numOctaves: 5,
+    opacity: 0.045,
+    size: 320,
+    blendMode: 'soft-light'
   },
   paper: {
     type: 'fractalNoise',
@@ -70,7 +74,8 @@ function generateSvgDataUri(options: TextureOptions): string {
  * SSR-safe — no window/document references.
  */
 export function useTexture(options?: TextureOptions) {
-  const opts = ref<TextureOptions>({ ...defaultOptions, ...options })
+  const initialPreset = options?.preset ? presets[options.preset] : {}
+  const opts = ref<TextureOptions>({ ...defaultOptions, ...initialPreset, ...options })
 
   const svgDataUri = computed(() => generateSvgDataUri(opts.value))
 
@@ -81,9 +86,9 @@ export function useTexture(options?: TextureOptions) {
     backgroundRepeat: 'repeat'
   }))
 
-  function setPreset(name: string): void {
+  function setPreset(name: TexturePreset): void {
     if (presets[name]) {
-      opts.value = { ...opts.value, ...presets[name] }
+      opts.value = { ...opts.value, ...presets[name], preset: name }
     }
   }
 

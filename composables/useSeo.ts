@@ -13,6 +13,7 @@ export const useSeo = (options: {
   questionFormatH2?: string
 }) => {
   const siteBase = 'https://autitude.com.br'
+  const { phone, email, address, city, state } = useContact()
   const datePublished = options.datePublished || '2024-01-01'
   const dateModified = options.dateModified || '2026-06-09'
   const ogImage = options.ogImage || `${siteBase}/full-logo.png`
@@ -61,9 +62,9 @@ export const useSeo = (options: {
           ...baseSchema,
           address: {
             '@type': 'PostalAddress',
-            streetAddress: 'Rua Major José dos Santos Moreira, 328',
-            addressLocality: 'Pindamonhangaba',
-            addressRegion: 'SP',
+            streetAddress: address,
+            addressLocality: city,
+            addressRegion: state,
             addressCountry: 'BR'
           },
           foundingDate: '2004',
@@ -88,8 +89,8 @@ export const useSeo = (options: {
           ...baseSchema,
           contactPoint: {
             '@type': 'ContactPoint',
-            telephone: '+55-12-99196-8683',
-            email: 'contato@autitude.com.br',
+            telephone: `+${phone}`,
+            email,
             contactType: 'customer service',
             availableLanguage: ['Portuguese', 'Spanish']
           }
@@ -132,9 +133,9 @@ export const useSeo = (options: {
             url: siteBase,
             address: {
               '@type': 'PostalAddress',
-              streetAddress: 'Rua Major José dos Santos Moreira, 328',
-              addressLocality: 'Pindamonhangaba',
-              addressRegion: 'SP',
+              streetAddress: address,
+              addressLocality: city,
+              addressRegion: state,
               addressCountry: 'BR'
             },
             foundingDate: '2004'

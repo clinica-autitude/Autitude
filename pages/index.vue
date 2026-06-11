@@ -12,7 +12,20 @@ import {
 } from '~/components/hero'
 
 const { siteBase } = useSiteBase()
-const { whatsappUrl, phone, fullAddress } = useContact()
+const {
+  whatsappUrl,
+  phone,
+  email,
+  address,
+  neighborhood,
+  city,
+  state,
+  postalCode,
+  fullAddress,
+  instagramUrl,
+  latitude,
+  longitude
+} = useContact()
 const fullLogoUrl = computed(() => `${siteBase.value}/full-logo.png`)
 const heroLogoUrl = '/full-logo-no-bg.png'
 
@@ -23,8 +36,9 @@ const panelWidth = ref(0)
 // Wait for DOM update to measure panel width
 const measurePanelWidth = () => {
   nextTick(() => {
-    if (descPanelRef.value) {
-      panelWidth.value = descPanelRef.value.offsetWidth
+    const panelEl = descPanelRef.value?.panelRef
+    if (panelEl) {
+      panelWidth.value = panelEl.offsetWidth
     }
   })
 }
@@ -73,20 +87,20 @@ useHead({
         url: 'https://autitude.com.br',
         logo: 'https://autitude.com.br/full-logo.png',
         image: 'https://autitude.com.br/logo.png',
-        telephone: '+55-12-99196-8683',
-        email: 'contato@autitude.com.br',
+        telephone: `+${phone}`,
+        email,
         address: {
           '@type': 'PostalAddress',
-          streetAddress: 'Rua Major José dos Santos Moreira, 328 — Vila Rica',
-          addressLocality: 'Pindamonhangaba',
-          addressRegion: 'SP',
+          streetAddress: `${address} — ${neighborhood}`,
+          addressLocality: city,
+          addressRegion: state,
           addressCountry: 'BR',
-          postalCode: '12410-050'
+          postalCode
         },
         geo: {
           '@type': 'GeoCoordinates',
-          latitude: '-22.9309',
-          longitude: '-45.4607'
+          latitude,
+          longitude
         },
         openingHoursSpecification: [
           {
@@ -109,7 +123,7 @@ useHead({
         amenityFeature: ['Sala Multissensorial de Integração Sensorial'],
         knowsAbout: ['Neurodivergência', 'Neuropsicologia', 'Neuropsicopedagogia', 'Fonoaudiologia', 'Terapia Ocupacional', 'Integração Sensorial', 'Desenvolvimento Infantil', 'TEA', 'TDAH', 'Terapia ABA', 'Dislexia'],
         sameAs: [
-          'https://www.instagram.com/clinicaautitude'
+          instagramUrl
         ],
         aggregateRating: {
           '@type': 'AggregateRating',
@@ -296,17 +310,16 @@ const services = [
           </div>
 
           <div class="hero-right">
-            <HeroPanel side="right" accent class="hero-right-desc" :style="{ '--stagger': 0 }">
+            <HeroPanel ref="descPanelRef" side="right" accent class="hero-right-desc" :style="{ '--stagger': 0 }">
               <HeroTypewriter
-                ref="descPanelRef"
                 text="Espaço especializado no atendimento de crianças, adolescentes, adultos e suas famílias."
-                speed="0.04"
-                delay="1.5"
-                cursor="true"
+                :speed="0.04"
+                :delay="0.55"
+                :cursor="true"
                 @complete="() => {
                   typewriterDone.value = true
                   setTimeout(() => {
-                    descPanelRef.value?.growPanel()
+                    descPanelRef.value?.growPanel?.()
                   }, 300)
                 }"
               />
@@ -734,6 +747,9 @@ const services = [
   text-align: left;
   padding-right: clamp(1rem, 4vw, 3rem);
   padding-bottom: clamp(1rem, 2vw, 2rem);
+  animation:
+    heroCopyCascade 0.9s var(--ease-out-expo) 0.15s both,
+    float-subtle var(--float-duration, 7s) ease-in-out 1.2s infinite;
 }
 
 .hero-eyebrow {
@@ -753,6 +769,7 @@ const services = [
   gap: clamp(1rem, 2vw, 1.5rem);
   padding-left: clamp(1rem, 4vw, 3rem);
   padding-top: clamp(1rem, 2vw, 2rem);
+  animation: heroCopyCascade 0.8s var(--ease-out-expo) 0.35s both;
 }
 
 .hero-right-desc {
@@ -773,14 +790,27 @@ const services = [
 
 /* Staggered reveal animation for hero panels */
 .hero-right > * {
-  animation: panelFadeIn 0.6s var(--ease-out-expo) forwards;
-  animation-delay: calc(var(--stagger, 0) * 0.15s);
+  animation:
+    panelFadeIn 0.7s var(--ease-out-expo) forwards,
+    float-subtle var(--float-duration, 5.5s) ease-in-out calc(1.1s + (var(--stagger, 0) * 0.2s)) infinite;
+  animation-delay: calc(0.45s + (var(--stagger, 0) * 0.14s)), calc(1.1s + (var(--stagger, 0) * 0.2s));
   opacity: 0;
 }
 
 @keyframes panelFadeIn {
   from { opacity: 0; transform: translateY(24px) scale(0.98); }
   to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes heroCopyCascade {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .about-preview {

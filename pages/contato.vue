@@ -2,7 +2,20 @@
 import { MapPin, MessageCircle, Mail, Clock } from 'lucide-vue-next'
 import DotGrid from '~/components/DotGrid.vue'
 
-const { whatsappUrl, phoneDisplay, instagramHandle, address, neighborhood, city, state, email } = useContact()
+const {
+  whatsappUrl,
+  phone,
+  phoneDisplay,
+  instagramUrl,
+  address,
+  neighborhood,
+  city,
+  state,
+  postalCode,
+  email,
+  latitude,
+  longitude
+} = useContact()
 
 const siteBase = 'https://autitude.com.br'
 
@@ -51,38 +64,38 @@ useHead({
           '@type': 'MedicalBusiness',
           name: 'Autitude - Desenvolvimento e Ação Humana',
           url: siteBase,
-          telephone: `+${useContact().phone}`,
-          email: useContact().email,
+          telephone: `+${phone}`,
+          email,
           address: {
             '@type': 'PostalAddress',
-            streetAddress: 'Rua Major José dos Santos Moreira, 328',
-            addressLocality: 'Pindamonhangaba',
-            addressRegion: 'SP',
+            streetAddress: address,
+            addressLocality: city,
+            addressRegion: state,
             addressCountry: 'BR',
-            postalCode: '12400-010'
+            postalCode
           },
           geo: {
             '@type': 'GeoCoordinates',
-            latitude: '-22.9309',
-            longitude: '-45.4607'
+            latitude,
+            longitude
           },
           contactPoint: [
             {
               '@type': 'ContactPoint',
-              telephone: `+${useContact().phone}`,
+              telephone: `+${phone}`,
               contactType: 'customer service',
               availableLanguage: 'Portuguese',
               areaServed: 'BR'
             },
             {
               '@type': 'ContactPoint',
-              email: useContact().email,
+              email,
               contactType: 'customer service',
               availableLanguage: 'Portuguese'
             }
           ],
           sameAs: [
-            'https://www.instagram.com/clinicaautitude'
+            instagramUrl
           ]
         }
       })
@@ -138,7 +151,7 @@ const config = {
               <MessageCircle :size="28" />
             </div>
             <h3>WhatsApp</h3>
-            <p class="contact-value">(12) 99196-8683</p>
+            <p class="contact-value">{{ phoneDisplay }}</p>
             <span class="contact-label">Resposta em até 24h</span>
           </a>
 
@@ -156,7 +169,7 @@ const config = {
               <Mail :size="28" />
             </div>
             <h3>E-mail</h3>
-            <p class="contact-value">contato@autitude.com.br</p>
+            <p class="contact-value">{{ email }}</p>
             <span class="contact-label">Respondemos em até 48h</span>
           </div>
 
@@ -176,7 +189,7 @@ const config = {
     <section class="seo-faq-hidden" aria-label="Perguntas Frequentes"
       style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;">
       <h2>Como entrar em contato com a Autitude em Pindamonhangaba?</h2>
-      <p>A <strong>Autitude</strong> está localizada na <strong>Rua Major José dos Santos Moreira, 328 — Vila Rica, Pindamonhangaba-SP</strong>. O horário de funcionamento é de <strong>segunda a sexta, das 8h às 18h</strong>. O contato pode ser feito pelo <strong>WhatsApp (12) 99196-8683</strong>, e-mail contato@autitude.com.br ou pelo formulário de agendamento no site. Atendemos crianças, adolescentes, adultos e famílias com foco em neurodivergência.</p>
+      <p>A <strong>Autitude</strong> está localizada na <strong>{{ address }} — {{ neighborhood }}, {{ city }}-{{ state }}</strong>. O horário de funcionamento é de <strong>segunda a sexta, das 8h às 18h</strong>. O contato pode ser feito pelo <strong>WhatsApp {{ phoneDisplay }}</strong>, e-mail {{ email }} ou pelo formulário de agendamento no site. Atendemos crianças, adolescentes, adultos e famílias com foco em neurodivergência.</p>
       <h2>O plano de saúde cobre as terapias da Autitude?</h2>
       <p>Atualmente atendemos de forma particular, mas fornecemos nota fiscal para reembolso junto ao plano de saúde. Por lei, planos são obrigados a cobrir ABA e fonoaudiologia para TEA. Saiba mais em <a href="/blog/cobertura-plano-saude-aba-fono">cobertura do plano de saúde para ABA e fonoaudiologia</a>.</p>
       <h2>Como conseguir liminar para tratamento de autismo?</h2>
