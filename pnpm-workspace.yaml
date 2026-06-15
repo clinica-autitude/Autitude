@@ -1,5 +1,2 @@
-allowBuilds:
-  '@parcel/watcher': true
-  esbuild: true
-  opencode-ai: true
-  puppeteer: true
+packages:
+  - '.'
