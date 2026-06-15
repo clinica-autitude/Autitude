@@ -108,6 +108,9 @@ defineExpose({
     var(--glass-shadow),
     inset 0 1px 0 color-mix(in srgb, var(--white) 50%, transparent);
   animation: panelFadeIn 0.8s var(--ease-out-expo) both;
+  width: fit-content;
+  max-width: min(85vw, 540px);
+  min-width: min(50vw, 280px);
 }
 
 .hero-panel::before {
