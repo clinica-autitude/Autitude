@@ -163,7 +163,7 @@ onBeforeUnmount(() => {
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3674.523716039893!2d-45.46558491270433!3d-22.93093188518779!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ccf1835a97b90d%3A0x8c2cb7aa78bd7f92!2sAutitude%20Desenvolvimento%20e%20A%C3%A7%C3%A3o%20Humana!5e0!3m2!1sen!2sbr!4v1780604277186!5m2!1sen!2sbr"
                 width="100%"
                 height="180"
-                style="border:0;border-radius:8px;"
+                style="border:0;border-radius:var(--radius-md);"
                 allowfullscreen=""
                 loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade"
@@ -538,14 +538,16 @@ main {
     width: min(85vw, 340px);
     height: 100vh;
     height: 100dvh;
-    background: var(--surface);
+    background: color-mix(in srgb, var(--surface) 92%, transparent);
+    backdrop-filter: blur(20px) saturate(1.3);
+    -webkit-backdrop-filter: blur(20px) saturate(1.3);
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
     padding: 5rem 1.5rem 2rem;
     gap: 0;
-    box-shadow: -8px 0 32px rgba(0, 0, 0, 0.12);
-    transition: right 0.4s var(--ease-out-expo);
+    box-shadow: -8px 0 40px rgba(0, 0, 0, 0.15);
+    transition: right 0.45s var(--ease-out-expo);
     z-index: calc(var(--z-navbar) + 1);
     overflow-y: auto;
     overscroll-behavior: contain;

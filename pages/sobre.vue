@@ -404,7 +404,6 @@ const differentiators = [
   --gap-card: clamp(0.875rem, 1.5vw, 1.25rem);
   --radius-card: var(--radius-2xl);
   --radius-pill: 999px;
-  --ease: cubic-bezier(0.16, 1, 0.3, 1);
 
   --grad-text: linear-gradient(135deg,
     var(--lilac) 0%,
@@ -519,7 +518,7 @@ const differentiators = [
   font-weight: 600;
   font-size: clamp(0.875rem, 1.3vw, 1rem);
   text-decoration: none;
-  transition: background-color 0.3s var(--ease), border-color 0.3s var(--ease), color 0.3s var(--ease), transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+  transition: background-color 0.3s var(--ease-out-expo), border-color 0.3s var(--ease-out-expo), color 0.3s var(--ease-out-expo), transform 0.3s var(--ease-out-expo), box-shadow 0.3s var(--ease-out-expo);
   border: 1px solid transparent;
   cursor: pointer;
   white-space: nowrap;
@@ -641,7 +640,7 @@ const differentiators = [
   border: 1px solid color-mix(in srgb, var(--lilac) 12%, transparent);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  transition: transform 0.3s var(--ease), background 0.3s var(--ease);
+  transition: transform 0.3s var(--ease-out-expo), background 0.3s var(--ease-out-expo);
 }
 .hero__pillars li:hover { transform: translateY(-2px); }
 .pillar-icon {
@@ -706,7 +705,9 @@ const differentiators = [
   box-shadow: var(--shadow-card);
   overflow: hidden;
   isolation: isolate;
-  transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+  transition: transform 0.5s var(--ease-out-expo), box-shadow 0.5s var(--ease-out-expo);
+  opacity: 0;
+  animation: fadeSectionIn 0.7s var(--ease-out-expo) forwards;
 }
 /* gradient border on hover */
 .bento__card::before {
@@ -724,7 +725,7 @@ const differentiators = [
   -webkit-mask-composite: xor;
           mask-composite: exclude;
   opacity: 0;
-  transition: opacity 0.4s var(--ease);
+  transition: opacity 0.4s var(--ease-out-expo);
   pointer-events: none;
 }
 .bento__card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
@@ -911,7 +912,7 @@ const differentiators = [
   background: color-mix(in srgb, var(--lilac) 10%, transparent);
   border: 1px solid color-mix(in srgb, var(--lilac) 22%, transparent);
   text-decoration: none;
-  transition: background-color 0.3s var(--ease), border-color 0.3s var(--ease), color 0.3s var(--ease), transform 0.3s var(--ease);
+  transition: background-color 0.3s var(--ease-out-expo), border-color 0.3s var(--ease-out-expo), color 0.3s var(--ease-out-expo), transform 0.3s var(--ease-out-expo);
 }
 .location__link:hover {
   background: var(--lilac);

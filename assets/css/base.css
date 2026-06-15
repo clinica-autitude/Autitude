@@ -270,6 +270,71 @@ button {
   scrollbar-color: var(--lilac-light) transparent;
 }
 
+/* ===== Section Transition Utilities ===== */
+.section + .section {
+  position: relative;
+}
+
+.section + .section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(80vw, 400px);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+  pointer-events: none;
+}
+
+/* ===== Hover Lift Utility ===== */
+.hover-lift {
+  transition: transform 0.4s var(--ease-out-expo), box-shadow 0.4s var(--ease-out-expo);
+  will-change: transform;
+}
+
+.hover-lift:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+}
+
+.hover-lift:active {
+  transform: translateY(-2px);
+}
+
+/* ===== Glass Card Refinement ===== */
+.card-glass {
+  background: var(--glass-bg-strong);
+  backdrop-filter: var(--glass-blur-light);
+  -webkit-backdrop-filter: var(--glass-blur-light);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  border-radius: var(--radius-xl);
+  transition: transform 0.4s var(--ease-out-expo), box-shadow 0.4s var(--ease-out-expo), border-color 0.4s var(--ease-out-expo);
+}
+
+.card-glass:hover {
+  border-color: var(--glass-border-strong);
+  box-shadow: var(--glass-shadow-elevated);
+}
+
+/* ===== Section Stagger Fade In ===== */
+.fade-section {
+  opacity: 0;
+  transform: translateY(24px);
+  animation: fadeSectionIn 0.7s var(--ease-out-expo) forwards;
+}
+
+@keyframes fadeSectionIn {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-section:nth-child(2) { animation-delay: 0.1s; }
+.fade-section:nth-child(3) { animation-delay: 0.2s; }
+.fade-section:nth-child(4) { animation-delay: 0.3s; }
+.fade-section:nth-child(5) { animation-delay: 0.4s; }
+
 /* ===== Floating Animation Utilities ===== */
 @keyframes float {
   0%, 100% { transform: translateY(0); }
