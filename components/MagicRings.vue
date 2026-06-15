@@ -87,8 +87,8 @@ interface MagicRingsProps {
 }
 
 const props = withDefaults(defineProps<MagicRingsProps>(), {
-  color: '#7cff67',
-  colorTwo: '#42fcff',
+  color: '#6B4FA3',
+  colorTwo: '#8FC176',
   speed: 1,
   ringCount: 6,
   attenuation: 10,
@@ -383,7 +383,7 @@ onBeforeUnmount(() => {
   inset: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle at center, rgba(124, 255, 103, 0.08), rgba(66, 252, 255, 0.04) 60%, transparent 80%);
+  background: radial-gradient(circle at center, color-mix(in srgb, var(--lilac) 8%, transparent), color-mix(in srgb, var(--lilac-dark) 4%, transparent) 60%, transparent 80%);
   pointer-events: none;
 }
 </style>

@@ -74,14 +74,14 @@ const toggleTheme = () => {
   display: none;
 }
 
-@media (min-width: 500px) {
+@media (min-width: 640px) {
   .theme-label {
     display: inline;
   }
 }
 
 [data-theme="light"] .theme-switcher {
-  background: #ffffff;
+  background: var(--white);
   border-color: var(--border);
   color: var(--text);
 }
@@ -89,11 +89,11 @@ const toggleTheme = () => {
 [data-theme="light"] .theme-switcher:hover {
   background: var(--lilac);
   border-color: var(--lilac);
-  color: #ffffff;
+  color: var(--white);
 }
 
 [data-theme="sepia"] .theme-switcher {
-  background: #FFFEF8;
+  background: var(--surface);
   border-color: var(--border);
   color: var(--text);
 }
@@ -101,7 +101,7 @@ const toggleTheme = () => {
 [data-theme="sepia"] .theme-switcher:hover {
   background: var(--lilac);
   border-color: var(--lilac);
-  color: #ffffff;
+  color: var(--white);
 }
 
 [data-theme="dark"] .theme-switcher {

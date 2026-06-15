@@ -402,15 +402,15 @@ const differentiators = [
    ========================== */
 .about {
   --gap-card: clamp(0.875rem, 1.5vw, 1.25rem);
-  --radius-card: 28px;
+  --radius-card: var(--radius-2xl);
   --radius-pill: 999px;
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
 
   --grad-text: linear-gradient(135deg,
     var(--lilac) 0%,
-    var(--pastel-pink) 50%,
-    var(--accent-light) 100%);
-
+    var(--lilac-dark) 40%,
+    var(--lilac-deep) 100%);
+    
   --border-card: 1px solid color-mix(in srgb, var(--lilac) 10%, transparent);
   --shadow-card: 0 1px 2px color-mix(in srgb, var(--text) 4%, transparent);
   --shadow-hover: 0 24px 56px -24px color-mix(in srgb, var(--lilac) 50%, transparent);
@@ -568,12 +568,12 @@ const differentiators = [
   animation: float 18s ease-in-out infinite;
 }
 .orb--1 {
-  width: 480px; height: 480px;
+  width: min(480px, 70vw); height: min(480px, 70vw);
   top: -120px; left: -100px;
   background: radial-gradient(circle, var(--pastel-lavender) 0%, transparent 70%);
 }
 .orb--2 {
-  width: 360px; height: 360px;
+  width: min(360px, 55vw); height: min(360px, 55vw);
   top: 40%; right: -80px;
   background: radial-gradient(circle, var(--pastel-pink) 0%, transparent 70%);
   animation-delay: -8s;
@@ -652,10 +652,10 @@ const differentiators = [
   border-radius: 6px;
   color: white;
 }
-.hero__pillars li[data-tone="pink"] .pillar-icon { background: linear-gradient(135deg, var(--pastel-pink) 0%, #e08599 100%); }
+.hero__pillars li[data-tone="pink"] .pillar-icon { background: linear-gradient(135deg, var(--pastel-pink) 0%, var(--pink-dark) 100%); }
 .hero__pillars li[data-tone="lavender"] .pillar-icon { background: linear-gradient(135deg, var(--pastel-lavender) 0%, var(--lilac) 100%); }
 .hero__pillars li[data-tone="mint"] .pillar-icon { background: linear-gradient(135deg, var(--pastel-mint) 0%, var(--accent-light) 100%); }
-.hero__pillars li[data-tone="yellow"] .pillar-icon { background: linear-gradient(135deg, #FFFBEB 0%, #FEF3C7 100%); }
+.hero__pillars li[data-tone="yellow"] .pillar-icon { background: linear-gradient(135deg, var(--yellow-soft) 0%, var(--highlight-light) 100%); }
 
 .hero__actions {
   display: flex;
@@ -750,9 +750,9 @@ const differentiators = [
   margin-bottom: 0.75rem;
 }
 .card__icon[data-tone="lavender"] { background: linear-gradient(135deg, var(--pastel-lavender) 0%, var(--lilac) 100%); }
-.card__icon[data-tone="pink"]     { background: linear-gradient(135deg, var(--pastel-pink) 0%, #e08599 100%); }
+.card__icon[data-tone="pink"]     { background: linear-gradient(135deg, var(--pastel-pink) 0%, var(--pink-dark) 100%); }
 .card__icon[data-tone="mint"]     { background: linear-gradient(135deg, var(--pastel-mint) 0%, var(--accent-light) 100%); }
-.card__icon[data-tone="yellow"]    { background: linear-gradient(135deg, #FFFBEB 0%, #FEF3C7 100%); }
+.card__icon[data-tone="yellow"]    { background: linear-gradient(135deg, var(--yellow-soft) 0%, var(--highlight-light) 100%); }
 
 .card__label {
   display: inline-block;
@@ -982,7 +982,7 @@ const differentiators = [
   .bento__card--location { grid-column: span 6; }
   .bento__card--specialty-full { grid-column: span 6; }
 }
-@media (max-width: 720px) {
+@media (max-width: 640px) {
   .bento { grid-template-columns: 1fr; }
   .bento__card,
   .bento__card--statement,

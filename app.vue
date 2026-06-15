@@ -291,8 +291,9 @@ onBeforeUnmount(() => {
 .logo-text {
   background: var(--gradient-primary);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
 }
 
 .nav-links {
@@ -480,7 +481,7 @@ main {
 
 .back-to-top {
   position: fixed;
-  bottom: 5.75rem;
+  bottom: calc(1.5rem + 3.25rem + 0.75rem + 3rem + 0.75rem);
   right: 1.5rem;
   width: 44px;
   height: 44px;
@@ -501,7 +502,7 @@ main {
 .theme-dock {
   position: fixed;
   right: 1.5rem;
-  bottom: 1.5rem;
+  bottom: calc(1.5rem + 3.25rem + 0.75rem);
   z-index: calc(var(--z-accessibility) - 1);
 }
 
@@ -634,7 +635,7 @@ main {
   }
 
   .back-to-top {
-    bottom: 5rem;
+    bottom: calc(1rem + 3rem + 0.5rem + 2.75rem + 0.5rem);
     right: 1rem;
     width: 40px;
     height: 40px;
@@ -642,7 +643,7 @@ main {
 
   .theme-dock {
     right: 1rem;
-    bottom: 1rem;
+    bottom: calc(1rem + 3rem + 0.5rem);
   }
 }
 

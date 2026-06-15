@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, onMounted, nextTick, defineAsyncComponent } from 'vue'
+import { ref, computed, defineAsyncComponent } from 'vue'
 import {
   Brain, Heart, Sparkles, HandHeart,
   BookOpen, Mic, Activity, Puzzle
@@ -7,8 +7,8 @@ import {
 import Silk from '~/components/Silk.vue'
 import MagicRings from '~/components/MagicRings.vue'
 import {
-  HeroPanel, HeroPill, HeroTitle, HeroTitleHighlight,
-  HeroSubtitle, HeroTagline, HeroActions, HeroTypewriter
+  HeroPanel, HeroTitle, HeroTitleHighlight,
+  HeroTagline, HeroActions, HeroTypewriter
 } from '~/components/hero'
 
 const { siteBase } = useSiteBase()
@@ -30,22 +30,6 @@ const fullLogoUrl = computed(() => `${siteBase.value}/full-logo.png`)
 const heroLogoUrl = '/full-logo-no-bg.png'
 
 const descPanelRef = ref(null)
-const typewriterDone = ref(false)
-const panelWidth = ref(0)
-
-// Wait for DOM update to measure panel width
-const measurePanelWidth = () => {
-  nextTick(() => {
-    const panelEl = descPanelRef.value?.panelRef
-    if (panelEl) {
-      panelWidth.value = panelEl.offsetWidth
-    }
-  })
-}
-
-onMounted(() => {
-  measurePanelWidth()
-})
 
 useHead({
   title: 'Autitude | Desenvolvimento e Ação Humana',
@@ -317,7 +301,6 @@ const services = [
                 :delay="0.55"
                 :cursor="true"
                 @complete="() => {
-                  typewriterDone.value = true
                   setTimeout(() => {
                     descPanelRef.value?.growPanel?.()
                   }, 300)

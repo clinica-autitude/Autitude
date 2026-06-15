@@ -188,7 +188,7 @@ const bendsProps = computed(() => ({ ...defaultBendsProps, ...props.colorBendsPr
   color: var(--cta-text-secondary, var(--lilac-dark));
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .cta-actions {
     flex-direction: column;
     align-items: center;

@@ -299,12 +299,12 @@ const config = {
 }
 
 .whatsapp-card {
-  background: linear-gradient(135deg, color-mix(in srgb, #25D366 8%, var(--surface)), var(--surface));
-  border-color: color-mix(in srgb, #25D366 20%, var(--border));
+  background: linear-gradient(135deg, color-mix(in srgb, var(--whatsapp) 8%, var(--surface)), var(--surface));
+  border-color: color-mix(in srgb, var(--whatsapp) 20%, var(--border));
 }
 
 .whatsapp-card:hover {
-  border-color: #25D366;
+  border-color: var(--whatsapp);
 }
 
 .card-icon {
@@ -320,8 +320,8 @@ const config = {
 }
 
 .whatsapp-card .card-icon {
-  background: color-mix(in srgb, #25D366 15%, transparent);
-  color: #25D366;
+  background: color-mix(in srgb, var(--whatsapp) 15%, transparent);
+  color: var(--whatsapp);
 }
 
 .contact-card h3 {
