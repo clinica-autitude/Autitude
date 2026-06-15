@@ -749,26 +749,29 @@ const services = [
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  gap: clamp(1rem, 2vw, 1.5rem);
-  padding-left: clamp(1rem, 4vw, 3rem);
+  align-items: flex-end;
+  gap: clamp(0.75rem, 1.5vw, 1.25rem);
+  padding-left: clamp(0.75rem, 3vw, 2rem);
   padding-top: clamp(1rem, 2vw, 2rem);
   animation: heroCopyCascade 0.8s var(--ease-out-expo) 0.35s both;
 }
 
 .hero-right-desc {
-  align-self: flex-end;
-  margin-left: 0;
+  width: 100%;
+  max-width: min(85vw, 540px);
+}
+
+.hero-right-focus {
+  max-width: min(70vw, 440px);
 }
 
 .hero-right-tagline {
-  align-self: flex-end;
+  max-width: min(75vw, 480px);
   text-align: right;
-  margin-left: clamp(1rem, 3vw, 2.5rem);
 }
 
 .hero-right-actions {
-  align-self: flex-end;
-  margin-left: clamp(2rem, 5vw, 4rem);
+  max-width: min(80vw, 500px);
 }
 
 /* Staggered reveal animation for hero panels */
@@ -1108,14 +1111,17 @@ const services = [
   }
 
   .hero-right {
+    align-items: stretch;
     gap: clamp(0.5rem, 1vw, 0.75rem);
+    padding-left: 0;
   }
 
   .hero-right-desc,
+  .hero-right-focus,
   .hero-right-tagline,
   .hero-right-actions {
-    margin-left: 0;
-    padding: 0;
+    max-width: none;
+    width: 100%;
   }
 
   .service-card-mini {
