@@ -294,16 +294,19 @@ const services = [
           </div>
 
           <div class="hero-right">
-            <HeroPanel side="right" accent class="hero-right-desc" :style="{ '--stagger': 0 }">
-              <p class="hero-desc-text">Espaço especializado no atendimento de crianças, adolescentes, adultos e suas famílias.</p>
-            </HeroPanel>
-
-            <div class="hero-right-chip hero-right-focus" :style="{ '--stagger': 1 }">
-              <span class="chip-dot" /> Nosso foco é o público neurodivergente.
+            <div class="hero-card hero-card--desc" :style="{ '--stagger': 0 }">
+              <div class="card-shine" />
+              <p>Espaço especializado no atendimento de <strong>crianças, adolescentes, adultos</strong> e suas famílias.</p>
             </div>
 
-            <div class="hero-right-chip hero-right-tagline" :style="{ '--stagger': 2 }">
-              💜 Cuidamos de pessoas. Potencializamos possibilidades.
+            <div class="hero-badge" :style="{ '--stagger': 1 }">
+              <span class="badge-accent" />
+              <span>Nosso foco é o público <strong>neurodivergente</strong>.</span>
+            </div>
+
+            <div class="hero-emphasis" :style="{ '--stagger': 2 }">
+              <span class="emphasis-heart" aria-hidden="true">💜</span>
+              <span>Cuidamos de pessoas. <em>Potencializamos possibilidades.</em></span>
             </div>
 
             <HeroPanel side="right" compact class="hero-right-actions" :style="{ '--stagger': 3 }">
@@ -727,14 +730,6 @@ const services = [
     float-subtle var(--float-duration, 7s) ease-in-out 1.2s infinite;
 }
 
-.hero-desc-text {
-  font-size: clamp(0.9375rem, 1.5vw, 1.125rem);
-  line-height: 1.6;
-  color: var(--text-secondary);
-  margin: 0;
-  text-wrap: pretty;
-}
-
 .hero-eyebrow {
   display: block;
   font-size: clamp(0.75rem, 1.2vw, 0.875rem);
@@ -750,45 +745,121 @@ const services = [
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-end;
-  gap: clamp(0.75rem, 1.5vw, 1.25rem);
+  gap: clamp(0.625rem, 1.2vw, 1rem);
   padding-left: clamp(0.75rem, 3vw, 2rem);
   padding-top: clamp(1rem, 2vw, 2rem);
   animation: heroCopyCascade 0.8s var(--ease-out-expo) 0.35s both;
 }
 
-.hero-right-desc {
-  width: 100%;
-  max-width: min(85vw, 540px);
-}
-
-.hero-right-chip {
-  padding: clamp(0.625rem, 1.2vw, 0.875rem) clamp(1rem, 2vw, 1.375rem);
-  border-radius: var(--radius-full);
-  background: color-mix(in srgb, var(--surface) 70%, transparent);
-  backdrop-filter: blur(8px);
-  font-size: clamp(0.875rem, 1.5vw, 1rem);
-  font-weight: 600;
-  color: var(--primary);
-  letter-spacing: 0.02em;
-  border: 1px solid color-mix(in srgb, var(--lilac-light) 25%, transparent);
-  opacity: 0;
-  animation: fadeInUp 0.6s var(--ease-out-expo) forwards;
-  animation-delay: calc(0.45s + (var(--stagger, 0) * 0.14s));
-  width: 100%;
-  white-space: nowrap;
-}
-
-.hero-right-focus {
-  max-width: min(70vw, 440px);
-}
-
-.hero-right-tagline {
-  max-width: min(75vw, 480px);
-}
-
 .hero-right-actions {
   width: 100%;
   max-width: min(80vw, 500px);
+}
+
+/* --- Hero card (description) --- */
+.hero-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-2xl);
+  padding: clamp(1rem, 2vw, 1.375rem) clamp(1.25rem, 2.5vw, 1.75rem);
+  background: color-mix(in srgb, var(--surface) 72%, transparent);
+  backdrop-filter: blur(14px) saturate(1.3);
+  border: 1px solid color-mix(in srgb, var(--lilac-light) 25%, transparent);
+  box-shadow: 0 4px 24px -8px color-mix(in srgb, var(--lilac) 10%, transparent);
+  width: 100%;
+  max-width: min(85vw, 520px);
+  opacity: 0;
+  animation: fadeInUp 0.7s var(--ease-out-expo) forwards;
+  animation-delay: calc(0.3s + (var(--stagger, 0) * 0.14s));
+}
+
+.hero-card p {
+  font-size: clamp(0.875rem, 1.4vw, 1.0625rem);
+  line-height: 1.65;
+  color: var(--text-secondary);
+  margin: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-card p strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.card-shine {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--white) 30%, transparent) 0%, transparent 50%);
+  border-radius: inherit;
+}
+
+/* --- Hero badge (focus) --- */
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(0.5rem, 1vw, 0.75rem);
+  border-radius: var(--radius-full);
+  padding: clamp(0.5rem, 1vw, 0.75rem) clamp(1rem, 1.8vw, 1.375rem);
+  background: linear-gradient(135deg, color-mix(in srgb, var(--lilac) 20%, var(--surface)) 0%, color-mix(in srgb, var(--pink) 12%, var(--surface)) 100%);
+  border: 1px solid color-mix(in srgb, var(--lilac-light) 20%, transparent);
+  font-size: clamp(0.8125rem, 1.4vw, 0.9375rem);
+  font-weight: 500;
+  color: var(--primary);
+  letter-spacing: 0.01em;
+  width: 100%;
+  max-width: min(68vw, 420px);
+  opacity: 0;
+  animation: fadeInUp 0.6s var(--ease-out-expo) forwards;
+  animation-delay: calc(0.3s + (var(--stagger, 0) * 0.14s));
+}
+
+.badge-accent {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--lilac);
+  flex-shrink: 0;
+  box-shadow: 0 0 8px color-mix(in srgb, var(--lilac) 40%, transparent);
+}
+
+.hero-badge strong {
+  color: var(--lilac-deep);
+  font-weight: 700;
+}
+
+/* --- Hero emphasis (tagline) --- */
+.hero-emphasis {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(0.375rem, 0.8vw, 0.625rem);
+  font-size: clamp(0.8125rem, 1.3vw, 0.9375rem);
+  font-weight: 500;
+  color: var(--text-secondary);
+  letter-spacing: 0.01em;
+  width: 100%;
+  max-width: min(75vw, 460px);
+  opacity: 0;
+  animation: heroCascadeUp 0.5s var(--ease-out-expo) forwards;
+  animation-delay: calc(0.3s + (var(--stagger, 0) * 0.14s));
+}
+
+.emphasis-heart {
+  flex-shrink: 0;
+  font-size: clamp(1rem, 1.5vw, 1.125rem);
+  line-height: 1;
+}
+
+.hero-emphasis em {
+  font-style: italic;
+  color: var(--primary);
+  font-weight: 600;
+}
+
+@keyframes heroCascadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* Staggered reveal animation for hero panels */
@@ -1138,9 +1209,9 @@ const services = [
     padding-left: 0;
   }
 
-  .hero-right-desc,
-  .hero-right-focus,
-  .hero-right-tagline,
+  .hero-card,
+  .hero-badge,
+  .hero-emphasis,
   .hero-right-actions {
     max-width: none;
     width: 100%;
