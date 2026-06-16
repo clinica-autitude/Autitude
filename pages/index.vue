@@ -298,13 +298,13 @@ const services = [
               <p class="hero-desc-text">Espaço especializado no atendimento de crianças, adolescentes, adultos e suas famílias.</p>
             </HeroPanel>
 
-            <HeroPanel side="right" compact class="hero-right-focus" :style="{ '--stagger': 1 }">
-              <p class="hero-focus-text">Nosso foco é o público neurodivergente.</p>
-            </HeroPanel>
+            <div class="hero-right-chip hero-right-focus" :style="{ '--stagger': 1 }">
+              <span class="chip-dot" /> Nosso foco é o público neurodivergente.
+            </div>
 
-            <HeroPanel side="right" compact class="hero-right-tagline" :style="{ '--stagger': 2 }">
-              <p class="hero-tagline-text">💜 Cuidamos de pessoas. Potencializamos possibilidades.</p>
-            </HeroPanel>
+            <div class="hero-right-chip hero-right-tagline" :style="{ '--stagger': 2 }">
+              💜 Cuidamos de pessoas. Potencializamos possibilidades.
+            </div>
 
             <HeroPanel side="right" compact class="hero-right-actions" :style="{ '--stagger': 3 }">
               <HeroActions
@@ -761,38 +761,38 @@ const services = [
   max-width: min(85vw, 540px);
 }
 
+.hero-right-chip {
+  padding: clamp(0.625rem, 1.2vw, 0.875rem) clamp(1rem, 2vw, 1.375rem);
+  border-radius: var(--radius-full);
+  background: color-mix(in srgb, var(--surface) 70%, transparent);
+  backdrop-filter: blur(8px);
+  font-size: clamp(0.875rem, 1.5vw, 1rem);
+  font-weight: 600;
+  color: var(--primary);
+  letter-spacing: 0.02em;
+  border: 1px solid color-mix(in srgb, var(--lilac-light) 25%, transparent);
+  opacity: 0;
+  animation: fadeInUp 0.6s var(--ease-out-expo) forwards;
+  animation-delay: calc(0.45s + (var(--stagger, 0) * 0.14s));
+  width: 100%;
+  white-space: nowrap;
+}
+
 .hero-right-focus {
-  width: auto;
   max-width: min(70vw, 440px);
 }
 
-.hero-focus-text {
-  font-size: clamp(0.8125rem, 1.4vw, 1rem);
-  font-weight: 600;
-  color: var(--primary);
-  margin: 0;
-  letter-spacing: 0.02em;
-}
-
-.hero-tagline-text {
-  font-size: clamp(0.8125rem, 1.4vw, 1rem);
-  font-weight: 600;
-  color: var(--primary);
-  margin: 0;
-  letter-spacing: 0.02em;
-}
-
 .hero-right-tagline {
-  width: auto;
   max-width: min(75vw, 480px);
 }
 
 .hero-right-actions {
+  width: 100%;
   max-width: min(80vw, 500px);
 }
 
 /* Staggered reveal animation for hero panels */
-.hero-right > * {
+.hero-right > .hero-panel {
   animation:
     panelFadeIn 0.7s var(--ease-out-expo) forwards,
     float-subtle var(--float-duration, 5.5s) ease-in-out calc(1.1s + (var(--stagger, 0) * 0.2s)) infinite;
