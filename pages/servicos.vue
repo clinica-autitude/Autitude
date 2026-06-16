@@ -515,9 +515,101 @@ const processSteps = [
   display: block;
 }
 
+@media (max-width: 900px) {
+  .hero-section {
+    padding-top: clamp(4rem, 8vw, 5rem);
+  }
+
+  .hero-bg-grid {
+    position: absolute;
+    height: 100vh;
+    height: 100dvh;
+  }
+
+  .seo-paragraph {
+    padding: 1.25rem 1.25rem;
+  }
+
+  h1 {
+    font-size: clamp(1.5rem, 5vw, 2rem);
+  }
+
+  .section-header h1 {
+    font-size: clamp(1.5rem, 5vw, 2rem);
+  }
+}
+
 @media (max-width: 640px) {
   .services-showcase {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-section {
+    padding-top: 3.5rem;
+    padding-bottom: 2rem;
+  }
+
+  h1 {
+    font-size: clamp(1.25rem, 6vw, 1.5rem);
+  }
+
+  .section-header p {
+    font-size: 0.875rem;
+  }
+
+  .section-tag {
+    font-size: 0.6875rem;
+    padding: 0.25rem 0.75rem;
+    margin-bottom: 0.625rem;
+  }
+
+  .seo-paragraph {
+    padding: 1rem 1rem;
+    font-size: 0.875rem;
+  }
+
+  .card-content {
+    padding: 1rem;
+    gap: 0.875rem;
+  }
+
+  .service-icon-large {
+    width: 44px;
+    height: 44px;
+  }
+
+  .service-text h3 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .service-text > p {
+    font-size: 0.8125rem;
+  }
+
+  .service-list li {
+    font-size: 0.8125rem;
+  }
+
+  .process-timeline {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .step-marker {
+    width: 40px;
+    height: 40px;
+    font-size: 0.9375rem;
+  }
+
+  .step-content h4 {
+    font-size: 0.875rem;
+  }
+
+  .step-content p {
+    font-size: 0.75rem;
   }
 }
 </style>

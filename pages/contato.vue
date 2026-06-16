@@ -348,6 +348,16 @@ const config = {
   color: var(--text-light);
 }
 
+@media (max-width: 900px) {
+  .hero-section {
+    padding-top: clamp(4rem, 8vw, 5rem);
+  }
+
+  .seo-paragraph {
+    padding: 1.25rem 1.25rem;
+  }
+}
+
 @media (max-width: 640px) {
   .contact {
     padding-top: 5rem;
@@ -359,6 +369,48 @@ const config = {
 
   .contact-card {
     padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-section {
+    padding-top: 3.5rem;
+    padding-bottom: 2rem;
+  }
+
+  .section-tag {
+    font-size: 0.6875rem;
+    padding: 0.25rem 0.75rem;
+    margin-bottom: 0.625rem;
+  }
+
+  .section-title h2 {
+    font-size: clamp(1.125rem, 5vw, 1.375rem);
+  }
+
+  .section-title p {
+    font-size: 0.875rem;
+  }
+
+  .seo-paragraph {
+    padding: 1rem 1rem;
+    font-size: 0.875rem;
+  }
+
+  .contact-card {
+    padding: 1.25rem;
+  }
+
+  .contact-card h3 {
+    font-size: 0.875rem;
+  }
+
+  .contact-value {
+    font-size: 0.8125rem;
+  }
+
+  .contact-label {
+    font-size: 0.75rem;
   }
 }
 </style>

@@ -854,6 +854,16 @@ const handleSubmit = async () => {
 }
 
 @media (max-width: 900px) {
+  .hero-section {
+    padding-top: clamp(4rem, 8vw, 5rem);
+  }
+
+  .hero-bg-grid {
+    position: absolute;
+    height: 100vh;
+    height: 100dvh;
+  }
+
   .schedule-showcase {
     grid-template-columns: 1fr;
   }
@@ -872,6 +882,29 @@ const handleSubmit = async () => {
 @media (max-width: 640px) {
   .schedule-info {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-section {
+    padding-top: 3.5rem;
+    padding-bottom: 2rem;
+  }
+
+  .age-value {
+    font-size: 2rem;
+  }
+
+  .age-unit {
+    font-size: 0.6875rem;
+  }
+
+  .hours {
+    font-size: 1.125rem;
+  }
+
+  .form-section h3 {
+    font-size: 0.9375rem;
   }
 }
 </style>

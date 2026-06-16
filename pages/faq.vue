@@ -465,6 +465,20 @@ useHead({
   max-height: 300px;
 }
 
+@media (max-width: 900px) {
+  .hero-section {
+    padding-top: clamp(4rem, 8vw, 5rem);
+  }
+
+  .seo-paragraph {
+    padding: 1.25rem 1.25rem;
+  }
+
+  .section-title h2 {
+    font-size: clamp(1.375rem, 5vw, 1.75rem);
+  }
+}
+
 @media (max-width: 640px) {
   .faq {
     padding-top: 5rem;
@@ -485,6 +499,49 @@ useHead({
   .category-btn {
     padding: 0.4rem 1rem;
     font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-section {
+    padding-top: 3.5rem;
+    padding-bottom: 2rem;
+  }
+
+  .section-tag {
+    font-size: 0.6875rem;
+    padding: 0.25rem 0.75rem;
+    margin-bottom: 0.625rem;
+  }
+
+  .section-title h2 {
+    font-size: clamp(1.125rem, 5vw, 1.25rem);
+  }
+
+  .seo-paragraph {
+    padding: 1rem 1rem;
+    font-size: 0.875rem;
+  }
+
+  .faq-question {
+    padding: 0.75rem 1rem;
+  }
+
+  .faq-question h3 {
+    font-size: 0.8125rem;
+  }
+
+  .faq-answer {
+    padding: 0 1rem 0.875rem;
+  }
+
+  .faq-answer p {
+    font-size: 0.8125rem;
+  }
+
+  .category-btn {
+    padding: 0.3rem 0.75rem;
+    font-size: 0.8125rem;
   }
 }
 </style>

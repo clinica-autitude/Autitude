@@ -636,6 +636,15 @@ main {
     text-align: center;
   }
 
+  .footer {
+    padding: 2rem 0 1rem;
+    margin-top: 2rem;
+  }
+
+  .footer-map iframe {
+    height: 140px;
+  }
+
   .back-to-top {
     bottom: calc(1rem + 3rem + 0.5rem + 2.75rem + 0.5rem);
     right: 1rem;
@@ -646,6 +655,11 @@ main {
   .theme-dock {
     right: 1rem;
     bottom: calc(1rem + 3rem + 0.5rem);
+  }
+
+  .nav-links {
+    width: 100vw;
+    padding: 4.5rem 1rem 1.5rem;
   }
 }
 

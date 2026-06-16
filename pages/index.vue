@@ -1208,6 +1208,59 @@ const services = [
   }
 }
 
+@media (max-width: 480px) {
+  .hero-eyebrow {
+    font-size: 0.625rem;
+    margin-bottom: 0.375rem;
+  }
+
+  .hero-card {
+    padding: 0.875rem 1rem;
+  }
+
+  .hero-card p {
+    font-size: 0.8125rem;
+  }
+
+  .hero-badge {
+    padding: 0.5rem 0.875rem;
+    font-size: 0.75rem;
+  }
+
+  .hero-emphasis {
+    padding: 0.375rem 0.625rem;
+    font-size: 0.75rem;
+  }
+
+  .pillars-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .pillar-card {
+    padding: 1.25rem 1rem;
+  }
+
+  .service-cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .seo-paragraph {
+    padding: 0.875rem 1rem;
+    font-size: 0.8125rem;
+  }
+
+  .hero-rings {
+    width: min(90vw, 260px);
+    height: min(90vw, 260px);
+    opacity: 0.5;
+  }
+
+  .hero-rings-logo {
+    width: min(40%, 140px);
+  }
+}
+
 @media (max-width: 900px) {
   .hero-layout {
     grid-template-columns: 1fr;

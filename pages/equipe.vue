@@ -425,6 +425,20 @@ const culture = [
   }
 }
 
+@media (max-width: 900px) {
+  .hero-section {
+    padding-top: clamp(4rem, 8vw, 5rem);
+  }
+
+  .section-header h1 {
+    font-size: clamp(1.5rem, 5vw, 2rem);
+  }
+
+  .seo-paragraph {
+    padding: 1.25rem 1.25rem;
+  }
+}
+
 @media (max-width: 640px) {
   .team-main-card {
     padding: 1.5rem;
@@ -438,6 +452,80 @@ const culture = [
   .visual-accent {
     width: 70px;
     height: 70px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-section {
+    padding-top: 3.5rem;
+    padding-bottom: 2rem;
+  }
+
+  .section-tag {
+    font-size: 0.6875rem;
+    padding: 0.25rem 0.75rem;
+    margin-bottom: 0.625rem;
+  }
+
+  .section-header h1 {
+    font-size: clamp(1.25rem, 6vw, 1.5rem);
+  }
+
+  .section-header p {
+    font-size: 0.875rem;
+  }
+
+  .seo-paragraph {
+    padding: 1rem 1rem;
+    font-size: 0.875rem;
+  }
+
+  .team-main-card {
+    padding: 1.25rem;
+    gap: 1.5rem;
+  }
+
+  .visual-shape {
+    width: 100px;
+    height: 100px;
+  }
+
+  .visual-accent {
+    width: 60px;
+    height: 60px;
+  }
+
+  .member-details h2 {
+    font-size: clamp(1.125rem, 5vw, 1.375rem);
+  }
+
+  .member-role {
+    font-size: 0.875rem;
+  }
+
+  .member-bio {
+    font-size: 0.875rem;
+  }
+
+  .member-tags {
+    justify-content: center;
+  }
+
+  .tag {
+    font-size: 0.6875rem;
+    padding: 0.25rem 0.625rem;
+  }
+
+  .values-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .value-card h3 {
+    font-size: 0.875rem;
+  }
+
+  .value-card p {
+    font-size: 0.8125rem;
   }
 }
 </style>

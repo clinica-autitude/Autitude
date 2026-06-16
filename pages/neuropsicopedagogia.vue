@@ -533,6 +533,26 @@ h1 {
   max-height: 300px;
 }
 
+@media (max-width: 900px) {
+  .hero-section {
+    padding-top: clamp(4rem, 8vw, 5rem);
+  }
+
+  .hero-bg-grid {
+    position: absolute;
+    height: 100vh;
+    height: 100dvh;
+  }
+
+  .seo-paragraph {
+    padding: 1.25rem 1.25rem;
+  }
+
+  h1 {
+    font-size: clamp(1.5rem, 5vw, 2rem);
+  }
+}
+
 @media (max-width: 640px) {
   .faq-question {
     padding: 1rem 1.25rem;
@@ -544,6 +564,78 @@ h1 {
 
   .benefits-list {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-section {
+    padding-top: 3.5rem;
+    padding-bottom: 2rem;
+  }
+
+  h1 {
+    font-size: clamp(1.25rem, 6vw, 1.5rem);
+    margin-bottom: 1rem;
+  }
+
+  .section-tag {
+    font-size: 0.6875rem;
+    padding: 0.25rem 0.75rem;
+    margin-bottom: 0.625rem;
+  }
+
+  .seo-paragraph {
+    padding: 1rem 1rem;
+    font-size: 0.875rem;
+  }
+
+  .overview-content h2 {
+    font-size: clamp(1.125rem, 5vw, 1.25rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .overview-text {
+    font-size: 0.875rem;
+  }
+
+  .benefit-item {
+    flex-direction: column;
+    gap: 0.625rem;
+    padding: 1rem;
+  }
+
+  .benefit-icon-wrap {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+  }
+
+  .benefit-item h3 {
+    font-size: 0.875rem;
+  }
+
+  .benefit-item p {
+    font-size: 0.8125rem;
+  }
+
+  .faq-section h2 {
+    font-size: clamp(1.125rem, 5vw, 1.25rem);
+  }
+
+  .faq-question {
+    padding: 0.75rem 1rem;
+  }
+
+  .faq-question h3 {
+    font-size: 0.8125rem;
+  }
+
+  .faq-answer {
+    padding: 0 1rem 0.875rem;
+  }
+
+  .faq-answer p {
+    font-size: 0.8125rem;
   }
 }
 </style>

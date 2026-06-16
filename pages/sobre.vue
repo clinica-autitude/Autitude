@@ -999,4 +999,77 @@ const differentiators = [
   .btn { justify-content: center; }
   .hero__scroll { display: none; }
 }
+
+@media (max-width: 480px) {
+  .hero {
+    padding-top: 4rem;
+    min-height: 80dvh;
+  }
+
+  .hero__title {
+    font-size: clamp(1.75rem, 7vw, 2.25rem);
+  }
+
+  .hero__lead {
+    font-size: 0.9375rem;
+  }
+
+  .hero__pillars {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+
+  .hero__actions .btn {
+    font-size: 0.875rem;
+    padding: 0.625rem 1rem;
+  }
+
+  .seo-paragraph {
+    padding: 1rem 1rem;
+    font-size: 0.875rem;
+  }
+
+  .section-header--center h2 {
+    font-size: clamp(1.25rem, 5vw, 1.5rem);
+  }
+
+  .bento__card--statement {
+    padding: 1.5rem;
+  }
+
+  .statement__text {
+    font-size: 1rem;
+  }
+
+  .bento__card--specialty {
+    min-height: auto;
+    padding: 1.25rem;
+  }
+
+  .card__title {
+    font-size: 0.9375rem;
+  }
+
+  .card__text {
+    font-size: 0.8125rem;
+  }
+
+  .cta__title {
+    font-size: clamp(1.5rem, 6vw, 2rem);
+  }
+
+  .cta {
+    padding: clamp(3rem, 8vw, 4rem) 0;
+  }
+
+  .cta__actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .cta__actions .btn {
+    justify-content: center;
+  }
+}
 </style>
