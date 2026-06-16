@@ -206,7 +206,8 @@ const config = {
 
 .hero-section {
   position: relative;
-  padding: 4rem 0;
+  padding-top: var(--space-section-top);
+  padding-bottom: clamp(2.5rem, 6vw, 4rem);
 }
 
 .section-title {
@@ -289,12 +290,18 @@ const config = {
   padding: 2rem;
   text-align: center;
   text-decoration: none;
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition: transform 0.4s var(--ease-out-expo), box-shadow 0.4s var(--ease-out-expo), border-color 0.4s var(--ease-out-expo);
+  opacity: 0;
+  animation: fadeInUp 0.6s var(--ease-out-expo) forwards;
 }
 
+.contact-card:nth-child(2) { animation-delay: 0.1s; }
+.contact-card:nth-child(3) { animation-delay: 0.2s; }
+.contact-card:nth-child(4) { animation-delay: 0.3s; }
+
 .contact-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-md);
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
   border-color: var(--primary);
 }
 
