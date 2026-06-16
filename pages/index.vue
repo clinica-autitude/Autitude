@@ -238,6 +238,7 @@ const services = [
             :speed="5"
             :scale="1"
             color="#6B4FA3"
+            colorTwo="#8FC176"
             :noise-intensity="1.5"
             :rotation="0"
           />
@@ -246,26 +247,26 @@ const services = [
           <div class="hero-rings float float-slow" aria-hidden="true" style="--float-delay: 0s">
             <ClientOnly>
               <MagicRings
-                color="#EE00FF"
+                color="#6B4FA3"
                 colorTwo="#EE00FF"
-                :ringCount="6"
-                :speed="1"
-                :attenuation="10"
-                :lineThickness="2"
-                :baseRadius="0.35"
-                :radiusStep="0.1"
-                :scaleRate="0.1"
-                :opacity="1"
-                :blur="0.5"
-                :noiseAmount="0.1"
+                :ringCount="8"
+                :speed="0.8"
+                :attenuation="8"
+                :lineThickness="2.5"
+                :baseRadius="0.3"
+                :radiusStep="0.12"
+                :scaleRate="0.08"
+                :opacity="0.9"
+                :blur="0"
+                :noiseAmount="0.05"
                 :rotation="0"
-                :ringGap="1.5"
-                :fadeIn="0.7"
-                :fadeOut="0.5"
+                :ringGap="1.4"
+                :fadeIn="0.6"
+                :fadeOut="0.4"
                 :followMouse="true"
-                :mouseInfluence="0.1"
-                :hoverScale="0.5"
-                :parallax="0.5"
+                :mouseInfluence="0.15"
+                :hoverScale="0.6"
+                :parallax="0.4"
                 :clickBurst="true"
               />
             </ClientOnly>
@@ -765,14 +766,47 @@ const services = [
   border-radius: var(--radius-2xl);
   padding: clamp(1rem, 2vw, 1.375rem) clamp(1.25rem, 2.5vw, 1.75rem);
   background: color-mix(in srgb, var(--surface) 72%, transparent);
-  backdrop-filter: blur(14px) saturate(1.3);
-  border: 1px solid color-mix(in srgb, var(--lilac-light) 25%, transparent);
-  box-shadow: 0 4px 24px -8px color-mix(in srgb, var(--lilac) 10%, transparent);
+  backdrop-filter: blur(16px) saturate(1.4);
+  border: 1px solid transparent;
+  background-clip: padding-box;
+  box-shadow:
+    0 4px 24px -8px color-mix(in srgb, var(--lilac) 12%, transparent),
+    inset 0 1px 0 color-mix(in srgb, var(--white) 8%, transparent);
   width: 100%;
   max-width: min(85vw, 520px);
   opacity: 0;
   animation: fadeInUp 0.7s var(--ease-out-expo) forwards;
   animation-delay: calc(0.3s + (var(--stagger, 0) * 0.14s));
+}
+
+.hero-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--lilac-light) 40%, transparent), color-mix(in srgb, var(--pink-light) 20%, transparent) 50%, transparent 70%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.hero-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(105deg, transparent 30%, color-mix(in srgb, var(--white) 12%, transparent) 50%, transparent 70%);
+  animation: cardShine 6s var(--ease-out-expo) infinite;
+  pointer-events: none;
+}
+
+@keyframes cardShine {
+  0% { transform: translateX(-100%) rotate(15deg); }
+  30% { transform: translateX(100%) rotate(15deg); }
+  100% { transform: translateX(100%) rotate(15deg); }
 }
 
 .hero-card p {
@@ -804,8 +838,8 @@ const services = [
   gap: clamp(0.5rem, 1vw, 0.75rem);
   border-radius: var(--radius-full);
   padding: clamp(0.5rem, 1vw, 0.75rem) clamp(1rem, 1.8vw, 1.375rem);
-  background: linear-gradient(135deg, color-mix(in srgb, var(--lilac) 20%, var(--surface)) 0%, color-mix(in srgb, var(--pink) 12%, var(--surface)) 100%);
-  border: 1px solid color-mix(in srgb, var(--lilac-light) 20%, transparent);
+  background: linear-gradient(135deg, color-mix(in srgb, var(--lilac) 22%, var(--surface)) 0%, color-mix(in srgb, var(--pink) 15%, var(--surface)) 60%, color-mix(in srgb, var(--lilac-deep) 10%, var(--surface)) 100%);
+  border: 1px solid color-mix(in srgb, var(--lilac-light) 25%, transparent);
   font-size: clamp(0.8125rem, 1.4vw, 0.9375rem);
   font-weight: 500;
   color: var(--primary);
@@ -815,6 +849,7 @@ const services = [
   opacity: 0;
   animation: fadeInUp 0.6s var(--ease-out-expo) forwards;
   animation-delay: calc(0.3s + (var(--stagger, 0) * 0.14s));
+  box-shadow: 0 0 20px color-mix(in srgb, var(--lilac) 6%, transparent);
 }
 
 .badge-accent {
@@ -823,7 +858,13 @@ const services = [
   border-radius: 50%;
   background: var(--lilac);
   flex-shrink: 0;
-  box-shadow: 0 0 8px color-mix(in srgb, var(--lilac) 40%, transparent);
+  box-shadow: 0 0 8px color-mix(in srgb, var(--lilac) 50%, transparent);
+  animation: badgePulse 2.5s ease-in-out infinite;
+}
+
+@keyframes badgePulse {
+  0%, 100% { box-shadow: 0 0 8px color-mix(in srgb, var(--lilac) 40%, transparent); }
+  50% { box-shadow: 0 0 16px color-mix(in srgb, var(--lilac) 60%, transparent), 0 0 24px color-mix(in srgb, var(--pink) 30%, transparent); }
 }
 
 .hero-badge strong {
@@ -835,22 +876,52 @@ const services = [
 .hero-emphasis {
   display: inline-flex;
   align-items: center;
-  gap: clamp(0.375rem, 0.8vw, 0.625rem);
+  gap: clamp(0.5rem, 1vw, 0.75rem);
   font-size: clamp(0.8125rem, 1.3vw, 0.9375rem);
   font-weight: 500;
   color: var(--text-secondary);
   letter-spacing: 0.01em;
   width: 100%;
   max-width: min(75vw, 460px);
+  padding: clamp(0.5rem, 1vw, 0.75rem) clamp(0.75rem, 1.5vw, 1rem);
+  position: relative;
   opacity: 0;
   animation: heroCascadeUp 0.5s var(--ease-out-expo) forwards;
   animation-delay: calc(0.3s + (var(--stagger, 0) * 0.14s));
+}
+
+.hero-emphasis::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 10%;
+  bottom: 10%;
+  width: 3px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(to bottom, var(--lilac), var(--pink), var(--lilac-light));
+  opacity: 0.5;
+}
+
+.hero-emphasis::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-2xl);
+  background: color-mix(in srgb, var(--lilac) 4%, transparent);
+  pointer-events: none;
 }
 
 .emphasis-heart {
   flex-shrink: 0;
   font-size: clamp(1rem, 1.5vw, 1.125rem);
   line-height: 1;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-emphasis span:last-child {
+  position: relative;
+  z-index: 1;
 }
 
 .hero-emphasis em {

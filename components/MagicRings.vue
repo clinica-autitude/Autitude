@@ -166,7 +166,7 @@ onMounted(() => {
   }
 
   try {
-    renderer = new THREE.WebGLRenderer({ alpha: true });
+    renderer = new THREE.WebGLRenderer({ alpha: true, powerPreference: 'high-performance' });
   } catch {
     webglFailed.value = true;
     return;
@@ -195,6 +195,7 @@ onMounted(() => {
 
   try {
     activeRenderer.setClearColor(0x000000, 0);
+    activeRenderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
     mount.appendChild(activeRenderer.domElement);
   } catch {
     activeRenderer.dispose();
@@ -248,8 +249,7 @@ onMounted(() => {
     const h = mount.clientHeight;
     const dpr = Math.min(window.devicePixelRatio, 2);
 
-    activeRenderer.setSize(w, h);
-    activeRenderer.setPixelRatio(dpr);
+    activeRenderer.setSize(Math.round(w * dpr), Math.round(h * dpr));
 
     uniforms.uResolution.value.set(w * dpr, h * dpr);
   };
@@ -294,12 +294,12 @@ onMounted(() => {
 
     const p = propsRef.value;
 
-    smoothMouseRef.value[0] += (mouseRef.value[0] - smoothMouseRef.value[0]) * 0.08;
-    smoothMouseRef.value[1] += (mouseRef.value[1] - smoothMouseRef.value[1]) * 0.08;
+    smoothMouseRef.value[0] += (mouseRef.value[0] - smoothMouseRef.value[0]) * 0.06;
+    smoothMouseRef.value[1] += (mouseRef.value[1] - smoothMouseRef.value[1]) * 0.06;
 
-    hoverAmountRef.value += ((isHoveredRef.value ? 1 : 0) - hoverAmountRef.value) * 0.08;
+    hoverAmountRef.value += ((isHoveredRef.value ? 1 : 0) - hoverAmountRef.value) * 0.06;
 
-    burstRef.value *= 0.95;
+    burstRef.value *= 0.96;
     if (burstRef.value < 0.001) burstRef.value = 0;
 
     uniforms.uTime.value = t * 0.001 * p.speed;

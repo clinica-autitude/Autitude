@@ -12,6 +12,7 @@ interface SilkProps {
   speed?: number;
   scale?: number;
   color?: string;
+  colorTwo?: string;
   noiseIntensity?: number;
   rotation?: number;
   className?: string;
@@ -22,6 +23,7 @@ const props = withDefaults(defineProps<SilkProps>(), {
   speed: 5,
   scale: 1,
   color: '#6B4FA3',
+  colorTwo: '#8FC176',
   noiseIntensity: 1.5,
   rotation: 0,
   className: '',
@@ -64,6 +66,7 @@ varying vec3 vPosition;
 
 uniform float uTime;
 uniform vec3 uColor;
+uniform vec3 uColorTwo;
 uniform float uSpeed;
 uniform float uScale;
 uniform float uRotation;
@@ -94,12 +97,17 @@ void main() {
 
   float pattern = 0.6 +
                   0.4 * sin(5.0 * (tex.x + tex.y +
-                                   cos(3.0 * tex.x + 5.0 * tex.y) +
-                                   0.02 * tOffset) +
-                           sin(20.0 * (tex.x + tex.y - 0.1 * tOffset)));
+                                    cos(3.0 * tex.x + 5.0 * tex.y) +
+                                    0.02 * tOffset) +
+                            sin(20.0 * (tex.x + tex.y - 0.1 * tOffset)));
 
-  vec4 col = vec4(uColor, 1.0) * vec4(pattern) - rnd / 15.0 * uNoiseIntensity;
-  col.a = 0.25; // Low opacity for true background effect
+  // Secondary wave for richer depth
+  float pattern2 = 0.5 + 0.5 * sin(3.0 * tex.x + 4.0 * tex.y + 1.5 * tOffset);
+  float blend = 0.5 + 0.5 * sin(tex.x * 0.5 + tex.y * 0.7 + 0.3 * tOffset);
+
+  vec3 mixed = mix(uColor, uColorTwo, blend);
+  vec4 col = vec4(mixed, 1.0) * vec4(pattern + pattern2 * 0.3) - rnd / 15.0 * uNoiseIntensity;
+  col.a = 0.25;
   gl_FragColor = col;
 }
 `;
@@ -130,7 +138,8 @@ const initSilk = () => {
   try {
     renderer = new Renderer({
       alpha: true,
-      antialias: true
+      antialias: true,
+      powerPreference: 'high-performance'
     });
   } catch {
     webglFailed.value = true;
@@ -190,6 +199,7 @@ const initSilk = () => {
     });
 
     const colorRGB = hexToNormalizedRGB(props.color);
+    const colorTwoRGB = hexToNormalizedRGB(props.colorTwo);
 
     program = new Program(gl, {
       vertex: vertexShader,
@@ -199,6 +209,7 @@ const initSilk = () => {
         uScale: { value: props.scale },
         uNoiseIntensity: { value: props.noiseIntensity },
         uColor: { value: colorRGB },
+        uColorTwo: { value: colorTwoRGB },
         uRotation: { value: props.rotation },
         uTime: { value: 0 }
       }
@@ -229,6 +240,7 @@ const initSilk = () => {
         program.uniforms.uScale.value = props.scale;
         program.uniforms.uNoiseIntensity.value = props.noiseIntensity;
         program.uniforms.uColor.value = hexToNormalizedRGB(props.color);
+        program.uniforms.uColorTwo.value = hexToNormalizedRGB(props.colorTwo);
         program.uniforms.uRotation.value = props.rotation;
         renderer.render({ scene: mesh, camera });
       }

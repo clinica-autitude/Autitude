@@ -1,7 +1,7 @@
 <template>
   <section :class="`flex items-center justify-center h-full w-full relative ${className}`" :style="style">
     <div ref="wrapperRef" class="w-full h-full relative">
-      <canvas ref="canvasRef" class="absolute inset-0 w-full h-full pointer-events-none" />
+      <canvas ref="canvasRef" class="absolute inset-0 w-full h-full pointer-events-none" style="will-change: transform" />
     </div>
   </section>
 </template>
@@ -105,7 +105,7 @@ const buildGrid = () => {
   if (!wrap || !canvas) return;
 
   const { width, height } = wrap.getBoundingClientRect();
-  const dpr = window.devicePixelRatio || 1;
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
   canvas.width = width * dpr;
   canvas.height = height * dpr;
@@ -114,12 +114,16 @@ const buildGrid = () => {
   const ctx = canvas.getContext('2d');
   if (ctx) ctx.scale(dpr, dpr);
 
-  const cols = Math.floor((width + props.gap) / (props.dotSize + props.gap));
-  const rows = Math.floor((height + props.gap) / (props.dotSize + props.gap));
-  const cell = props.dotSize + props.gap;
+  // Adaptive density: larger gap on smaller screens
+  const scaleFactor = Math.min(width, 768) / 768;
+  const adaptiveGap = props.gap * (1 + scaleFactor * 0.5);
+  const cell = props.dotSize + adaptiveGap;
 
-  const gridW = cell * cols - props.gap;
-  const gridH = cell * rows - props.gap;
+  const cols = Math.floor((width + adaptiveGap) / cell);
+  const rows = Math.floor((height + adaptiveGap) / cell);
+
+  const gridW = cell * cols - adaptiveGap;
+  const gridH = cell * rows - adaptiveGap;
 
   const extraX = width - gridW;
   const extraY = height - gridH;
@@ -150,6 +154,7 @@ const draw = () => {
 
   const { x: px, y: py } = pointer.value;
   const proxSq = props.proximity * props.proximity;
+  const time = performance.now() * 0.001;
 
   for (const dot of dots.value) {
     const ox = dot.cx + dot.xOffset;
@@ -171,11 +176,26 @@ const draw = () => {
     if (circlePath.value) {
       ctx.save();
       ctx.translate(ox, oy);
+
+      // Idle pulse on distant dots
+      if (dsq > proxSq) {
+        const idlePulse = 0.85 + 0.15 * Math.sin(dot.cx * 0.5 + dot.cy * 0.3 + time * 0.6);
+        ctx.globalAlpha = idlePulse;
+      }
+
       ctx.fillStyle = style;
       ctx.fill(circlePath.value);
       ctx.restore();
     }
   }
+
+  // Mouse glow overlay
+  const glowGrad = ctx.createRadialGradient(px, py, 0, px, py, props.proximity * 1.5);
+  glowGrad.addColorStop(0, `rgba(${activeRgb.value.r}, ${activeRgb.value.g}, ${activeRgb.value.b}, 0.04)`);
+  glowGrad.addColorStop(0.5, `rgba(${activeRgb.value.r}, ${activeRgb.value.g}, ${activeRgb.value.b}, 0.02)`);
+  glowGrad.addColorStop(1, 'transparent');
+  ctx.fillStyle = glowGrad;
+  ctx.fillRect(0, 0, canvas.width / (window.devicePixelRatio || 1), canvas.height / (window.devicePixelRatio || 1));
 
   rafId = requestAnimationFrame(draw);
 };
@@ -208,13 +228,20 @@ const onMove = (e: MouseEvent) => {
   pr.x = e.clientX - rect.left;
   pr.y = e.clientY - rect.top;
 
+  const prox = props.proximity;
+  const proxPadded = prox * 1.5;
+
   for (const dot of dots.value) {
-    const dist = Math.hypot(dot.cx - pr.x, dot.cy - pr.y);
-    if (speed > props.speedTrigger && dist < props.proximity && !dot._inertiaApplied) {
+    const ddx = dot.cx - pr.x;
+    const ddy = dot.cy - pr.y;
+    if (Math.abs(ddx) > proxPadded || Math.abs(ddy) > proxPadded) continue;
+    const dist = Math.hypot(ddx, ddy);
+    if (dist > proxPadded) continue;
+    if (speed > props.speedTrigger && dist < prox && !dot._inertiaApplied) {
       dot._inertiaApplied = true;
       gsap.killTweensOf(dot);
-      const pushX = dot.cx - pr.x + vx * 0.005;
-      const pushY = dot.cy - pr.y + vy * 0.005;
+      const pushX = ddx + vx * 0.005;
+      const pushY = ddy + vy * 0.005;
       gsap.to(dot, {
         inertia: { xOffset: pushX, yOffset: pushY, resistance: props.resistance },
         onComplete: () => {
