@@ -743,11 +743,13 @@ const services = [
 .hero-right {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: flex-end;
-  gap: clamp(0.625rem, 1.2vw, 1rem);
+  gap: 0;
   padding-left: clamp(0.75rem, 3vw, 2rem);
-  padding-top: clamp(1rem, 2vw, 2rem);
+  padding-top: clamp(0.5rem, 1.2vw, 1rem);
+  padding-bottom: clamp(0.5rem, 1.2vw, 1rem);
+  align-self: stretch;
   animation: heroCopyCascade 0.8s var(--ease-out-expo) 0.35s both;
 }
 
@@ -1204,9 +1206,13 @@ const services = [
   }
 
   .hero-right {
+    justify-content: flex-start;
     align-items: stretch;
     gap: clamp(0.5rem, 1vw, 0.75rem);
     padding-left: 0;
+    padding-top: clamp(0.5rem, 1.5vw, 1rem);
+    padding-bottom: 0;
+    align-self: auto;
   }
 
   .hero-card,
