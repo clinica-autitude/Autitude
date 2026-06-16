@@ -303,7 +303,7 @@ const services = [
             </HeroPanel>
 
             <HeroPanel side="right" compact class="hero-right-tagline" :style="{ '--stagger': 2 }">
-              <p class="hero-tagline-text">💜 Cuidamos de pessoas.<br />Potencializamos possibilidades.</p>
+              <p class="hero-tagline-text">💜 Cuidamos de pessoas. Potencializamos possibilidades.</p>
             </HeroPanel>
 
             <HeroPanel side="right" compact class="hero-right-actions" :style="{ '--stagger': 3 }">
@@ -762,30 +762,28 @@ const services = [
 }
 
 .hero-right-focus {
+  width: auto;
   max-width: min(70vw, 440px);
 }
 
 .hero-focus-text {
-  font-size: clamp(0.875rem, 1.5vw, 1rem);
+  font-size: clamp(0.8125rem, 1.4vw, 1rem);
   font-weight: 600;
   color: var(--primary);
   margin: 0;
   letter-spacing: 0.02em;
-  text-wrap: pretty;
-  overflow-wrap: break-word;
 }
 
 .hero-tagline-text {
-  font-size: clamp(0.875rem, 1.5vw, 1rem);
+  font-size: clamp(0.8125rem, 1.4vw, 1rem);
   font-weight: 600;
   color: var(--primary);
   margin: 0;
   letter-spacing: 0.02em;
-  text-wrap: pretty;
-  overflow-wrap: break-word;
 }
 
 .hero-right-tagline {
+  width: auto;
   max-width: min(75vw, 480px);
 }
 
