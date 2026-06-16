@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, defineAsyncComponent } from 'vue'
+import { computed } from 'vue'
 import {
   Brain, Heart, Sparkles, HandHeart,
   BookOpen, Mic, Activity, Puzzle
@@ -8,7 +8,7 @@ import Silk from '~/components/Silk.vue'
 import MagicRings from '~/components/MagicRings.vue'
 import {
   HeroPanel, HeroTitle, HeroTitleHighlight,
-  HeroTagline, HeroActions, HeroTypewriter
+  HeroTagline, HeroActions
 } from '~/components/hero'
 
 const { siteBase } = useSiteBase()
@@ -28,8 +28,6 @@ const {
 } = useContact()
 const fullLogoUrl = computed(() => `${siteBase.value}/full-logo.png`)
 const heroLogoUrl = '/full-logo-no-bg.png'
-
-const descPanelRef = ref(null)
 
 useHead({
   title: 'Autitude | Desenvolvimento e Ação Humana',
@@ -244,39 +242,41 @@ const services = [
             :rotation="0"
           />
         </ClientOnly>
-        <div class="hero-rings float float-slow" aria-hidden="true" style="--float-delay: 0s">
-          <ClientOnly>
-            <MagicRings
-              color="#EE00FF"
-              colorTwo="#EE00FF"
-              :ringCount="6"
-              :speed="1"
-              :attenuation="10"
-              :lineThickness="2"
-              :baseRadius="0.35"
-              :radiusStep="0.1"
-              :scaleRate="0.1"
-              :opacity="1"
-              :blur="0.5"
-              :noiseAmount="0.1"
-              :rotation="0"
-              :ringGap="1.5"
-              :fadeIn="0.7"
-              :fadeOut="0.5"
-              :followMouse="true"
-              :mouseInfluence="0.1"
-              :hoverScale="0.5"
-              :parallax="0.5"
-              :clickBurst="true"
-            />
-          </ClientOnly>
+        <div class="hero-bg-center">
+          <div class="hero-rings float float-slow" aria-hidden="true" style="--float-delay: 0s">
+            <ClientOnly>
+              <MagicRings
+                color="#EE00FF"
+                colorTwo="#EE00FF"
+                :ringCount="6"
+                :speed="1"
+                :attenuation="10"
+                :lineThickness="2"
+                :baseRadius="0.35"
+                :radiusStep="0.1"
+                :scaleRate="0.1"
+                :opacity="1"
+                :blur="0.5"
+                :noiseAmount="0.1"
+                :rotation="0"
+                :ringGap="1.5"
+                :fadeIn="0.7"
+                :fadeOut="0.5"
+                :followMouse="true"
+                :mouseInfluence="0.1"
+                :hoverScale="0.5"
+                :parallax="0.5"
+                :clickBurst="true"
+              />
+            </ClientOnly>
+          </div>
+          <img
+            :src="heroLogoUrl"
+            alt=""
+            class="hero-rings-logo float-reverse"
+            style="--float-duration: 7s; --float-delay: 1.5s;"
+          />
         </div>
-        <img
-          :src="heroLogoUrl"
-          alt=""
-          class="hero-rings-logo float-reverse"
-          style="--float-duration: 7s; --float-delay: 1.5s;"
-        />
         <div class="gradient-blob blob-1"></div>
         <div class="gradient-blob blob-2"></div>
         <div class="gradient-blob blob-3"></div>
@@ -294,18 +294,8 @@ const services = [
           </div>
 
           <div class="hero-right">
-            <HeroPanel ref="descPanelRef" side="right" accent class="hero-right-desc" :style="{ '--stagger': 0 }">
-              <HeroTypewriter
-                text="Espaço especializado no atendimento de crianças, adolescentes, adultos e suas famílias."
-                :speed="0.04"
-                :delay="0.55"
-                :cursor="true"
-                @complete="() => {
-                  setTimeout(() => {
-                    descPanelRef.value?.growPanel?.()
-                  }, 300)
-                }"
-              />
+            <HeroPanel side="right" accent class="hero-right-desc" :style="{ '--stagger': 0 }">
+              <p class="hero-desc-text">Espaço especializado no atendimento de crianças, adolescentes, adultos e suas famílias.</p>
             </HeroPanel>
 
             <HeroPanel side="right" compact class="hero-right-focus" :style="{ '--stagger': 1 }">
@@ -626,14 +616,20 @@ const services = [
   isolation: isolate;
 }
 
+.hero-bg-center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 1;
+}
+
 .hero-rings {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   width: min(70vh, 640px);
   height: min(70vh, 640px);
-  z-index: 1;
   user-select: none;
   opacity: 0.75;
   will-change: transform;
@@ -653,11 +649,7 @@ const services = [
 
 .hero-rings-logo {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 50%;
-  max-width: 360px;
+  width: min(50%, 360px);
   height: auto;
   z-index: 2;
   pointer-events: none;
@@ -733,6 +725,14 @@ const services = [
   animation:
     heroCopyCascade 0.9s var(--ease-out-expo) 0.15s both,
     float-subtle var(--float-duration, 7s) ease-in-out 1.2s infinite;
+}
+
+.hero-desc-text {
+  font-size: clamp(0.9375rem, 1.5vw, 1.125rem);
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin: 0;
+  text-wrap: pretty;
 }
 
 .hero-eyebrow {
@@ -1092,6 +1092,13 @@ const services = [
     margin-bottom: clamp(0.375rem, 0.7vw, 0.5rem);
   }
 
+  .hero-bg-center {
+    position: absolute;
+    inset: 0;
+    height: 50vh;
+    min-height: 320px;
+  }
+
   .hero-rings {
     width: min(80vw, 320px);
     height: min(80vw, 320px);
@@ -1099,9 +1106,7 @@ const services = [
   }
 
   .hero-rings-logo {
-    width: 45%;
-    max-width: 180px;
-    filter: drop-shadow(0 0 24px rgba(255, 255, 255, 0.4));
+    width: min(45%, 180px);
   }
 
   .hero-container {
