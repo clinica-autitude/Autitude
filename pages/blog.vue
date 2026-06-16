@@ -44,7 +44,7 @@ onMounted(() => {
 
 <template>
   <div class="blog-redirect" aria-label="Redirecionamento do blog">
-    <section class="seo-answer" aria-label="Resumo">
+    <section class="seo-answer seo-text" aria-label="Resumo">
       <h1>Blog da Autitude</h1>
       <p class="seo-paragraph">
         O blog da <strong>Autitude</strong> reúne conteúdos sobre neurodivergência, desenvolvimento infantil,

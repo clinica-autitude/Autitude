@@ -8,7 +8,7 @@ import Silk from '~/components/Silk.vue'
 import MagicRings from '~/components/MagicRings.vue'
 import {
   HeroPanel, HeroTitle, HeroTitleHighlight,
-  HeroTagline, HeroActions
+  HeroActions
 } from '~/components/hero'
 
 const { siteBase } = useSiteBase()
@@ -299,11 +299,11 @@ const services = [
             </HeroPanel>
 
             <HeroPanel side="right" compact class="hero-right-focus" :style="{ '--stagger': 1 }">
-              <HeroTagline>Nosso foco é o público neurodivergente.</HeroTagline>
+              <p class="hero-focus-text">Nosso foco é o público neurodivergente.</p>
             </HeroPanel>
 
             <HeroPanel side="right" compact class="hero-right-tagline" :style="{ '--stagger': 2 }">
-              <HeroTagline>💜 Cuidamos de pessoas. Potencializamos possibilidades.</HeroTagline>
+              <p class="hero-tagline-text">💜 Cuidamos de pessoas.<br />Potencializamos possibilidades.</p>
             </HeroPanel>
 
             <HeroPanel side="right" compact class="hero-right-actions" :style="{ '--stagger': 3 }">
@@ -765,9 +765,28 @@ const services = [
   max-width: min(70vw, 440px);
 }
 
+.hero-focus-text {
+  font-size: clamp(0.875rem, 1.5vw, 1rem);
+  font-weight: 600;
+  color: var(--primary);
+  margin: 0;
+  letter-spacing: 0.02em;
+  text-wrap: pretty;
+  overflow-wrap: break-word;
+}
+
+.hero-tagline-text {
+  font-size: clamp(0.875rem, 1.5vw, 1rem);
+  font-weight: 600;
+  color: var(--primary);
+  margin: 0;
+  letter-spacing: 0.02em;
+  text-wrap: pretty;
+  overflow-wrap: break-word;
+}
+
 .hero-right-tagline {
   max-width: min(75vw, 480px);
-  text-align: right;
 }
 
 .hero-right-actions {
