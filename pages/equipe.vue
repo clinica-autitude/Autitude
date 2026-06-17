@@ -1,5 +1,6 @@
 <script setup>
 import { Award, Heart, Users, Star } from 'lucide-vue-next'
+import Grainient from '~/components/Grainient.vue'
 
 const siteBase = 'https://autitude.com.br'
 
@@ -100,6 +101,25 @@ const culture = [
 <template>
   <div class="team">
     <section class="hero-section">
+      <div class="hero-bg-grid">
+        <ClientOnly>
+          <Grainient
+            className="w-full h-full"
+            :timeSpeed="0.2"
+            :grainAmount="0.03"
+            :contrast="1.0"
+            :gamma="1.0"
+            :saturation="1.0"
+            :warpStrength="1.5"
+            :warpFrequency="3.0"
+            :warpSpeed="0.8"
+            :rotationAmount="0"
+            color1="#6B4FA3"
+            color2="#8FC176"
+            color3="#3D2D5E"
+          />
+        </ClientOnly>
+      </div>
       <div class="container">
         <div class="section-header">
           <span class="section-tag texture-hd">Nossa profissional</span>
@@ -526,6 +546,23 @@ const culture = [
 
   .value-card p {
     font-size: 0.8125rem;
+  }
+}
+
+.hero-bg-grid {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+}
+
+@media (max-width: 900px) {
+  .hero-bg-grid {
+    position: absolute;
+    height: 100vh;
+    height: 100dvh;
   }
 }
 </style>

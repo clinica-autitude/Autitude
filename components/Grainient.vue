@@ -236,9 +236,20 @@ const setup = () => {
   let animationId = 0
   let lastTime = 0
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  let isVisible = true
+
+  const visibilityObserver = new IntersectionObserver(([entry]) => {
+    isVisible = entry.isIntersecting
+  }, { threshold: 0 })
+  visibilityObserver.observe(container)
 
   const animate = (t) => {
     if (prefersReducedMotion) {
+      animationId = requestAnimationFrame(animate)
+      return
+    }
+
+    if (document.hidden || !isVisible) {
       animationId = requestAnimationFrame(animate)
       return
     }
@@ -249,11 +260,14 @@ const setup = () => {
     if (deltaTime > 0.1) return
 
     const rect = container.getBoundingClientRect()
-    const width = Math.max(1, Math.floor(rect.width))
-    const height = Math.max(1, Math.floor(rect.height))
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.5)
+    const width = Math.max(1, Math.floor(rect.width * dpr))
+    const height = Math.max(1, Math.floor(rect.height * dpr))
     
     canvas.width = width
     canvas.height = height
+    canvas.style.width = rect.width + 'px'
+    canvas.style.height = rect.height + 'px'
 
     const ctx = canvas.getContext('2d')
     if (!ctx) return
@@ -301,6 +315,7 @@ const setup = () => {
   cleanup = () => {
     cancelAnimationFrame(animationId)
     ro.disconnect()
+    visibilityObserver.disconnect()
     try { container.removeChild(canvas) } catch { /* ignore */ }
   }
 }

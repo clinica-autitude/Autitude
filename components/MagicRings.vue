@@ -48,7 +48,7 @@ void main() {
   p /= sc;
   vec3 c = vec3(0.0);
   float rcf = max(float(uRingCount) - 1.0, 1.0);
-  for (int i = 0; i < 10; i++) {
+  for (int i = 0; i < 8; i++) {
     if (i >= uRingCount) break;
     float fi = float(i);
     vec2 pr = p - fi * uParallax * uMouse;
@@ -196,7 +196,7 @@ onMounted(() => {
 
   try {
     activeRenderer.setClearColor(0x000000, 0);
-    activeRenderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    activeRenderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
     mount.appendChild(activeRenderer.domElement);
   } catch {
     activeRenderer.dispose();
@@ -248,7 +248,7 @@ onMounted(() => {
   const resize = () => {
     const w = mount.clientWidth;
     const h = mount.clientHeight;
-    const dpr = Math.min(window.devicePixelRatio, 2);
+    const dpr = Math.min(window.devicePixelRatio, 1.5);
 
     activeRenderer.setSize(Math.round(w * dpr), Math.round(h * dpr));
 

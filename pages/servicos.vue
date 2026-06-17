@@ -1,6 +1,6 @@
 <script setup>
 import { Brain, BookOpen, Mic, Activity, Puzzle } from 'lucide-vue-next'
-import DotGrid from '~/components/DotGrid.vue'
+import Grainient from '~/components/Grainient.vue'
 
 const siteBase = 'https://autitude.com.br'
 
@@ -180,18 +180,20 @@ const processSteps = [
     <section class="hero-section">
       <div class="hero-bg-grid">
         <ClientOnly>
-          <DotGrid
-            :dot-size="6"
-            :gap="36"
-            base-color="#6B4FA3"
-            active-color="#3D2D5E"
-            :proximity="120"
-            :speed-trigger="100"
-            :shock-radius="200"
-            :shock-strength="4"
-            :max-speed="5000"
-            :resistance="750"
-            :return-duration="1.5"
+          <Grainient
+            className="w-full h-full"
+            :timeSpeed="0.2"
+            :grainAmount="0.03"
+            :contrast="1.0"
+            :gamma="1.0"
+            :saturation="1.0"
+            :warpStrength="1.5"
+            :warpFrequency="3.0"
+            :warpSpeed="0.8"
+            :rotationAmount="0"
+            color1="#6B4FA3"
+            color2="#8FC176"
+            color3="#3D2D5E"
           />
         </ClientOnly>
       </div>

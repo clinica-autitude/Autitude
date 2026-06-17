@@ -1,4 +1,6 @@
 <script setup>
+import Grainient from '~/components/Grainient.vue'
+
 const siteBase = 'https://autitude.com.br'
 
 useHead({
@@ -44,6 +46,25 @@ onMounted(() => {
 
 <template>
   <div class="blog-redirect" aria-label="Redirecionamento do blog">
+    <div class="hero-bg-grid">
+      <ClientOnly>
+        <Grainient
+          className="w-full h-full"
+          :timeSpeed="0.2"
+          :grainAmount="0.03"
+          :contrast="1.0"
+          :gamma="1.0"
+          :saturation="1.0"
+          :warpStrength="1.5"
+          :warpFrequency="3.0"
+          :warpSpeed="0.8"
+          :rotationAmount="0"
+          color1="#6B4FA3"
+          color2="#8FC176"
+          color3="#3D2D5E"
+        />
+      </ClientOnly>
+    </div>
     <section class="seo-answer seo-text" aria-label="Resumo">
       <h1>Blog da Autitude</h1>
       <p class="seo-paragraph texture-hd">
@@ -81,6 +102,23 @@ onMounted(() => {
 
   .seo-paragraph {
     font-size: 0.875rem;
+  }
+}
+
+.hero-bg-grid {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+}
+
+@media (max-width: 900px) {
+  .hero-bg-grid {
+    position: absolute;
+    height: 100vh;
+    height: 100dvh;
   }
 }
 </style>

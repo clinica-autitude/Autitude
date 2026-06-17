@@ -1,6 +1,6 @@
 <script setup>
 import { MapPin, MessageCircle, Mail, Clock } from 'lucide-vue-next'
-import DotGrid from '~/components/DotGrid.vue'
+import Grainient from '~/components/Grainient.vue'
 
 const {
   whatsappUrl,
@@ -127,7 +127,23 @@ const config = {
 <template>
   <div class="contact">
     <section class="hero-section">
-      <DotGrid />
+      <div class="hero-bg-grid">
+        <Grainient
+          className="w-full h-full"
+          :timeSpeed="0.2"
+          :grainAmount="0.03"
+          :contrast="1.0"
+          :gamma="1.0"
+          :saturation="1.0"
+          :warpStrength="1.5"
+          :warpFrequency="3.0"
+          :warpSpeed="0.8"
+          :rotationAmount="0"
+          color1="#6B4FA3"
+          color2="#8FC176"
+          color3="#3D2D5E"
+        />
+      </div>
       <div class="container">
         <div class="section-title">
           <span class="section-tag texture-hd">Contato</span>
@@ -411,6 +427,23 @@ const config = {
 
   .contact-label {
     font-size: 0.75rem;
+  }
+}
+
+.hero-bg-grid {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+}
+
+@media (max-width: 900px) {
+  .hero-bg-grid {
+    position: absolute;
+    height: 100vh;
+    height: 100dvh;
   }
 }
 </style>

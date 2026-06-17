@@ -4,7 +4,7 @@ import {
   Brain, Heart, Sparkles, HandHeart,
   BookOpen, Mic, Activity, Puzzle
 } from 'lucide-vue-next'
-import Silk from '~/components/Silk.vue'
+import Grainient from '~/components/Grainient.vue'
 import MagicRings from '~/components/MagicRings.vue'
 import {
   HeroPanel, HeroTitle, HeroTitleHighlight,
@@ -233,14 +233,21 @@ const services = [
     <section class="hero">
       <div class="hero-bg">
         <ClientOnly>
-          <Silk
-            class="silk-bg"
-            :speed="5"
-            :scale="1"
-            color="#6B4FA3"
-            colorTwo="#8FC176"
-            :noise-intensity="1.5"
-            :rotation="0"
+          <Grainient
+            className="silk-bg"
+            :timeSpeed="0.3"
+            :zoom="1"
+            color1="#6B4FA3"
+            color2="#8FC176"
+            color3="#3D2D5E"
+            :grainAmount="0.05"
+            :contrast="1.0"
+            :gamma="1.0"
+            :saturation="1.0"
+            :warpStrength="2.0"
+            :warpFrequency="3.0"
+            :warpSpeed="1.0"
+            :rotationAmount="0"
           />
         </ClientOnly>
         <div class="hero-bg-center">

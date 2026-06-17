@@ -144,8 +144,14 @@ const buildGrid = () => {
 
 let rafId: number;
 let resizeObserver: ResizeObserver | null = null;
+let visibilityObserver: IntersectionObserver | null = null;
+let isVisible = true;
 
 const draw = () => {
+  if (!isVisible || document.hidden) {
+    rafId = requestAnimationFrame(draw);
+    return;
+  }
   const canvas = canvasRef.value;
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
@@ -308,6 +314,14 @@ onMounted(async () => {
     (window as Window).addEventListener('resize', buildGrid);
   }
 
+  const wrapper = wrapperRef.value;
+  if (wrapper) {
+    visibilityObserver = new IntersectionObserver(([entry]) => {
+      isVisible = entry.isIntersecting;
+    }, { threshold: 0 });
+    visibilityObserver.observe(wrapper);
+  }
+
   window.addEventListener('mousemove', throttledMove, { passive: true });
   window.addEventListener('click', onClick);
 });
@@ -321,6 +335,11 @@ onUnmounted(() => {
     resizeObserver.disconnect();
   } else {
     window.removeEventListener('resize', buildGrid);
+  }
+
+  if (visibilityObserver) {
+    visibilityObserver.disconnect();
+    visibilityObserver = null;
   }
 
   window.removeEventListener('mousemove', throttledMove);

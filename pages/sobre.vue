@@ -5,6 +5,7 @@ import {
   Clock
 } from 'lucide-vue-next'
 import ColorBends from '~/components/ColorBends.vue'
+import Grainient from '~/components/Grainient.vue'
 
 const { whatsappUrl, address, neighborhood, city, state } = useContact()
 
@@ -151,6 +152,25 @@ const differentiators = [
     <!-- HERO: tudo em um só -->
     <section class="hero">
       <div class="hero__decor">
+        <div class="hero-bg-grid">
+          <ClientOnly>
+            <Grainient
+              className="w-full h-full"
+              :timeSpeed="0.2"
+              :grainAmount="0.03"
+              :contrast="1.0"
+              :gamma="1.0"
+              :saturation="1.0"
+              :warpStrength="1.5"
+              :warpFrequency="3.0"
+              :warpSpeed="0.8"
+              :rotationAmount="0"
+              color1="#6B4FA3"
+              color2="#8FC176"
+              color3="#3D2D5E"
+            />
+          </ClientOnly>
+        </div>
         <span class="orb orb--1" />
         <span class="orb orb--2" />
         <span class="grid-mask" />
@@ -1070,6 +1090,23 @@ const differentiators = [
 
   .cta__actions .btn {
     justify-content: center;
+  }
+}
+
+.hero-bg-grid {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+}
+
+@media (max-width: 900px) {
+  .hero-bg-grid {
+    position: absolute;
+    height: 100vh;
+    height: 100dvh;
   }
 }
 </style>

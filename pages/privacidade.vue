@@ -1,4 +1,6 @@
 <script setup>
+import Grainient from '~/components/Grainient.vue'
+
 const { email } = useContact()
 const siteBase = 'https://autitude.com.br'
 
@@ -66,6 +68,25 @@ const currentYear = new Date().getFullYear()
 <template>
   <div class="privacy">
     <section class="section hero-section">
+      <div class="hero-bg-grid">
+        <ClientOnly>
+          <Grainient
+            className="w-full h-full"
+            :timeSpeed="0.2"
+            :grainAmount="0.03"
+            :contrast="1.0"
+            :gamma="1.0"
+            :saturation="1.0"
+            :warpStrength="1.5"
+            :warpFrequency="3.0"
+            :warpSpeed="0.8"
+            :rotationAmount="0"
+            color1="#6B4FA3"
+            color2="#8FC176"
+            color3="#3D2D5E"
+          />
+        </ClientOnly>
+      </div>
       <div class="container">
         <div class="section-header">
           <h1>Política de Privacidade</h1>
@@ -230,6 +251,23 @@ const currentYear = new Date().getFullYear()
 
   .privacy-card h2 {
     font-size: 1rem;
+  }
+}
+
+.hero-bg-grid {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+}
+
+@media (max-width: 900px) {
+  .hero-bg-grid {
+    position: absolute;
+    height: 100vh;
+    height: 100dvh;
   }
 }
 </style>
