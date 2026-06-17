@@ -638,6 +638,7 @@ const services = [
   opacity: 0.75;
   will-change: transform;
   pointer-events: auto;
+  translate: 6px -4px;
 }
 
 .hero-rings > * {
