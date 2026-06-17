@@ -640,7 +640,6 @@ const services = [
   pointer-events: auto;
 }
 
-.hero-rings,
 .hero-rings > * {
   width: 100%;
   height: 100%;
