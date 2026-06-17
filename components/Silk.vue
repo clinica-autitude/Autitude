@@ -59,7 +59,7 @@ void main() {
 `;
 
 const fragmentShader = `
-precision highp float;
+precision mediump float;
 
 varying vec2 vUv;
 varying vec3 vPosition;
@@ -126,6 +126,8 @@ let mesh: Mesh | null = null;
 let program: Program | null = null;
 let camera: Camera | null = null;
 let animateId = 0;
+let isVisible = true;
+let visibilityObserver: IntersectionObserver | null = null;
 
 const initSilk = () => {
   const container = containerRef.value;
@@ -139,7 +141,8 @@ const initSilk = () => {
     renderer = new Renderer({
       alpha: true,
       antialias: true,
-      powerPreference: 'high-performance'
+      powerPreference: 'high-performance',
+      dpr: Math.min(window.devicePixelRatio, 2)
     });
   } catch {
     webglFailed.value = true;
@@ -193,6 +196,11 @@ const initSilk = () => {
 
     window.addEventListener('resize', resize);
 
+    visibilityObserver = new IntersectionObserver(([entry]) => {
+      isVisible = entry.isIntersecting;
+    }, { threshold: 0 });
+    visibilityObserver.observe(container);
+
     const geometry = new Plane(gl, {
       width: 1,
       height: 1
@@ -230,7 +238,7 @@ const initSilk = () => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const update = (t: number) => {
       animateId = requestAnimationFrame(update);
-      if (document.hidden || prefersReducedMotion) return;
+      if (document.hidden || !isVisible || prefersReducedMotion) return;
       const deltaTime = (t - lastTime) / 1000;
       lastTime = t;
 
@@ -265,6 +273,10 @@ const cleanup = () => {
       container.removeChild(gl.canvas);
     }
     gl.getExtension('WEBGL_lose_context')?.loseContext();
+  }
+  if (visibilityObserver) {
+    visibilityObserver.disconnect();
+    visibilityObserver = null;
   }
   renderer = null;
   mesh = null;

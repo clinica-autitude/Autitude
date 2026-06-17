@@ -21,6 +21,7 @@ type ColorBendsProps = {
 const MAX_COLORS = 8 as const;
 
 const frag = `
+precision mediump float;
 #define MAX_COLORS ${MAX_COLORS}
 uniform vec2 uCanvas;
 uniform float uTime;
@@ -148,6 +149,7 @@ const isWebGLAvailable = () => {
 };
 
 let cleanup: (() => void) | null = null;
+let isVisible = true;
 
 const setup = () => {
   if (!isWebGLAvailable()) {
@@ -235,12 +237,17 @@ const setup = () => {
       (window as any).addEventListener('resize', handleResize);
     }
 
+    const visibilityObserver = new IntersectionObserver(([entry]) => {
+      isVisible = entry.isIntersecting;
+    }, { threshold: 0 });
+    visibilityObserver.observe(container);
+
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     const loop = () => {
       if (!renderer || !material) return;
       rafRef.value = requestAnimationFrame(loop);
-      if (document.hidden || prefersReducedMotion) return;
+      if (document.hidden || !isVisible || prefersReducedMotion) return;
       const dt = clock.getDelta();
       const elapsed = clock.elapsedTime;
       material.uniforms.uTime.value = elapsed;
@@ -274,6 +281,7 @@ const setup = () => {
       if (resizeObserverRef.value) resizeObserverRef.value.disconnect();
       else if (handleResize) window.removeEventListener('resize', handleResize);
       if (handlePointerMove) container.removeEventListener('pointermove', handlePointerMove);
+      visibilityObserver.disconnect();
       if (geometry) geometry.dispose();
       if (material) material.dispose();
       if (renderer) {

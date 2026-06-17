@@ -9,7 +9,7 @@ void main() {
 `;
 
 const fragmentShader = `
-precision highp float;
+precision mediump float;
 
 uniform float uTime, uAttenuation, uLineThickness;
 uniform float uBaseRadius, uRadiusStep, uScaleRate;
@@ -112,6 +112,7 @@ const props = withDefaults(defineProps<MagicRingsProps>(), {
 
 const mountRef = useTemplateRef('mountRef');
 
+const isVisibleRef = ref(true);
 const mouseRef = ref<[number, number]>([0, 0]);
 const smoothMouseRef = ref<[number, number]>([0, 0]);
 const hoverAmountRef = ref(0);
@@ -261,6 +262,11 @@ onMounted(() => {
   ro = new ResizeObserver(resize);
   ro.observe(mount);
 
+  const visibilityObserver = new IntersectionObserver(([entry]) => {
+    isVisibleRef.value = entry.isIntersecting;
+  }, { threshold: 0 });
+  visibilityObserver.observe(mount);
+
   const onMouseMove = (e: MouseEvent) => {
     const rect = mount.getBoundingClientRect();
 
@@ -290,7 +296,7 @@ onMounted(() => {
 
   const animate = (t: number) => {
     frameId = requestAnimationFrame(animate);
-    if (document.hidden || prefersReducedMotion) return;
+    if (document.hidden || !isVisibleRef.value || prefersReducedMotion) return;
 
     const p = propsRef.value;
 
@@ -345,6 +351,7 @@ onMounted(() => {
     window.removeEventListener('resize', resize);
 
     ro?.disconnect();
+    visibilityObserver.disconnect();
 
     window.removeEventListener('mousemove', onMouseMove);
     mount.removeEventListener('mouseenter', onMouseEnter);
@@ -376,6 +383,7 @@ onBeforeUnmount(() => {
   position: relative;
   width: 100%;
   height: 100%;
+  will-change: transform;
 }
 
 .magicrings-fallback {
