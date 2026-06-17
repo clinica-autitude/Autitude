@@ -73,7 +73,7 @@ const currentYear = new Date().getFullYear()
         </div>
 
         <div class="privacy-content">
-          <article class="privacy-card">
+          <article class="privacy-card texture-hd-paper">
             <h2>1. Coleta de Informações</h2>
             <p>
               A Autitude coleta informações pessoais fornecidas por você através dos formulários 
@@ -81,7 +81,7 @@ const currentYear = new Date().getFullYear()
             </p>
           </article>
 
-          <article class="privacy-card">
+          <article class="privacy-card texture-hd-paper">
             <h2>2. Uso das Informações</h2>
             <p>As informações coletadas são utilizadas exclusivamente para:</p>
             <ul>
@@ -91,7 +91,7 @@ const currentYear = new Date().getFullYear()
             </ul>
           </article>
 
-          <article class="privacy-card">
+          <article class="privacy-card texture-hd-paper">
             <h2>3. Proteção de Dados</h2>
             <p>
               Implementamos medidas de segurança adequadas para proteger suas informações pessoais 
@@ -99,7 +99,7 @@ const currentYear = new Date().getFullYear()
             </p>
           </article>
 
-          <article class="privacy-card">
+          <article class="privacy-card texture-hd-paper">
             <h2>4. Compartilhamento</h2>
             <p>
               Não compartilhamos suas informações pessoais com terceiros, exceto quando necessário 
@@ -107,7 +107,7 @@ const currentYear = new Date().getFullYear()
             </p>
           </article>
 
-          <article class="privacy-card">
+          <article class="privacy-card texture-hd-paper">
             <h2>5. Seus Direitos</h2>
             <p>
               Você tem o direito de acessar, corrigir ou excluir suas informações pessoais. 
@@ -115,7 +115,7 @@ const currentYear = new Date().getFullYear()
             </p>
           </article>
 
-          <article class="privacy-card">
+          <article class="privacy-card texture-hd-paper">
             <h2>6. Contato</h2>
             <p>
               Para questões sobre esta política de privacidade, entre em contato conosco 

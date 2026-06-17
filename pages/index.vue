@@ -285,7 +285,7 @@ const services = [
       
       <div class="container hero-container">
         <div class="hero-layout">
-          <div class="hero-left float-slow" style="--float-duration: 7s">
+          <div class="hero-left float-slow texture-hd-velvet" style="--float-duration: 7s">
             <span class="hero-eyebrow float-subtle">Cuidado humanizado e baseado em evidências</span>
             <HeroTitle>
               Autitude — Desenvolvimento com
@@ -294,7 +294,7 @@ const services = [
             </HeroTitle>
           </div>
 
-          <div class="hero-right">
+          <div class="hero-right texture-hd-velvet">
             <div class="hero-card hero-card--desc" :style="{ '--stagger': 0 }">
               <div class="card-shine" />
               <p>Espaço especializado no atendimento de <strong>crianças, adolescentes, adultos</strong> e suas famílias.</p>

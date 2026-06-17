@@ -46,7 +46,7 @@ onMounted(() => {
   <div class="blog-redirect" aria-label="Redirecionamento do blog">
     <section class="seo-answer seo-text" aria-label="Resumo">
       <h1>Blog da Autitude</h1>
-      <p class="seo-paragraph">
+      <p class="seo-paragraph texture-hd">
         O blog da <strong>Autitude</strong> reúne conteúdos sobre neurodivergência, desenvolvimento infantil,
         terapia ocupacional, neuropsicologia, fonoaudiologia, neuropsicopedagogia e terapia ABA humanizada.
         Para visitantes, esta página redireciona automaticamente para o início.

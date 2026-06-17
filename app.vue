@@ -96,7 +96,7 @@ onBeforeUnmount(() => {
     <div class="menu-overlay" :class="{ active: menuOpen }" @click="closeMenu"></div>
 
     <div class="app-wrapper" :style="bgStyle">
-      <nav class="navbar" :class="{ scrolled }">
+      <nav class="navbar texture-hd" :class="{ scrolled }">
         <div class="nav-container">
           <NuxtLink to="/" class="logo" @click="closeMenu">
             <img :src="logoSrc" alt="Autitude" class="logo-img">
@@ -126,7 +126,7 @@ onBeforeUnmount(() => {
         <NuxtPage />
       </main>
 
-      <footer class="footer">
+      <footer class="footer texture-hd-velvet">
       <div class="container">
         <div class="footer-grid">
           <div class="footer-brand">
@@ -137,7 +137,7 @@ onBeforeUnmount(() => {
             <p>Desenvolvimento com acolhimento, ciência e humanidade. Cuidamos de pessoas. Potencializamos possibilidades.</p>
           </div>
           
-          <div class="footer-links">
+          <div class="footer-links texture-hd-paper">
             <h4>Navegação</h4>
             <NuxtLink to="/">Início</NuxtLink>
             <NuxtLink to="/sobre">Sobre Nós</NuxtLink>
@@ -145,7 +145,7 @@ onBeforeUnmount(() => {
             <NuxtLink to="/equipe">Equipe</NuxtLink>
           </div>
           
-          <div class="footer-services">
+          <div class="footer-services texture-hd-paper">
             <h4>Atendimento</h4>
             <NuxtLink to="/agendar">Agendamento</NuxtLink>
             <NuxtLink to="/contato">Contato</NuxtLink>
@@ -153,7 +153,7 @@ onBeforeUnmount(() => {
             <a :href="instagramUrl" target="_blank" rel="noopener">Instagram</a>
           </div>
           
-          <div class="footer-contact">
+          <div class="footer-contact texture-hd-paper">
             <h4>Localização</h4>
             <p>{{ address }}</p>
             <p>{{ neighborhood }} — {{ city }}, {{ state }}</p>
@@ -173,7 +173,7 @@ onBeforeUnmount(() => {
           </div>
         </div>
         
-        <div class="footer-bottom">
+        <div class="footer-bottom texture-hd-velvet">
           <p>&copy; {{ currentYear }} Autitude. Todos os direitos reservados.</p>
         </div>
       </div>
