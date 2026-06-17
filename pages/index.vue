@@ -632,8 +632,8 @@ const services = [
 .hero-rings {
   grid-row: 1;
   grid-column: 1;
-  width: min(70vh, 640px);
-  height: min(70vh, 640px);
+  width: 100%;
+  height: 100%;
   user-select: none;
   opacity: 0.75;
   will-change: transform;
@@ -1229,12 +1229,7 @@ const services = [
 
   .hero-bg {
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 50vh;
-    min-height: 320px;
-    bottom: auto;
+    inset: 0;
   }
 
   .hero-layout {
@@ -1257,13 +1252,9 @@ const services = [
   .hero-bg-center {
     position: absolute;
     inset: 0;
-    height: 50vh;
-    min-height: 320px;
   }
 
   .hero-rings {
-    width: min(80vw, 320px);
-    height: min(80vw, 320px);
     opacity: 0.6;
   }
 
@@ -1333,16 +1324,6 @@ const services = [
     margin-bottom: 0.375rem;
   }
 
-  .hero-bg {
-    height: 25vh;
-    min-height: 160px;
-  }
-
-  .hero-bg-center {
-    height: 25vh;
-    min-height: 160px;
-  }
-
   .hero-card {
     padding: 0.875rem 1rem;
   }
@@ -1380,8 +1361,6 @@ const services = [
   }
 
   .hero-rings {
-    width: min(90vw, 260px);
-    height: min(90vw, 260px);
     opacity: 0.5;
   }
 
