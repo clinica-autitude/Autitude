@@ -73,4 +73,14 @@ onMounted(() => {
   color: var(--text-secondary);
   line-height: 1.8;
 }
+
+@media (max-width: 480px) {
+  .blog-redirect {
+    padding: 4rem 0.875rem 1.5rem;
+  }
+
+  .seo-paragraph {
+    font-size: 0.875rem;
+  }
+}
 </style>

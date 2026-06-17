@@ -622,7 +622,7 @@ main {
   }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 480px) {
   .footer-grid {
     grid-template-columns: 1fr;
     gap: 1.5rem;

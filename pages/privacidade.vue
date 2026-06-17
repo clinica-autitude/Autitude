@@ -214,4 +214,22 @@ const currentYear = new Date().getFullYear()
 .text-center {
   text-align: center;
 }
+
+@media (max-width: 480px) {
+  .section-header {
+    margin-bottom: 2rem;
+  }
+
+  .section-header h1 {
+    font-size: clamp(1.25rem, 6vw, 1.5rem);
+  }
+
+  .privacy-card {
+    padding: 1rem 1.25rem;
+  }
+
+  .privacy-card h2 {
+    font-size: 1rem;
+  }
+}
 </style>

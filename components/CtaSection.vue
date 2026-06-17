@@ -215,4 +215,25 @@ const bendsProps = computed(() => ({ ...defaultBendsProps, ...props.colorBendsPr
     align-items: center;
   }
 }
+
+@media (max-width: 480px) {
+  .cta-content {
+    padding: clamp(1rem, 4vw, 1.25rem);
+  }
+
+  .cta-content h2 {
+    font-size: clamp(1.125rem, 5.5vw, 1.375rem);
+  }
+
+  .cta-actions .btn {
+    max-width: none;
+    font-size: 0.875rem;
+    padding: 0.625rem 0.875rem;
+  }
+
+  .cta-tag {
+    font-size: 0.6875rem;
+    padding: 0.1875rem 0.625rem;
+  }
+}
 </style>
