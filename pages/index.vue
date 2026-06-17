@@ -623,20 +623,21 @@ const services = [
 .hero-bg-center {
   position: absolute;
   inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  place-items: center;
   pointer-events: none;
   z-index: 1;
 }
 
 .hero-rings {
-  position: absolute;
+  grid-row: 1;
+  grid-column: 1;
   width: min(70vh, 640px);
   height: min(70vh, 640px);
   user-select: none;
   opacity: 0.75;
   will-change: transform;
+  pointer-events: auto;
 }
 
 .hero-rings,
@@ -652,7 +653,8 @@ const services = [
 }
 
 .hero-rings-logo {
-  position: absolute;
+  grid-row: 1;
+  grid-column: 1;
   width: min(50%, 360px);
   height: auto;
   z-index: 2;

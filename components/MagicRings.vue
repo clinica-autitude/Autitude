@@ -281,7 +281,7 @@ onMounted(() => {
     burstRef.value = 1;
   };
 
-  mount.addEventListener('mousemove', onMouseMove);
+  window.addEventListener('mousemove', onMouseMove);
   mount.addEventListener('mouseenter', onMouseEnter);
   mount.addEventListener('mouseleave', onMouseLeave);
   mount.addEventListener('click', onClick);
@@ -346,7 +346,7 @@ onMounted(() => {
 
     ro?.disconnect();
 
-    mount.removeEventListener('mousemove', onMouseMove);
+    window.removeEventListener('mousemove', onMouseMove);
     mount.removeEventListener('mouseenter', onMouseEnter);
     mount.removeEventListener('mouseleave', onMouseLeave);
     mount.removeEventListener('click', onClick);
