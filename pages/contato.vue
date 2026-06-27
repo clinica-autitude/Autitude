@@ -200,20 +200,20 @@ const config = {
         </div>
       </div>
     </section>
-
-    <!-- Hidden SEO content for crawlers -->
-    <section class="seo-faq-hidden" aria-label="Perguntas Frequentes"
-      style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;">
-      <h2>Como entrar em contato com a Autitude em Pindamonhangaba?</h2>
-      <p>A <strong>Autitude</strong> está localizada na <strong>{{ address }} — {{ neighborhood }}, {{ city }}-{{ state }}</strong>. O horário de funcionamento é de <strong>segunda a sexta, das 8h às 18h</strong>. O contato pode ser feito pelo <strong>WhatsApp {{ phoneDisplay }}</strong>, e-mail {{ email }} ou pelo formulário de agendamento no site. Atendemos crianças, adolescentes, adultos e famílias com foco em neurodivergência.</p>
-      <h2>O plano de saúde cobre as terapias da Autitude?</h2>
-      <p>Atualmente atendemos de forma particular, mas fornecemos nota fiscal para reembolso junto ao plano de saúde. Por lei, planos são obrigados a cobrir ABA e fonoaudiologia para TEA. Saiba mais em <a href="/blog/cobertura-plano-saude-aba-fono">cobertura do plano de saúde para ABA e fonoaudiologia</a>.</p>
-      <h2>Como conseguir liminar para tratamento de autismo?</h2>
-      <p>A liminar é um recurso judicial que obriga o plano de saúde a custear terapias quando há recusa. O direito é garantido pelo Estatuto da Pessoa com Deficiência. Veja o passo a passo em <a href="/blog/liminar-tratamento-autismo">liminar para tratamento de autismo</a>.</p>
-      <h2>O que avaliar no processo de avaliação neuropsicológica?</h2>
-      <p>A avaliação neuropsicológica investiga funções cognitivas como memória, atenção e funções executivas, auxiliando no diagnóstico de TEA, TDAH e outras condições. Entenda cada etapa em <a href="/blog/avaliacao-neuropsicologica-processo">processo de avaliação neuropsicológica</a>.</p>
-    </section>
   </div>
+
+  <!-- Hidden SEO content for crawlers -->
+  <section class="seo-faq-hidden" aria-label="Perguntas Frequentes"
+    style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;">
+    <h2>Como entrar em contato com a Autitude em Pindamonhangaba?</h2>
+    <p>A <strong>Autitude</strong> está localizada na <strong>{{ address }} — {{ neighborhood }}, {{ city }}-{{ state }}</strong>. O horário de funcionamento é de <strong>segunda a sexta, das 8h às 18h</strong>. O contato pode ser feito pelo <strong>WhatsApp {{ phoneDisplay }}</strong>, e-mail {{ email }} ou pelo formulário de agendamento no site. Atendemos crianças, adolescentes, adultos e famílias com foco em neurodivergência.</p>
+    <h2>O plano de saúde cobre as terapias da Autitude?</h2>
+    <p>Atualmente atendemos de forma particular, mas fornecemos nota fiscal para reembolso junto ao plano de saúde. Por lei, planos são obrigados a cobrir ABA e fonoaudiologia para TEA. Saiba mais em <a href="/blog/cobertura-plano-saude-aba-fono">cobertura do plano de saúde para ABA e fonoaudiologia</a>.</p>
+    <h2>Como conseguir liminar para tratamento de autismo?</h2>
+    <p>A liminar é um recurso judicial que obriga o plano de saúde a custear terapias quando há recusa. O direito é garantido pelo Estatuto da Pessoa com Deficiência. Veja o passo a passo em <a href="/blog/liminar-tratamento-autismo">liminar para tratamento de autismo</a>.</p>
+    <h2>O que avaliar no processo de avaliação neuropsicológica?</h2>
+    <p>A avaliação neuropsicológica investiga funções cognitivas como memória, atenção e funções executivas, auxiliando no diagnóstico de TEA, TDAH e outras condições. Entenda cada etapa em <a href="/blog/avaliacao-neuropsicologica-processo">processo de avaliação neuropsicológica</a>.</p>
+  </section>
 </template>
 
 <style scoped>

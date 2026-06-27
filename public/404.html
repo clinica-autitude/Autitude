@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <title>Redirecionando...</title>
+  <script>
+    // GitHub Pages: redirect /path to /path/
+    (function () {
+      var path = window.location.pathname;
+      // Skip if already has trailing slash or is a file with extension
+      if (path.endsWith('/') || /\.\w+$/.test(path)) return;
+      window.location.replace(path + '/');
+    })();
+  </script>
+</head>
+<body></body>
+</html>
