@@ -645,7 +645,7 @@ const services = [
   opacity: 0.75;
   will-change: transform;
   pointer-events: auto;
-  translate: clamp(1px, 0.5vw, 8px) clamp(-8px, -0.5vh, -1px);
+  translate: 0 0;
 }
 
 .hero-rings > * {
