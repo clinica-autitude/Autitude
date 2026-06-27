@@ -200,7 +200,7 @@ const config = {
         </div>
       </div>
     </section>
-  </div>
+
     <!-- Hidden SEO content for crawlers -->
     <section class="seo-faq-hidden" aria-label="Perguntas Frequentes"
       style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;">
@@ -213,6 +213,7 @@ const config = {
       <h2>O que avaliar no processo de avaliação neuropsicológica?</h2>
       <p>A avaliação neuropsicológica investiga funções cognitivas como memória, atenção e funções executivas, auxiliando no diagnóstico de TEA, TDAH e outras condições. Entenda cada etapa em <a href="/blog/avaliacao-neuropsicologica-processo">processo de avaliação neuropsicológica</a>.</p>
     </section>
+  </div>
 </template>
 
 <style scoped>
