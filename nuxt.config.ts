@@ -67,7 +67,7 @@ export default defineNuxtConfig({
         { rel: 'alternate', href: process.env.SITE_BASE || 'https://autitude.com.br', hreflang: 'pt-BR' },
         { rel: 'index', href: `${process.env.SITE_BASE || 'https://autitude.com.br'}/sitemap.xml` },
         { rel: 'help', href: `${process.env.SITE_BASE || 'https://autitude.com.br'}/llms.txt`, title: 'LLMS Information' },
-        { rel: 'alternate', href: `${process.env.SITE_BASE || 'https://autitude.com.br'}/llms-full.txt`, title: 'Full Site Content for AI' },
+        { rel: 'alternate', href: `${process.env.SITE_BASE || 'https://autitude.com.br'}/llms.txt`, title: 'LLMS Information for AI' },
         { rel: 'manifest', href: '/manifest.json' },
         { rel: 'icon', type: 'image/svg+xml', href: '/favicon-png.svg' },
         { rel: 'apple-touch-icon', href: '/small-logo.png' }

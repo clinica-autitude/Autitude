@@ -24,7 +24,8 @@ const props = withDefaults(defineProps(), {
   color1: '#6B4FA3',
   color2: '#8FC176',
   color3: '#3D2D5E',
-  className: ''
+  className: '',
+  style: ''
 })
 
 const containerRef = ref(null)

@@ -59,9 +59,9 @@ useHead({
           url: siteBase,
           address: {
             '@type': 'PostalAddress',
-            streetAddress: 'Rua Major José dos Santos Moreira, 328',
-            addressLocality: 'Pindamonhangaba',
-            addressRegion: 'SP',
+            streetAddress: address,
+            addressLocality: city,
+            addressRegion: state,
             addressCountry: 'BR'
           },
           foundingDate: '2004',

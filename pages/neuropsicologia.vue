@@ -2,7 +2,7 @@
 import { Brain, Search, Heart, Users } from 'lucide-vue-next'
 import Grainient from '~/components/Grainient.vue'
 
-const { whatsappUrl } = useContact()
+const { whatsappUrl, phoneDisplay, address, postalCode } = useContact()
 
 const openFaq = ref(null)
 
@@ -59,14 +59,14 @@ useHead({
           '@type': 'MedicalBusiness',
           name: 'Autitude - Desenvolvimento e Ação Humana',
           url: siteBase,
-          telephone: '+55-12-99196-8683',
+          telephone: phoneDisplay,
           address: {
             '@type': 'PostalAddress',
-            streetAddress: 'Rua Major José dos Santos Moreira, 328',
+            streetAddress: address,
             addressLocality: 'Pindamonhangaba',
             addressRegion: 'SP',
             addressCountry: 'BR',
-            postalCode: '12410-050'
+            postalCode: postalCode
           }
         }
       })

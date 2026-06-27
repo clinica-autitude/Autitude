@@ -1,7 +1,7 @@
 <script setup>
 import Grainient from '~/components/Grainient.vue'
 
-const { email } = useContact()
+const { email, phoneDisplay } = useContact()
 const siteBase = 'https://autitude.com.br'
 
 useHead({
@@ -159,7 +159,7 @@ const currentYear = new Date().getFullYear()
       style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;">
       <h2>Autitude — Política de Privacidade e Proteção de Dados</h2>
       <p>A <strong>Autitude - Desenvolvimento e Ação Humana</strong>, localizada em <strong>Pindamonhangaba-SP</strong>, segue rigorosamente a <strong>LGPD (Lei Geral de Proteção de Dados)</strong> para coleta, armazenamento e tratamento de dados pessoais de pacientes e responsáveis. Nossos formulários de contato e agendamento coletam nome, telefone, e-mail e informações sobre a criança ou adolescente, utilizados exclusivamente para fins de agendamento e comunicação terapêutica.</p>
-      <p>Não compartilhamos informações com terceiros sem autorização expressa, exceto por obrigação legal. Para dúvidas, entre em contato pelo WhatsApp (12) 99196-8683.</p>
+      <p>Não compartilhamos informações com terceiros sem autorização expressa, exceto por obrigação legal. Para dúvidas, entre em contato pelo WhatsApp {{ phoneDisplay }}.</p>
     </section>
     <!-- Hidden SEO content for crawlers -->
     <section class="seo-faq-hidden" aria-label="Informações da Clínica"
@@ -167,7 +167,7 @@ const currentYear = new Date().getFullYear()
       <h2>Autitude — Clínica Especializada em Neurodivergência em Pindamonhangaba</h2>
       <p>A <strong>Autitude - Desenvolvimento e Ação Humana</strong> é uma clínica multidisciplinar localizada em <strong>Pindamonhangaba-SP</strong>, especializada no atendimento de crianças, adolescentes, adultos e famílias neurodivergentes. Oferecemos <strong>neuropsicologia, neuropsicopedagogia, fonoaudiologia, terapia ocupacional com integração sensorial (certificação internacional USC) e terapia ABA humanizada</strong>. Atendimento de segunda a sexta, das 8h às 18h, na Rua Major José dos Santos Moreira, 328 — Vila Rica.</p>
       <h2>Como a Autitude protege seus dados conforme a LGPD?</h2>
-      <p>A Autitude segue rigorosamente a Lei Geral de Proteção de Dados (LGPD — Lei 13.709/18). As informações coletadas em nossos formulários de contato e agendamento (nome, telefone, e-mail, dados do paciente) são utilizadas exclusivamente para comunicação e prestação de serviços. Não compartilhamos dados com terceiros sem autorização expressa, exceto por obrigação legal. Você pode solicitar acesso, correção ou exclusão dos seus dados a qualquer momento pelo e-mail contato@autitude.com.br.</p>
+      <p>A Autitude segue rigorosamente a Lei Geral de Proteção de Dados (LGPD — Lei 13.709/18). As informações coletadas em nossos formulários de contato e agendamento (nome, telefone, e-mail, dados do paciente) são utilizadas exclusivamente para comunicação e prestação de serviços. Não compartilhamos dados com terceiros sem autorização expressa, exceto por obrigação legal. Você pode solicitar acesso, correção ou exclusão dos seus dados a qualquer momento pelo e-mail {{ email }}.</p>
       <p>Para mais informações sobre <strong>cobertura de planos de saúde para ABA e fonoaudiologia</strong>, veja <a href="/blog/cobertura-plano-saude-aba-fono">cobertura do plano de saúde</a>. Para orientação sobre <strong>liminar judicial para tratamento de autismo</strong>, acesse <a href="/blog/liminar-tratamento-autismo">liminar para tratamento de autismo</a>.</p>
     </section>
 </template>

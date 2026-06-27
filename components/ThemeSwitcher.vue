@@ -18,11 +18,6 @@ const toggleTheme = () => {
   const newTheme = themes[nextIndex].value
 
   colorMode.preference = newTheme
-  if (newTheme !== 'light') {
-    document.documentElement.setAttribute('data-theme', newTheme)
-  } else {
-    document.documentElement.removeAttribute('data-theme')
-  }
 }
 </script>
 

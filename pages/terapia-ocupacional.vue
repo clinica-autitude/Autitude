@@ -2,7 +2,7 @@
 import { Activity, Award, Heart, Users } from 'lucide-vue-next'
 import Grainient from '~/components/Grainient.vue'
 
-const { whatsappUrl } = useContact()
+const { whatsappUrl, phoneDisplay, address, postalCode } = useContact()
 
 const openFaq = ref(null)
 
@@ -47,6 +47,10 @@ useHead({
         url: `${siteBase}/terapia-ocupacional`,
         datePublished: '2024-01-01',
         dateModified: '2026-06-09',
+        speakable: {
+          '@type': 'SpeakableSpecification',
+          cssSelector: ['.seo-paragraph', '.seo-faq-hidden']
+        },
         about: {
           '@type': 'MedicalTherapy',
           name: 'Terapia Ocupacional',
@@ -56,14 +60,14 @@ useHead({
           '@type': 'MedicalBusiness',
           name: 'Autitude - Desenvolvimento e Ação Humana',
           url: siteBase,
-          telephone: '+55-12-99196-8683',
+          telephone: phoneDisplay,
           address: {
             '@type': 'PostalAddress',
-            streetAddress: 'Rua Major José dos Santos Moreira, 328',
+            streetAddress: address,
             addressLocality: 'Pindamonhangaba',
             addressRegion: 'SP',
             addressCountry: 'BR',
-            postalCode: '12410-050'
+            postalCode: postalCode
           }
         }
       })
@@ -124,7 +128,7 @@ const benefits = [
   {
     icon: Award,
     title: 'Certificação Internacional em Integração Sensorial (USC, USA)',
-    description: 'A Autitude conta com certificação internacional em Integração Sensorial pela University of Southern California (USC, USA), garantindo评估 e intervenção de excelência baseados no método desenvolvido pela Dra. Jean Ayres.'
+    description: 'A Autitude conta com certificação internacional em Integração Sensorial pela University of Southern California (USC, USA), garantindo avaliação e intervenção de excelência baseados no método desenvolvido pela Dra. Jean Ayres.'
   },
   {
     icon: Activity,

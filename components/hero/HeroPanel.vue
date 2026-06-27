@@ -80,8 +80,6 @@ const showHoverEffect = computed(() => !props.disabled && !props.growing)
 defineExpose({
   grow: growPanel,
   reset: resetPanel,
-  growPanel,
-  resetPanel,
   panelRef
 })
 </script>

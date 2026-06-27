@@ -88,7 +88,7 @@ Blog pages live in `pages/blog/[slug].vue`. Each slug:
 3. Auto-redirects to `/` for users
 4. MUST include canonical URL pointing to the slug
 
-### Blog Tags — 28 SEO Pages (by tier)
+### Blog Tags — 40 SEO Pages (by tier)
 
 **Tier 1 — Primary Services:**
 `terapia-ocupacional-infantil`, `integracao-sensorial`, `neuropsicologia-infantil`, `neuropsicopedagogia`, `fonoaudiologia-infantil`, `autismo-terapia`, `tdah-tratamento`
@@ -104,6 +104,9 @@ Blog pages live in `pages/blog/[slug].vue`. Each slug:
 
 **Tier 5 — Family/Social:**
 `terapia-familiar`, `acolhimento-familia`, `inclusao-social`, `comunicacao-alternativa`, `escola-inclusiva`, `terapia-ocupacional-adulto`
+
+**Tier 6 — New 2026:**
+`diagnostico-autismo-idade-escolar`, `diferenca-autismo-tdah-infancia`, `avaliacao-neuropsicologica-processo`, `birra-ou-crise-sensorial`, `comportamento-opositor-tod-escola`, `aba-humanizada-estereotipias`, `marcos-fala-infantil`, `seletividade-alimentar-autismo`, `integracao-sensorial-comunicacao-criancas-nao-verbais`, `cobertura-plano-saude-aba-fono`, `liminar-tratamento-autismo`, `vinculo-terapeutico-relatorios-evolucao`
 
 When adding new blog slugs, update:
 - `seoContent` in `pages/blog/[slug].vue`

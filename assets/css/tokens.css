@@ -10,11 +10,18 @@
   --lilac-deep: #2A1D45;
   --lilac-deepest: #150A28;
 
-  --pink: #8FC176;
-  --pink-light: #C5E0B0;
-  --pink-dark: #5C9F45;
-  --pink-soft: #E5F0DA;
-  --pink-deep: #3F6B2F;
+  --green: #8FC176;
+  --green-light: #C5E0B0;
+  --green-dark: #5C9F45;
+  --green-soft: #E5F0DA;
+  --green-deep: #3F6B2F;
+
+  /* Backward-compatible aliases (green is the actual color, pink was misnamed) */
+  --pink: var(--green);
+  --pink-light: var(--green-light);
+  --pink-dark: var(--green-dark);
+  --pink-soft: var(--green-soft);
+  --pink-deep: var(--green-deep);
 
   --blue: #8FB1F0;
   --blue-light: #BFD4F5;
