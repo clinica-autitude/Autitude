@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, onUnmounted, computed } from 'vue'
+import { ref, onMounted, onBeforeUnmount, computed } from 'vue'
 import { Settings, X, Sun, Moon, Minus, Plus, Play, Pause, Square } from 'lucide-vue-next'
 
 const colorMode = useColorMode()
@@ -167,7 +167,7 @@ onMounted(() => {
   }
 })
 
-onUnmounted(() => {
+onBeforeUnmount(() => {
   document.removeEventListener('keydown', handleKeydown)
   stopSpeaking()
 })

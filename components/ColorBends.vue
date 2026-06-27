@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import * as THREE from 'three';
 import { onMounted, onBeforeUnmount, watch, ref, useTemplateRef, type CSSProperties } from 'vue';
+import { isWebGLAvailable } from '~/utils/webgl';
 
 type ColorBendsProps = {
   className?: string;
@@ -138,15 +139,6 @@ const pointerTargetRef = ref(new THREE.Vector2(0, 0));
 const pointerCurrentRef = ref(new THREE.Vector2(0, 0));
 const pointerSmoothRef = ref(8);
 const webglFailed = ref(false);
-
-const isWebGLAvailable = () => {
-  try {
-    const c = document.createElement('canvas');
-    return !!(c.getContext('webgl2') || c.getContext('webgl') || c.getContext('experimental-webgl'));
-  } catch {
-    return false;
-  }
-};
 
 let cleanup: (() => void) | null = null;
 let isVisible = true;

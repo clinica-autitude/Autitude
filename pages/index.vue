@@ -445,6 +445,7 @@ const services = [
       :colors="['#6B4FA3', '#8FC176', '#8FB1F0', '#F0C850', '#3D2D5E']"
       :color-bends-props="{ rotation: 25, speed: 0.15, scale: 1.3, frequency: 1.2, warpStrength: 1.0, mouseInfluence: 0.4, parallax: 0.3, noise: 0.05 }"
     />
+  </div>
 
     <!-- Hidden SEO FAQ content for crawlers — questions/answers for featured snippets and AI citations -->
     <section class="seo-faq-hidden" aria-label="Perguntas Frequentes"
@@ -569,7 +570,6 @@ const services = [
       </div>
 
     </section>
-  </div>
 </template>
 
 <style scoped>

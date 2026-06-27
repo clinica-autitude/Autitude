@@ -1,5 +1,6 @@
 <script setup>
-import { ref, onMounted, onBeforeUnmount, computed } from 'vue'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { isWebGLAvailable } from '~/utils/webgl'
 
 const props = withDefaults(defineProps(), {
   timeSpeed: 0.25,
@@ -31,15 +32,6 @@ const props = withDefaults(defineProps(), {
 const containerRef = ref(null)
 const isWebGLAvailable = ref(true)
 const webglFailed = ref(false)
-
-const isWebGLAvailableCheck = () => {
-  try {
-    const c = document.createElement('canvas')
-    return !!(c.getContext('webgl2') || c.getContext('webgl') || c.getContext('experimental-webgl'))
-  } catch {
-    return false
-  }
-}
 
 const generateNoise = (width, height) => {
   const canvas = document.createElement('canvas')

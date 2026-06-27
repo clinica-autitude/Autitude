@@ -2,11 +2,11 @@
 import { BookOpen, ClipboardList, School, Users } from 'lucide-vue-next'
 import Grainient from '~/components/Grainient.vue'
 
-const { whatsappUrl, phoneDisplay, address, postalCode } = useContact()
+const { whatsappUrl, phone, address, postalCode } = useContact()
 
 const openFaq = ref(null)
 
-const siteBase = 'https://autitude.com.br'
+const { siteBase } = useSiteBase()
 
 useHead({
   title: 'Neuropsicopedagogia em Pindamonhangaba | Autitude',
@@ -60,7 +60,7 @@ useHead({
           '@type': 'MedicalBusiness',
           name: 'Autitude - Desenvolvimento e Ação Humana',
           url: siteBase,
-          telephone: phoneDisplay,
+          telephone: `+${phone}`,
           address: {
             '@type': 'PostalAddress',
             streetAddress: address,

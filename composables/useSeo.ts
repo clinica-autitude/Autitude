@@ -12,7 +12,7 @@ export const useSeo = (options: {
   answerFirstParagraph?: string
   questionFormatH2?: string
 }) => {
-  const siteBase = 'https://autitude.com.br'
+  const { siteBase } = useSiteBase()
   const { phone, email, address, city, state } = useContact()
   const datePublished = options.datePublished || '2024-01-01'
   const dateModified = options.dateModified || '2026-06-09'
@@ -92,7 +92,7 @@ export const useSeo = (options: {
             telephone: `+${phone}`,
             email,
             contactType: 'customer service',
-            availableLanguage: ['Portuguese', 'Spanish']
+            availableLanguage: ['Portuguese']
           }
         }
 

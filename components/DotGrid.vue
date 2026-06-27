@@ -7,7 +7,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, computed, watch, nextTick, useTemplateRef } from 'vue';
+import { ref, onMounted, onBeforeUnmount, computed, watch, nextTick, useTemplateRef } from 'vue';
 import { gsap } from 'gsap';
 import { InertiaPlugin } from 'gsap/InertiaPlugin';
 
@@ -326,7 +326,7 @@ onMounted(async () => {
   window.addEventListener('click', onClick);
 });
 
-onUnmounted(() => {
+onBeforeUnmount(() => {
   if (rafId) {
     cancelAnimationFrame(rafId);
   }

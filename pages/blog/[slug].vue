@@ -1,6 +1,8 @@
 <script setup>
 const route = useRoute()
 const slug = Array.isArray(route.params.slug) ? route.params.slug.join('/') : route.params.slug
+const { address, city, state, postalCode } = useContact()
+const { siteBase } = useSiteBase()
 
 const seoContent = {
   // === ORIGINAL 7 (HIGH-TRAFFIC) ===
@@ -305,8 +307,6 @@ const content = seoContent[slug] || {
   canonical: `/${slug}`
 }
 
-const siteBase = 'https://autitude.com.br'
-
 // Related posts mapping for internal cross-linking
 const relatedPosts = {
   'terapia-ocupacional-infantil': ['integracao-sensorial', 'desenvolvimento-infantil', 'terapia-ocupacional-adulto'],
@@ -430,15 +430,16 @@ useHead({
           name: 'Autitude - Desenvolvimento e Ação Humana',
           address: {
             '@type': 'PostalAddress',
-            streetAddress: 'Rua Major José dos Santos Moreira, 328',
-            addressLocality: 'Pindamonhangaba',
-            addressRegion: 'SP',
-            addressCountry: 'BR'
+            streetAddress: address,
+            addressLocality: city,
+            addressRegion: state,
+            addressCountry: 'BR',
+            postalCode: postalCode
           }
         },
         speakable: {
           '@type': 'SpeakableSpecification',
-          cssSelector: ['.seo-heading', '.seo-paragraph']
+          cssSelector: ['.blog-content h1', '.seo-paragraph']
         }
       })
     },
@@ -518,31 +519,32 @@ onMounted(() => {
       <section class="blog-cta">
         <p>Conteúdo indexado por motores de busca. Redirecionando para a página principal...</p>
         <a href="/" class="btn btn-primary">Ir para o Início</a>
-          <!-- Hidden People Also Ask section for AI citations -->
-          <div class="seo-paa" style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;">
-            <h2>Perguntas relacionadas sobre desenvolvimento infantil e neurodivergência</h2>
-            <h3>O que é diagnóstico tardio de autismo na idade escolar?</h3>
-            <p>O diagnóstico tardio de autismo ocorre quando crianças entre 6 e 12 anos recebem o diagnóstico de TEA, muitas vezes após anos de sinais confundidos com TDAH, ansiedade ou questões comportamentais. A avaliação neuropsicológica é essencial para o diagnóstico preciso. Saiba mais em <a href="/blog/diagnostico-autismo-idade-escolar">diagnóstico de autismo na idade escolar</a>.</p>
-            <h3>Qual a diferença entre autismo e TDAH na infância?</h3>
-            <p>Autismo (TEA) e TDAH compartilham sintomas como desatenção, mas são condições distintas. O TEA envolve prejuízos na comunicação social e comportamentos repetitivos, enquanto o TDAH tem como núcleo a desregulação da atenção e hiperatividade. Veja a comparação completa em <a href="/blog/diferenca-autismo-tdah-infancia">diferença entre autismo e TDAH na infância</a>.</p>
-            <h3>Como diferenciar birra de crise sensorial?</h3>
-            <p>A birra é um comportamento intencional para obter algo, enquanto a crise sensorial é uma reação involuntária a estímulos avassaladores. Crianças neurodivergentes frequentemente têm crises sensoriais. Aprenda a diferenciar em <a href="/blog/birra-ou-crise-sensorial">birra ou crise sensorial</a>.</p>
-            <h3>O que é comportamento opositor (TOD) no contexto escolar?</h3>
-            <p>O TOD se caracteriza por um padrão persistente de irritabilidade, discussão e desafio a figuras de autoridade. Na escola, esses comportamentos podem indicar necessidades não atendidas. Veja estratégias em <a href="/blog/comportamento-opositor-tod-escola">comportamento opositor TOD na escola</a>.</p>
-            <h3>Como a terapia ABA humanizada trabalha estereotipias?</h3>
-            <p>A ABA humanizada aborda as estereotipias como formas de comunicação e regulação, não como comportamentos a serem eliminados. A abordagem respeita a funcionalidade do estímulo. Leia mais em <a href="/blog/aba-humanizada-estereotipias">ABA humanizada e estereotipias</a>.</p>
-            <h3>Quais são os marcos do desenvolvimento da fala infantil?</h3>
-            <p>Balbucio aos 6 meses, primeiras palavras aos 12 meses, combinação de 2 palavras aos 24 meses e frases completas aos 36 meses. Atrasos nesses marcos podem indicar necessidade de intervenção fonoaudiológica. Confira a tabela completa em <a href="/blog/marcos-fala-infantil">marcos da fala infantil</a>.</p>
-            <h3>O que é seletividade alimentar no autismo?</h3>
-            <p>A seletividade alimentar no TEA está relacionada à hipersensibilidade sensorial a texturas, cores, cheiros e temperaturas. Não é comportamento voluntário, mas resposta neurológica. Saiba como intervir em <a href="/blog/seletividade-alimentar-autismo">seletividade alimentar no autismo</a>.</p>
-            <h3>O plano de saúde cobre terapia ABA e fonoaudiologia?</h3>
-            <p>Sim, os planos de saúde são obrigados por lei a cobrir ABA e fonoaudiologia para pacientes com TEA, conforme a Lei 9.656/98 e a Lei Berenice Piana (12.764/12). Descubra seus direitos em <a href="/blog/cobertura-plano-saude-aba-fono">cobertura do plano de saúde para ABA e fonoaudiologia</a>.</p>
-            <h3>Como conseguir liminar para tratamento de autismo?</h3>
-            <p>A liminar é um recurso judicial que obriga planos de saúde ou o poder público a custearem terapias quando há recusa. O direito ao tratamento é garantido pelo Estatuto da Pessoa com Deficiência. Veja o passo a passo em <a href="/blog/liminar-tratamento-autismo">liminar para tratamento de autismo</a>.</p>
-            <h3>Como a integração sensorial ajuda crianças não-verbais?</h3>
-            <p>A integração sensorial organiza as sensações do corpo e do ambiente, criando as bases neurológicas para a comunicação intencional. Para crianças não-verbais, a regulação sensorial precede intervenções de comunicação. Saiba mais em <a href="/blog/integracao-sensorial-comunicacao-criancas-nao-verbais">integração sensorial e comunicação em crianças não-verbais</a>.</p>
-          </div>
       </section>
+
+      <!-- Hidden People Also Ask section for AI citations -->
+      <div class="seo-paa" style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;">
+        <h2>Perguntas relacionadas sobre desenvolvimento infantil e neurodivergência</h2>
+        <h3>O que é diagnóstico tardio de autismo na idade escolar?</h3>
+        <p>O diagnóstico tardio de autismo ocorre quando crianças entre 6 e 12 anos recebem o diagnóstico de TEA, muitas vezes após anos de sinais confundidos com TDAH, ansiedade ou questões comportamentais. A avaliação neuropsicológica é essencial para o diagnóstico preciso. Saiba mais em <a href="/blog/diagnostico-autismo-idade-escolar">diagnóstico de autismo na idade escolar</a>.</p>
+        <h3>Qual a diferença entre autismo e TDAH na infância?</h3>
+        <p>Autismo (TEA) e TDAH compartilham sintomas como desatenção, mas são condições distintas. O TEA envolve prejuízos na comunicação social e comportamentos repetitivos, enquanto o TDAH tem como núcleo a desregulação da atenção e hiperatividade. Veja a comparação completa em <a href="/blog/diferenca-autismo-tdah-infancia">diferença entre autismo e TDAH na infância</a>.</p>
+        <h3>Como diferenciar birra de crise sensorial?</h3>
+        <p>A birra é um comportamento intencional para obter algo, enquanto a crise sensorial é uma reação involuntária a estímulos avassaladores. Crianças neurodivergentes frequentemente têm crises sensoriais. Aprenda a diferenciar em <a href="/blog/birra-ou-crise-sensorial">birra ou crise sensorial</a>.</p>
+        <h3>O que é comportamento opositor (TOD) no contexto escolar?</h3>
+        <p>O TOD se caracteriza por um padrão persistente de irritabilidade, discussão e desafio a figuras de autoridade. Na escola, esses comportamentos podem indicar necessidades não atendidas. Veja estratégias em <a href="/blog/comportamento-opositor-tod-escola">comportamento opositor TOD na escola</a>.</p>
+        <h3>Como a terapia ABA humanizada trabalha estereotipias?</h3>
+        <p>A ABA humanizada aborda as estereotipias como formas de comunicação e regulação, não como comportamentos a serem eliminados. A abordagem respeita a funcionalidade do estímulo. Leia mais em <a href="/blog/aba-humanizada-estereotipias">ABA humanizada e estereotipias</a>.</p>
+        <h3>Quais são os marcos do desenvolvimento da fala infantil?</h3>
+        <p>Balbucio aos 6 meses, primeiras palavras aos 12 meses, combinação de 2 palavras aos 24 meses e frases completas aos 36 meses. Atrasos nesses marcos podem indicar necessidade de intervenção fonoaudiológica. Confira a tabela completa em <a href="/blog/marcos-fala-infantil">marcos da fala infantil</a>.</p>
+        <h3>O que é seletividade alimentar no autismo?</h3>
+        <p>A seletividade alimentar no TEA está relacionada à hipersensibilidade sensorial a texturas, cores, cheiros e temperaturas. Não é comportamento voluntário, mas resposta neurológica. Saiba como intervir em <a href="/blog/seletividade-alimentar-autismo">seletividade alimentar no autismo</a>.</p>
+        <h3>O plano de saúde cobre terapia ABA e fonoaudiologia?</h3>
+        <p>Sim, os planos de saúde são obrigados por lei a cobrir ABA e fonoaudiologia para pacientes com TEA, conforme a Lei 9.656/98 e a Lei Berenice Piana (12.764/12). Descubra seus direitos em <a href="/blog/cobertura-plano-saude-aba-fono">cobertura do plano de saúde para ABA e fonoaudiologia</a>.</p>
+        <h3>Como conseguir liminar para tratamento de autismo?</h3>
+        <p>A liminar é um recurso judicial que obriga planos de saúde ou o poder público a custearem terapias quando há recusa. O direito ao tratamento é garantido pelo Estatuto da Pessoa com Deficiência. Veja o passo a passo em <a href="/blog/liminar-tratamento-autismo">liminar para tratamento de autismo</a>.</p>
+        <h3>Como a integração sensorial ajuda crianças não-verbais?</h3>
+        <p>A integração sensorial organiza as sensações do corpo e do ambiente, criando as bases neurológicas para a comunicação intencional. Para crianças não-verbais, a regulação sensorial precede intervenções de comunicação. Saiba mais em <a href="/blog/integracao-sensorial-comunicacao-criancas-nao-verbais">integração sensorial e comunicação em crianças não-verbais</a>.</p>
+      </div>
     </article>
   </div>
 </template>

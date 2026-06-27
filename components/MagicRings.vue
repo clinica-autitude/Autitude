@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import * as THREE from 'three';
 import { computed, onBeforeUnmount, onMounted, ref, useTemplateRef } from 'vue';
+import { isWebGLAvailable } from '~/utils/webgl';
 
 const vertexShader = `
 void main() {
@@ -148,15 +149,6 @@ let renderer: THREE.WebGLRenderer | null = null;
 let frameId = 0;
 let ro: ResizeObserver | null = null;
 
-const isWebGLAvailable = () => {
-  try {
-    const c = document.createElement('canvas');
-    return !!(c.getContext('webgl2') || c.getContext('webgl') || c.getContext('experimental-webgl'));
-  } catch {
-    return false;
-  }
-};
-
 const cleanupFns: (() => void)[] = [];
 onMounted(() => {
   const mount = mountRef.value;
@@ -248,7 +240,7 @@ onMounted(() => {
   const resize = () => {
     const w = mount.clientWidth;
     const h = mount.clientHeight;
-    const dpr = Math.min(window.devicePixelRatio, 1.5);
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
 
     activeRenderer.setSize(Math.round(w * dpr), Math.round(h * dpr));
 

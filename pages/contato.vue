@@ -17,7 +17,7 @@ const {
   longitude
 } = useContact()
 
-const siteBase = 'https://autitude.com.br'
+const { siteBase } = useSiteBase()
 
 useHead({
   title: 'Contato — Telefone, WhatsApp e Localização | Autitude - Desenvolvimento e Ação Humana',
@@ -128,21 +128,23 @@ const config = {
   <div class="contact">
     <section class="hero-section">
       <div class="hero-bg-grid">
-        <Grainient
-          className="w-full h-full"
-          :timeSpeed="0.2"
-          :grainAmount="0.03"
-          :contrast="1.0"
-          :gamma="1.0"
-          :saturation="1.0"
-          :warpStrength="1.5"
-          :warpFrequency="3.0"
-          :warpSpeed="0.8"
-          :rotationAmount="0"
-          color1="#6B4FA3"
-          color2="#8FC176"
-          color3="#3D2D5E"
-        />
+        <ClientOnly>
+          <Grainient
+            className="w-full h-full"
+            :timeSpeed="0.2"
+            :grainAmount="0.03"
+            :contrast="1.0"
+            :gamma="1.0"
+            :saturation="1.0"
+            :warpStrength="1.5"
+            :warpFrequency="3.0"
+            :warpSpeed="0.8"
+            :rotationAmount="0"
+            color1="#6B4FA3"
+            color2="#8FC176"
+            color3="#3D2D5E"
+          />
+        </ClientOnly>
       </div>
       <div class="container">
         <div class="section-title">
