@@ -86,16 +86,10 @@
   border-width: 0;
 }
 
-/* SEO texts invisible but present for GEO */
+/* SEO texts */
 .seo-text {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-  user-select: none;
-  pointer-events: none;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 /* Truncate */
