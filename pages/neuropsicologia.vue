@@ -38,7 +38,7 @@ useHead({
   script: [
     {
       type: 'application/ld+json',
-      children: JSON.stringify({
+      innerHTML: JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'MedicalWebPage',
         name: 'Neuropsicologia em Pindamonhangaba | Autitude',
@@ -73,7 +73,7 @@ useHead({
     },
     {
       type: 'application/ld+json',
-      children: JSON.stringify({
+      innerHTML: JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
         itemListElement: [
@@ -86,7 +86,7 @@ useHead({
     {
       type: 'application/ld+json',
       key: 'faqpage',
-      children: JSON.stringify({
+      innerHTML: JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'FAQPage',
         name: 'Neuropsicologia em Pindamonhangaba — Perguntas Frequentes',

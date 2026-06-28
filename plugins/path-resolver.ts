@@ -4,7 +4,7 @@ export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.hook('app:created', () => {
     useHead({
       link: [
-        { rel: 'canonical', href: siteBase.value || 'https://autitude.com.br' }
+        { rel: 'canonical', href: siteBase || 'https://autitude.com.br' }
       ]
     })
   })

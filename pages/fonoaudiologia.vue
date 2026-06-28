@@ -39,7 +39,7 @@ useHead({
     {
       type: 'application/ld+json',
       key: 'medical-webpage',
-      children: JSON.stringify({
+      innerHTML: JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'MedicalWebPage',
         name: 'Fonoaudiologia em Pindamonhangaba | Autitude',
@@ -75,7 +75,7 @@ useHead({
     {
       type: 'application/ld+json',
       key: 'breadcrumb',
-      children: JSON.stringify({
+      innerHTML: JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
         itemListElement: [
@@ -88,7 +88,7 @@ useHead({
     {
       type: 'application/ld+json',
       key: 'faqpage',
-      children: JSON.stringify({
+      innerHTML: JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'FAQPage',
         name: 'Perguntas Frequentes — Fonoaudiologia | Autitude',
