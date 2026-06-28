@@ -14,6 +14,7 @@ export default defineNuxtConfig({
     preference: 'light',
     fallback: 'light',
     classSuffix: '',
+    // @ts-expect-error -- @nuxtjs/color-mode supports preferClass but types lag behind
     preferClass: true,
     storageKey: 'nuxt-color-mode'
   },
