@@ -33,12 +33,12 @@ jobs:
       - name: Cache pnpm store
         uses: actions/cache@v4
         with:
-          path: ~/.local/share/pnpm/store/v10
+          path: ~/.local/share/pnpm/store/v11
           key: ${{ runner.os }}-pnpm-store-v11-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: ${{ runner.os }}-pnpm-store-v11-
 
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --no-frozen-lockfile
         env:
           PUPPETEER_SKIP_DOWNLOAD: 'true'
 
