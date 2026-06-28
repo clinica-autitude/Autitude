@@ -26,7 +26,7 @@ const {
   latitude,
   longitude
 } = useContact()
-const fullLogoUrl = computed(() => `${siteBase.value}/full-logo.png`)
+const fullLogoUrl = computed(() => `${siteBase}/full-logo.png`)
 const heroLogoUrl = '/full-logo-no-bg.png'
 
 useHead({
