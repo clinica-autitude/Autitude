@@ -39,11 +39,20 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install
+        env:
+          PUPPETEER_SKIP_DOWNLOAD: 'true'
 
       - name: Build Nuxt
         env:
           SITE_BASE: https://autitude.com.br
         run: pnpm run generate
+
+      - name: Verify build output
+        run: |
+          if [ ! -d ".output/public" ]; then
+            echo "Error: .output/public not found after build"
+            exit 1
+          fi
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
