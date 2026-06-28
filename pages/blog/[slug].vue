@@ -401,12 +401,22 @@ useHead({
         author: {
           '@type': 'Person',
           name: 'Dra. Juliana Mariani',
+          givenName: 'Juliana',
+          familyName: 'Mariani',
+          honorificPrefix: 'Dra.',
           url: 'https://autitude.com.br/equipe',
-          description: 'Terapeuta Ocupacional | CREFITO 20083-TO',
+          description: 'Terapeuta Ocupacional | CREFITO 20083-TO | Especialista em Integração Sensorial (USC) e ABA para TEA',
           identifier: 'CREFITO 20083-TO',
+          knowsAbout: [
+            'Terapia Ocupacional',
+            'Integração Sensorial',
+            'Análise do Comportamento Aplicada',
+            'Transtorno do Espectro Autista'
+          ],
           worksFor: {
-            '@type': 'Organization',
-            name: 'Autitude - Desenvolvimento e Ação Humana'
+            '@type': 'MedicalBusiness',
+            name: 'Autitude - Desenvolvimento e Ação Humana',
+            url: 'https://autitude.com.br'
           }
         },
         publisher: {

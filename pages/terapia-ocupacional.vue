@@ -99,7 +99,7 @@ useHead({
             name: 'O que é Terapia Ocupacional?',
             acceptedAnswer: {
               '@type': 'Answer',
-              text: 'A terapia ocupacional utiliza atividades significativas para promover autonomia e qualidade de vida. Na Autitude, o serviço é liderado pela Dra. Juliana Mariani, especialista com certificação internacional em Integração Sensorial pela University of Southern California (USC, USA). O tratamento aborda dificuldades sensoriais, motoras, de autocuidado e participação social.'
+              text: 'A terapia ocupacional utiliza atividades significativas para promover autonomia e qualidade de vida. Na Autitude, o serviço é liderado pela Dra. Juliana Mariani, Terapeuta Ocupacional com mais de 25 anos de experiência, certificação internacional em Integração Sensorial pela University of Southern California (USC, USA) e pós-graduação em Análise do Comportamento Aplicada (ABA) para TEA. O tratamento aborda dificuldades sensoriais, motoras, de autocuidado e participação social.'
             }
           },
           {

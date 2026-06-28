@@ -1,0 +1,5 @@
+export { default as JulianaHero } from './JulianaHero.vue'
+export { default as JulianaJourney } from './JulianaJourney.vue'
+export { default as JulianaSpecializations } from './JulianaSpecializations.vue'
+export { default as JulianaApproach } from './JulianaApproach.vue'
+export { default as JulianaCommitment } from './JulianaCommitment.vue'
