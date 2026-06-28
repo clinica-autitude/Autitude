@@ -30,7 +30,7 @@ const props = withDefaults(defineProps(), {
 })
 
 const containerRef = ref(null)
-const isWebGLAvailable = ref(true)
+const webglAvailable = ref(true)
 const webglFailed = ref(false)
 
 const generateNoise = (width, height) => {
@@ -207,8 +207,8 @@ const hexToRgb = (hex) => {
 const setup = () => {
   if (!containerRef.value) return
 
-  if (!isWebGLAvailableCheck()) {
-    isWebGLAvailable.value = false
+  if (!isWebGLAvailable()) {
+    webglAvailable.value = false
     webglFailed.value = true
     return
   }

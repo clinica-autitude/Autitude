@@ -240,12 +240,20 @@ onMounted(() => {
   const resize = () => {
     const w = mount.clientWidth;
     const h = mount.clientHeight;
+    if (w === 0 || h === 0) return;
     const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
 
     activeRenderer.setSize(Math.round(w * dpr), Math.round(h * dpr));
 
     uniforms.uResolution.value.set(w * dpr, h * dpr);
   };
+
+  requestAnimationFrame(() => {
+    resize();
+    if (mount.clientWidth === 0 || mount.clientHeight === 0) {
+      resize();
+    }
+  });
 
   resize();
 
@@ -372,10 +380,17 @@ onBeforeUnmount(() => {
 
 <style scoped>
 .magicrings-mount {
-  position: relative;
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   will-change: transform;
+}
+
+.magicrings-mount :deep(canvas) {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
 }
 
 .magicrings-fallback {
@@ -383,7 +398,10 @@ onBeforeUnmount(() => {
   inset: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle at center, color-mix(in srgb, var(--lilac) 8%, transparent), color-mix(in srgb, var(--lilac-dark) 4%, transparent) 60%, transparent 80%);
+  background:
+    radial-gradient(circle at 40% 45%, rgba(107, 79, 163, 0.18) 0%, transparent 50%),
+    radial-gradient(circle at 60% 55%, rgba(238, 0, 255, 0.10) 0%, transparent 45%),
+    radial-gradient(circle at 50% 50%, rgba(107, 79, 163, 0.08) 0%, transparent 70%);
   pointer-events: none;
 }
 </style>

@@ -613,6 +613,7 @@ const services = [
 
 .hero {
   min-height: 100dvh;
+  height: 100dvh;
   display: flex;
   align-items: center;
   padding-top: clamp(3rem, 5vw, 5rem);
